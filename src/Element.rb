@@ -22,12 +22,16 @@ class Element
     #estPont?
     #
     #retourne vrai si c'est un pont
-    def estPont?() end
+    def estPont?() 
+        return false
+    end
 
     #estIle?
     #
     #retourne vrai si c'est une ile
-    def estIle?() end
+    def estIle?() 
+        return false
+    end
 
     #to_s
     #

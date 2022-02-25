@@ -2,7 +2,7 @@
 #class Element 
 #
 #La classe element représente un element du plateau
-#c'est une classe abstraite qui va être sois un pont, soit une ile
+#c'est une classe qui va être sois un pont, soit une ile, soit un element
 #
 #elle peut : 
 #   - S'afficher
@@ -12,11 +12,9 @@ class Element
     
     #Element.creer
     #
-    #On ne peut pas creer un element car c'est une classe abstraite
-    #soulève une erreur
+    #Creer un nouvelle element
     def Element.creer()
-        puts "Ne peut pas creer d'instance d'un element"
-        raise "exeception classe abstraite"
+        new()
     end
 
     #estPont?

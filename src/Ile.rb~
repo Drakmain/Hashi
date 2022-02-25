@@ -1,7 +1,7 @@
 
 
 
-class Ile < Element
+class Ile
 	# connait sa valeur : integer
 	#
 	

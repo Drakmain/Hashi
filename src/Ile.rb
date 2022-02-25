@@ -7,7 +7,7 @@ class Ile < Element
 	
 	attr_reader :valeur  
 	
-	def initialize( valeur)  
+	def initialize( valeur )  
 		@valeur = valeur 
   	end 
 	

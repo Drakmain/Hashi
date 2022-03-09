@@ -31,5 +31,9 @@ class Genie
 
     end
 
+    def jouerCoup()
+
+    end
+
 
 end

@@ -38,8 +38,3 @@ class Element
         return " element du tableau"
     end
 end #fin de classe Element
-
-
-
-
-

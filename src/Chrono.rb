@@ -1,15 +1,18 @@
 class Chrono
 
+    @thr
+
     def initialize()  
 		@tempsDebut = 0
         @chrono = 0
+
   	end 
 
     def lancerChrono()
-        thr = Thread.new {
+        @thr = Thread.new {
             @tempsDebut = Time.now.to_i
             ancienne_valeur = @chrono
-            while(@chrono < 10)
+            while(true)
                 @chrono = Time.now.to_i - @tempsDebut
                 if(ancienne_valeur != @chrono)
                     ancienne_valeur = @chrono
@@ -19,14 +22,40 @@ class Chrono
             end
         }
 
-        thr.join
+        @thr.run
 
+    end
+
+    def lancerChronoInverse(unTemps)
+        @thr = Thread.new {
+            @tempsDebut = Time.now.to_i
+            ancienne_valeur = unTemps
+            while(true)
+                @chrono = unTemps - (Time.now.to_i - @tempsDebut)
+                if(ancienne_valeur != @chrono)
+                    ancienne_valeur = @chrono
+                    puts(@chrono+1)
+                end
+
+            end
+        }
+
+        @thr.run
+
+        sleep(unTemps)
+
+        stopperChrono
+
+    end
+
+    def stopperChrono()
+        @thr.exit
     end
 
     attr_reader :chrono
 
 end
 
-testChro = TestChrono.new
+testChro = Chrono.new
 
-testChro.lancerChrono
+testChro.lancerChronoInverse(20)

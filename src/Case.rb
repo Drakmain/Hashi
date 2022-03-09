@@ -37,5 +37,5 @@ class Case
 		return @unPlateau.cases[@x][@y+1]
 	end
 	
-	attr :element
+	attr_reader :element
 end

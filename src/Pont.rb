@@ -1,4 +1,7 @@
-class Pont extend Element
+load 'Element.rb'
+
+
+class Pont < Element
 
     # La classe Pont possède une variable d'instance
 	#
@@ -21,10 +24,7 @@ class Pont extend Element
         return true
     end
 
-    # Méthode qui retourne faux
-
-    def estIle?
-        return false
-    end
-
 end
+
+
+

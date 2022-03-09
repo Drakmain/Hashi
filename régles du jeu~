@@ -8,32 +8,32 @@ Les règles du jeu Hashi :
 -------------------------
 
 Hashi est un jeu de logique très addictif inventé au Japon. 
-Le but du jeu est de connecter les Iles de la grille entre elles. 
-Pour se faire vous pouvez connecter une Ile à une autre par le haut, le bas, la gauche ou la droite.
+Le but du jeu est de connecter les points de la grille entre eux. 
+Pour se faire vous pouvez connecter un point à un autre par le haut, le bas, la gauche ou la droite.
 
-Chaque connexion entre deux Iles peut avoir une ou deux lignes. 
-Une Ile sera donc reliée à minimum une ligne et maximum huit lignes. 
-Chaque Ile est marquée d'un nombre de 1 à 8 qui indique le nombre de lignes qui lui sont connectées.
+Chaque connexion entre deux points peut avoir une ou deux lignes. 
+Un point sera donc relié à minimum une ligne et maximum huit lignes. 
+Chaque point est marqué d'un nombre de 1 à 8 qui indique le nombre de lignes qui lui sont connectées.
 
-La grille sera résolue lorsque tous les Iles seront reliées les unes aux autres. 
-Il ne peut y avoir deux groupes d'Iles indépendantes.
+La grille sera résolue lorsque tous les points seront reliés les uns aux autres. 
+Il ne peut y avoir deux groupes de points indépendants.
 
 
 Pour résumer :
 ----------------
 
-    Chaque Ile doit être relié à un nombre de lignes correspondant au nombre écrit dessus
-    Tous les Iles doivent être interconnectées (ne former qu'un seul groupe)
+    Chaque point doit être relié à un nombre de lignes correspondant au nombre écrit dessus
+    Tous les points doivent être interconnectés (ne former qu'un seul groupe)
 
 
 Fonctionnement du jeu :
 --------------------------
 
-    Cliquez sur un Ile pour faire apparaître les connexions possibles
+    Cliquez sur un point pour faire apparaître les connexions possibles
     Cliquez sur une connexion pour y ajouter une ligne
-    Un clic long sur une Ile permet de mettre en évidence les Iles qui lui sont connectées
+    Un clic long sur un point permet de mettre en évidence les points qui lui sont connectés
 
-	 ( voir les sigles correspondants)
+	 ( voir les sigle correspondants)
 	 
 	Permets de recommencer la partie.
 	Permets de faire un coup en arrière.

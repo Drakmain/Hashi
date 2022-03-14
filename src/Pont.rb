@@ -8,8 +8,13 @@ class Pont < Element
 	# @sensHorizontal = un bool représentant le sens du pont, horizontal si true, et vertical si false
 
 
+    def Pont.creer()
+        new()
+    end
+
 	def initialize()
 		@sensHorizontal = true
+        @nb_ponts= 0
 	end
 
 
@@ -23,6 +28,8 @@ class Pont < Element
     def estPont?
         return true
     end
+
+    
 
 end
 

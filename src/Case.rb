@@ -26,6 +26,11 @@ class Case
 	#							Methode de classe
 	###############################################################################################
 
+	def Case.creer(unX,unY,unPlateau,unElem)
+		new(unX,unY,unPlateau,unElem)
+	end
+
+
 	#new est en privée car il y a un parametre à passer dans la création
 	private_class_method :new
 
@@ -38,11 +43,11 @@ class Case
 	# unY => coordonées y de la case
 	# unPlateau => le plateau de jeux
 	#
-	def initialize(unX,unY,unPlateau)
+	def initialize(unX,unY,unPlateau,unElem)
 		@x = unX
 		@y = unY
 		@plateau = unPlateau
-		@element = nil
+		@element = unElem
 	end
 
 	#Accès a l'élément de la case
@@ -83,6 +88,10 @@ class Case
 	# Methode qui retourne la case d'en haut
 	def voisineHaut()
 		return @unPlateau.cases[@x][@y+1]
+	end
+
+	def to_s()
+		return "x : #{@x}, y : #{@y}"
 	end
 
 end #fin de la classe Case

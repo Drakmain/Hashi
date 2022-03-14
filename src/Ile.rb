@@ -9,6 +9,9 @@ class Ile < Element
 	# @nbLiens = un int, représentant le nombre de liens (ponts), connecté à l'île
 	# @estFini = un bool, vrai si l'île à le bon nombre de liens, et faux dans le cas inverse
 
+	def Ile.creer(uneValeur)
+		new(uneValeur)
+	end
 	
 	def initialize(uneValeur)  
 		@valeur = uneValeur 

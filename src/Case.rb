@@ -22,6 +22,13 @@ class Case
 	#@plateau => le plateau de jeux
 	#@element => element que l'ile posséde ou non
 
+	###############################################################################################
+	#							Methode de classe
+	###############################################################################################
+
+	#new est en privée car il y a un parametre à passer dans la création
+	private_class_method :new
+
 	##
 	# Methode d'initialisation de la classe
 	#
@@ -38,33 +45,44 @@ class Case
 		@element = nil
 	end
 
+	#Accès a l'élément de la case
+	attr_reader :element
+
 	##################################################################################################
 	#						Methode d'accès aux voisines
 	##################################################################################################
 	
-	##
+	#*****************************************************************************
+	#			voisineDroite()
+	#
+	#
 	# Methode qui retourne la case de droite
 	def voisineDroite()
 		return @unPlateau.cases[@x+1][@y]
 	end
 	
-	##
+	#*****************************************************************************
+	#			voisineGauche()
+	#
 	# Methode qui retourne la case de gauche
 	def voisineGauche()
 		return @unPlateau.cases[@x-1][@y]
 	end
 	
-	##
+	#*****************************************************************************
+	#			voisineBas()
+	#
 	# Methode qui retourne la case d'en bas
 	def voisineBas()
 		return @unPlateau.cases[@x][@y-1]
 	end
 	
-	##
+	#*****************************************************************************
+	#			voisineHaut()
+	#
 	# Methode qui retourne la case d'en haut
 	def voisineHaut()
 		return @unPlateau.cases[@x][@y+1]
 	end
-	
-	attr_reader :element
-end
+
+end #fin de la classe Case

@@ -63,7 +63,6 @@ class ContreLaMontre < Genie
     #
     def initialize(unFichier)
         super
-        @fichier = unFichier
         @autoCorrecteur = false
         @assiste = false
         @hypothese = false

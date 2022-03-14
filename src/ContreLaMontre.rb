@@ -42,17 +42,31 @@ class ContreLaMontre < Genie
     #**********************************************
     #       ContreLaMontre.creer()
     #
-    #Initilialise un objet ContreLaMontre
+    #creer un objet ContreLaMontre
     #
     #====== ATTRIBUTS
     #
     #   unFichier : un chemin vers le fichier à ouvrir pour vérifier la grille
     #
     def ContreLaMontre.creer(unFichier)
-        @hypothese = false
-        @assiste = false
-        @autoCorrecteur = false;
+        new(unFichier)
+    end
+
+    #************************************************
+    #       initialize()
+    #
+    #initialise un objet
+    #
+    #====== ATTRIBUTS
+    #
+    #   unFichier : un chemin vers le fichier à ouvrir pour vérifier la grille
+    #
+    def initialize(unFichier)
+        super
         @fichier = unFichier
+        @autoCorrecteur = false
+        @assiste = false
+        @hypothese = false
     end
 
     #**********************************

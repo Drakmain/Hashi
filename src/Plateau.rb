@@ -70,7 +70,6 @@ class Plateau
 	
 
 	def affiche()
-
 		@matrice.each do |row|
 			row.each do |column|
 				print column
@@ -81,10 +80,40 @@ class Plateau
 			  end
 			end
 			print "\n"
-	  end
+	  	end
 	end
 
 
+	#def initPont()
+	#	@matrice.each do |row|
+	#		row.each do |column|
+	#			if column.element.instance_of?(Ile) then
+	#				casetmp=column
+	#				casetmp2=nil
+	#
+	#		end
+	#  	end
+	#end
+
+
+	#Cases valables
+	def creerPont(case1, case2)
+		if(case1.x == case2.x)
+			long = case2.y - case1.y
+			caseTmp = case1
+			for i in 0...long
+				caseTmp.voisineDroite.element = Pont.creer(true)
+				caseTmp = caseTmp.voisineDroite
+			end
+		else
+			long = case2.x - case1.x
+			caseTmp = case1
+			for i in 0...long
+				caseTmp.voisineBas.element = Pont.creer(false)
+				caseTmp = caseTmp.voisineBas
+			end
+		end
+	end
 
 	attr_accessor :matrice, :x, :y
 

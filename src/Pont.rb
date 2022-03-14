@@ -12,8 +12,8 @@ class Pont < Element
         new()
     end
 
-	def initialize()
-		@sensHorizontal = true
+	def initialize(estHorizontal)
+		@sensHorizontal = estHorizontal
         @nb_ponts= 0
 	end
 

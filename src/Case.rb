@@ -51,7 +51,8 @@ class Case
 	end
 
 	#Accès a l'élément de la case
-	attr_reader :element
+	attr_reader :x, :y
+	attr_accessor :element
 
 	##################################################################################################
 	#						Methode d'accès aux voisines

@@ -20,9 +20,13 @@ class Ile < Element
   	end 
 	
 	attr_reader :valeur 
-	attr_accessor :nbLiens
+	attr_accessor :nbLiens, :estFini
 
-	def estPont?
+	def estIle?() 
+        return true
+    end
+
+	def estFini?() 
         return @estFini
     end
 

@@ -12,8 +12,8 @@ class Pont < Element
         new()
     end
 
-	def initialize(estHorizontal)
-		@sensHorizontal = estHorizontal
+	def initialize()
+		@sensHorizontal = false
         @nb_ponts= 0
 	end
 
@@ -29,7 +29,28 @@ class Pont < Element
         return true
     end
 
+    def ajoutePont()
+        if(@nb_ponts >= 0 && @nb_ponts <= 2)then
+            @nb_ponts += 1     
+        elsif(@nb_ponts == 2)then
+            @nb_ponts = 1
+        end
+    end
+
     
+    def enlevePont()
+        @nb_ponts = 0     
+    end
+
+    
+    def estHorizontal()
+        @sensHorizontal = true
+    end
+
+
+    def estVertical()
+        @sensHorizontal = false
+    end
 
 end
 

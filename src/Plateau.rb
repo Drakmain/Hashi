@@ -72,11 +72,13 @@ class Plateau
 	def affiche()
 		@matrice.each do |row|
 			row.each do |column|
-				print column
+				#print column
 			  if column.element.instance_of?(Element) then
 				print("E ")
 			  elsif column.element.instance_of?(Ile) then
 				print("I ")
+			  elsif column.element.instance_of?(Pont) then
+				print("P ")
 			  end
 			end
 			print "\n"
@@ -84,38 +86,61 @@ class Plateau
 	end
 
 
-	#def initPont()
-	#	@matrice.each do |row|
-	#		row.each do |column|
-	#			if column.element.instance_of?(Ile) then
-	#				casetmp=column
-	#				casetmp2=nil
-	#
-	#		end
-	#  	end
-	#end
+	def initPont()
+		@matrice.each do |row|
+			row.each do |column|
+				if column.element.instance_of?(Ile) then
+					casetmp = column
+					for i in column.y...@y
+						casetmp2 = casetmp.voisineDroite
+						if(casetmp2 != nil)
+							if(casetmp2.element.instance_of?(Ile))then
+								creerPontVide(column, casetmp2)
+								break
+							end							
+							casetmp = casetmp2
+						end
+					end
+					
+
+					casetmp = column
+					for i in column.x...@x
+						casetmp2 = casetmp.voisineBas
+						if(casetmp2 != nil)
+							if(casetmp2.element.instance_of?(Ile))then
+								creerPontVide(column, casetmp2)
+								break
+							end
+							casetmp = casetmp2
+						end
+					end
+				end
+			end
+	  	end
+	end
 
 
 	#Cases valables
-	def creerPont(case1, case2)
+	def creerPontVide(case1, case2)
 		if(case1.x == case2.x)
 			long = case2.y - case1.y
+			
 			caseTmp = case1
-			for i in 0...long
-				caseTmp.voisineDroite.element = Pont.creer(true)
+			for i in 0...long-1
+				caseTmp.voisineDroite.element = Pont.creer()
 				caseTmp = caseTmp.voisineDroite
 			end
 		else
 			long = case2.x - case1.x
 			caseTmp = case1
-			for i in 0...long
-				caseTmp.voisineBas.element = Pont.creer(false)
+			for i in 0...long-1
+				caseTmp.voisineBas.element = Pont.creer()
 				caseTmp = caseTmp.voisineBas
 			end
 		end
 	end
 
-	attr_accessor :matrice, :x, :y
+	attr_accessor :matrice, :plateau, :x, :y
 
 end	
 
@@ -125,4 +150,8 @@ test.generateMatrice("../map/facile/demarrage/2.txt")
 test.to_s()
 print "\n"
 test.generatePlateau()
+test.affiche()
+
+print "INIT PONT \n"
+test.initPont()
 test.affiche()

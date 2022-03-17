@@ -5,6 +5,10 @@ class Coup extend Element
 	# @clickDroit = boolean qui décrit si le mouvement était click gauche ou droit
 	# @pont = reference du pont sur la quelle le click est fait
 
+	def Coup.creer(clickdroit, pont)
+		initialize(clickdroit, pont)
+	end
+
 
 	def initialize(clickdroit, pont)
 		@clickDroit = clickdroit

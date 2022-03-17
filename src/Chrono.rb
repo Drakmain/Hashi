@@ -98,7 +98,3 @@ class Chrono
     attr_reader :chrono
 
 end
-
-testChro = Chrono.new
-
-testChro.lancerChronoInverse(20)

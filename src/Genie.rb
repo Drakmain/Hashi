@@ -1,6 +1,6 @@
 
 load "Chrono.rb"
-load "Plateau.rb"
+#load "Plateau.rb"
 
 
 ##
@@ -69,7 +69,7 @@ class Genie
         @fichier = unFichier
         @plateau = unPlateau
         @save = nil;
-        @dir = "../data/save/" + unNiveau + "/"
+        @dir = "../data/save" + self.class.to_s + "/"
         @pseudo = unPseudo
 	end
 
@@ -141,7 +141,9 @@ class Genie
     #*+unY+ => Coordonnée Y de la case
     #
     def jouerCoup(unX, unY, unClic)
-        @anciensCoups.push(Coup.creer(unClic, unPlateau.getCase(unX, unY)))
+        caseCourante = unPlateau.getCase(unX, unY)
+        @anciensCoups.push(Coup.creer(unClic, caseCourante))
+        
 
     end
 
@@ -160,7 +162,7 @@ class Genie
 end# fin de la classe génie
 
 
-genie = Genie.creer(nil, [1,2,3,4,5], "1", "mathieu")
+genie = Genie.creer(nil, [1,2,3,4,5], "1", "theo")
 genie.save()
 print(genie)
 g = genie.load()

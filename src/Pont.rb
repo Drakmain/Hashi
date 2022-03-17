@@ -20,7 +20,7 @@ class Pont < Element
 
     # Créer les getters et setters de la variable sensHorizontal
 
-    attr_accessor :sensHorizontal :nb_ponts
+    attr_accessor :sensHorizontal, :nb_ponts
 
 
     # Méthode qui retourne vrai

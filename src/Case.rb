@@ -64,7 +64,11 @@ class Case
 	#
 	# Methode qui retourne la case de droite
 	def voisineDroite()
-		return @plateau.matrice[@x][@y+1]
+		if(@y+1 == @plateau.y)
+			return nil
+		else
+			return @plateau.matrice[@x][@y+1]
+		end
 	end
 	
 	#*****************************************************************************
@@ -72,7 +76,11 @@ class Case
 	#
 	# Methode qui retourne la case de gauche
 	def voisineGauche()
-		return @plateau.matrice[@x][@y-1]
+		if(@y-1 == @plateau.y)
+			return nil
+		else
+			return @plateau.matrice[@x][@y-1]
+		end
 	end
 	
 	#*****************************************************************************
@@ -92,7 +100,11 @@ class Case
 	#
 	# Methode qui retourne la case d'en haut
 	def voisineHaut()
-		return @plateau.matrice[@x-1][@y]
+		if(@x-1 == @plateau.x)
+			return nil
+		else
+			return @plateau.matrice[@x-1][@y]
+		end
 	end
 
 	#****************************************************************************

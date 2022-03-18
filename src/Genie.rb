@@ -114,12 +114,13 @@ class Genie
     #           lancerChrono()
     #
     #permet de lancer le chronometre dans le sens normal (part de 0 et s'incrémente jusqu'à ce que la partie soit terminé)
-    def lancerChroncreerdeleteCoup()
+    def lancerChrono()
+        @chrono.lancerChrono
     end
     #
     #permet de supprimer le dernier coup dans la liste des coups, le met dans a liste des anciens coups 
     def deleteCoup()
-    
+        @anciensCoups.push(@coup.pop)
     end
 
     #***********************************
@@ -127,7 +128,7 @@ class Genie
     #
     #permet de récupérer l'ancien coup supprimer dans la liste des anciens coups
     def getCoup()
-
+        @coup.push(@anciensCoups.pop)
     end
 
     #**********************************

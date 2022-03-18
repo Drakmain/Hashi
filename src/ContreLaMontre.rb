@@ -68,6 +68,15 @@ class ContreLaMontre < Genie
         @hypothese = false
     end
 
+    #************************************
+    #           lancerChrono()
+    #
+    #permet de lancer le chronometre dans le sens inverse (part de 300 et se décrémente jusqu'à ce que le temps soit à 0) (5min pour toutes les maps)
+    def lancerChrono()
+        @chrono.lancerChronoInverse(300)
+    end
+
+
     #**********************************
     #       corrigerErreur
     #

@@ -169,8 +169,11 @@ class Genie
 
 end# fin de la classe génie
 
+test = Plateau.creer()
+test.generateMatrice("../map/facile/demarrage/2.txt")
+test.generatePlateau()
 
-genie = Genie.creer(nil, [1,2,3,4,5], "1", "theo")
+genie = Genie.creer(nil, test.ajouterPont(), "1", "theo")
 genie.save()
 print(genie)
 g = genie.load()

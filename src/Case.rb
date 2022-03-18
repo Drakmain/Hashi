@@ -168,13 +168,15 @@ class Case
     #                   estEntouré?()
     #
     #retourne vrai si le pont sélectionner peut être soit horizontale, soit vertical
-    def estEntouré(){
+    def estEntoure()
+		print "courante : " + self.to_s() + "\n"
+		print "haut : " + self.voisineHaut.to_s() +"\n" +  "bas : " + self.voisineBas().to_s() + "\n" + "droite : " + self.voisineDroite().to_s() + "\n" + "Gauche : "+ self.voisineGauche().to_s() + "\n"
 		if(self.voisineBas() == nil || self.voisineDroite() == nil || self.voisineGauche() == nil || self.voisineHaut == nil)then
 			return false
 		else
-			return !(self.voisineBas().estElement?()) && !(self.voisineDroite().estElement?())
+			return !(self.voisineBas().element.estElement?()) && !(self.voisineDroite().element.estElement?())
 		end
-    }
+    end
 
 	#*********************************************************************
 	#						to_s

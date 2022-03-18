@@ -1,6 +1,7 @@
 
 load "Chrono.rb"
-#load "Plateau.rb"
+load "Plateau.rb"
+load "Coup.rb"
 
 
 ##
@@ -77,6 +78,13 @@ class Genie
     #                               Methodes
     #############################################################################################
 
+
+    def initialiserJeu(unFichier)
+        @plateau.generateMatrice(unFichier)
+        @plateau.generatePlateau
+        @plateau.ajouterPont
+    end
+
     #************************************
     #           save()
     #
@@ -141,8 +149,8 @@ class Genie
     #*+unY+ => Coordonnée Y de la case
     #
     def jouerCoup(unX, unY, unClic)
-        caseCourante = unPlateau.getCase(unX, unY)
-        if(caseCourante.estPont()) then
+        caseCourante = @plateau.getCase(unX, unY)
+        if(caseCourante.element.estPont?()) then
             if(caseCourante.estEntoure())then
                 puts "vous voulez faire un coup horizontale ou vertical ?"
             else
@@ -150,6 +158,7 @@ class Genie
             end
             @anciensCoups.push(Coup.creer(unClic, caseCourante))
         else
+            puts "case pas un pont"
             return -1
         end
         
@@ -167,14 +176,18 @@ class Genie
     end
 
 
+    def afficherPlateau()
+        @plateau.affiche()
+    end
+
+
 end# fin de la classe génie
 
-test = Plateau.creer()
-test.generateMatrice("../map/facile/demarrage/2.txt")
-test.generatePlateau()
+genie = Genie.creer(nil, Plateau.creer(1), "1", "theo")
+genie.initialiserJeu("../map/facile/demarrage/2.txt")
+genie.jouerCoup(9,2, "droit")
 
-genie = Genie.creer(nil, test.ajouterPont(), "1", "theo")
 genie.save()
-print(genie)
+genie.afficherPlateau
 g = genie.load()
-print(g)
+g.afficherPlateau

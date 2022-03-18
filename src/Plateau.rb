@@ -236,6 +236,10 @@ class Plateau
 	end
 
 
+	#*************************************************************************
+	#					getCase()
+	#
+	#permet de récuperer la case en x y
 	def getCase(unX, unY)
 		return @matrice[unX][unY]
 	end

@@ -9,28 +9,39 @@
 #   -lancerChronoInverse(unTemps) : qui lance le chronomètre décompteur pour unTemps donné en paramètre.
 #   -stopperChrono : qui permet de stopper n'importe quel des deux chronomètre.
 #   -remiseAZero : qui réinitialise le chronomètre.
-
-
-
 class Chrono
+    #
+    #@thr => le thread qui contient le chrono
+    #@tempsDebut => le temps de début du chrono
+    #@chrono => le chrono
 
     @thr
     @tempsDebut
     @chrono
 
 
-    ##
-    #Initialise le chronomètre à vide grâce à la méthode de remise à zéro.
-    #
+    ###############################################################################
+    #                   Methode de classe
+    ###############################################################################
 
+    #**********************************************************
+    #                      initialize()
+    #
+    #Initialise le chronomètre à vide grâce à la méthode de remise à zéro.
     def initialize()  
 		remiseAZero
   	end 
 
-    ##
-    #Compte le nombre de seconde depuis le lancement
-    #
 
+    ###############################################################################
+    #                       Methode
+    ###############################################################################
+
+
+    #*********************************************************
+    #                   lancerChrono()
+    #
+    #Compte le nombre de secondes depuis le lancement
     def lancerChrono()
         @thr = Thread.new {
             @tempsDebut = Time.now.to_i
@@ -49,10 +60,10 @@ class Chrono
 
     end
 
-    ##
-    #Décompte à partir d'un temps donné et se top une fois à 0
+    #*********************************************************
+    #               lancerChronoInverse()
     #
-
+    #Décompte à partir d'un temps donné et s'arrete à 0
     def lancerChronoInverse(unTemps)
         @thr = Thread.new {
             @tempsDebut = Time.now.to_i
@@ -75,26 +86,28 @@ class Chrono
 
     end
 
-    ##
-    #Stoppe le chronomètre
+    #*********************************************************
+    #                    stopperChrono()
     #
-
+    #Stoppe le chronomètre
     def stopperChrono()
         @thr.exit
         remiseAZero
     end
 
-    ##
-    #Remet les variables à 0
+    #*******************************************************
+    #                   remiseAZero()
     #
-
+    #Remet les variables à 0
     def remiseAZero()
         @tempsDebut = 0
         @chrono = 0
     end
 
+    #remise à zero est privée car appelé que en interne
     private :remiseAZero
 
+    #permet de lire le chrono
     attr_reader :chrono
 
 end

@@ -95,7 +95,16 @@ class Case
 		return @plateau.matrice[@x-1][@y]
 	end
 
-
+	#****************************************************************************
+	#					AjouterPontDroite()
+	#
+	#Methode qui permet d'ajouter des pont à droite de la case appelante
+	#La case vérifie :
+	#
+	#	- Si elle a un île a sa droite
+	#	- Si elle a du vide
+	#
+	#@return true si le pont peut être créé, false sinon
 	def ajouterPontDroite()
 		droite = voisineDroite()
 		if(droite == nil)then
@@ -120,6 +129,17 @@ class Case
 		end
 	end
 
+
+	#****************************************************************************
+	#					AjouterPontBas()
+	#
+	#Methode qui permet d'ajouter des pont en bas de la case appelante
+	#La case vérifie :
+	#
+	#	- Si elle a un île en dessous
+	#	- Si elle a du vide
+	#
+	#@return true si le pont peut être créé, false sinon
 	def ajouterPontBas()
 		bas = voisineBas()
 		if(bas == nil)then
@@ -144,6 +164,12 @@ class Case
 		end
 	end
 
+	#*********************************************************************
+	#						to_s
+	#
+	#permet d'afficher une case (ses coordonnées) en retournant un string
+	#
+	#@return String
 	def to_s()
 		return "x:#{@x}, y:#{@y} "
 	end

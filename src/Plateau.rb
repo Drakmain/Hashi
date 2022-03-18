@@ -5,21 +5,83 @@ load 'Case.rb'
 
 require 'matrix'
 
+#
+#class Plateau
+#
+#la classe plateau représente les cases du jeu, le plateau a une taille défini dans le fichier
+#
+#Elle est capable : 
+#	- De charger un fichier
+#	- de générer le plateau en fonction du fichier
+#	- d'ajouter les ponts possible
+#	- de s'afficher
+#
+#Le plateau est composé de case, et chaque case est composé d'un element, qui est soit une ile, soit un pont, soit un element
+#
 class Plateau
-	
-	##
-	# Methode d'initialisation de la classe, prend en paramettre son id
-	# @cases => Matrice de cases
-	# @id => un entier avec l'id du niveau
+	#@matrice => la matrice de case avec les éléments
+	#@id => un entier avec l'id du niveau
+	#@x => la largeur du tableau
+	#@y => la longueur du tableau
+	#
+
+	###########################################################################################
+	#						Methodes de classe
+	###########################################################################################
+
+	#************************************************************
+	#				Plateau.creer()
+	#
+	#permet de créer un plateau
+	#
+	#===== ATTRIBUTS
+	#
+	#*+uneID+ : l'id du niveau
+	#
+	def Plateau.creer(uneID)
+		new(uneID)
+	end
+
+	#************************************************************
+	#				Plateau.creer()
+	#
+	#permet d'initialiser un plateau
+	#
+	#===== ATTRIBUTS
+	#
+	#*+uneID+ : l'id du niveau
+	#
 	def initialize(uneID)
 		@id = uneID
 		@x = 0
 		@y = 0 
 		@matrice = Array.new() {Array.new()} #On initialise le tableau des cases pour le charger
-		@plateau = Array.new() {Array.new()} #On initialise le tableau des cases pour le charger
+		#@plateau = Array.new() {Array.new()} #On initialise le tableau des cases pour le charger
 	
 	end
 
+	#Mettre new en privée
+	private_class_method :new
+
+
+	##########################################################################################
+	#						Methodes
+	##########################################################################################
+
+	#******************* Accessors **********************************************
+	attr_accessor :matrice, :plateau, :x, :y
+
+
+	#****************************************************************
+	#				generateMatrice()
+	#
+	#génère la matrice à partir du fichier passé en parametre
+	#elle récupère le x et le y de la matrice dans le fichier
+	#
+	#====== ATTRIBUTS
+	#
+	#*+file+ : le fichier qui contient le niveau à charger
+	#
 	def generateMatrice(file)
 		File.open(file,'r') do |fichier|
 			while line = fichier.gets
@@ -36,8 +98,13 @@ class Plateau
 	end
 
 		
-	#Ne plus toucher!
+	#************************************************************
+	#					generatePlateau()
+	#
+	#Permet de générer le plateau (transformer les entiers en Elements et en Ile)
+	#
 	def generatePlateau()
+		#Ne plus toucher!
 		x=-1
 		y=-1
 		@matrice.map! {|item|
@@ -56,6 +123,12 @@ class Plateau
 
 
 
+	#**********************************************************
+	#						to_s
+	#
+	#permet de retourner la matrice de jeu en string
+	#
+	#@return = string
 	def to_s()
 		puts "le x : #{@x} , le y : #{@y}"
     	puts "la matrice du jeu : "
@@ -69,10 +142,14 @@ class Plateau
 	end
 	
 
+	#**********************************************************
+	#					affiche()
+	#
+	#permet d'afficher la matrice une fois que les éléments ont été initialisé
+	#
 	def affiche()
 		@matrice.each do |row|
 			row.each do |column|
-				#print column
 			  if column.element.instance_of?(Element) then
 				print("E ")
 			  elsif column.element.instance_of?(Ile) then
@@ -86,6 +163,7 @@ class Plateau
 	end
 
 
+=begin
 	def initPont()
 		@matrice.each do |row|
 			row.each do |column|
@@ -118,7 +196,7 @@ class Plateau
 			end
 	  	end
 	end
-
+	
 
 	#Cases valables
 	def creerPontVide(case1, case2)
@@ -139,8 +217,13 @@ class Plateau
 			end
 		end
 	end
+=end
 
-
+	#**************************************************************************
+	#					ajouterPont()
+	#
+	#Permet d'ajouter des ponts là ou le joueur pourra en créer
+	#
 	def ajouterPont()
 		@matrice.each do |row|
 			row.each do |column|
@@ -152,11 +235,9 @@ class Plateau
 		end
 	end
 
-	attr_accessor :matrice, :plateau, :x, :y
-
 end	
 
-test = Plateau.new(1)
+test = Plateau.creer(1)
 test.generateMatrice("../map/facile/demarrage/2.txt")
 
 test.to_s()
@@ -164,9 +245,11 @@ print "\n"
 test.generatePlateau()
 test.affiche()
 
+=begin
 print "INIT PONT V1\n"
 test.initPont()
 test.affiche()
+=end
 print "INIT PONT V2\n"
 test.ajouterPont()
 test.affiche()

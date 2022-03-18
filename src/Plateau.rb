@@ -235,6 +235,11 @@ class Plateau
 		end
 	end
 
+
+	def getCase(unX, unY)
+		return @matrice[unX][unY]
+	end
+
 end	
 
 =begin

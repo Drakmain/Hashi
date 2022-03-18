@@ -76,7 +76,7 @@ class Case
 	#
 	# Methode qui retourne la case de gauche
 	def voisineGauche()
-		if(@y-1 == @plateau.y)
+		if(@y == 0)
 			return nil
 		else
 			return @plateau.matrice[@x][@y-1]
@@ -100,7 +100,7 @@ class Case
 	#
 	# Methode qui retourne la case d'en haut
 	def voisineHaut()
-		if(@x-1 == @plateau.x)
+		if(@x == 0)
 			return nil
 		else
 			return @plateau.matrice[@x-1][@y]
@@ -124,14 +124,14 @@ class Case
 		else
 			if(droite.element.estIle?())then
 				if(@element.instance_of?(Element))then
-					@element = Pont.creer()
+					@element = Pont.creer(true)
 				end
 				return true
 			else
 				bool = droite.ajouterPontDroite()
 				if(bool == true)then
 					if(@element.instance_of?(Element))then
-						@element = Pont.creer()
+						@element = Pont.creer(true)
 					end
 					return true
 				else
@@ -159,14 +159,14 @@ class Case
 		else
 			if(bas.element.estIle?())then
 				if(@element.instance_of?(Element))then
-					@element = Pont.creer()
+					@element = Pont.creer(false)
 				end
 				return true
 			else
 				bool = bas.ajouterPontBas()
 				if(bool == true)then
 					if(!(@element.estIle?()) && !(@element.estPont?()))then
-						@element = Pont.creer()
+						@element = Pont.creer(false)
 					end
 					return true
 				else
@@ -186,9 +186,49 @@ class Case
 		if(self.voisineBas() == nil || self.voisineDroite() == nil || self.voisineGauche() == nil || self.voisineHaut == nil)then
 			return false
 		else
-			return !(self.voisineBas().element.estElement?()) && !(self.voisineDroite().element.estElement?())
+			return (self.voisineBas().element.estIle?() && (self.voisineDroite().element.estIle?())) || (self.voisineBas().element.estIle?() && (self.voisineGauche().element.estIle?())) || (self.voisineHaut().element.estIle?() && (self.voisineDroite().element.estIle?())) || (self.voisineHaut().element.estIle?() && (self.voisineGauche().element.estIle?()))
 		end
     end
+
+
+	def creerPontDefaut()	
+		if(element.estPont?)then
+			if(element.estVertical?)then
+				self.creerPont("haut", true)
+				self.creerPont("bas", false)
+			else
+				self.creerPont("gauche", true)
+				self.creerPont("droite", false)
+			end
+		end
+	end
+
+
+	def creerPont(unSens, unBool)
+		if(element.estPont?)then
+			if(unBool)then
+				element.ajoutePont
+			end
+			
+			case(unSens)
+			when "haut"
+				self.voisineHaut.creerPont(unSens, true)
+				self.element.estVertical
+			when "bas"
+				self.voisineBas.creerPont(unSens, true)
+				self.element.estVertical
+			when "gauche"
+				self.voisineGauche.creerPont(unSens, true)
+				self.element.estHorizontal
+			when "droite"
+				self.voisineDroite.creerPont(unSens, true)
+				self.element.estHorizontal
+			else
+				puts "Pas compris le sens"
+			end
+			print element.to_s + "\n"
+		end
+	end
 
 	#*********************************************************************
 	#						to_s
@@ -197,7 +237,7 @@ class Case
 	#
 	#@return String
 	def to_s()
-		return "x:#{@x}, y:#{@y} "
+		return "x:#{@x}, y:#{@y}"
 	end
 
 end #fin de la classe Case

@@ -153,9 +153,20 @@ class Genie
         caseCourante = @plateau.getCase(unX, unY)
         if(caseCourante.element.estPont?()) then
             if(caseCourante.estEntoure())then
-                puts "vous voulez faire un coup horizontale ou vertical ?"
+                puts "vous voulez faire un coup horizontal(1) ou vertical(2) ?"
+                sens = gets
+                if(sens.to_i == 1)then
+                    
+                    caseCourante.creerPont("droite", true)
+                    caseCourante.creerPont("gauche", false)
+                else
+                    caseCourante.creerPont("haut", true)
+                    caseCourante.creerPont("bas", false)
+                end
+                print "case courante : " + caseCourante.element.to_s+"\n"
             else
                 puts "coup fait"
+                caseCourante.creerPontDefaut
             end
             @anciensCoups.push(Coup.creer(unClic, caseCourante))
         else
@@ -186,7 +197,12 @@ end# fin de la classe génie
 
 genie = Genie.creer(nil, Plateau.creer(1), "1", "theo")
 genie.initialiserJeu("../map/facile/demarrage/2.txt")
+<<<<<<< HEAD
 genie.jouerCoup(0,2, "droit")
+=======
+genie.jouerCoup(7,2, "droit")
+
+>>>>>>> f9fe1ca3569507ae393153a463b8328fb9a25030
 
 genie.save()
 genie.afficherPlateau

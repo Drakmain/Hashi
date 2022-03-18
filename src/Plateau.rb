@@ -235,6 +235,11 @@ class Plateau
 		end
 	end
 
+
+	def getCase(unX, unY)
+		return @matrice[unX][unY]
+	end
+
 end	
 
 test = Plateau.creer(1)
@@ -253,3 +258,5 @@ test.affiche()
 print "INIT PONT V2\n"
 test.ajouterPont()
 test.affiche()
+
+print test.getCase(0,0)

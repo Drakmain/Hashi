@@ -236,12 +236,17 @@ class Plateau
 	end
 
 
+	#*************************************************************************
+	#					getCase()
+	#
+	#permet de récuperer la case en x y
 	def getCase(unX, unY)
 		return @matrice[unX][unY]
 	end
 
 end	
 
+=begin
 test = Plateau.creer(1)
 test.generateMatrice("../map/facile/demarrage/2.txt")
 
@@ -250,13 +255,10 @@ print "\n"
 test.generatePlateau()
 test.affiche()
 
-=begin
 print "INIT PONT V1\n"
 test.initPont()
 test.affiche()
-=end
 print "INIT PONT V2\n"
 test.ajouterPont()
 test.affiche()
-
-print test.getCase(0,0)
+=end

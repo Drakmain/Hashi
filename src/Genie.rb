@@ -142,7 +142,16 @@ class Genie
     #
     def jouerCoup(unX, unY, unClic)
         caseCourante = unPlateau.getCase(unX, unY)
-        @anciensCoups.push(Coup.creer(unClic, caseCourante))
+        if(caseCourante.estPont()) then
+            if(caseCourante.estEntoure())then
+                puts "vous voulez faire un coup horizontale ou vertical ?"
+            else
+                puts "coup fait"
+            end
+            @anciensCoups.push(Coup.creer(unClic, caseCourante))
+        else
+            return -1
+        end
         
     end
 

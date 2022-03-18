@@ -45,6 +45,15 @@ class Element
         return false
     end
 
+
+    #**********************************************************
+    #                   estElement?()
+    #
+    #retourne vrai car c'est un élément
+    def estElement?()
+        return true
+    end
+
     #***********************************************************
     #                         to_s()
     #

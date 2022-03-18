@@ -65,6 +65,14 @@ class Ile < Element
         return true
     end
 
+	#**********************************************************
+    #                   estElement?()
+    #
+    #retourne faux car c'est une ile
+    def estElement?()
+        return false
+    end
+
 	#**************************************************
 	#				estFini?()
 	#

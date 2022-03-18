@@ -110,7 +110,7 @@ class Case
 		if(droite == nil)then
 			return false
 		else
-			if(droite.element.instance_of?(Ile))then
+			if(droite.element.estIle?())then
 				if(@element.instance_of?(Element))then
 					@element = Pont.creer()
 				end
@@ -145,7 +145,7 @@ class Case
 		if(bas == nil)then
 			return false
 		else
-			if(bas.element.instance_of?(Ile))then
+			if(bas.element.estIle?())then
 				if(@element.instance_of?(Element))then
 					@element = Pont.creer()
 				end
@@ -153,7 +153,7 @@ class Case
 			else
 				bool = bas.ajouterPontBas()
 				if(bool == true)then
-					if(@element.instance_of?(Element))then
+					if(!(@element.estIle?()) && !(@element.estPont?()))then
 						@element = Pont.creer()
 					end
 					return true
@@ -163,6 +163,18 @@ class Case
 			end
 		end
 	end
+
+	#***************************************************
+    #                   estEntouré?()
+    #
+    #retourne vrai si le pont sélectionner peut être soit horizontale, soit vertical
+    def estEntouré(){
+		if(self.voisineBas() == nil || self.voisineDroite() == nil || self.voisineGauche() == nil || self.voisineHaut == nil)then
+			return false
+		else
+			return !(self.voisineBas().estElement?()) && !(self.voisineDroite().estElement?())
+		end
+    }
 
 	#*********************************************************************
 	#						to_s

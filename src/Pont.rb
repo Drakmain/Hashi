@@ -119,6 +119,14 @@ class Pont < Element
         @sensHorizontal == false
     end
 
+    #**********************************************************
+    #                   estElement?()
+    #
+    #retourne faux car c'est un pont
+    def estElement?()
+        return false
+    end
+    
 end
 
 

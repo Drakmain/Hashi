@@ -193,12 +193,18 @@ class Genie
     #
     #Affiche le plateau
     def afficherPlateau()
-        @plateau.affiche()
+        @plateau.afficherJeu()
+    end
+
+    def verifCoord(unX, unY)
+        @plateau.verifCoord(unX, unY)
     end
 
 
 end# fin de la classe génie
 
+
+=begin
 genie = Genie.creer(nil, Plateau.creer(1), "1", "theo")
 genie.initialiserJeu("../map/facile/demarrage/2.txt")
 genie.jouerCoup(7,2, "droit")
@@ -208,3 +214,4 @@ genie.save()
 genie.afficherPlateau
 g = genie.load()
 g.afficherPlateau
+=end

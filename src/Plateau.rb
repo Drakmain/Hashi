@@ -236,12 +236,43 @@ class Plateau
 	end
 
 
+
+	def afficherJeu()
+		@matrice.each do |row|
+			row.each do |column|
+				elem = column.element
+				if elem.estIle?()then
+					print " " + elem.valeur.to_s() + " "
+				elsif elem.estPont?
+					if(elem.nb_ponts == 0)then
+						print " . "
+					else 
+						if(elem.nb_ponts == 1)then
+							print " - "
+						else
+							print " = "
+						end
+					end
+				else
+					print "   "
+				end
+			end
+			print "\n"
+		end
+	end
+
+
 	#*************************************************************************
 	#					getCase()
 	#
 	#permet de récuperer la case en x y
 	def getCase(unX, unY)
 		return @matrice[unX][unY]
+	end
+
+
+	def verifCoord(unX, unY)
+		return (unX>=0 && unX<@x) && (unY>=0 && unY<@y)
 	end
 
 end	

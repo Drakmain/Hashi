@@ -108,7 +108,7 @@ class Case
 	end
 
 	#****************************************************************************
-	#					AjouterPontDroite()
+	#					ajouterPontDroite()
 	#
 	#Methode qui permet d'ajouter des pont à droite de la case appelante
 	#La case vérifie :
@@ -143,7 +143,7 @@ class Case
 
 
 	#****************************************************************************
-	#					AjouterPontBas()
+	#					ajouterPontBas()
 	#
 	#Methode qui permet d'ajouter des pont en bas de la case appelante
 	#La case vérifie :
@@ -191,6 +191,10 @@ class Case
     end
 
 
+	#***************************************************
+    #                   creerPontDefaut()
+    #
+    # Créé les tous les ponts entre 2 îles, ces ponts ne peuvent que être vertical ou horizontal
 	def creerPontDefaut()	
 		if(element.estPont?)then
 			if(element.estVertical?)then
@@ -204,6 +208,10 @@ class Case
 	end
 
 
+	#***************************************************
+    #                   creerPont()
+    # 
+    # Créé les tous les ponts entre 2 îles
 	def creerPont(unSens, unBool)
 		if(element.estPont?)then
 			if(unBool)then

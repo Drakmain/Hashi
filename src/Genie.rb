@@ -186,7 +186,7 @@ end# fin de la classe génie
 
 genie = Genie.creer(nil, Plateau.creer(1), "1", "theo")
 genie.initialiserJeu("../map/facile/demarrage/2.txt")
-genie.jouerCoup(9,2, "droit")
+genie.jouerCoup(0,2, "droit")
 
 genie.save()
 genie.afficherPlateau

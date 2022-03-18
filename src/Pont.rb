@@ -26,8 +26,8 @@ class Pont < Element
     #               Pont.creer()
     #
     #Permet de creer un pont
-    def Pont.creer()
-        new()
+    def Pont.creer(unSens)
+        new(unSens)
     end
 
     #******************************************************
@@ -39,8 +39,8 @@ class Pont < Element
     #   - sensHorizontale = false
     #   - nb_ponts = 0
     #
-	def initialize()
-		@sensHorizontal = false
+	def initialize(unSens)
+		@sensHorizontal = unSens
         @nb_ponts= 0
 	end
 
@@ -54,7 +54,7 @@ class Pont < Element
 
 
     # Créer les getters et setters de la variable sensHorizontal
-    #attr_accessor :sensHorizontal, :nb_ponts
+    attr_accessor :sensHorizontal, :nb_ponts
 
 
     # *****************************************************
@@ -71,7 +71,7 @@ class Pont < Element
     #Methode qui permet d'ajouter un pont (s'active lorsque l'utilisateur fait un clic droit)
     #
     def ajoutePont()
-        if(@nb_ponts >= 0 && @nb_ponts <= 2)then
+        if(@nb_ponts >= 0 && @nb_ponts < 2)then
             @nb_ponts += 1     
         elsif(@nb_ponts == 2)then
             @nb_ponts -= 1
@@ -127,6 +127,10 @@ class Pont < Element
         return false
     end
     
+
+    def to_s
+        return "sens = #{@sensHorizontal} || nombre de ponts : #{@nb_ponts}"
+    end
 end
 
 

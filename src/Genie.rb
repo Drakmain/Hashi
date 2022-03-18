@@ -188,6 +188,10 @@ class Genie
     end
 
 
+    #**********************************
+    #              afficherPlateau
+    #
+    #Affiche le plateau
     def afficherPlateau()
         @plateau.affiche()
     end

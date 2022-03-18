@@ -130,15 +130,15 @@ class Plateau
 	#
 	#@return = string
 	def to_s()
-		puts "le x : #{@x} , le y : #{@y}"
-    	puts "la matrice du jeu : "
-    	puts @matrice.inspect
+		res = "le x : #{@x} , le y : #{@y}\n"
+    	res = res + "la matrice du jeu : \n"
     	@matrice.each do |row|
       		row.each do |column|
-        		print "#{column} "
+        		res = res + "#{column} "
       		end
-      		print "\n"
+      		res = res + "\n"
     	end
+		return res
 	end
 	
 
@@ -250,15 +250,19 @@ end
 test = Plateau.creer(1)
 test.generateMatrice("../map/facile/demarrage/2.txt")
 
-test.to_s()
+puts test
 print "\n"
+
 test.generatePlateau()
 test.affiche()
+
 
 print "INIT PONT V1\n"
 test.initPont()
 test.affiche()
+
 print "INIT PONT V2\n"
 test.ajouterPont()
 test.affiche()
 =end
+

@@ -140,6 +140,18 @@ class Plateau
 		end
 	end
 
+
+	def ajouterPont()
+		@matrice.each do |row|
+			row.each do |column|
+				if(column != nil && column.element.instance_of?(Ile))then
+					column.ajouterPontDroite()
+					column.ajouterPontBas()
+				end
+			end
+		end
+	end
+
 	attr_accessor :matrice, :plateau, :x, :y
 
 end	
@@ -152,6 +164,9 @@ print "\n"
 test.generatePlateau()
 test.affiche()
 
-print "INIT PONT \n"
+print "INIT PONT V1\n"
 test.initPont()
+test.affiche()
+print "INIT PONT V2\n"
+test.ajouterPont()
 test.affiche()

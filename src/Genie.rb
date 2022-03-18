@@ -144,7 +144,6 @@ class Genie
         caseCourante = unPlateau.getCase(unX, unY)
         @anciensCoups.push(Coup.creer(unClic, caseCourante))
         
-
     end
 
     #**********************************

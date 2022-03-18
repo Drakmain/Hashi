@@ -95,6 +95,55 @@ class Case
 		return @plateau.matrice[@x-1][@y]
 	end
 
+
+	def ajouterPontDroite()
+		droite = voisineDroite()
+		if(droite == nil)then
+			return false
+		else
+			if(droite.element.instance_of?(Ile))then
+				if(@element.instance_of?(Element))then
+					@element = Pont.creer()
+				end
+				return true
+			else
+				bool = droite.ajouterPontDroite()
+				if(bool == true)then
+					if(@element.instance_of?(Element))then
+						@element = Pont.creer()
+					end
+					return true
+				else
+					return false
+				end
+			end
+		end
+	end
+
+	def ajouterPontBas()
+		bas = voisineBas()
+		if(bas == nil)then
+			return false
+		else
+			if(bas.element.instance_of?(Ile))then
+				if(@element.instance_of?(Element))then
+					@element = Pont.creer()
+				end
+				return true
+			else
+				bool = bas.ajouterPontBas()
+				if(bool == true)then
+					if(@element.instance_of?(Element))then
+						@element = Pont.creer()
+					end
+					return true
+				else
+					return false
+				end
+			end
+		end
+	end
+
 	def to_s()
 		return "x:#{@x}, y:#{@y} "
 	end

@@ -196,13 +196,19 @@ class Case
     #
     # Créé les tous les ponts entre 2 îles, ces ponts ne peuvent que être vertical ou horizontal
 	def creerPontDefaut()	
-		if(element.estPont?)then
-			if(element.estVertical?)then
-				self.creerPont("haut", true)
-				self.creerPont("bas", false)
+		if(@element.estPont?)then
+			if(@element.estVertical?)then
+				puts "test"
+				if(pontAjoutable("haut") && pontAjoutable("bas"))then
+					puts "test"
+					self.creerPont("haut", true)
+					self.creerPont("bas", false)
+				end
 			else
-				self.creerPont("gauche", true)
-				self.creerPont("droite", false)
+				if(pontAjoutable("gauche") && pontAjoutable("droite"))then
+					self.creerPont("gauche", true)
+					self.creerPont("droite", false)
+				end
 			end
 		end
 	end
@@ -213,28 +219,69 @@ class Case
     # 
     # Créé les tous les ponts entre 2 îles
 	def creerPont(unSens, unBool)
-		if(element.estPont?)then
+		if(@element.estPont?)then
 			if(unBool)then
-				element.ajoutePont
+				@element.ajoutePont
 			end
-			
 			case(unSens)
 			when "haut"
-				self.voisineHaut.creerPont(unSens, true)
-				self.element.estVertical
+				#if(pontAjoutable("haut"))then
+					self.voisineHaut.creerPont(unSens, true)
+					self.element.estVertical
+				#end
 			when "bas"
-				self.voisineBas.creerPont(unSens, true)
-				self.element.estVertical
+				#if(pontAjoutable("bas"))then
+					self.voisineBas.creerPont(unSens, true)
+					self.element.estVertical
+				#end
 			when "gauche"
-				self.voisineGauche.creerPont(unSens, true)
-				self.element.estHorizontal
+				#if(pontAjoutable("gauche"))then
+					self.voisineGauche.creerPont(unSens, true)
+					self.element.estHorizontal
+				#end
 			when "droite"
-				self.voisineDroite.creerPont(unSens, true)
-				self.element.estHorizontal
+				#if(pontAjoutable("droite"))then
+					self.voisineDroite.creerPont(unSens, true)
+					self.element.estHorizontal
+				#end
 			else
 				puts "Pas compris le sens"
 			end
-			print element.to_s + "\n"
+		elsif(@element.estIle?)then
+			@element.ajouterPont
+		end
+		print element.to_s + "\n"
+	end
+
+
+	#*********************************************************************
+	#					pontAjoutable()
+	#
+	#permet de dire si oui ou non le pont peut être ajouté
+	def pontAjoutable(unSens)
+		if(@element.estPont?())then
+			if(@element.nb_ponts != 0)then
+				return false
+			elsif(unSens == "droite")then
+				return voisineDroite.pontAjoutable(unSens)
+			elsif(unSens == "gauche")
+				return  voisineGauche.pontAjoutable(unSens)
+			elsif(unSens == "haut")
+				return voisineHaut.pontAjoutable(unSens)
+			elsif(unSens == "bas")
+				voisineBas.pontAjoutable(unSens)
+			else
+				puts "erreur de comprehension"
+				return false
+			end
+		elsif(@element.estIle?)then
+			if(!@element.estFini())
+				return true
+			else
+				return false
+			end
+		else
+			return false
 		end
 	end
 

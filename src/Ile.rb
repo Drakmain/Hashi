@@ -81,6 +81,16 @@ class Ile < Element
         return @estFini
     end
 
+
+	def ajouterPont
+		if(!estFini)then
+			@nbLiens += 1
+			if(@nbLiens == @valeur)then
+				estFini = true
+			end
+		end
+	end
+
 end
 
 

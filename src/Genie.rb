@@ -156,12 +156,15 @@ class Genie
                 puts "vous voulez faire un coup horizontal(1) ou vertical(2) ?"
                 sens = gets
                 if(sens.to_i == 1)then
-                    
-                    caseCourante.creerPont("droite", true)
-                    caseCourante.creerPont("gauche", false)
+                    if(caseCourante.pontAjoutable("droite") && caseCourante.pontAjoutable("gauche"))then
+                        caseCourante.creerPont("droite", true)
+                        caseCourante.creerPont("gauche", false)
+                    end
                 else
-                    caseCourante.creerPont("haut", true)
-                    caseCourante.creerPont("bas", false)
+                    if(caseCourante.pontAjoutable("haut") && caseCourante.pontAjoutable("bas"))then
+                        caseCourante.creerPont("haut", true)
+                        caseCourante.creerPont("bas", false)
+                    end
                 end
                 print "case courante : " + caseCourante.element.to_s+"\n"
             else

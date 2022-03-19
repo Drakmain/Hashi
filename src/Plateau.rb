@@ -236,7 +236,15 @@ class Plateau
 	end
 
 
-
+	#************************************************************
+	#						afficherJeu()
+	#
+	#permet d'afficher un plateau de jeu en terminal
+	#
+	#	* . : ponts possibles
+	#	* - : pont simple
+	#	* = : ponts doubles
+	#	* n : iles (valeur)
 	def afficherJeu()
 		@matrice.each do |row|
 			row.each do |column|

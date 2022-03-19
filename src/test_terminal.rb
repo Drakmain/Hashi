@@ -1,9 +1,11 @@
 load "Genie.rb"
 
 mode = Genie.creer(nil, Plateau.creer(1), "1", "theo")
-mode.initialiserJeu("../map/difficile/demarrage/8.txt")
+mode.initialiserJeu("../map/facile/demarrage/1.txt")
 
-while(true)
+fin = false
+
+while(!fin)
     mode.afficherPlateau
     print "Jouer un coup \n"
     print "\nx : "
@@ -15,7 +17,8 @@ while(true)
     x = x.to_i
 
     if(mode.verifCoord(x,y))then
-        mode.jouerCoup(x, y, "droit")
+        fin = mode.jouerCoup(x, y, "droit")
+        puts fin
     else
         puts "mauvaise coordonnées"
     end

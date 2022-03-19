@@ -23,7 +23,7 @@ class Plateau
 	#@id => un entier avec l'id du niveau
 	#@x => la largeur du tableau
 	#@y => la longueur du tableau
-	#
+	#@iles => tableau des iles du
 
 	###########################################################################################
 	#						Methodes de classe
@@ -57,6 +57,7 @@ class Plateau
 		@y = 0 
 		@matrice = Array.new() {Array.new()} #On initialise le tableau des cases pour le charger
 		#@plateau = Array.new() {Array.new()} #On initialise le tableau des cases pour le charger
+		@LesIles = Array.new()
 	
 	end
 
@@ -115,7 +116,9 @@ class Plateau
 				if(elem == 0) then			
 					elem = Case.creer(x, y, self, Element.creer)
 				else
-					elem = Case.creer(x, y, self, Ile.creer(elem))
+					e = Ile.creer(elem)
+					@LesIles.push(e)
+					elem = Case.creer(x, y, self, e)
 				end
 			}
 		}
@@ -256,9 +259,17 @@ class Plateau
 						print " . "
 					else 
 						if(elem.nb_ponts == 1)then
-							print " - "
+							if(elem.estHorizontal?)then
+								print "---"
+							else
+								print " | "
+							end
 						else
-							print " = "
+							if(elem.estHorizontal?)then
+								print "==="
+							else
+								print "|| "
+							end
 						end
 					end
 				else
@@ -281,6 +292,13 @@ class Plateau
 
 	def verifCoord(unX, unY)
 		return (unX>=0 && unX<@x) && (unY>=0 && unY<@y)
+	end
+
+
+	def partieFini?()
+		res = true
+		@LesIles.map{|x| res = res && x.estFini?}
+		return res
 	end
 
 end	

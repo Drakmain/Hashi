@@ -190,8 +190,10 @@ class Genie
             @anciensCoups.push(Coup.creer(unClic, caseCourante))
         else
             puts "case pas un pont"
-            return -1
+            return false
         end
+
+        return @plateau.partieFini?
         
     end
 

@@ -295,6 +295,15 @@ class Case
 	end
 
 
+	#***************************************************
+	#				ileFini?()
+	#
+	#Permet de savoir si une ile est terminé
+	#
+	#===== ATTRIBUTS
+	#
+	#*+unSens+ : String => la direction à vérifier
+	#
 	def ileFini?(unSens)
 		if(@element.estIle?)then
 			if(@element.estFini)
@@ -319,6 +328,10 @@ class Case
 	end
 
 
+	#****************************************************
+	#					enleverPont()
+	#
+	#permet d'enlever un pont
 	def enleverPont()
 		if(@element.estPont?)then
 			if(@element.estVertical?)

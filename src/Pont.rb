@@ -42,6 +42,7 @@ class Pont < Element
 	def initialize(unSens)
 		@sensHorizontal = unSens
         @nb_ponts= 0
+        @deuxSens = 0
 	end
 
     #new est privée
@@ -126,7 +127,19 @@ class Pont < Element
     def estElement?()
         return false
     end
-    
+
+    #***********************************************************
+    #                   deuxSens()
+    #
+    #permet de d'incrémenter le nombre de sens d'un pont
+    def deuxSens
+        @deuxSens += 1
+    end
+
+
+    def aDeuxSens()
+        return @deuxSens>0
+    end
 
     def to_s
         return "sens = #{@sensHorizontal} || nombre de ponts : #{@nb_ponts}"

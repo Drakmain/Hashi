@@ -86,9 +86,14 @@ class Ile < Element
 		if(!estFini)then
 			@nbLiens += 1
 			if(@nbLiens == @valeur)then
-				estFini = true
+				@estFini = true
 			end
 		end
+	end
+
+	def enlevePont
+		@nbLiens -= 1
+		@estFini = false
 	end
 
 end

@@ -1,7 +1,7 @@
 load "Genie.rb"
 
 mode = Genie.creer(nil, Plateau.creer(1), "1", "theo")
-mode.initialiserJeu("../map/difficile/demarrage/4.txt")
+mode.initialiserJeu("../map/difficile/demarrage/8.txt")
 
 while(true)
     mode.afficherPlateau

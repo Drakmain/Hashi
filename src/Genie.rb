@@ -150,26 +150,42 @@ class Genie
     #*+unY+ => Coordonnée Y de la case
     #
     def jouerCoup(unX, unY, unClic)
+
         caseCourante = @plateau.getCase(unX, unY)
+
+        joue = -1
         if(caseCourante.element.estPont?()) then
-            if(caseCourante.estEntoure())then
-                puts "vous voulez faire un coup horizontal(1) ou vertical(2) ?"
-                sens = gets
-                if(sens.to_i == 1)then
-                    if(caseCourante.pontAjoutable("droite") && caseCourante.pontAjoutable("gauche"))then
-                        caseCourante.creerPont("droite", true)
-                        caseCourante.creerPont("gauche", false)
+            if(caseCourante.element.nb_ponts > 0)then
+                puts "Vous voulez enlever(1) un pont ou en ajouter(2) un ?"
+                joue = gets
+                joue = joue.to_i
+            end
+
+            if(joue == 2 || joue == -1)then
+                if(caseCourante.element.nb_ponts > 0)then
+                    caseCourante.creerPontDefaut
+                elsif(caseCourante.estEntoure() || caseCourante.element.aDeuxSens)then
+                    puts "vous voulez faire un coup horizontal(1) ou vertical(2) ?"
+                    sens = gets
+                    if(sens.to_i == 1)then
+                        if(caseCourante.pontAjoutable("droite") && caseCourante.pontAjoutable("gauche"))then
+                            caseCourante.creerPont("droite", true)
+                            caseCourante.creerPont("gauche", false)
+                        end
+                    else
+                        if(caseCourante.pontAjoutable("haut") && caseCourante.pontAjoutable("bas"))then
+                            caseCourante.creerPont("haut", true)
+                            caseCourante.creerPont("bas", false)
+                        end
                     end
+                    print "case courante : " + caseCourante.element.to_s+"\n"
                 else
-                    if(caseCourante.pontAjoutable("haut") && caseCourante.pontAjoutable("bas"))then
-                        caseCourante.creerPont("haut", true)
-                        caseCourante.creerPont("bas", false)
-                    end
+                    puts "coup fait"
+                    caseCourante.creerPontDefaut
+                    puts "fin du coup"
                 end
-                print "case courante : " + caseCourante.element.to_s+"\n"
             else
-                puts "coup fait"
-                caseCourante.creerPontDefaut
+                caseCourante.enleverPont
             end
             @anciensCoups.push(Coup.creer(unClic, caseCourante))
         else

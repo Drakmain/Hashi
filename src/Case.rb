@@ -125,6 +125,8 @@ class Case
 			if(droite.element.estIle?())then
 				if(@element.instance_of?(Element))then
 					@element = Pont.creer(true)
+				elsif(@element.estPont?)then
+					@element.deuxSens
 				end
 				return true
 			else
@@ -132,6 +134,8 @@ class Case
 				if(bool == true)then
 					if(@element.instance_of?(Element))then
 						@element = Pont.creer(true)
+					elsif(@element.estPont?)then
+						@element.deuxSens
 					end
 					return true
 				else
@@ -160,6 +164,8 @@ class Case
 			if(bas.element.estIle?())then
 				if(@element.instance_of?(Element))then
 					@element = Pont.creer(false)
+				elsif(@element.estPont?)then
+					@element.deuxSens
 				end
 				return true
 			else
@@ -167,6 +173,8 @@ class Case
 				if(bool == true)then
 					if(!(@element.estIle?()) && !(@element.estPont?()))then
 						@element = Pont.creer(false)
+					elsif(@element.estPont?)then
+						@element.deuxSens
 					end
 					return true
 				else
@@ -261,7 +269,8 @@ class Case
 	def pontAjoutable(unSens)
 		if(@element.estPont?())then
 			if(@element.nb_ponts != 0)then
-				return false
+				puts "nb_ponts > 0"
+				return ileFini?(unSens)
 			elsif(unSens == "droite")then
 				return voisineDroite.pontAjoutable(unSens)
 			elsif(unSens == "gauche")
@@ -275,13 +284,71 @@ class Case
 				return false
 			end
 		elsif(@element.estIle?)then
-			if(!@element.estFini())
-				return true
-			else
+			if(@element.estFini)
 				return false
+			else
+				return true
 			end
 		else
 			return false
+		end
+	end
+
+
+	def ileFini?(unSens)
+		if(@element.estIle?)then
+			if(@element.estFini)
+				return false
+			else
+				return true
+			end
+		else
+			case(unSens)
+			when "haut"
+				return voisineHaut.ileFini?(unSens) 
+			when "gauche"
+				return voisineGauche.ileFini?(unSens)
+			when "droite"
+				return voisineDroite.ileFini?(unSens)
+			when "bas"
+				return voisineBas.ileFini?(unSens)
+			else
+				puts "pas compris"
+			end
+		end
+	end
+
+
+	def enleverPont()
+		if(@element.estPont?)then
+			if(@element.estVertical?)
+				enleverPontSens("haut")
+				enleverPontSens("bas")
+			else
+				enleverPontSens("droite")
+				enleverPontSens("gauche")
+			end
+		end
+	end
+
+
+	def enleverPontSens(unSens)
+		if(@element.estPont?)then
+			@element.enlevePont
+			case(unSens)
+				when "haut" 
+					voisineHaut.enleverPontSens("haut")
+				when "bas"
+					voisineBas.enleverPontSens("bas")
+				when "droite"
+					voisineDroite.enleverPontSens("droite")
+				when "gauche"
+					voisineGauche.enleverPontSens("gauche")
+				else
+					puts "erreur de comprehension"
+			end
+		elsif(@element.estIle?)then
+			@element.enlevePont
 		end
 	end
 

@@ -206,12 +206,12 @@ class Case
 	def creerPontDefaut()	
 		if(@element.estPont?)then
 			if(@element.estVertical?)then
-				if(pontAjoutable("haut") && pontAjoutable("bas"))then
+				if(pontAjoutable("haut",true) && pontAjoutable("bas",true))then
 					self.creerPont("haut", true)
 					self.creerPont("bas", false)
 				end
 			else
-				if(pontAjoutable("gauche") && pontAjoutable("droite"))then
+				if(pontAjoutable("gauche",true) && pontAjoutable("droite",true))then
 					self.creerPont("gauche", true)
 					self.creerPont("droite", false)
 				end
@@ -224,6 +224,12 @@ class Case
     #                   creerPont()
     # 
     # Créé les tous les ponts entre 2 îles
+	#
+	#
+	#===== ATTRIBUT
+	#
+	#unSens : String => le sens dans lequel on veut vérifier si on peut placer le pont
+	#unBool : boolean => vrai si c'est la case courante qui appelle la fonction, faux sinon
 	def creerPont(unSens, unBool)
 		if(@element.estPont?)then
 			if(unBool)then
@@ -263,18 +269,28 @@ class Case
 	#					pontAjoutable()
 	#
 	#permet de dire si oui ou non le pont peut être ajouté
-	def pontAjoutable(unSens)
+	#
+	#===== ATTRIBUT
+	#
+	#unSens : String => le sens dans lequel on veut vérifier si on peut placer le pont
+	#unBool : boolean => vrai si c'est la case courante qui appelle la fonction, faux sinon
+	def pontAjoutable(unSens, unBool)
 		if(@element.estPont?())then
+			#si le nombre de ponts est supèrieur à 0, soit c'est le pont cliquer, donc on augmente de 1, soit c'est un pont sur la trajectoire et on ne peut donc pas placer le pont
 			if(@element.nb_ponts != 0)then
-				return ileFini?(unSens)
+				if(unBool)then
+					return ileFini?(unSens)
+				else
+					return false
+				end
 			elsif(unSens == "droite")then
-				return voisineDroite.pontAjoutable(unSens)
+				return voisineDroite.pontAjoutable(unSens, false)
 			elsif(unSens == "gauche")
-				return  voisineGauche.pontAjoutable(unSens)
+				return  voisineGauche.pontAjoutable(unSens, false)
 			elsif(unSens == "haut")
-				return voisineHaut.pontAjoutable(unSens)
+				return voisineHaut.pontAjoutable(unSens, false)
 			elsif(unSens == "bas")
-				voisineBas.pontAjoutable(unSens)
+				voisineBas.pontAjoutable(unSens, false)
 			else
 				puts "erreur de comprehension"
 				return false

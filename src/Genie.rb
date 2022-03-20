@@ -48,8 +48,8 @@ class Genie
     #   unFichier : le chemin vers le fichier qui contient la correction
     #   unPlateau : une référence vers le plateau de jeu de la partie courante
     #
-    def Genie.creer(unFichier, unPlateau, unNiveau, unPseudo)
-        new(unFichier, unPlateau, unNiveau, unPseudo)
+    def Genie.creer(unPlateau, unNiveau, unPseudo, uneDifficulte)
+        new(unPlateau, unNiveau, unPseudo, uneDifficulte)
     end
 
     #**************************************************
@@ -62,16 +62,18 @@ class Genie
     #   unFichier : le chemin vers le fichier qui contient la correction
     #   unPlateau : une référence vers le plateau de jeu de la partie courante
     #
-    def initialize(unFichier, unPlateau, unNiveau, unPseudo)
+    def initialize(unPlateau, unPseudo,  uneDifficulte, unNiveau)
 		@score = 0
         @chrono = Chrono.new
         @anciensCoups = []
         @coups = []
-        @fichier = unFichier
+        @fichierJeu = "../map/" + uneDifficulte + "/demarrage/" + unNiveau + ".txt"
+        @fichierCorrection = "../map/" + uneDifficulte + "/correction/" + unNiveau + ".txt"
         @plateau = unPlateau
         @save = nil;
         @dir = "../data/save" + self.class.to_s + "/"
         @pseudo = unPseudo
+        @correction = Plateau.creer(unNiveau)
 	end
 
     #############################################################################################
@@ -79,10 +81,12 @@ class Genie
     #############################################################################################
 
 
-    def initialiserJeu(unFichier)
-        @plateau.generateMatrice(unFichier)
+    def initialiserJeu()
+        @plateau.generateMatrice(@fichierJeu)
         @plateau.generatePlateau
         @plateau.ajouterPont
+
+        @correction.generateMatrice(@fichierCorrection)
     end
 
     #************************************
@@ -169,12 +173,12 @@ class Genie
                     puts "vous voulez faire un coup horizontal(1) ou vertical(2) ?"
                     sens = gets
                     if(sens.to_i == 1)then
-                        if(caseCourante.pontAjoutable("droite") && caseCourante.pontAjoutable("gauche"))then
+                        if(caseCourante.pontAjoutable("droite",true) && caseCourante.pontAjoutable("gauche",true))then
                             caseCourante.creerPont("droite", true)
                             caseCourante.creerPont("gauche", false)
                         end
                     else
-                        if(caseCourante.pontAjoutable("haut") && caseCourante.pontAjoutable("bas"))then
+                        if(caseCourante.pontAjoutable("haut",true) && caseCourante.pontAjoutable("bas",true))then
                             caseCourante.creerPont("haut", true)
                             caseCourante.creerPont("bas", false)
                         end

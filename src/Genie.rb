@@ -164,7 +164,8 @@ class Genie
             if(joue == 2 || joue == -1)then
                 if(caseCourante.element.nb_ponts > 0)then
                     caseCourante.creerPontDefaut
-                elsif(caseCourante.estEntoure() || caseCourante.element.aDeuxSens)then
+                elsif(caseCourante.element.aDeuxSens)then
+                    #caseCourante.estEntoure() ne sert probablement à rien
                     puts "vous voulez faire un coup horizontal(1) ou vertical(2) ?"
                     sens = gets
                     if(sens.to_i == 1)then

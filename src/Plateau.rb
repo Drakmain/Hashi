@@ -249,7 +249,19 @@ class Plateau
 	#	* = : ponts doubles
 	#	* n : iles (valeur)
 	def afficherJeu()
+		i = 0
+		print "    "
+		for i in 0..@y-1 
+			print " #{i} "
+		end
+		print "\n   "
+		for i in 0..@y-1 
+			print "###"
+		end
+		i = 0
 		@matrice.each do |row|
+			print "\n #{i} #"
+			i += 1
 			row.each do |column|
 				elem = column.element
 				if elem.estIle?()then
@@ -276,7 +288,6 @@ class Plateau
 					print "   "
 				end
 			end
-			print "\n"
 		end
 	end
 

@@ -206,9 +206,7 @@ class Case
 	def creerPontDefaut()	
 		if(@element.estPont?)then
 			if(@element.estVertical?)then
-				puts "test"
 				if(pontAjoutable("haut") && pontAjoutable("bas"))then
-					puts "test"
 					self.creerPont("haut", true)
 					self.creerPont("bas", false)
 				end
@@ -258,7 +256,6 @@ class Case
 		elsif(@element.estIle?)then
 			@element.ajouterPont
 		end
-		print element.to_s + "\n"
 	end
 
 
@@ -269,7 +266,6 @@ class Case
 	def pontAjoutable(unSens)
 		if(@element.estPont?())then
 			if(@element.nb_ponts != 0)then
-				puts "nb_ponts > 0"
 				return ileFini?(unSens)
 			elsif(unSens == "droite")then
 				return voisineDroite.pontAjoutable(unSens)

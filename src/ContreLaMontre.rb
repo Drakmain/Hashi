@@ -86,21 +86,25 @@ class ContreLaMontre < Genie
     #  lit dans le fichier passé en parametre
     #
     def corrigerErreur()
-
-        for i in 0..@plateau.X-1 
-			for j in 0..@plateau.Y-1 
-
-                if @plateau.getCase(i,j).element.estPont? then
-
-                    if @plateau.getCase(i,j).element.nb_ponts > @correction.getCase(i,j).element.nb_ponts then 
-                        case @plateau.getCase(i,j).element.nb_ponts - @correction.getCase(i,j).element.nb_ponts
-                        when 2
-                            @plateau.getCase(i,j).enlevePont
-                            @plateau.getCase(i,j).enlevePont
-                        when 1
-                            @plateau.getCase(i,j).enlevePont
-                        else
-                            puts "Problème nombre de Pont"
+        for i in 0..@plateau.x-1 
+			for j in 0..@plateau.y-1 
+                elementCourant = @plateau.getCase(i,j).element
+                elementCorrection = @correction.getCase(i,j).element
+                if (elementCourant.estPont? && elementCourant.nb_ponts > 0) then
+                    puts "verif"
+                    if elementCorrection.estElement? then
+                        @plateau.getCase(i,j).enleverPont
+                    elsif elementCourant.nb_ponts > elementCorrection.nb_ponts then 
+                        enleverErreur(@plateau.getCase(i,j), elementCourant.nb_ponts - elementCorrection.nb_ponts)
+                    elsif elementCourant.estHorizontal? then
+                        puts elementCorrection
+                        if(elementCorrection.estVertical?)then
+                            puts "verif horizontal"
+                            enleverErreur(@plateau.getCase(i,j), elementCourant.nb_ponts)
+                        end
+                    elsif elementCourant.estVertical? then
+                        if(elementCorrection.estHorizontal?)then
+                            enleverErreur(@plateau.getCase(i,j), elementCourant.nb_ponts)
                         end
                     end
 
@@ -109,7 +113,26 @@ class ContreLaMontre < Genie
             end
 		end
 
+        @plateau.afficherJeu
+
     end
+
+
+
+    def enleverErreur(uneCase, unNombre)
+        case unNombre
+        when 2
+            puts "2"
+            uneCase.enleverPont
+            uneCase.enleverPont
+        when 1
+            puts "1"
+            uneCase.enleverPont
+        else
+            puts "Problème nombre de Pont"
+        end
+    end
+
 
     #################################################################################################
     #                   Mode assiste

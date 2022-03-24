@@ -68,8 +68,8 @@ class Genie
         @chrono = Chrono.new
         @anciensCoups = []
         @coups = []
-        @fichierJeu = "../map/" + uneDifficulte + "/demarrage/" + unNiveau + ".txt"
-        @fichierCorrection = "../map/" + uneDifficulte + "/correction/" + unNiveau + ".txt"
+        @fichierJeu = "../data/map/" + uneDifficulte + "/demarrage/" + unNiveau + ".txt"
+        @fichierCorrection = "../data/map/" + uneDifficulte + "/correction/" + unNiveau + ".txt"
         @plateau = unPlateau
         @save = nil;
         @dir = "../data/save" + self.class.to_s + "/"
@@ -199,9 +199,7 @@ class Genie
                     end
                     print "case courante : " + caseCourante.element.to_s+"\n"
                 else
-                    puts "coup fait"
                     caseCourante.creerPontDefaut
-                    puts "fin du coup"
                 end
             else
                 puts "enelver pont"
@@ -249,16 +247,4 @@ class Genie
 end# fin de la classe génie
 
 
-
-
-
-genie = Genie.creer(Plateau.creer(1), "theo", "facile", "2")
-genie.initialiserJeu()
-#genie.jouerCoup(7,2, "droit")
-
-
-genie.save()
-genie.afficherPlateau
-#g = genie.load()
-genie.afficherCorrection
 

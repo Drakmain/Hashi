@@ -48,8 +48,8 @@ class ContreLaMontre < Genie
     #
     #   unFichier : un chemin vers le fichier à ouvrir pour vérifier la grille
     #
-    def ContreLaMontre.creer(unFichier)
-        new(unFichier)
+    def ContreLaMontre.creer(unPlateau, unNiveau, unPseudo, uneDifficulte)
+        new(unPlateau, unNiveau, unPseudo, uneDifficulte)
     end
 
     #************************************************
@@ -61,8 +61,8 @@ class ContreLaMontre < Genie
     #
     #   unFichier : un chemin vers le fichier à ouvrir pour vérifier la grille
     #
-    def initialize(unFichier)
-        super
+    def initialize(unPlateau, unNiveau, unPseudo, uneDifficulte)
+        super(unPlateau, unNiveau, unPseudo, uneDifficulte)
         @autoCorrecteur = false
         @assiste = false
         @hypothese = false
@@ -84,7 +84,7 @@ class ContreLaMontre < Genie
     #  lit dans le fichier passé en parametre
     #
     def corrigerErreur()
-
+        
     end
 
     #################################################################################################

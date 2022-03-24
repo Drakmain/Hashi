@@ -72,10 +72,8 @@ class Pont < Element
     #Methode qui permet d'ajouter un pont (s'active lorsque l'utilisateur fait un clic droit)
     #
     def ajoutePont()
-        if(@nb_ponts >= 0 && @nb_ponts < 2)then
+        if(@nb_ponts < 2)then
             @nb_ponts += 1     
-        elsif(@nb_ponts == 2)then
-            @nb_ponts -= 1
         end
     end
 
@@ -84,7 +82,12 @@ class Pont < Element
     #
     #Methode qui permet d'enlever les ponts (mettre à 0)
     def enlevePont()
-        @nb_ponts = 0     
+        nb_ponts = 0
+        if(@nb_ponts > 0)then
+            nb_ponts = @nb_ponts
+            @nb_ponts -= 1 
+        end    
+        return nb_ponts
     end
 
     #***************************************************

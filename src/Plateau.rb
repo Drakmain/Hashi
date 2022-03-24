@@ -250,7 +250,7 @@ class Plateau
 	#	* n : iles (valeur)
 	def afficherJeu()
 		i = 0
-		print "    "
+		print "    " 
 		for i in 0..@y-1 
 			print " #{i} "
 		end

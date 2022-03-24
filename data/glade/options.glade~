@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <object class="GtkWindow" id="options">
+    <property name="can-focus">False</property>
+    <signal name="destroy" handler="on_destroy" swapped="no"/>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="margin-start">100</property>
+        <property name="margin-end">100</property>
+        <property name="margin-top">20</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel" id="options_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Options</property>
+            <attributes>
+              <attribute name="size" value="15360"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="nom_utilisateur_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="margin-top">20</property>
+            <property name="label" translatable="yes">Nom utilisateur :</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="nom_utilisateur_entry">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="margin-bottom">20</property>
+            <signal name="changed" handler="on_changed_username" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="langue_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="margin-top">20</property>
+            <property name="label" translatable="yes">Langue :</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkComboBoxText" id="langue_comboboxtext">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="margin-bottom">20</property>
+            <items>
+              <item id="francais" translatable="yes">Francais</item>
+              <item id="anglais" translatable="yes">Anglais</item>
+              <item id="espagnols" translatable="yes">Espagnols</item>
+            </items>
+            <signal name="changed" handler="on_changed_lang" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="resolution_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="margin-top">20</property>
+            <property name="label" translatable="yes">Resolution :</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkComboBoxText" id="resolution_comboboxtext">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="margin-bottom">20</property>
+            <items>
+              <item id="720" translatable="yes">720p</item>
+              <item id="900" translatable="yes">900p</item>
+              <item id="1080" translatable="yes">1080p</item>
+            </items>
+            <signal name="changed" handler="on_changed_reso" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">6</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="theme_label">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="margin-top">20</property>
+            <property name="label" translatable="yes">Theme sombre :</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">8</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSwitch" id="theme_switch">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="halign">center</property>
+            <property name="margin-bottom">20</property>
+            <signal name="state-set" handler="on_theme_switch_state_set" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">8</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="enregistre_button">
+            <property name="label" translatable="yes">Enregistre</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="margin-top">20</property>
+            <property name="margin-bottom">20</property>
+            <signal name="clicked" handler="on_cliked_enregistre" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">11</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

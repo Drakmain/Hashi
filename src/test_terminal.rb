@@ -1,6 +1,6 @@
 load "Genie.rb"
 
-mode = Genie.creer(Plateau.creer(1), "theo", "facile", "4",)
+mode = Genie.creer(Plateau.creer(1), "theo", "difficile", "6")
 mode.initialiserJeu()
 
 fin = false

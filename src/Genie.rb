@@ -145,6 +145,18 @@ class Genie
         @coup.push(@anciensCoups.pop)
     end
 
+    #************************************
+    #               undo
+    #
+    #permet d'enlever le dernier coup 
+    def undo
+        
+    end
+
+    def redo
+        
+    end
+
     #**********************************
     #               jouerCoup()
     #
@@ -192,6 +204,7 @@ class Genie
                     puts "fin du coup"
                 end
             else
+                puts "enelver pont"
                 caseCourante.enleverPont
             end
             @anciensCoups.push(Coup.creer(unClic, caseCourante))

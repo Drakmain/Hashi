@@ -277,12 +277,14 @@ class Case
 	def pontAjoutable(unSens, unBool)
 		if(@element.estPont?())then
 			#si le nombre de ponts est supèrieur à 0, soit c'est le pont cliquer, donc on augmente de 1, soit c'est un pont sur la trajectoire et on ne peut donc pas placer le pont
-			if(@element.nb_ponts != 0)then
+			if(@element.nb_ponts == 1)then
 				if(unBool)then
 					return ileFini?(unSens)
 				else
 					return false
 				end
+			elsif(@element.nb_ponts == 2)then
+				return true
 			elsif(unSens == "droite")then
 				return voisineDroite.pontAjoutable(unSens, false)
 			elsif(unSens == "gauche")
@@ -347,32 +349,35 @@ class Case
 	def enleverPont()
 		if(@element.estPont?)then
 			if(@element.estVertical?)
-				enleverPontSens("haut")
-				enleverPontSens("bas")
+				enleverPontSens("haut", true)
+				enleverPontSens("bas", false)
 			else
-				enleverPontSens("droite")
-				enleverPontSens("gauche")
+				enleverPontSens("droite", true)
+				enleverPontSens("gauche", false)
 			end
 		end
 	end
 
 
-	def enleverPontSens(unSens)
+	def enleverPontSens(unSens, unBool)
 		if(@element.estPont?)then
-			@element.enlevePont
+			if(unBool)then
+				@element.enlevePont
+			end
 			case(unSens)
 				when "haut" 
-					voisineHaut.enleverPontSens("haut")
+					voisineHaut.enleverPontSens("haut", true)
 				when "bas"
-					voisineBas.enleverPontSens("bas")
+					voisineBas.enleverPontSens("bas", true)
 				when "droite"
-					voisineDroite.enleverPontSens("droite")
+					voisineDroite.enleverPontSens("droite", true)
 				when "gauche"
-					voisineGauche.enleverPontSens("gauche")
+					voisineGauche.enleverPontSens("gauche", true)
 				else
 					puts "erreur de comprehension"
 			end
 		elsif(@element.estIle?)then
+			puts "Baisser la valeur du pont"
 			@element.enlevePont
 		end
 	end

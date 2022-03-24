@@ -205,7 +205,7 @@ class Plateau
 	def creerPontVide(case1, case2)
 		if(case1.x == case2.x)
 			long = case2.y - case1.y
-			
+
 			caseTmp = case1
 			for i in 0...long-1
 				caseTmp.voisineDroite.element = Pont.creer()
@@ -214,8 +214,7 @@ class Plateau
 		else
 			long = case2.x - case1.x
 			caseTmp = case1
-			for i in 0...long-1
-				caseTmp.voisineBas.element = Pont.creer()
+			for i in 0...long-1@nb_pontsTmp.voisineBas.element = Pont.creer()
 				caseTmp = caseTmp.voisineBas
 			end
 		end
@@ -289,6 +288,7 @@ class Plateau
 				end
 			end
 		end
+		print "\n"
 	end
 
 
@@ -316,12 +316,21 @@ end
 
 =begin
 test = Plateau.creer(1)
+test.generateMatrice("../map/facile/correction/2.txt")
+
+puts test
+print "\n"
+
+test.generateCorrection()
+test.affiche()
+
+test = Plateau.creer(1)
 test.generateMatrice("../map/facile/demarrage/2.txt")
 
 puts test
 print "\n"
 
-test.generatePlateau()
+test.generateCorrection()
 test.affiche()
 
 

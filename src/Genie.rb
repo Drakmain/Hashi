@@ -1,6 +1,7 @@
 
 load "Chrono.rb"
 load "Plateau.rb"
+load "PlateauCorrection.rb"
 load "Coup.rb"
 
 
@@ -73,7 +74,7 @@ class Genie
         @save = nil;
         @dir = "../data/save" + self.class.to_s + "/"
         @pseudo = unPseudo
-        @correction = Plateau.creer(unNiveau)
+        @correction = PlateauCorrection.creer(unNiveau)
 	end
 
     #############################################################################################
@@ -87,6 +88,7 @@ class Genie
         @plateau.ajouterPont
 
         @correction.generateMatrice(@fichierCorrection)
+        @correction.generatePlateau
     end
 
     #************************************
@@ -222,6 +224,10 @@ class Genie
         @plateau.afficherJeu()
     end
 
+    def afficherCorrection()
+        @correction.afficherJeu()
+    end
+
     def verifCoord(unX, unY)
         @plateau.verifCoord(unX, unY)
     end
@@ -230,14 +236,16 @@ class Genie
 end# fin de la classe génie
 
 
-=begin
-genie = Genie.creer(nil, Plateau.creer(1), "1", "theo")
-genie.initialiserJeu("../map/facile/demarrage/2.txt")
-genie.jouerCoup(7,2, "droit")
+
+
+
+genie = Genie.creer(Plateau.creer(1), "theo", "facile", "2")
+genie.initialiserJeu()
+#genie.jouerCoup(7,2, "droit")
 
 
 genie.save()
 genie.afficherPlateau
-g = genie.load()
-g.afficherPlateau
-=end
+#g = genie.load()
+genie.afficherCorrection
+

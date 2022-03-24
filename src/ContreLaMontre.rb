@@ -1,3 +1,5 @@
+load "Genie.rb"
+
 ##
 #@autor Pierre garçon
 #
@@ -84,7 +86,29 @@ class ContreLaMontre < Genie
     #  lit dans le fichier passé en parametre
     #
     def corrigerErreur()
-        
+
+        for i in 0..@plateau.X-1 
+			for j in 0..@plateau.Y-1 
+
+                if @plateau.getCase(i,j).element.estPont? then
+
+                    if @plateau.getCase(i,j).element.nb_ponts > @correction.getCase(i,j).element.nb_ponts then 
+                        case @plateau.getCase(i,j).element.nb_ponts - @correction.getCase(i,j).element.nb_ponts
+                        when 2
+                            @plateau.getCase(i,j).enlevePont
+                            @plateau.getCase(i,j).enlevePont
+                        when 1
+                            @plateau.getCase(i,j).enlevePont
+                        else
+                            puts "Problème nombre de Pont"
+                        end
+                    end
+
+                end
+
+            end
+		end
+
     end
 
     #################################################################################################

@@ -87,7 +87,7 @@ class Genie
         @plateau.ajouterPont
 
         @correction.generateMatrice(@fichierCorrection)
-        #@coorection.genererCorrection
+        #@correction.genererCorrection
     end
 
     #************************************

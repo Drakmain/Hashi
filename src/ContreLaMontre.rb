@@ -91,15 +91,12 @@ class ContreLaMontre < Genie
                 elementCourant = @plateau.getCase(i,j).element
                 elementCorrection = @correction.getCase(i,j).element
                 if (elementCourant.estPont? && elementCourant.nb_ponts > 0) then
-                    puts "verif"
                     if elementCorrection.estElement? then
                         @plateau.getCase(i,j).enleverPont
                     elsif elementCourant.nb_ponts > elementCorrection.nb_ponts then 
                         enleverErreur(@plateau.getCase(i,j), elementCourant.nb_ponts - elementCorrection.nb_ponts)
                     elsif elementCourant.estHorizontal? then
-                        puts elementCorrection
                         if(elementCorrection.estVertical?)then
-                            puts "verif horizontal"
                             enleverErreur(@plateau.getCase(i,j), elementCourant.nb_ponts)
                         end
                     elsif elementCourant.estVertical? then
@@ -132,30 +129,6 @@ class ContreLaMontre < Genie
             puts "Problème nombre de Pont"
         end
     end
-
-
-    #################################################################################################
-    #                   Mode assiste
-    #################################################################################################
-
-    #********************************************
-    #       activerAssite()
-    #
-    #permet d'activer le mode assiste
-    def activerAssiste()
-        @assiste = true
-    end
-
-    #*******************************************
-    #       desactiverAssiste()
-    #
-    #permet de desactiver le mode assiste
-    def desactiverAssiste()
-        @assiste = false
-    end
-
-
-
 
 
 
@@ -220,6 +193,7 @@ class ContreLaMontre < Genie
     #et doit les corriger avant d'avoir un coup à jouer
     def suggestion()
         puts("Mode suggestion activé")
+        
     end
 
 

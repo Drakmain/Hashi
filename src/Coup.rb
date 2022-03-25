@@ -28,8 +28,8 @@ class Coup < Element
 	#*+clickDroit+ : boolean qui indique si le clic etait droit ou pas
 	#*+pont+ : le pont sur lequel le clic est réalisé
 	#
-	def Coup.creer(coupAjouter, pont)
-		new(coupAjouter, pont)
+	def Coup.creer(typeCoup, pont, sens)
+		new(typeCoup, pont, sens)
 	end
 
 	#***********************************************************************
@@ -42,13 +42,14 @@ class Coup < Element
 	#*+clickDroit+ : boolean qui indique si le clic etait droit ou pas
 	#*+pont+ : le pont sur lequel le clic est réalisé
 	#
-	def initialize(coupAjouter, pont)
+	def initialize(typeCoup, pont, sens)
 		@coupAjouter = typeCoup
 		@pont = pont
+		@sens = sens
 	end
 
 
-	attr_reader :coupAjouter :pont
+	attr_reader :coupAjouter :pont :sens
 
 
 

@@ -249,17 +249,21 @@ class Plateau
 	#	* n : iles (valeur)
 	def afficherJeu()
 		i = 0
-		print "    " 
+		print "     " 
 		for i in 0..@y-1 
 			print " #{i} "
 		end
-		print "\n   "
+		print "\n    "
 		for i in 0..@y-1 
 			print "###"
 		end
 		i = 0
 		@matrice.each do |row|
-			print "\n #{i} #"
+			if i<10 
+				print "\n #{i}  #"
+			else
+				print "\n #{i} #"
+			end
 			i += 1
 			row.each do |column|
 				elem = column.element

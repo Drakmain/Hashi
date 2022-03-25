@@ -213,30 +213,6 @@ class ContreLaMontre < Genie
         end
     end
 
-    #################################################################################################
-    #                   Mode assiste
-    #################################################################################################
-
-    #********************************************
-    #       activerAssite()
-    #
-    #permet d'activer le mode assiste
-    def activerAssiste()
-        @assiste = true
-    end
-
-    #*******************************************
-    #       desactiverAssiste()
-    #
-    #permet de desactiver le mode assiste
-    def desactiverAssiste()
-        @assiste = false
-    end
-
-
-
-
-
 
     #################################################################################################
     #                   Mode AutoCorrecteur
@@ -302,6 +278,7 @@ class ContreLaMontre < Genie
     #et doit les corriger avant d'avoir un coup à jouer
     def suggestion()
         puts("Mode suggestion activé")
+        
     end
 
 

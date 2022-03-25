@@ -209,11 +209,13 @@ class Case
 				if(pontAjoutable("haut",true) && pontAjoutable("bas",true))then
 					self.creerPont("haut", true)
 					self.creerPont("bas", false)
+					return "vertical"
 				end
 			else
 				if(pontAjoutable("gauche",true) && pontAjoutable("droite",true))then
 					self.creerPont("gauche", true)
 					self.creerPont("droite", false)
+					return "horizontal"
 				end
 			end
 		end

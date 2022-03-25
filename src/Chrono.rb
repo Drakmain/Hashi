@@ -38,25 +38,31 @@ class Chrono
     ###############################################################################
 
 
+    # Créer le getter de la variable chrono
+    attr_reader :chrono
+
     #*********************************************************
     #                   lancerChrono()
     #
     #Compte le nombre de secondes depuis le lancement
     def lancerChrono()
         @thr = Thread.new {
+
+        Thread.start(){
             @tempsDebut = Time.now.to_i
             ancienne_valeur = @chrono
             while(true)
                 @chrono = Time.now.to_i - @tempsDebut
                 if(ancienne_valeur != @chrono)
                     ancienne_valeur = @chrono
-                    puts(@chrono)
+                    #puts(@chrono)
                 end
 
             end
         }
+    }
 
-        @thr.run
+        @thr.run()
 
     end
 
@@ -72,7 +78,7 @@ class Chrono
                 @chrono = unTemps - (Time.now.to_i - @tempsDebut)
                 if(ancienne_valeur != @chrono)
                     ancienne_valeur = @chrono
-                    puts(@chrono+1)
+                    #puts(@chrono+1)
                 end
 
             end

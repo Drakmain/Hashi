@@ -15,7 +15,7 @@ class Coup < Element
 
     ## La classe Pont possède une variable d'instance
 	#
-	# @clickDroit = boolean qui décrit si le mouvement était click gauche ou droit
+	# @coupAjouter = le coup donner : boolean qui dit si c'est un ajout ou pas
 	# @pont = reference du pont sur la quelle le click est fait
 
 	#***********************************************************************
@@ -28,8 +28,8 @@ class Coup < Element
 	#*+clickDroit+ : boolean qui indique si le clic etait droit ou pas
 	#*+pont+ : le pont sur lequel le clic est réalisé
 	#
-	def Coup.creer(clickdroit, pont)
-		new(clickdroit, pont)
+	def Coup.creer(typeCoup, pont, sens)
+		new(typeCoup, pont, sens)
 	end
 
 	#***********************************************************************
@@ -42,10 +42,34 @@ class Coup < Element
 	#*+clickDroit+ : boolean qui indique si le clic etait droit ou pas
 	#*+pont+ : le pont sur lequel le clic est réalisé
 	#
-	def initialize(clickdroit, pont)
-		@clickDroit = clickdroit
+	def initialize(typeCoup, pont, sens)
+		@coupAjouter = typeCoup
 		@pont = pont
+		@sens = sens
 	end
+
+	def estAjout?
+		@coupAjouter == "ajouter"
+	end
+
+	def estEnleve?
+		@coupAjouter == "enlever"
+	end
+
+	def estVertical?
+		return @sens == "vertical"
+	end
+
+	def estHorizontal?
+		return @sens == "horizontal"
+	end
+
+	def to_s
+		"sens du coup : " + @sens
+	end
+
+	#les readers
+	attr_reader :coupAjouter, :pont, :sens
 
 
 

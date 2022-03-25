@@ -203,20 +203,25 @@ class Case
     #                   creerPontDefaut()
     #
     # Créé les tous les ponts entre 2 îles, ces ponts ne peuvent que être vertical ou horizontal
-	def creerPontDefaut()	
+	def creerPontDefaut()
+		sens = ""	
 		if(@element.estPont?)then
 			if(@element.estVertical?)then
 				if(pontAjoutable("haut",true) && pontAjoutable("bas",true))then
 					self.creerPont("haut", true)
 					self.creerPont("bas", false)
+					sens = "vertical"
 				end
 			else
 				if(pontAjoutable("gauche",true) && pontAjoutable("droite",true))then
 					self.creerPont("gauche", true)
 					self.creerPont("droite", false)
+					sens = "horizontal"
 				end
 			end
 		end
+		puts sens
+		return sens
 	end
 
 
@@ -391,9 +396,11 @@ class Case
 			if(@element.estVertical?)
 				enleverPontSens("haut", true)
 				enleverPontSens("bas", false)
+				return "vertical"
 			else
 				enleverPontSens("droite", true)
 				enleverPontSens("gauche", false)
+				return "horizontal"
 			end
 		end
 	end

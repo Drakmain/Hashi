@@ -11,14 +11,54 @@ print "**************************************************\n\n\n"
 
 print "debut de la partie : \n\n"
 
+#Thread.start(){mode.lancerChrono}
+
+hyp = 0
+
 while(!fin)
     mode.afficherPlateau
-    puts "Voulez-vous vérifiez(0) le plateau(1) ?"
+    puts "Voulez-vous vérifiez le plateau ? (1/0)"
     verif = gets
     verif = verif.to_i
-    puts verif.class
-    if(verif == 0)then
+    if(verif == 1)then
         mode.corrigerErreur
+    end
+
+    if(hyp == 0)
+        puts "Voulez-vous mettre le mode hypothese ? (1/0)"
+        hyp = gets
+        hyp = hyp.to_i
+        if(hyp == 1)then
+            mode.activerHypothese
+        end
+        hyp = 1
+    else
+        puts "Voulez-vous enlever le mode hypothese ? (1/0)"
+        desHyp = gets
+        desHyp = desHyp.to_i
+        if(desHyp == 1)
+            mode.desactiverHypothese
+        end
+    end
+
+    puts "Voulez-vous undo le coup ? (1/0)"
+    undo = gets
+    undo = undo.to_i
+    while(undo == 1)
+        mode.undo
+        puts "Voulez-vous undo le coup ? (1/0)"
+        undo = gets
+        undo = undo.to_i
+    end
+
+    puts "Voulez-vous redo le coup ? (1/0)"
+    undo = gets
+    undo = undo.to_i
+    while(undo == 1)
+        mode.redo
+        puts "Voulez-vous redo le coup ? (1/0)"
+        undo = gets
+        undo = undo.to_i
     end
 
     print "\nJouer un coup \n"

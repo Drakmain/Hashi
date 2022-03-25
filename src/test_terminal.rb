@@ -1,6 +1,6 @@
 load "ContreLaMontre.rb"
 
-mode = Genie.creer(Plateau.creer(1), "theo", "difficile", "6")
+mode = ContreLaMontre.creer(Plateau.creer(1), "theo", "difficile", "6")
 mode.initialiserJeu()
 
 fin = false
@@ -11,7 +11,7 @@ print "**************************************************\n\n\n"
 
 print "debut de la partie : \n\n"
 
-Thread.start(){mode.lancerChrono}
+#Thread.start(){mode.lancerChrono}
 
 while(!fin)
     mode.afficherPlateau

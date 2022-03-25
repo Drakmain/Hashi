@@ -146,23 +146,32 @@ class ContreLaMontre < Genie
 			for j in 0..@plateau.y-1 
                 elementCourant = @plateau.getCase(i,j).element
                 elementCorrection = @correction.getCase(i,j).element
-                if (elementCourant.estPont? && elementCourant.nb_ponts > 0) then
-                    if elementCorrection.estElement? then
-                        nbErreurs += 1
-                    elsif elementCourant.nb_ponts > elementCorrection.nb_ponts then 
-                        nbErreurs += 1
-                    elsif elementCourant.estHorizontal? then
-                        if(elementCorrection.estVertical?)then
+
+                if(elementCourant.estPont? && elementCourant.estHorizontal?)then
+                    if(elementCourant.nb_ponts > 0 && !@plateau.getCase(i,j).voisineGauche.element.estPont?) then
+                        if elementCorrection.estElement? then
                             nbErreurs += 1
-                        end
-                    elsif elementCourant.estVertical? then
-                        if(elementCorrection.estHorizontal?)then
+                        elsif elementCourant.nb_ponts > elementCorrection.nb_ponts then 
                             nbErreurs += 1
+                        elsif(elementCorrection.estVertical?)then
+                                nbErreurs += 1
                         end
                     end
 
+                elsif(elementCourant.estPont? && elementCourant.estVertical?)then
+                    if(elementCourant.nb_ponts > 0) then
+                        if(elementCourant.nb_ponts > 0 && !@plateau.getCase(i,j).voisineHaut.element.estPont?)then
+                            if elementCorrection.estElement? then
+                                nbErreurs += 1
+                            elsif elementCourant.nb_ponts > elementCorrection.nb_ponts then 
+                                nbErreurs += 1
+                            elsif(elementCorrection.estHorizontal?)then
+                                    nbErreurs += 1
+                            end
+                        
+                        end
+                    end
                 end
-
             end
 		end
 

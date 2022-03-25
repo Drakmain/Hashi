@@ -96,10 +96,10 @@ class Genie
     #           save()
     #
     #permet de sauvegarder une partie, elle sérialize l'objet courant
-    def save()
+    def save(nomFichier)
         puts "\nsave..."
         Dir.mkdir(@dir) unless File.exists?(@dir)
-        f = File.open(File.expand_path(@dir + @pseudo + "save.bn"), "w")
+        f = File.open(File.expand_path(@dir + @pseudo + nomFichier + ".bn"), "w")
         @save = Marshal::dump(self)
         f.write(@save)
         f.close()
@@ -109,9 +109,9 @@ class Genie
     #           load()
     #
     #permet de charger une partie, elle déserialize le fiichier demandé
-    def load()
+    def load(nomFichier)
         puts "\nload..."
-        f = File.open(File.expand_path(@dir + @pseudo + "save.bn"), "r")
+        f = File.open(File.expand_path(@dir + @pseudo + nomFichier + ".bn"), "r")
         @save = f.read()
         f.close()
         return Marshal::load(@save)

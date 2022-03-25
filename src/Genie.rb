@@ -149,7 +149,7 @@ class Genie
     #
     #permet de récupérer l'ancien coup supprimer dans la liste des anciens coups
     def getCoup()
-        @coup.push(@anciensCoups.pop)
+        @coups.push(@anciensCoups.pop)
     end
 
     #************************************
@@ -157,26 +157,57 @@ class Genie
     #
     #permet d'enlever le dernier coup 
     def undo
-        coup = @coup.pop
-        pontCourant = coup.pont
-        if(coup.estAjout?)then
-            pontCourant.enleverPont
-        else
-            if(coup.estVertical?)then
-                pontCourant.creerPont("haut", true)
-                pontCourant.creerPont("bas", false)
-            elsif(coup.estHorizontal?)then
-                pontCourant.creerPont("gauche", true)
-                pontCourant.creerPont("droite", false)
+        if(!@coups.empty?)then
+            coup = @coups.pop
+            pontCourant = coup.pont
+            sens = coup.sens
+            puts coup
+            if(coup.estAjout?)then
+                pontCourant.enleverPont
+                @anciensCoups.push(Coup.creer("ajouter", coup.pont, sens))
             else
-                puts "erreur de undo"
+                if(coup.estVertical?)then
+                    pontCourant.creerPont("haut", true)
+                    pontCourant.creerPont("bas", false)
+                elsif(coup.estHorizontal?)then
+                    pontCourant.creerPont("gauche", true)
+                    pontCourant.creerPont("droite", false)
+                else
+                    puts "erreur de undo"
+                end
+                @score -= 10 
+                @anciensCoups.push(Coup.creer("enlever", coup.pont, sens))
             end
         end
-        @anciensCoups.push(coup)
     end
 
+
+    #*************************************
+    #               redo
+    #
+    #
+    #
     def redo
-        
+        if(!@anciensCoups.empty?)then
+            coup = @anciensCoups.pop
+            pontCourant = coup.pont
+            puts pontCourant
+            if(coup.estEnleve?)then
+                pontCourant.enleverPont
+            else
+                if(coup.estVertical?)then
+                    pontCourant.creerPont("haut", true)
+                    pontCourant.creerPont("bas", false)
+                elsif(coup.estHorizontal?)then
+                    pontCourant.creerPont("gauche", true)
+                    pontCourant.creerPont("droite", false)
+                else
+                    puts "erreur de redo"
+                end
+            end
+            @score -= 10 
+            @coups.push(coup)
+        end
     end
 
     #**********************************
@@ -223,17 +254,18 @@ class Genie
                     end
                     print "case courante : " + caseCourante.element.to_s+"\n"
                 else
-                    caseCourante.creerPontDefaut
+                    sens = caseCourante.creerPontDefaut
                 end
                 unClic = "ajouter"
             else
-                caseCourante.enleverPont
+                sens = caseCourante.enleverPont
                 unClic = "enlever"
             end
-            @anciensCoups.push(Coup.creer(unClic, caseCourante, sens))
-            calculScore
-            @chronoFirst = @chrono.chrono
-            puts @score
+            puts "sens : " + sens.to_s
+            @coups.push(Coup.creer(unClic, caseCourante, sens))
+            #calculScore
+            #@chronoFirst = @chrono.chrono
+            #puts @score
         else
             puts "case pas un pont"
             return false

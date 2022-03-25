@@ -64,6 +64,10 @@ class Coup < Element
 		return @sens == "horizontal"
 	end
 
+	def to_s
+		"sens du coup : " + @sens
+	end
+
 	#les readers
 	attr_reader :coupAjouter, :pont, :sens
 

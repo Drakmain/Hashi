@@ -152,11 +152,20 @@ class Genie
     def undo
         coup = @coup.pop
         pontCourant = coup.pont
-        if(coup.coupAjouter)then
+        if(coup.estAjout?)then
             pontCourant.enleverPont
         else
-            pontCourant.
+            if(coup.estVertical?)then
+                pontCourant.creerPont("haut", true)
+                pontCourant.creerPont("bas", false)
+            elsif(coup.estHorizontal?)then
+                pontCourant.creerPont("gauche", true)
+                pontCourant.creerPont("droite", false)
+            else
+                puts "erreur de undo"
+            end
         end
+        @anciensCoups.push(coup)
     end
 
     def redo
@@ -209,9 +218,10 @@ class Genie
                 else
                     caseCourante.creerPontDefaut
                 end
+                unClic = "ajouter"
             else
-                puts "enelver pont"
                 caseCourante.enleverPont
+                unClic = "enlever"
             end
             @anciensCoups.push(Coup.creer(unClic, caseCourante, sens))
         else

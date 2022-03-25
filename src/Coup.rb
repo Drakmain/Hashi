@@ -48,8 +48,24 @@ class Coup < Element
 		@sens = sens
 	end
 
+	def estAjout?
+		@coupAjouter == "ajouter"
+	end
 
-	attr_reader :coupAjouter :pont :sens
+	def estEnleve?
+		@coupAjouter == "enlever"
+	end
+
+	def estVertical?
+		return @sens == "vertical"
+	end
+
+	def estHorizontal?
+		return @sens == "horizontal"
+	end
+
+	#les readers
+	attr_reader :coupAjouter, :pont, :sens
 
 
 

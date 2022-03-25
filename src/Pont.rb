@@ -54,7 +54,7 @@ class Pont < Element
     ###############################################################################################################
 
 
-    # Créer les getters et setters de la variable sensHorizontal
+    # Créer les getters et setters des variables sensHorizontal et nb_ponts
     attr_accessor :sensHorizontal, :nb_ponts
 
 

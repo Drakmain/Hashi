@@ -75,6 +75,7 @@ class Genie
         @dir = "../data/save" + self.class.to_s + unNiveau + "/"
         @pseudo = unPseudo
         @correction = PlateauCorrection.creer(unNiveau)
+        @chronoFirst = 0
 	end
 
     #############################################################################################
@@ -121,7 +122,10 @@ class Genie
     #
     #permet de calculer le score du joueur
     def calculScore()
-
+        chronoNow = @chrono.chrono
+        if @chronoFirst - chronoNow != 0 then
+            @score += 100 - (5 * 100 / (@chronoFirst - chronoNow))
+        end
     end
 
     #************************************
@@ -135,6 +139,9 @@ class Genie
     #permet de supprimer le dernier coup dans la liste des coups, le met dans a liste des anciens coups 
     def deleteCoup()
         @anciensCoups.push(@coup.pop)
+    end
+
+    def corrigerErreur()
     end
 
     #***********************************
@@ -224,6 +231,9 @@ class Genie
                 unClic = "enlever"
             end
             @anciensCoups.push(Coup.creer(unClic, caseCourante, sens))
+            calculScore
+            @chronoFirst = @chrono.chrono
+            puts @score
         else
             puts "case pas un pont"
             return false

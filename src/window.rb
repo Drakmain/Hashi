@@ -13,6 +13,17 @@ class Window < Gtk::Window
     @window = nil
   end
 
+  def signal(window_instance)
+    window_builder = window_instance.builder
+
+    window_builder.connect_signals do |handler|
+      window_instance.method(handler)
+    rescue StandardError
+      puts "#{handler} not yet implemented!"
+      window_instance.method('not_yet_implemented')
+    end
+  end
+
   def on_destroy
     puts 'Gtk main_quit'
     Gtk.main_quit

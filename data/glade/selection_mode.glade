@@ -2,7 +2,7 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
-  <object class="GtkWindow" id="main_menu">
+  <object class="GtkWindow" id="selection_mode">
     <property name="can-focus">False</property>
     <signal name="destroy" handler="on_destroy" swapped="no"/>
     <child>
@@ -19,7 +19,7 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">Hashi</property>
+            <property name="label" translatable="yes">Mode de jeu</property>
             <attributes>
               <attribute name="size" value="15360"/>
             </attributes>
@@ -31,8 +31,8 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="jouer">
-            <property name="label" translatable="yes">Jouer</property>
+          <object class="GtkButton" id="normal">
+            <property name="label" translatable="yes">Normal</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
@@ -40,7 +40,7 @@
             <property name="margin-end">150</property>
             <property name="margin-top">20</property>
             <property name="margin-bottom">29</property>
-            <signal name="clicked" handler="on_jouer_clicked" swapped="no"/>
+            <signal name="clicked" handler="on_normal_clicked" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -49,8 +49,8 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="catalogue">
-            <property name="label" translatable="yes">Catalogue</property>
+          <object class="GtkButton" id="contre_la_montre">
+            <property name="label" translatable="yes">Contre la montre</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
@@ -58,7 +58,7 @@
             <property name="margin-end">150</property>
             <property name="margin-top">20</property>
             <property name="margin-bottom">20</property>
-            <signal name="clicked" handler="on_catalogue_clicked" swapped="no"/>
+            <signal name="clicked" handler="on_contre_la_montre_clicked" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -67,8 +67,8 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="classement">
-            <property name="label" translatable="yes">Classement</property>
+          <object class="GtkButton" id="génie">
+            <property name="label" translatable="yes">Génie</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
@@ -76,7 +76,7 @@
             <property name="margin-end">150</property>
             <property name="margin-top">20</property>
             <property name="margin-bottom">20</property>
-            <signal name="clicked" handler="on_classement_clicked" swapped="no"/>
+            <signal name="clicked" handler="on_génie_clicked" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -85,8 +85,8 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="options">
-            <property name="label" translatable="yes">Options</property>
+          <object class="GtkButton" id="tutoriel">
+            <property name="label" translatable="yes">Tutoriel</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
@@ -94,30 +94,12 @@
             <property name="margin-end">150</property>
             <property name="margin-top">20</property>
             <property name="margin-bottom">20</property>
-            <signal name="clicked" handler="on_options_clicked" swapped="no"/>
+            <signal name="clicked" handler="on_tutoriel_clicked" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">4</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="quitter">
-            <property name="label" translatable="yes">Quitter</property>
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="margin-start">150</property>
-            <property name="margin-end">150</property>
-            <property name="margin-top">20</property>
-            <property name="margin-bottom">20</property>
-            <signal name="clicked" handler="on_destroy" swapped="no"/>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">5</property>
           </packing>
         </child>
       </object>

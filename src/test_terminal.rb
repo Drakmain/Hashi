@@ -11,14 +11,39 @@ print "**************************************************\n\n\n"
 
 print "debut de la partie : \n\n"
 
+i = 0
+
 while(!fin)
     mode.afficherPlateau
+=begin
+    if(i==1)then
+        puts "Voulez-vous désactiver le mode hypothèse (0/1)?"
+        verif = gets
+        verif = verif.to_i
+        if(verif == 0)then
+            mode.desactiverHypothese
+            i=0
+        end
+    end
+
+    if(i==0)then
+        puts "Voulez-vous activer le mode hypothèse (0/1)?"
+        verif = gets
+        verif = verif.to_i
+        if(verif == 0)then
+            mode.activerHypothese
+            i=1
+        end
+    end      
+=end    
+
+
     puts "Voulez-vous vérifiez(0) le plateau(1) ?"
     verif = gets
     verif = verif.to_i
     puts verif.class
     if(verif == 0)then
-        mode.corrigerErreur
+        mode.afficherErreurs
     end
 
     print "\nJouer un coup \n"

@@ -37,12 +37,13 @@ class Pont < Element
     #
     #Par defaut : 
     #   - sensHorizontale = false
-    #   - nb_ponts = 0
+    #   - @erreur = false
     #
 	def initialize(unSens, uneValeur)
 		@sensHorizontal = unSens
         @nb_ponts= uneValeur
         @deuxSens = 0
+        @erreur = false
 	end
 
     #new est privée
@@ -55,7 +56,7 @@ class Pont < Element
 
 
     # Créer les getters et setters de la variable sensHorizontal
-    attr_accessor :sensHorizontal, :nb_ponts
+    attr_accessor :sensHorizontal, :nb_ponts, :erreur
 
 
     # *****************************************************

@@ -91,15 +91,12 @@ class ContreLaMontre < Genie
                 elementCourant = @plateau.getCase(i,j).element
                 elementCorrection = @correction.getCase(i,j).element
                 if (elementCourant.estPont? && elementCourant.nb_ponts > 0) then
-                    puts "verif"
                     if elementCorrection.estElement? then
                         @plateau.getCase(i,j).enleverPont
                     elsif elementCourant.nb_ponts > elementCorrection.nb_ponts then 
                         enleverErreur(@plateau.getCase(i,j), elementCourant.nb_ponts - elementCorrection.nb_ponts)
                     elsif elementCourant.estHorizontal? then
-                        puts elementCorrection
                         if(elementCorrection.estVertical?)then
-                            puts "verif horizontal"
                             enleverErreur(@plateau.getCase(i,j), elementCourant.nb_ponts)
                         end
                     elsif elementCourant.estVertical? then
@@ -133,6 +130,88 @@ class ContreLaMontre < Genie
         end
     end
 
+
+    #################################################################################################
+    #                   Mode détection erreur
+    #################################################################################################
+
+    #********************************************
+    #       nombreErreurs()
+    #
+    #Renvoie le nombre d'erreur du joueur
+    def nombreErreurs()
+        nbErreurs = 0
+
+        for i in 0..@plateau.x-1 
+			for j in 0..@plateau.y-1 
+                elementCourant = @plateau.getCase(i,j).element
+                elementCorrection = @correction.getCase(i,j).element
+                if (elementCourant.estPont? && elementCourant.nb_ponts > 0) then
+                    if elementCorrection.estElement? then
+                        nbErreurs += 1
+                    elsif elementCourant.nb_ponts > elementCorrection.nb_ponts then 
+                        nbErreurs += 1
+                    elsif elementCourant.estHorizontal? then
+                        if(elementCorrection.estVertical?)then
+                            nbErreurs += 1
+                        end
+                    elsif elementCourant.estVertical? then
+                        if(elementCorrection.estHorizontal?)then
+                            nbErreurs += 1
+                        end
+                    end
+
+                end
+
+            end
+		end
+
+        return nbErreurs
+    end
+
+
+    #********************************************
+    #       afficherPontErreur()
+    #
+    #permet de mettre en surbrillance les erreurs sur les ponts mal placés
+    def afficherPontErreur()
+        for i in 0..@plateau.x-1 
+			for j in 0..@plateau.y-1 
+                elementCourant = @plateau.getCase(i,j).element
+                elementCorrection = @correction.getCase(i,j).element
+                if (elementCourant.estPont? && elementCourant.nb_ponts > 0) then
+                    if elementCorrection.estElement? then
+                        elementCourant = true
+                    elsif elementCourant.nb_ponts > elementCorrection.nb_ponts then 
+                        elementCourant = true
+                    elsif elementCourant.estHorizontal? then
+                        if(elementCorrection.estVertical?)then
+                            elementCourant = true
+                        end
+                    elsif elementCourant.estVertical? then
+                        if(elementCorrection.estHorizontal?)then
+                            elementCourant = true
+                        end
+                    end
+
+                end
+
+            end
+		end
+    end
+
+
+    def afficherErreurs()
+        puts "Tu as " + nombreErreurs().to_s + " erreurs"
+        puts "Afficher toutes les erreurs(0) ou supprimer toutes les erreurs(1) ?"
+        verif = gets
+        verif = verif.to_i
+        if(verif == 0)then
+            afficherPontErreur
+        elsif(verif == 1)then
+            corrigerErreur
+        end
+    end
 
     #################################################################################################
     #                   Mode assiste
@@ -196,6 +275,8 @@ class ContreLaMontre < Genie
     #permet d'activer le mode hypothèse
     def activerHypothese()
         @hypothese = true
+
+        save("Hypothese")
     end
 
     #*******************************************
@@ -204,7 +285,8 @@ class ContreLaMontre < Genie
     #permet de desactiver le mode hypothèse et de supprimer tous les mauvais liens que l'utilisateur à créé
     def desactiverHypothese()
         @hypothese = false
-        corrigerErreur(unFichier)
+        
+        #load("Hypothese")
     end
 
 

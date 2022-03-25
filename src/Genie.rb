@@ -68,6 +68,7 @@ class Genie
         @chrono = Chrono.new
         @anciensCoups = []
         @coups = []
+        @pileHypothese = []
         @fichierJeu = "../data/map/" + uneDifficulte + "/demarrage/" + unNiveau + ".txt"
         @fichierCorrection = "../data/map/" + uneDifficulte + "/correction/" + unNiveau + ".txt"
         @plateau = unPlateau
@@ -76,6 +77,7 @@ class Genie
         @pseudo = unPseudo
         @correction = PlateauCorrection.creer(unNiveau)
         @chronoFirst = 0
+        @hypothese = true
 	end
 
     #############################################################################################
@@ -186,7 +188,7 @@ class Genie
     #               redo
     #
     #
-    #
+    #permet de remetrre le coup supprimer
     def redo
         if(!@anciensCoups.empty?)then
             coup = @anciensCoups.pop
@@ -262,7 +264,11 @@ class Genie
                 unClic = "enlever"
             end
             puts "sens : " + sens.to_s
-            @coups.push(Coup.creer(unClic, caseCourante, sens))
+            if(@hypothese)then
+                @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
+            else
+                @coups.push(Coup.creer(unClic, caseCourante, sens))
+            end
             #calculScore
             #@chronoFirst = @chrono.chrono
             #puts @score

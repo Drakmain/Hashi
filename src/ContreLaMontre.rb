@@ -246,10 +246,6 @@ class ContreLaMontre < Genie
 
 
 
-
-
-
-
     #################################################################################################
     #                   Mode Hypothèse
     #################################################################################################
@@ -260,8 +256,6 @@ class ContreLaMontre < Genie
     #permet d'activer le mode hypothèse
     def activerHypothese()
         @hypothese = true
-
-        save("Hypothese")
     end
 
     #*******************************************
@@ -270,8 +264,26 @@ class ContreLaMontre < Genie
     #permet de desactiver le mode hypothèse et de supprimer tous les mauvais liens que l'utilisateur à créé
     def desactiverHypothese()
         @hypothese = false
+        while(!@pileHypothese.empty?)
+            coup = @pileHypothese.pop
+            pontCourant = coup.pont
+            sens = coup.sens
+            puts coup
+            if(coup.estAjout?)then
+                pontCourant.enleverPont
+            else
+                if(coup.estVertical?)then
+                    pontCourant.creerPont("haut", true)
+                    pontCourant.creerPont("bas", false)
+                elsif(coup.estHorizontal?)then
+                    pontCourant.creerPont("gauche", true)
+                    pontCourant.creerPont("droite", false)
+                else
+                    puts "erreur de undo dans hypothese"
+                end
+            end
+        end
         
-        #load("Hypothese")
     end
 
 

@@ -27,8 +27,17 @@ class Genie
     #@score         => le score du joueur
     #@chrono        => le chrono qui se lance en début de partie
     #@anciensCoups  => la file des anciens coups
-    #@fichier       => le chemin vers le fichier qui contient la correction
+    #@coups         => la pile de coups
+    #@pileHypothese => la pile de coups du mode hypothèse
+    #@fichierJeu    => le chemin vers le fichier qui contient la grille basique
+    #@fichierCorrection => le chemin vers le fichier qui contient la correction
     #@plateau       => le plateau de jeu courant
+    #@save          => la sauvegarde de la partie
+    #@dir           => le chemin vers le dossier qui contient les fichiers
+    #@pseudo        => le pseudo du joueur
+    #@correction    => le plateau de jeu avec la correction
+    #@chronoFirst   => temps au début du tour de jeu
+    #@hypothese     => état du mode hypothèse
 
 
     ##############################################################################################
@@ -46,8 +55,10 @@ class Genie
     #
     #==== ATTRIBUTS
     #
-    #   unFichier : le chemin vers le fichier qui contient la correction
     #   unPlateau : une référence vers le plateau de jeu de la partie courante
+    #   unNiveau : le numéro du niveau choisis
+    #   unPseudo : le nom du joueur qui va jouer
+    #   uneDifficulte : la difficulté choisis
     #
     def Genie.creer(unPlateau, unNiveau, unPseudo, uneDifficulte)
         new(unPlateau, unNiveau, unPseudo, uneDifficulte)
@@ -60,8 +71,10 @@ class Genie
     #
     #==== ATTRIBUTS
     #
-    #   unFichier : le chemin vers le fichier qui contient la correction
     #   unPlateau : une référence vers le plateau de jeu de la partie courante
+    #   unPseudo : le nom du joueur qui va jouer
+    #   uneDifficulte : la difficulté choisis
+    #   unNiveau : le numéro du niveau choisis
     #
     def initialize(unPlateau, unPseudo,  uneDifficulte, unNiveau)
 		@score = 0
@@ -188,7 +201,7 @@ class Genie
     #               redo
     #
     #
-    #permet de remetrre le coup supprimer
+    #permet de remettre le dernier coup supprimer
     def redo
         if(!@anciensCoups.empty?)then
             coup = @anciensCoups.pop
@@ -221,6 +234,7 @@ class Genie
     #
     #*+unX+ => coordonnée X de la case
     #*+unY+ => Coordonnée Y de la case
+    #*+unClic+ => type de clic fait par le joueur
     #
     def jouerCoup(unX, unY, unClic)
 
@@ -301,10 +315,24 @@ class Genie
         @plateau.afficherJeu()
     end
 
+     #**********************************
+    #              afficherCorrection
+    #
+    #Affiche le plateau avec la correction
     def afficherCorrection()
         @correction.afficherJeu()
     end
 
+    #**********************************
+    #               verifCoord()
+    #
+    #permet de verifier les coordonnées
+    #
+    #===== ATTRIBUTS
+    #
+    #*+unX+ => coordonnée X de la case
+    #*+unY+ => Coordonnée Y de la case
+    #
     def verifCoord(unX, unY)
         @plateau.verifCoord(unX, unY)
     end

@@ -308,6 +308,46 @@ class Case
 		end
 	end
 
+	#*********************************************************************
+	#					pontAjoutables()
+	#
+	#Retourne un nombre binaire a 4 bits, si un bits vaut 1 la case posséde une ile voisine dans un sens. l'ordre est le suivant du bit droit au gauche : Droite,Gauche,Haut,Bas
+	#
+	#===== ATTRIBUT
+	#
+	def pontAjoutables()
+		
+		puts "x: #{@x} y: #{@y}"
+		n = 0
+		if self.element.estIle?
+			puts "Droite"
+			if (@y<@plateau.y)
+				if(voisineDroite.element.estPont? && voisineDroite.pontAjoutable("droite", false))then
+					n+=1
+				end
+			end
+			puts "Gauche"
+			if (@y>0)
+				if(voisineGauche.element.estPont? && voisineGauche.pontAjoutable("gauche", false))then
+					n+=10
+				end
+			end
+			puts "Haut"
+			if (@x>0)
+				if(voisineHaut.element.estPont? && voisineHaut.pontAjoutable("haut", false))then
+					n+=100
+				end
+			end
+			puts "Bas"
+			if (@x<@plateau.x)
+				if(voisineBas.element.estPont? && voisineBas.pontAjoutable("bas", false))then
+					n+=1000
+				end
+			end
+			puts n
+			return n
+		end
+	end
 
 	#***************************************************
 	#				ileFini?()

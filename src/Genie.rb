@@ -27,8 +27,17 @@ class Genie
     #@score         => le score du joueur
     #@chrono        => le chrono qui se lance en début de partie
     #@anciensCoups  => la file des anciens coups
-    #@fichier       => le chemin vers le fichier qui contient la correction
+    #@coups         => la pile de coups
+    #@pileHypothese => la pile de coups du mode hypothèse
+    #@fichierJeu    => le chemin vers le fichier qui contient la grille basique
+    #@fichierCorrection => le chemin vers le fichier qui contient la correction
     #@plateau       => le plateau de jeu courant
+    #@save          => la sauvegarde de la partie
+    #@dir           => le chemin vers le dossier qui contient les fichiers
+    #@pseudo        => le pseudo du joueur
+    #@correction    => le plateau de jeu avec la correction
+    #@chronoFirst   => temps au début du tour de jeu
+    #@hypothese     => état du mode hypothèse
 
 
     ##############################################################################################
@@ -46,8 +55,10 @@ class Genie
     #
     #==== ATTRIBUTS
     #
-    #   unFichier : le chemin vers le fichier qui contient la correction
     #   unPlateau : une référence vers le plateau de jeu de la partie courante
+    #   unNiveau : le numéro du niveau choisis
+    #   unPseudo : le nom du joueur qui va jouer
+    #   uneDifficulte : la difficulté choisis
     #
     def Genie.creer(unPlateau, unNiveau, unPseudo, uneDifficulte)
         new(unPlateau, unNiveau, unPseudo, uneDifficulte)
@@ -60,21 +71,26 @@ class Genie
     #
     #==== ATTRIBUTS
     #
-    #   unFichier : le chemin vers le fichier qui contient la correction
     #   unPlateau : une référence vers le plateau de jeu de la partie courante
+    #   unPseudo : le nom du joueur qui va jouer
+    #   uneDifficulte : la difficulté choisis
+    #   unNiveau : le numéro du niveau choisis
     #
     def initialize(unPlateau, unPseudo,  uneDifficulte, unNiveau)
 		@score = 0
         @chrono = Chrono.new
         @anciensCoups = []
         @coups = []
+        @pileHypothese = []
         @fichierJeu = "../data/map/" + uneDifficulte + "/demarrage/" + unNiveau + ".txt"
         @fichierCorrection = "../data/map/" + uneDifficulte + "/correction/" + unNiveau + ".txt"
         @plateau = unPlateau
         @save = nil;
-        @dir = "../data/save" + self.class.to_s + "/"
+        @dir = "../data/save" + self.class.to_s + unNiveau + "/"
         @pseudo = unPseudo
         @correction = PlateauCorrection.creer(unNiveau)
+        @chronoFirst = 0
+        @hypothese = true
 	end
 
     #############################################################################################
@@ -95,10 +111,10 @@ class Genie
     #           save()
     #
     #permet de sauvegarder une partie, elle sérialize l'objet courant
-    def save()
+    def save(nomFichier)
         puts "\nsave..."
         Dir.mkdir(@dir) unless File.exists?(@dir)
-        f = File.open(File.expand_path(@dir + @pseudo + "save.bn"), "w")
+        f = File.open(File.expand_path(@dir + @pseudo + nomFichier + ".bn"), "w")
         @save = Marshal::dump(self)
         f.write(@save)
         f.close()
@@ -108,9 +124,9 @@ class Genie
     #           load()
     #
     #permet de charger une partie, elle déserialize le fiichier demandé
-    def load()
+    def load(nomFichier)
         puts "\nload..."
-        f = File.open(File.expand_path(@dir + @pseudo + "save.bn"), "r")
+        f = File.open(File.expand_path(@dir + @pseudo + nomFichier + ".bn"), "r")
         @save = f.read()
         f.close()
         return Marshal::load(@save)
@@ -121,7 +137,10 @@ class Genie
     #
     #permet de calculer le score du joueur
     def calculScore()
-
+        chronoNow = @chrono.chrono
+        if @chronoFirst - chronoNow != 0 then
+            @score += 100 - (5 * 100 / (@chronoFirst - chronoNow))
+        end
     end
 
     #************************************
@@ -137,12 +156,15 @@ class Genie
         @anciensCoups.push(@coup.pop)
     end
 
+    def corrigerErreur()
+    end
+
     #***********************************
     #               getCoup()
     #
     #permet de récupérer l'ancien coup supprimer dans la liste des anciens coups
     def getCoup()
-        @coup.push(@anciensCoups.pop)
+        @coups.push(@anciensCoups.pop)
     end
 
     #************************************
@@ -150,11 +172,57 @@ class Genie
     #
     #permet d'enlever le dernier coup 
     def undo
-        
+        if(!@coups.empty?)then
+            coup = @coups.pop
+            pontCourant = coup.pont
+            sens = coup.sens
+            puts coup
+            if(coup.estAjout?)then
+                pontCourant.enleverPont
+                @anciensCoups.push(Coup.creer("ajouter", coup.pont, sens))
+            else
+                if(coup.estVertical?)then
+                    pontCourant.creerPont("haut", true)
+                    pontCourant.creerPont("bas", false)
+                elsif(coup.estHorizontal?)then
+                    pontCourant.creerPont("gauche", true)
+                    pontCourant.creerPont("droite", false)
+                else
+                    puts "erreur de undo"
+                end
+                @score -= 10 
+                @anciensCoups.push(Coup.creer("enlever", coup.pont, sens))
+            end
+        end
     end
 
+
+    #*************************************
+    #               redo
+    #
+    #
+    #permet de remettre le dernier coup supprimer
     def redo
-        
+        if(!@anciensCoups.empty?)then
+            coup = @anciensCoups.pop
+            pontCourant = coup.pont
+            puts pontCourant
+            if(coup.estEnleve?)then
+                pontCourant.enleverPont
+            else
+                if(coup.estVertical?)then
+                    pontCourant.creerPont("haut", true)
+                    pontCourant.creerPont("bas", false)
+                elsif(coup.estHorizontal?)then
+                    pontCourant.creerPont("gauche", true)
+                    pontCourant.creerPont("droite", false)
+                else
+                    puts "erreur de redo"
+                end
+            end
+            @score -= 10 
+            @coups.push(coup)
+        end
     end
 
     #**********************************
@@ -166,6 +234,7 @@ class Genie
     #
     #*+unX+ => coordonnée X de la case
     #*+unY+ => Coordonnée Y de la case
+    #*+unClic+ => type de clic fait par le joueur
     #
     def jouerCoup(unX, unY, unClic)
 
@@ -181,7 +250,7 @@ class Genie
 
             if(joue == 2 || joue == -1)then
                 if(caseCourante.element.nb_ponts > 0)then
-                    caseCourante.creerPontDefaut
+                    sens = caseCourante.creerPontDefaut
                 elsif(caseCourante.element.aDeuxSens)then
                     #caseCourante.estEntoure() ne sert probablement à rien
                     puts "vous voulez faire un coup horizontal(1) ou vertical(2) ?"
@@ -190,22 +259,33 @@ class Genie
                         if(caseCourante.pontAjoutable("droite",true) && caseCourante.pontAjoutable("gauche",true))then
                             caseCourante.creerPont("droite", true)
                             caseCourante.creerPont("gauche", false)
+                            sens = "horizontal"
                         end
                     else
                         if(caseCourante.pontAjoutable("haut",true) && caseCourante.pontAjoutable("bas",true))then
                             caseCourante.creerPont("haut", true)
                             caseCourante.creerPont("bas", false)
+                            sens = "vertical"
                         end
                     end
                     print "case courante : " + caseCourante.element.to_s+"\n"
                 else
-                    caseCourante.creerPontDefaut
+                    sens = caseCourante.creerPontDefaut
                 end
+                unClic = "ajouter"
             else
-                puts "enelver pont"
-                caseCourante.enleverPont
+                sens = caseCourante.enleverPont
+                unClic = "enlever"
             end
-            @anciensCoups.push(Coup.creer(unClic, caseCourante))
+            puts "sens : " + sens.to_s
+            if(@hypothese)then
+                @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
+            else
+                @coups.push(Coup.creer(unClic, caseCourante, sens))
+            end
+            #calculScore
+            #@chronoFirst = @chrono.chrono
+            #puts @score
         else
             puts "case pas un pont"
             return false
@@ -235,10 +315,24 @@ class Genie
         @plateau.afficherJeu()
     end
 
+     #**********************************
+    #              afficherCorrection
+    #
+    #Affiche le plateau avec la correction
     def afficherCorrection()
         @correction.afficherJeu()
     end
 
+    #**********************************
+    #               verifCoord()
+    #
+    #permet de verifier les coordonnées
+    #
+    #===== ATTRIBUTS
+    #
+    #*+unX+ => coordonnée X de la case
+    #*+unY+ => Coordonnée Y de la case
+    #
     def verifCoord(unX, unY)
         @plateau.verifCoord(unX, unY)
     end

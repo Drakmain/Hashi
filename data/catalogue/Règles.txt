@@ -11,6 +11,17 @@ Règles du jeu :
 
 	Le partie se termine quand toutes les îles sont reliées et qu'elles possèdent tous leurs ponts.
 
+
+Comment jouer : 
+
+	Afin de placer un pont, sélectionnez un endroit où une connexion entre deux îles est possible. 
+	Avec un clic gauche, un pont sera ajouté si c'est possible. 
+	Il vous sera, dans le cas où les deux sont possibles, demandé si vous souhaiter placer un pont horizontal ou vertical.
+	Avec un clic droit, un pont sera supprimé s'il en existe au moins un.
+	
+	Selon le mode de jeu choisi, diverses aides vous seront proposées pour vous aider à terminer la partie. 
+
+
 Aides :
 
 	- Coups possibles : indique les ponts que vous pouvez faire à partir d'une île en survolant cette dernière

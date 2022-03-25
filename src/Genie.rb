@@ -1,6 +1,7 @@
 
 load "Chrono.rb"
 load "Plateau.rb"
+load "PlateauCorrection.rb"
 load "Coup.rb"
 
 
@@ -67,13 +68,13 @@ class Genie
         @chrono = Chrono.new
         @anciensCoups = []
         @coups = []
-        @fichierJeu = "../map/" + uneDifficulte + "/demarrage/" + unNiveau + ".txt"
-        @fichierCorrection = "../map/" + uneDifficulte + "/correction/" + unNiveau + ".txt"
+        @fichierJeu = "../data/map/" + uneDifficulte + "/demarrage/" + unNiveau + ".txt"
+        @fichierCorrection = "../data/map/" + uneDifficulte + "/correction/" + unNiveau + ".txt"
         @plateau = unPlateau
         @save = nil;
         @dir = "../data/save" + self.class.to_s + "/"
         @pseudo = unPseudo
-        @correction = Plateau.creer(unNiveau)
+        @correction = PlateauCorrection.creer(unNiveau)
 	end
 
     #############################################################################################
@@ -87,7 +88,7 @@ class Genie
         @plateau.ajouterPont
 
         @correction.generateMatrice(@fichierCorrection)
-        #@coorection.genererCorrection
+        @correction.generatePlateau
     end
 
     #************************************
@@ -206,9 +207,7 @@ class Genie
                     end
                     print "case courante : " + caseCourante.element.to_s+"\n"
                 else
-                    puts "coup fait"
                     caseCourante.creerPontDefaut
-                    puts "fin du coup"
                 end
             else
                 puts "enelver pont"
@@ -244,6 +243,10 @@ class Genie
         @plateau.afficherJeu()
     end
 
+    def afficherCorrection()
+        @correction.afficherJeu()
+    end
+
     def verifCoord(unX, unY)
         @plateau.verifCoord(unX, unY)
     end
@@ -252,14 +255,4 @@ class Genie
 end# fin de la classe génie
 
 
-=begin
-genie = Genie.creer(nil, Plateau.creer(1), "1", "theo")
-genie.initialiserJeu("../map/facile/demarrage/2.txt")
-genie.jouerCoup(7,2, "droit")
 
-
-genie.save()
-genie.afficherPlateau
-g = genie.load()
-g.afficherPlateau
-=end

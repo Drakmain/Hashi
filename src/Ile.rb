@@ -98,6 +98,14 @@ class Ile < Element
 		@estFini = false
 	end
 
+	#***********************************************************
+    #                         to_s()
+    #
+    #affiche une ile
+    def to_s
+        return "Ile"
+    end
+
 end
 
 

@@ -1,6 +1,6 @@
-load "Genie.rb"
+load "ContreLaMontre.rb"
 
-mode = Genie.creer(Plateau.creer(1), "theo", "difficile", "6",)
+mode = ContreLaMontre.creer(Plateau.creer(1), "theo", "difficile", "6")
 mode.initialiserJeu()
 
 fin = false
@@ -13,6 +13,14 @@ print "debut de la partie : \n\n"
 
 while(!fin)
     mode.afficherPlateau
+    puts "Voulez-vous vérifiez(0) le plateau(1) ?"
+    verif = gets
+    verif = verif.to_i
+    puts verif.class
+    if(verif == 0)then
+        mode.corrigerErreur
+    end
+
     print "\nJouer un coup \n"
     print "\nx : "
     x = gets

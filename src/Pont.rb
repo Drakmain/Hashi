@@ -26,8 +26,8 @@ class Pont < Element
     #               Pont.creer()
     #
     #Permet de creer un pont
-    def Pont.creer(unSens)
-        new(unSens)
+    def Pont.creer(unSens, uneValeur=0)
+        new(unSens, uneValeur)
     end
 
     #******************************************************
@@ -39,9 +39,9 @@ class Pont < Element
     #   - sensHorizontale = false
     #   - nb_ponts = 0
     #
-	def initialize(unSens)
+	def initialize(unSens, uneValeur)
 		@sensHorizontal = unSens
-        @nb_ponts= 0
+        @nb_ponts= uneValeur
         @deuxSens = 0
 	end
 

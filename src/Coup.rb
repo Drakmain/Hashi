@@ -49,7 +49,7 @@ class Coup < Element
 	end
 
 
-	attr_reader :coupAjouter :pont :sens
+	attr_reader :coupAjouter, :pont, :sens
 
 
 

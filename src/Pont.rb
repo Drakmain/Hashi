@@ -74,7 +74,8 @@ class Pont < Element
     #
     def ajoutePont()
         if(@nb_ponts < 2)then
-            @nb_ponts += 1     
+            @nb_ponts += 1  
+            @erreur = false   
         end
     end
 
@@ -84,6 +85,7 @@ class Pont < Element
     #Methode qui permet d'enlever les ponts (mettre à 0)
     def enlevePont()
         nb_ponts = 0
+        @erreur = false
         if(@nb_ponts > 0)then
             nb_ponts = @nb_ponts
             @nb_ponts -= 1 

@@ -31,7 +31,7 @@ class SelectionMapWindow < Window
 
     model = Gtk::TreeStore.new(String, String)
 
-    p = Plateau.creer(1)
+    p = Plateau.creer()
 
     (1..nb_niv).each do |i|
       root_iter = model.append(nil)

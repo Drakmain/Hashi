@@ -88,7 +88,7 @@ class Genie
         @save = nil;
         @dir = "../data/save" + self.class.to_s + unNiveau + "/"
         @pseudo = unPseudo
-        @correction = PlateauCorrection.creer(unNiveau)
+        @correction = PlateauCorrection.creer()
         @chronoFirst = 0
         @hypothese = true
 	end

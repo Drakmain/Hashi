@@ -5,8 +5,8 @@ class PlateauCorrection < Plateau
 
     private_class_method :new
 
-    def PlateauCorrection.creer(uneID)
-        super(uneID)
+    def PlateauCorrection.creer()
+        super()
     end
 
 

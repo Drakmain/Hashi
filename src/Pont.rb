@@ -17,6 +17,9 @@ load 'Element.rb'
 class Pont < Element
     #@sensHorizontale => un boolean qui indique si le pont est horizontale ou pas
     #@nb_ponts => le nombre de ponts (0,1,2)
+    #@deuxSens => le nombre de sens que le pont peut avoir (horizontal et/ou vertical)
+    #@erreur => un boolean qui indique si le pont est faux ou non
+    #@pontPossible => un boolean qui indique s'il faut surbriller le pont ou non
 
     ##############################################################################################################
     #                                           Methodes de classe
@@ -44,6 +47,7 @@ class Pont < Element
         @nb_ponts= uneValeur
         @deuxSens = 0
         @erreur = false
+        @pontPossible = false
 	end
 
     #new est privée
@@ -56,7 +60,7 @@ class Pont < Element
 
 
     # Créer les getters et setters de la variable sensHorizontal
-    attr_accessor :sensHorizontal, :nb_ponts, :erreur
+    attr_accessor :sensHorizontal, :nb_ponts, :erreur, :pontPossible
 
 
     # *****************************************************

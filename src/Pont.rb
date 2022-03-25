@@ -147,6 +147,10 @@ class Pont < Element
     end
 
 
+    #***********************************************************
+    #                   aDeuxSens()
+    #
+    #Retourne vrai si le pont a deux sens possible, faux sinon
     def aDeuxSens()
         return @deuxSens>0
     end

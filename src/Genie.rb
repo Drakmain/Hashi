@@ -72,7 +72,7 @@ class Genie
         @fichierCorrection = "../data/map/" + uneDifficulte + "/correction/" + unNiveau + ".txt"
         @plateau = unPlateau
         @save = nil;
-        @dir = "../data/save" + self.class.to_s + "/"
+        @dir = "../data/save" + self.class.to_s + unNiveau + "/"
         @pseudo = unPseudo
         @correction = PlateauCorrection.creer(unNiveau)
 	end
@@ -150,7 +150,13 @@ class Genie
     #
     #permet d'enlever le dernier coup 
     def undo
-        
+        coup = @coup.pop
+        pontCourant = coup.pont
+        if(coup.coupAjouter)then
+            pontCourant.enleverPont
+        else
+            pontCourant.
+        end
     end
 
     def redo
@@ -181,7 +187,7 @@ class Genie
 
             if(joue == 2 || joue == -1)then
                 if(caseCourante.element.nb_ponts > 0)then
-                    caseCourante.creerPontDefaut
+                    sens = caseCourante.creerPontDefaut
                 elsif(caseCourante.element.aDeuxSens)then
                     #caseCourante.estEntoure() ne sert probablement à rien
                     puts "vous voulez faire un coup horizontal(1) ou vertical(2) ?"
@@ -190,11 +196,13 @@ class Genie
                         if(caseCourante.pontAjoutable("droite",true) && caseCourante.pontAjoutable("gauche",true))then
                             caseCourante.creerPont("droite", true)
                             caseCourante.creerPont("gauche", false)
+                            sens = "horizontal"
                         end
                     else
                         if(caseCourante.pontAjoutable("haut",true) && caseCourante.pontAjoutable("bas",true))then
                             caseCourante.creerPont("haut", true)
                             caseCourante.creerPont("bas", false)
+                            sens = "vertical"
                         end
                     end
                     print "case courante : " + caseCourante.element.to_s+"\n"
@@ -205,7 +213,7 @@ class Genie
                 puts "enelver pont"
                 caseCourante.enleverPont
             end
-            @anciensCoups.push(Coup.creer(unClic, caseCourante))
+            @anciensCoups.push(Coup.creer(unClic, caseCourante, sens))
         else
             puts "case pas un pont"
             return false

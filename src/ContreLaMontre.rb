@@ -299,11 +299,6 @@ class ContreLaMontre < Genie
     #et doit les corriger avant d'avoir un coup à jouer
     def suggestion()
         puts("Mode suggestion activé")
-<<<<<<< HEAD
-=======
-        
-    end
->>>>>>> 5ec0dac2956b441f91977633cb431b7e15aa39e9
 
         #On parcours toutes les cases
         x=-1

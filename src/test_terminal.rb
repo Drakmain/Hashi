@@ -1,6 +1,6 @@
 load "ContreLaMontre.rb"
 
-mode = ContreLaMontre.creer(Plateau.creer(1), "theo", "difficile", "6")
+mode = ContreLaMontre.creer(Plateau.creer(1), "theo", "tuto", "4")
 mode.initialiserJeu()
 
 fin = false
@@ -60,7 +60,7 @@ while(!fin)
         undo = gets
         undo = undo.to_i
     end
-
+    
     print "\nJouer un coup \n"
     print "\nx : "
     x = gets

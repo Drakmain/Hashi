@@ -46,9 +46,12 @@ class ContreLaMontre < Genie
     #
     #creer un objet ContreLaMontre
     #
-    #====== ATTRIBUTS
+    #==== ATTRIBUTS
     #
-    #   unFichier : un chemin vers le fichier à ouvrir pour vérifier la grille
+    #   unPlateau : une référence vers le plateau de jeu de la partie courante
+    #   unNiveau : le numéro du niveau choisis
+    #   unPseudo : le nom du joueur qui va jouer
+    #   uneDifficulte : la difficulté choisis
     #
     def ContreLaMontre.creer(unPlateau, unNiveau, unPseudo, uneDifficulte)
         new(unPlateau, unNiveau, unPseudo, uneDifficulte)
@@ -59,9 +62,12 @@ class ContreLaMontre < Genie
     #
     #initialise un objet
     #
-    #====== ATTRIBUTS
+    #==== ATTRIBUTS
     #
-    #   unFichier : un chemin vers le fichier à ouvrir pour vérifier la grille
+    #   unPlateau : une référence vers le plateau de jeu de la partie courante
+    #   unNiveau : le numéro du niveau choisis
+    #   unPseudo : le nom du joueur qui va jouer
+    #   uneDifficulte : la difficulté choisis
     #
     def initialize(unPlateau, unNiveau, unPseudo, uneDifficulte)
         super(unPlateau, unNiveau, unPseudo, uneDifficulte)
@@ -115,7 +121,12 @@ class ContreLaMontre < Genie
     end
 
 
-
+    #**********************************
+    #       corrigerErreur
+    #
+    #   Permet de corriger des erreurs
+    #  enlève des ponts en fonction d'un nombre donné
+    #
     def enleverErreur(uneCase, unNombre)
         case unNombre
         when 2
@@ -210,6 +221,10 @@ class ContreLaMontre < Genie
     end
 
 
+    #********************************************
+    #       afficherErreur()
+    #
+    #affiche le nombre d'erreurs, puis, demande au joueur si il veut afficher ses erreurs, ou les supprimer
     def afficherErreurs()
         puts "Tu as " + nombreErreurs().to_s + " erreurs"
         puts "Afficher toutes les erreurs(0) ou supprimer toutes les erreurs(1) ?"

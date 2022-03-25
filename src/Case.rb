@@ -42,6 +42,7 @@ class Case
 	# unX => coordonées x de la case
 	# unY => coordonées y de la case
 	# unPlateau => le plateau de jeux
+	# unElem => l'élément de la case'
 	#
 	def initialize(unX,unY,unPlateau,unElem)
 		@x = unX
@@ -50,8 +51,9 @@ class Case
 		@element = unElem
 	end
 
-	#Accès a l'élément de la case
+	#Accès en lecture aux coordonnées x, et y
 	attr_reader :x, :y
+	#Accès a l'élément de la case
 	attr_accessor :element
 
 	##################################################################################################
@@ -405,7 +407,16 @@ class Case
 		end
 	end
 
-
+	#****************************************************
+	#					enleverPontSens()
+	#
+	#permet d'enlever un pont voisin, dans un sens donné
+	#
+	#===== ATTRIBUTS
+	#
+	#*+unSens+ : String => la direction à vérifier
+	#*+unBool+ : Boolean => !!!Demander à Pierre!!!
+	#
 	def enleverPontSens(unSens, unBool)
 		if(@element.estPont?)then
 			if(unBool)then

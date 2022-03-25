@@ -25,8 +25,9 @@ class Coup < Element
 	#
 	#===== ATTRIBUT
 	#
-	#*+clickDroit+ : boolean qui indique si le clic etait droit ou pas
+	#*+typeCoup+ : le type de coup réaliser par le joueur
 	#*+pont+ : le pont sur lequel le clic est réalisé
+	#*+sens+ : le sens du pont
 	#
 	def Coup.creer(typeCoup, pont, sens)
 		new(typeCoup, pont, sens)

@@ -54,5 +54,4 @@ class Options
 	def to_s
 	  puts("Username : #{@user} \nResolution : #{(9 * @ratio.to_i())}p \nLangue : #{@langue} \nTheme : #{@theme}\n")
 	end
-  end
-  
+end

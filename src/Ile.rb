@@ -81,7 +81,10 @@ class Ile < Element
         return @estFini
     end
 
-
+	#**************************************************
+	#				ajouterPont()
+	#
+	#incrémente de 1 @nbLiens et vérifie si l'île est fini
 	def ajouterPont
 		if(!estFini)then
 			@nbLiens += 1
@@ -93,6 +96,10 @@ class Ile < Element
 		end
 	end
 
+	#**************************************************
+	#				ajouterPont()
+	#
+	#décrémente de 1 @nbLiens
 	def enlevePont()
 		@nbLiens -= 1
 		@estFini = false

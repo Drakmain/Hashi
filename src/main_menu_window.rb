@@ -3,6 +3,7 @@ require 'gtk3'
 load 'window.rb'
 load 'options_window.rb'
 load 'catalogue_window.rb'
+load 'selection_mode_window.rb'
 
 # class MainMenuWindow
 # @window
@@ -14,34 +15,31 @@ class MainMenuWindow < Window
     super('../data/glade/main_menu.glade')
   end
 
-  def on_options_cliked
+  def on_options_clicked
     options = OptionsWindow.new
-    options_builder = options.builder
 
-    options_builder.connect_signals do |handler|
-      options.method(handler)
-    rescue StandardError
-      puts "#{handler} not yet implemented!"
-      options.method('not_yet_implemented')
-    end
+    signal(options)
 
-    options.set_window
     @window.hide
+    options.set_window
   end
 
-  def on_catalogue_cliked
+  def on_catalogue_clicked
     catalogue = CatalogueWindow.new
-    catalogue_builder = catalogue.builder
 
-    catalogue_builder.connect_signals do |handler|
-      catalogue.method(handler)
-    rescue StandardError
-      puts "#{handler} not yet implemented!"
-      catalogue.method('not_yet_implemented')
-    end
+    signal(catalogue)
 
-    catalogue.set_window
     @window.hide
+    catalogue.set_window
+  end
+
+  def on_jouer_clicked
+    selection_mode = SelectionModeWindow.new
+
+    signal(selection_mode)
+
+    @window.hide
+    selection_mode.set_window
   end
 
   def set_window

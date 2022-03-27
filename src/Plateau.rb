@@ -20,10 +20,9 @@ require 'matrix'
 #
 class Plateau
 	#@matrice => la matrice de case avec les éléments
-	#@id => un entier avec l'id du niveau
 	#@x => la largeur du tableau
 	#@y => la longueur du tableau
-	#@iles => tableau des iles du
+	#@LesIles => tableau des iles du plateau
 
 	###########################################################################################
 	#						Methodes de classe
@@ -36,10 +35,9 @@ class Plateau
 	#
 	#===== ATTRIBUTS
 	#
-	#*+uneID+ : l'id du niveau
 	#
-	def Plateau.creer(uneID)
-		new(uneID)
+	def Plateau.creer()
+		new()
 	end
 
 	#************************************************************
@@ -51,8 +49,7 @@ class Plateau
 	#
 	#*+uneID+ : l'id du niveau
 	#
-	def initialize(uneID)
-		@id = uneID
+	def initialize()
 		@x = 0
 		@y = 0 
 		@matrice = Array.new() {Array.new()} #On initialise le tableau des cases pour le charger

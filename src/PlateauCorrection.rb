@@ -5,13 +5,14 @@ class PlateauCorrection < Plateau
 
     private_class_method :new
 
-    def PlateauCorrection.creer(uneID)
-        super(uneID)
+    def PlateauCorrection.creer()
+        super()
     end
 
 
     #****************************************************************
 	#				generateMatrice()
+	#Redéfinition car le plateau de correction contient des "-"
 	#
 	#génère la matrice à partir du fichier passé en parametre
 	#elle récupère le x et le y de la matrice dans le fichier
@@ -44,7 +45,6 @@ class PlateauCorrection < Plateau
 	#Permet de générer le plateau de correction (transformer les entiers en Ponts, en Elements et en Ile)
 	#
 	def generatePlateau()
-		#Ne plus toucher!
 		x=-1
 		y=-1
 		@matrice.map! {|item|

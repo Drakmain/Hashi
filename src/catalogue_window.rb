@@ -17,12 +17,12 @@ class CatalogueWindow < Window
     window = @builder.get_object('catalogue')
 
     comment_jouer_scrolled = @builder.get_object('comment_jouer_scrolled')
-    comment_jouer_scrolled.set_min_content_width(1280);
-    comment_jouer_scrolled.set_min_content_height(720);
+    comment_jouer_scrolled.set_min_content_width(1280)
+    comment_jouer_scrolled.set_min_content_height(720)
 
     techniques_scrolled = @builder.get_object('techniques_scrolled')
-    techniques_scrolled.set_min_content_width(1280);
-    techniques_scrolled.set_min_content_height(720);
+    techniques_scrolled.set_min_content_width(1280)
+    techniques_scrolled.set_min_content_height(720)
 
     comment_jouer_buffer = Gtk::TextBuffer.new
     comment_jouer_buffer.set_text(@catalogue.read)

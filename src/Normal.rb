@@ -1,4 +1,4 @@
-class Normal < contrelaMontre
+class Normal < ContrelaMontre
 
     private_class_method :new
 

@@ -46,9 +46,12 @@ class ContreLaMontre < Genie
     #
     #creer un objet ContreLaMontre
     #
-    #====== ATTRIBUTS
+    #==== ATTRIBUTS
     #
-    #   unFichier : un chemin vers le fichier à ouvrir pour vérifier la grille
+    #   unPlateau : une référence vers le plateau de jeu de la partie courante
+    #   unNiveau : le numéro du niveau choisis
+    #   unPseudo : le nom du joueur qui va jouer
+    #   uneDifficulte : la difficulté choisis
     #
     def ContreLaMontre.creer(unPlateau, unNiveau, unPseudo, uneDifficulte)
         new(unPlateau, unNiveau, unPseudo, uneDifficulte)
@@ -59,9 +62,12 @@ class ContreLaMontre < Genie
     #
     #initialise un objet
     #
-    #====== ATTRIBUTS
+    #==== ATTRIBUTS
     #
-    #   unFichier : un chemin vers le fichier à ouvrir pour vérifier la grille
+    #   unPlateau : une référence vers le plateau de jeu de la partie courante
+    #   unNiveau : le numéro du niveau choisis
+    #   unPseudo : le nom du joueur qui va jouer
+    #   uneDifficulte : la difficulté choisis
     #
     def initialize(unPlateau, unNiveau, unPseudo, uneDifficulte)
         super(unPlateau, unNiveau, unPseudo, uneDifficulte)
@@ -115,7 +121,12 @@ class ContreLaMontre < Genie
     end
 
 
-
+    #**********************************
+    #       corrigerErreur
+    #
+    #   Permet de corriger des erreurs
+    #  enlève des ponts en fonction d'un nombre donné
+    #
     def enleverErreur(uneCase, unNombre)
         case unNombre
         when 2
@@ -210,6 +221,10 @@ class ContreLaMontre < Genie
     end
 
 
+    #********************************************
+    #       afficherErreur()
+    #
+    #affiche le nombre d'erreurs, puis, demande au joueur si il veut afficher ses erreurs, ou les supprimer
     def afficherErreurs()
         puts "Tu as " + nombreErreurs().to_s + " erreurs"
         puts "Afficher toutes les erreurs(0) ou supprimer toutes les erreurs(1) ?"
@@ -299,8 +314,107 @@ class ContreLaMontre < Genie
     #et doit les corriger avant d'avoir un coup à jouer
     def suggestion()
         puts("Mode suggestion activé")
-        
-    end
 
+        #On parcours toutes les cases
+        x=-1
+		y=-1
+		@plateau.matrice.each {|item|
+			x+=1
+			y=-1
+			item.each{ |elem| 
+				y+=1
+                #Si la case est une ile
+				if(elem.element.estIle?)			
+					bitPonts = elem.pontAjoutables
+                    valeurActuelle = elem.element.valeur-elem.element.nbLiens
+                    #Cas ou valeur <= 2 et nbVoisines = 1
+                    if (valeurActuelle <= 2 && (bitPonts == 1 || bitPonts == 10 || bitPonts == 100 || bitPonts == 1000))
+                        puts ("L'ile a la position #{x}, #{y} a encore 2 ou 1 ponts a faire et n'as qu'une seule voisine, il faut donc la connecter a sa voisine")
+                        case bitPonts
+                        when 1
+                            return(coup.creer(false,voisineDroite.element))
+                        when 10
+                            return(coup.creer(false,voisineGauche.element))
+                        when 100
+                            return(coup.creer(false,voisineHaut.element))
+                        when 1000
+                            return(coup.creer(false,voisineBas.element))
+                        end
+                    end
+                    #Cas ou valeur = 3 et nbVoisines = 2
+                    if (valeurActuelle == 3 && (bitPonts == 11 || bitPonts == 110 || bitPonts == 101 || bitPonts == 1010 || bitPonts == 1001))
+                        puts ("L'ile a la position #{x}, #{y} a encore 3 ponts a faire et posséde 2 voisines, il faut donc la connecter a une de ses voisines")
+                        case bitPonts
+                        when 11
+                            return(coup.creer(false,voisineDroite.element))
+                        when 110
+                            return(coup.creer(false,voisineGauche.element))
+                        when 101
+                            return(coup.creer(false,voisineHaut.element))
+                        when 1010
+                            return(coup.creer(false,voisineBas.element))
+                        when 1001
+                            return(coup.creer(false,voisineBas.element))
+                        end
+                    end
+                    #Cas ou valeur = 4 et nbVoisines = 2
+                    if (valeurActuelle == 4 && (bitPonts == 11 || bitPonts == 110 || bitPonts == 101 || bitPonts == 1010 || bitPonts == 1001))
+                        puts ("L'ile a la position #{x}, #{y} a encore 4 ponts a faire et posséde 2 voisines, il faut donc la connecter toutes ses voisines")
+                        case bitPonts
+                        when 11
+                            return(coup.creer(false,voisineDroite.element))
+                        when 110
+                            return(coup.creer(false,voisineGauche.element))
+                        when 101
+                            return(coup.creer(false,voisineHaut.element))
+                        when 1010
+                            return(coup.creer(false,voisineBas.element))
+                        when 1001
+                            return(coup.creer(false,voisineBas.element))
+                        end
+                    end
+                    #Cas ou valeur = 5 et nbVoisines = 3
+                    if (valeurActuelle == 5 && (bitPonts == 111 || bitPonts == 1011 || bitPonts == 1110 || bitPonts == 1101))
+                        puts ("L'ile a la position #{x}, #{y} a encore 5 ponts a faire et posséde 3 voisines, il faut donc la connecter a une de ses voisines")
+                        case bitPonts
+                        when 111
+                            return(coup.creer(false,voisineDroite.element))
+                        when 1011
+                            return(coup.creer(false,voisineBas.element))
+                        when 1110
+                            return(coup.creer(false,voisineBas.element))
+                        when 1101
+                            return(coup.creer(false,voisineBas.element))
+                        end
+                    end
+                    #Cas ou valeur = 6 et nbVoisines = 3
+                    if (valeurActuelle == 6 && (bitPonts == 111 || bitPonts == 1011 || bitPonts == 1110 || bitPonts == 1101))
+                        puts ("L'ile a la position #{x}, #{y} a encore 6 ponts a faire et posséde 3 voisines, il faut donc la connecter a toutes ses voisines")
+                        case bitPonts
+                        when 111
+                            return(coup.creer(false,voisineDroite.element))
+                        when 1011
+                            return(coup.creer(false,voisineBas.element))
+                        when 1110
+                            return(coup.creer(false,voisineBas.element))
+                        when 1101
+                            return(coup.creer(false,voisineBas.element))
+                        end
+                    end
+                    #Cas ou valeur = 7 et nbVoisines = 4
+                    if (valeurActuelle == 7 && (bitPonts == 1111))
+                        puts ("L'ile a la position #{x}, #{y} a encore 7 ponts a faire et posséde 5 voisines, il faut donc la connecter a un de ses voisines")
+                        return(coup.creer(false,voisineDroite.element))
+                    end
+                    if (valeurActuelle == 8 && (bitPonts == 1111))
+                        puts ("L'ile a la position #{x}, #{y} a encore 8 ponts a faire et posséde 5 voisines, il faut donc la connecter a un de ses voisines")
+                        return(coup.creer(false,voisineDroite.element))
+                    end
+                end
+			}
+		}
+	end
 
+#l'ordre est le suivant du bit droit au gauche : Droite,Gauche,Haut,Bas
+	
 end#fin de classe ContreLaMontre

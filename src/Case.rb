@@ -42,6 +42,7 @@ class Case
 	# unX => coordonées x de la case
 	# unY => coordonées y de la case
 	# unPlateau => le plateau de jeux
+	# unElem => l'élément de la case'
 	#
 	def initialize(unX,unY,unPlateau,unElem)
 		@x = unX
@@ -50,8 +51,9 @@ class Case
 		@element = unElem
 	end
 
-	#Accès a l'élément de la case
+	#Accès en lecture aux coordonnées x, et y
 	attr_reader :x, :y
+	#Accès a l'élément de la case
 	attr_accessor :element
 
 	##################################################################################################
@@ -242,25 +244,17 @@ class Case
 			end
 			case(unSens)
 			when "haut"
-				#if(pontAjoutable("haut"))then
-					self.voisineHaut.creerPont(unSens, true)
-					self.element.estVertical
-				#end
+				self.voisineHaut.creerPont(unSens, true)
+				self.element.estVertical
 			when "bas"
-				#if(pontAjoutable("bas"))then
-					self.voisineBas.creerPont(unSens, true)
-					self.element.estVertical
-				#end
+				self.voisineBas.creerPont(unSens, true)
+				self.element.estVertical
 			when "gauche"
-				#if(pontAjoutable("gauche"))then
-					self.voisineGauche.creerPont(unSens, true)
-					self.element.estHorizontal
-				#end
+				self.voisineGauche.creerPont(unSens, true)
+				self.element.estHorizontal
 			when "droite"
-				#if(pontAjoutable("droite"))then
-					self.voisineDroite.creerPont(unSens, true)
-					self.element.estHorizontal
-				#end
+				self.voisineDroite.creerPont(unSens, true)
+				self.element.estHorizontal
 			else
 				puts "Pas compris le sens"
 			end
@@ -313,6 +307,46 @@ class Case
 		end
 	end
 
+	#*********************************************************************
+	#					pontAjoutables()
+	#
+	#Retourne un nombre binaire a 4 bits, si un bits vaut 1 la case posséde une ile voisine dans un sens. l'ordre est le suivant du bit droit au gauche : Droite,Gauche,Haut,Bas
+	#
+	#===== ATTRIBUT
+	#
+	def pontAjoutables()
+		
+		puts "x: #{@x} y: #{@y}"
+		n = 0
+		if self.element.estIle?
+			puts "Droite"
+			if (@y<@plateau.y)
+				if(voisineDroite.element.estPont? && voisineDroite.pontAjoutable("droite", false))then
+					n+=1
+				end
+			end
+			puts "Gauche"
+			if (@y>0)
+				if(voisineGauche.element.estPont? && voisineGauche.pontAjoutable("gauche", false))then
+					n+=10
+				end
+			end
+			puts "Haut"
+			if (@x>0)
+				if(voisineHaut.element.estPont? && voisineHaut.pontAjoutable("haut", false))then
+					n+=100
+				end
+			end
+			puts "Bas"
+			if (@x<@plateau.x)
+				if(voisineBas.element.estPont? && voisineBas.pontAjoutable("bas", false))then
+					n+=1000
+				end
+			end
+			puts n
+			return n
+		end
+	end
 
 	#***************************************************
 	#				ileFini?()
@@ -365,7 +399,16 @@ class Case
 		end
 	end
 
-
+	#****************************************************
+	#					enleverPontSens()
+	#
+	#permet d'enlever un pont voisin, dans un sens donné
+	#
+	#===== ATTRIBUTS
+	#
+	#*+unSens+ : String => la direction à vérifier
+	#*+unBool+ : Boolean => !!!Demander à Pierre!!!
+	#
 	def enleverPontSens(unSens, unBool)
 		if(@element.estPont?)then
 			if(unBool)then

@@ -244,25 +244,17 @@ class Case
 			end
 			case(unSens)
 			when "haut"
-				#if(pontAjoutable("haut"))then
-					self.voisineHaut.creerPont(unSens, true)
-					self.element.estVertical
-				#end
+				self.voisineHaut.creerPont(unSens, true)
+				self.element.estVertical
 			when "bas"
-				#if(pontAjoutable("bas"))then
-					self.voisineBas.creerPont(unSens, true)
-					self.element.estVertical
-				#end
+				self.voisineBas.creerPont(unSens, true)
+				self.element.estVertical
 			when "gauche"
-				#if(pontAjoutable("gauche"))then
-					self.voisineGauche.creerPont(unSens, true)
-					self.element.estHorizontal
-				#end
+				self.voisineGauche.creerPont(unSens, true)
+				self.element.estHorizontal
 			when "droite"
-				#if(pontAjoutable("droite"))then
-					self.voisineDroite.creerPont(unSens, true)
-					self.element.estHorizontal
-				#end
+				self.voisineDroite.creerPont(unSens, true)
+				self.element.estHorizontal
 			else
 				puts "Pas compris le sens"
 			end

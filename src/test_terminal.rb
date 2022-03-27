@@ -13,14 +13,17 @@ print "debut de la partie : \n\n"
 
 #Thread.start(){mode.lancerChrono}
 
+hyp = 0
+
 while(!fin)
     mode.afficherPlateau
- 
+
     puts "Voulez-vous vérifiez le plateau ? (1/0)"
     verif = gets
     verif = verif.to_i
     if(verif == 1)then
         mode.corrigerErreur
+	end
  
 =begin
     if(i==1)then
@@ -31,16 +34,17 @@ while(!fin)
             mode.desactiverHypothese
             i=0
         end
+
     end
 
-    if(i==0)then
-        puts "Voulez-vous activer le mode hypothèse (0/1)?"
-        verif = gets
-        verif = verif.to_i
-        if(verif == 0)then
+    if(hyp == 0)
+        puts "Voulez-vous mettre le mode hypothese ? (1/0)"
+        hyp = gets
+        hyp = hyp.to_i
+        if(hyp == 1)then
             mode.activerHypothese
-            i=1
         end
+
     end      
 =end    
 
@@ -52,6 +56,16 @@ while(!fin)
     if(verif == 0)then
         mode.afficherErreurs
  
+
+        hyp = 1
+    else
+        puts "Voulez-vous enlever le mode hypothese ? (1/0)"
+        desHyp = gets
+        desHyp = desHyp.to_i
+        if(desHyp == 1)
+            mode.desactiverHypothese
+        end
+
     end
 
     puts "Voulez-vous undo le coup ? (1/0)"
@@ -96,3 +110,5 @@ puts "Felicitation !!!!"
 mode.afficherPlateau
 
 puts "\n\n****************************************\nfin du jeu\n*******************************************\n\n"
+
+

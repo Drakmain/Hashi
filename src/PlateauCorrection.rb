@@ -44,6 +44,15 @@ class PlateauCorrection < Plateau
 	#
 	#Permet de générer le plateau de correction (transformer les entiers en Ponts, en Elements et en Ile)
 	#
+	# légende : 
+	#   -1 : correspond à un lien vertical (pont)          :  |
+	#	-2 : correspond à deux liens verticals  (pont)     :  ||
+	#	-3 : correspond à un lien horizontale   (pont)     :  -
+	#	-4 : correspond à deux liens horizontales  (pont)  :  =
+	#   1 à 8 : correspond à une Ile 
+	#   0 : correspond à un Element.
+	#
+	
 	def generatePlateau()
 		x=-1
 		y=-1

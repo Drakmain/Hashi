@@ -1,27 +1,21 @@
 load "Genie.rb"
 
 ##
-#@autor Pierre garçon
+# La classe contre la montre permet de lancer un niveau, en plus d'un chronomètre qui, une fois arrivé à 0, arrètera la partie
 #
+# Les aides disponibles sont : 
+# - Hypothèse
+# - assiste
+# - Correcteur d'erreur
+# - auto-correction
 #
-#@description : 
-#class contreLaMontre
+# La classe contrelaMontre est une spécialisation de la classe génie (elle ajoute des fontionnalités)
 #
-#La classe contre la montre permet de lancer un niveau, en plus d'un chronomètre qui, une fois arrivé à 0, arrètera la partie
-#
-#Les aides disponnibles sont : 
-#   - Hypothèse
-#   - assiste
-#   - Correcteur d'erreur
-#   - auto-correction
-#
-#La classe contrelaMontre est une spécialisation de la classe génie (elle ajoute des fontionnalités)
-#
-#elle peut : 
-#   - lancer un chrono
-#   - charger une partie
-#   - sauvegarder une partie
-#   - activer/désactiver des aides
+# elle peut : 
+# - lancer un chrono
+# - charger une partie
+# - sauvegarder une partie
+# - activer/désactiver des aides
 
 
 
@@ -37,37 +31,33 @@ class ContreLaMontre < Genie
 
     @fichier
 
-    #je met la methode new en privée 
+    # je met la methode new en privée 
     private_class_method :new
 
 
-    #**********************************************
-    #       ContreLaMontre.creer()
+
+    # creer un objet ContreLaMontre
     #
-    #creer un objet ContreLaMontre
+    # ==== ATTRIBUTS
     #
-    #==== ATTRIBUTS
-    #
-    #   unPlateau : une référence vers le plateau de jeu de la partie courante
-    #   unNiveau : le numéro du niveau choisis
-    #   unPseudo : le nom du joueur qui va jouer
-    #   uneDifficulte : la difficulté choisis
+    # * +unPlateau+ : une référence vers le plateau de jeu de la partie courante
+    # * +unNiveau+ : le numéro du niveau choisis
+    # * +unPseudo+ : le nom du joueur qui va jouer
+    # * +uneDifficulte+ : la difficulté choisis
     #
     def ContreLaMontre.creer(unPlateau, unNiveau, unPseudo, uneDifficulte)
         new(unPlateau, unNiveau, unPseudo, uneDifficulte)
     end
 
-    #************************************************
-    #       initialize()
+
+    # initialise un objet
     #
-    #initialise un objet
+    # ==== ATTRIBUTS
     #
-    #==== ATTRIBUTS
-    #
-    #   unPlateau : une référence vers le plateau de jeu de la partie courante
-    #   unNiveau : le numéro du niveau choisis
-    #   unPseudo : le nom du joueur qui va jouer
-    #   uneDifficulte : la difficulté choisis
+    # * +unPlateau+ : une référence vers le plateau de jeu de la partie courante
+    # * +unNiveau+ : le numéro du niveau choisis
+    # * +unPseudo+ : le nom du joueur qui va jouer
+    # * +uneDifficulte+ : la difficulté choisis
     #
     def initialize(unPlateau, unNiveau, unPseudo, uneDifficulte)
         super(unPlateau, unNiveau, unPseudo, uneDifficulte)
@@ -76,20 +66,16 @@ class ContreLaMontre < Genie
         @hypothese = false
     end
 
-    #************************************
-    #           lancerChrono()
-    #
-    #permet de lancer le chronometre dans le sens inverse (part de 300 et se décrémente jusqu'à ce que le temps soit à 0) (5min pour toutes les maps)
+
+    # permet de lancer le chronometre dans le sens inverse (part de 300 et se décrémente jusqu'à ce que le temps soit à 0) (5min pour toutes les maps)
     def lancerChrono()
         @chrono.lancerChronoInverse(300)
     end
 
 
-    #**********************************
-    #       corrigerErreur
-    #
-    #   Permet de corriger des erreurs
-    #  lit dans le fichier passé en parametre
+
+    # Permet de corriger des erreurs
+    # lit dans le fichier passé en parametre.
     #
     def corrigerErreur()
         for i in 0..@plateau.x-1 
@@ -121,12 +107,20 @@ class ContreLaMontre < Genie
     end
 
 
-    #**********************************
-    #       corrigerErreur
+
+    # Permet de corriger des erreurs
+    # enlève des ponts en fonction d'un nombre donné sur une case choisis.
     #
-    #   Permet de corriger des erreurs
-    #  enlève des ponts en fonction d'un nombre donné
+    # ==== Attributs
     #
+    # * +uneCase+ : la case choisis
+    # * +unNombre+ : le nombre depont à enlever
+    #
+    # ==== Exemples
+    #
+    # En prenant la case en coordonnée (2,2),
+    # et le nombre 1, la méthode va supprimer un pont 
+    # à la case (2,2)
     def enleverErreur(uneCase, unNombre)
         case unNombre
         when 2
@@ -146,10 +140,7 @@ class ContreLaMontre < Genie
     #                   Mode détection erreur
     #################################################################################################
 
-    #********************************************
-    #       nombreErreurs()
-    #
-    #Renvoie le nombre d'erreur du joueur
+    # Renvoie le nombre d'erreur du joueur
     def nombreErreurs()
         nbErreurs = 0
 
@@ -190,10 +181,8 @@ class ContreLaMontre < Genie
     end
 
 
-    #********************************************
-    #       afficherPontErreur()
-    #
-    #permet de mettre en surbrillance les erreurs sur les ponts mal placés
+
+    # permet de mettre en surbrillance les erreurs sur les ponts mal placés
     def afficherPontErreur()
         for i in 0..@plateau.x-1 
 			for j in 0..@plateau.y-1 
@@ -221,10 +210,7 @@ class ContreLaMontre < Genie
     end
 
 
-    #********************************************
-    #       afficherErreur()
-    #
-    #affiche le nombre d'erreurs, puis, demande au joueur si il veut afficher ses erreurs, ou les supprimer
+    # affiche le nombre d'erreurs, puis, demande au joueur si il veut afficher ses erreurs, ou les supprimer
     def afficherErreurs()
         puts "Tu as " + nombreErreurs().to_s + " erreurs"
         puts "Afficher toutes les erreurs(0) ou supprimer toutes les erreurs(1) ?"
@@ -242,18 +228,14 @@ class ContreLaMontre < Genie
     #                   Mode AutoCorrecteur
     #################################################################################################
 
-    #*******************************************
-    #           activerAutoCorrecteur()
-    #
-    #permet d'activer le mode AutoCorrecteur
+
+    # permet d'activer le mode AutoCorrecteur
     def activerAutoCorrecteur()
         @autoCorrecteur = true
     end
 
-    #*******************************************
-    #           desactiverAutoCorrecteur()
-    #
-    #permet de desactiver le mode AutoCorrecteur et de supprimer tous les mauvais liens que l'utilisateur à créé
+
+    # permet de desactiver le mode AutoCorrecteur et de supprimer tous les mauvais liens que l'utilisateur à créé
     def desactiverAutoCorrecteur()
         @autoCorrecteur = false
     end
@@ -264,18 +246,13 @@ class ContreLaMontre < Genie
     #                   Mode Hypothèse
     #################################################################################################
 
-    #*******************************************
-    #           activerHypothese()
-    #
-    #permet d'activer le mode hypothèse
+
+    # permet d'activer le mode hypothèse
     def activerHypothese()
         @hypothese = true
     end
 
-    #*******************************************
-    #           desactiverHypothese()
-    #
-    #permet de desactiver le mode hypothèse et de supprimer tous les mauvais liens que l'utilisateur à créé
+    # permet de desactiver le mode hypothèse et de supprimer tous les mauvais liens que l'utilisateur à créé
     def desactiverHypothese()
         @hypothese = false
         while(!@pileHypothese.empty?)
@@ -306,11 +283,8 @@ class ContreLaMontre < Genie
     #                   Suggestion de coup
     #################################################################################################
 
-    #********************************************
-    #               suggestion()
-    #
-    #Permet de suggérer un coup à l'utilisateur, si le joueur a des erreurs, alors elles lui sont indiqué
-    #et doit les corriger avant d'avoir un coup à jouer
+    # Permet de suggérer un coup à l'utilisateur, si le joueur a des erreurs, alors elles lui sont indiqué
+    # et doit les corriger avant d'avoir un coup à jouer
     def suggestion()
         puts("Mode suggestion activé")
         #On parcours toutes les cases

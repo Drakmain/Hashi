@@ -113,7 +113,7 @@ class Chrono
     #remise à zero est privée car appelé que en interne
     private :remiseAZero
 
-    #accesseur en lecture du chrono
+    #permet de lire le chrono
     attr_reader :chrono
 
 end

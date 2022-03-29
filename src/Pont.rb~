@@ -25,7 +25,7 @@ class Pont < Element
     #                                           Methodes de classe
     ##############################################################################################################
 
-	#la method new est en privé
+	 #la method new est en privé
     private_class_method :new
     
     #******************************************************

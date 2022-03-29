@@ -69,7 +69,7 @@ class Coup < Element
 		"sens du coup : " + @sens
 	end
 
-	#accesseurs readers
+	#les readers
 	attr_reader :coupAjouter, :pont, :sens
 
 

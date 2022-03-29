@@ -52,7 +52,7 @@ class Ile < Element
 	#									Methodes
 	########################################################################################################
 
-	#accessors
+	#accessor
 	attr_reader :valeur 
 	attr_accessor :nbLiens, :estFini
 

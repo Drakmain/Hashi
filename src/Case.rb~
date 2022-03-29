@@ -17,7 +17,6 @@
 #
 class Case
 
-
 	# new est en privée car il y a un parametre à passer dans la création
 	private_class_method :new
 	

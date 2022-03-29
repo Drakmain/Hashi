@@ -1,49 +1,41 @@
 ##
 #
-#classe Case
 #
-#La classe case représente un élément du plateau, elle peut être soit une île, soit un pont, soit un élément
-#elle connait le plateau
+# La classe case représente un élément du plateau, elle peut être soit une île, soit un pont, soit un élément
+# elle connait le plateau
 #
-#elle peut : 
+# Elle peut : 
 #
-#	- Donner ses voisines (droite, gauche, haut, bas)
-#	- donner son élément
+# - Donner ses voisines (droite, gauche, haut, bas)
+# - Donner son élément
 #
-#elle connait : 
+# Elle connaît : 
 #
-#	- Ses coordonnnées sur le plateau
-#	- Le plateau
-#	- son élément
+# - Ses coordonnnées sur le plateau
+# - Le plateau
+# - Son élément
 #
 class Case
-	#@x => coordonées x de la case
-	#@y => coordonées y de la case
-	#@plateau => le plateau de jeux
-	#@element => element que l'ile posséde ou non
 
-	###############################################################################################
-	#							Methode de classe
-	###############################################################################################
-
+	##
+	# Methode d'initialisation de la classe
+	#
+	# ==== Attributs
+	#
+	# * +unX+ - coordonées x de la case
+	# * +unY+ - coordonées y de la case
+	# * +unPlateau+ - le plateau de jeux
+	# * +unElem+ - l'élément de la case'
+	#
 	def Case.creer(unX,unY,unPlateau,unElem)
 		new(unX,unY,unPlateau,unElem)
 	end
 
 
-	#new est en privée car il y a un parametre à passer dans la création
+	# new est en privée car il y a un parametre à passer dans la création
 	private_class_method :new
 
-	##
-	# Methode d'initialisation de la classe
-	#
-	#===== ATTRIBUT
-	#
-	# unX => coordonées x de la case
-	# unY => coordonées y de la case
-	# unPlateau => le plateau de jeux
-	# unElem => l'élément de la case'
-	#
+
 	def initialize(unX,unY,unPlateau,unElem)
 		@x = unX
 		@y = unY
@@ -51,20 +43,24 @@ class Case
 		@element = unElem
 	end
 
-	#Accès en lecture aux coordonnées x, et y
+	# Accès en lecture aux coordonnées x, et y
 	attr_reader :x, :y
-	#Accès a l'élément de la case
+
+	# Accès a l'élément de la case
 	attr_accessor :element
 
 	##################################################################################################
 	#						Methode d'accès aux voisines
 	##################################################################################################
 	
-	#*****************************************************************************
-	#			voisineDroite()
-	#
-	#
+
 	# Methode qui retourne la case de droite
+	#
+	# ==== Exemples
+	#
+	# Pour une case se trouvant à la ligne 2 et à la colonne 3 de la matrice
+	# du plateau, cette méthode retournera la case se trouvant à la ligne 2 et
+	# à la colonne 4.
 	def voisineDroite()
 		if(@y+1 == @plateau.y)
 			return nil
@@ -73,10 +69,13 @@ class Case
 		end
 	end
 	
-	#*****************************************************************************
-	#			voisineGauche()
-	#
 	# Methode qui retourne la case de gauche
+	#
+	# ==== Exemples
+	#
+	# Pour une case se trouvant à la ligne 2 et à la colonne 3 de la matrice
+	# du plateau, cette méthode retournera la case se trouvant à la ligne 2 et
+	# à la colonne 2.
 	def voisineGauche()
 		if(@y == 0)
 			return nil
@@ -85,10 +84,13 @@ class Case
 		end
 	end
 	
-	#*****************************************************************************
-	#			voisineBas()
+	# Methode qui retourne la case du bas
 	#
-	# Methode qui retourne la case d'en bas
+	# ==== Exemples
+	#
+	# Pour une case se trouvant à la ligne 2 et à la colonne 3 de la matrice
+	# du plateau, cette méthode retournera la case se trouvant à la ligne 3 et
+	# à la colonne 3.
 	def voisineBas()
 		if(@x+1 == @plateau.x)
 			return nil
@@ -97,10 +99,14 @@ class Case
 		end
 	end
 	
-	#*****************************************************************************
-	#			voisineHaut()
+
+	# Methode qui retourne la case du haut
 	#
-	# Methode qui retourne la case d'en haut
+	# ==== Exemples
+	#
+	# Pour une case se trouvant à la ligne 2 et à la colonne 3 de la matrice
+	# du plateau, cette méthode retournera la case se trouvant à la ligne 1 et
+	# à la colonne 3.
 	def voisineHaut()
 		if(@x == 0)
 			return nil
@@ -109,16 +115,16 @@ class Case
 		end
 	end
 
-	#****************************************************************************
-	#					ajouterPontDroite()
+
+
+	# Methode qui permet d'ajouter des ponts à droite de la case appelante
 	#
-	#Methode qui permet d'ajouter des pont à droite de la case appelante
-	#La case vérifie :
+	# La case vérifie :
+	# - Si elle a une île à sa droite
+	# - Si elle a du vide
 	#
-	#	- Si elle a un île a sa droite
-	#	- Si elle a du vide
-	#
-	#@return true si le pont peut être créé, false sinon
+	# ==== Retourne
+	# True si le pont peut être créé, false sinon	
 	def ajouterPontDroite()
 		droite = voisineDroite()
 		if(droite == nil)then
@@ -148,16 +154,14 @@ class Case
 	end
 
 
-	#****************************************************************************
-	#					ajouterPontBas()
+	# Methode qui permet d'ajouter des pont en bas de la case appelante
 	#
-	#Methode qui permet d'ajouter des pont en bas de la case appelante
-	#La case vérifie :
+	# La case vérifie :
+	# - Si elle a un île en dessous
+	# - Si elle a du vide
 	#
-	#	- Si elle a un île en dessous
-	#	- Si elle a du vide
-	#
-	#@return true si le pont peut être créé, false sinon
+	# ==== Retourne
+	# True si le pont peut être créé, false sinon	
 	def ajouterPontBas()
 		bas = voisineBas()
 		if(bas == nil)then
@@ -186,10 +190,11 @@ class Case
 		end
 	end
 
-	#***************************************************
-    #                   estEntouré?()
-    #
-    #retourne vrai si le pont sélectionner peut être soit horizontale, soit vertical
+
+	# Methode qui permet de vérifier si la case peut être un pont horizontal et/ou vertical
+	#
+	# ==== Retourne
+	# true si le pont sélectionner peut être soit horizontale, soit vertical, false sinon
     def estEntoure()
 		print "courante : " + self.to_s() + "\n"
 		print "haut : " + self.voisineHaut.to_s() +"\n" +  "bas : " + self.voisineBas().to_s() + "\n" + "droite : " + self.voisineDroite().to_s() + "\n" + "Gauche : "+ self.voisineGauche().to_s() + "\n"
@@ -201,10 +206,11 @@ class Case
     end
 
 
-	#***************************************************
-    #                   creerPontDefaut()
-    #
-    # Créé les tous les ponts entre 2 îles, ces ponts ne peuvent que être vertical ou horizontal
+
+	# Methode qui permet de créer tous les ponts entre 2 îles, ces ponts ne peuvent que être vertical ou horizontal.
+	#
+	# ==== Retourne
+	# Le sens du pont créé (Horizontal ou vertical)
 	def creerPontDefaut()
 		sens = ""	
 		if(@element.estPont?)then
@@ -227,16 +233,15 @@ class Case
 	end
 
 
-	#***************************************************
-    #                   creerPont()
-    # 
-    # Créé les tous les ponts entre 2 îles
+	# Methode qui permet de créer tous les ponts entre 2 îles.
 	#
+	# ==== Attributs
 	#
-	#===== ATTRIBUT
+	# * +unSens+ - le sens dans lequel on veut vérifier si on peut placer le pont
+	# * +unBool+ - vrai si c'est la case courante qui appelle la fonction, faux sinon
 	#
-	#unSens : String => le sens dans lequel on veut vérifier si on peut placer le pont
-	#unBool : boolean => vrai si c'est la case courante qui appelle la fonction, faux sinon
+	# ==== Retourne
+	# Le sens du pont créé (Horizontal ou vertical)
 	def creerPont(unSens, unBool)
 		if(@element.estPont?)then
 			if(unBool)then
@@ -264,15 +269,16 @@ class Case
 	end
 
 
-	#*********************************************************************
-	#					pontAjoutable()
+
+	# Methode qui permet de dire si oui ou non le pont peut être ajouté.
 	#
-	#permet de dire si oui ou non le pont peut être ajouté
+	# ==== Attributs
 	#
-	#===== ATTRIBUT
+	# * +unSens+ - le sens dans lequel on veut vérifier si on peut placer le pont
+	# * +unBool+ - vrai si c'est la case courante qui appelle la fonction, faux sinon
 	#
-	#unSens : String => le sens dans lequel on veut vérifier si on peut placer le pont
-	#unBool : boolean => vrai si c'est la case courante qui appelle la fonction, faux sinon
+	# ==== Retourne
+	# true si on peut l'ajouter, false sinon
 	def pontAjoutable(unSens, unBool)
 		if(@element.estPont?())then
 			#si le nombre de ponts est supèrieur à 0, soit c'est le pont cliquer, donc on augmente de 1, soit c'est un pont sur la trajectoire et on ne peut donc pas placer le pont
@@ -307,13 +313,13 @@ class Case
 		end
 	end
 
-	#*********************************************************************
-	#					pontAjoutables()
+
+	# Methode qui permet de connaître quels ponts sont ajoutables.
 	#
-	#Retourne un nombre binaire a 4 bits, si un bits vaut 1 la case posséde une ile voisine dans un sens. l'ordre est le suivant du bit droit au gauche : Droite,Gauche,Haut,Bas
+	# ==== Retourne
 	#
-	#===== ATTRIBUT
-	#
+	# Un nombre binaire a 4 bits, si un bits vaut 1 la case posséde une île voisine dans un sens. 
+	# L'ordre est le suivant du bit droit au gauche : Droite, Gauche, Haut, Bas.
 	def pontAjoutables()
 		n = 0
 		if self.element.estIle?
@@ -352,14 +358,14 @@ class Case
 		end
 	end
 
-	#***************************************************
-	#				ileFini?()
+
+
+	# Methode qui permet de savoir si une ile est terminé, c'est-à-dire si
+	# l'île a atteint toutes ses liaisons possibles.
 	#
-	#Permet de savoir si une ile est terminé
+	# ==== Attributs
 	#
-	#===== ATTRIBUTS
-	#
-	#*+unSens+ : String => la direction à vérifier
+	# * +unSens+ - la direction à vérifier
 	#
 	def ileFini?(unSens)
 		if(@element.estIle?)then
@@ -385,10 +391,8 @@ class Case
 	end
 
 
-	#****************************************************
-	#					enleverPont()
-	#
-	#permet d'enlever un pont
+
+	# Methode qui permet d'enlever un pont
 	def enleverPont()
 		if(@element.estPont?)then
 			if(@element.estVertical?)
@@ -436,13 +440,13 @@ class Case
 		end
 	end
 
-	#*********************************************************************
-	#						to_s
+
+	# Methode qui d'afficher une case (ses coordonnées) en retournant un string.
 	#
-	#permet d'afficher une case (ses coordonnées) en retournant un string
+	# ==== Retourne
 	#
-	#@return String
-	def to_s()
+	# Les coordonnées de la case.
+ 	def to_s()
 		return "x:#{@x}, y:#{@y}"
 	end
 

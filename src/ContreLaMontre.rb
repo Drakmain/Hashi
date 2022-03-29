@@ -37,37 +37,33 @@ class ContreLaMontre < Genie
     @autoCorrecteur
     @fichier
 
-    #je met la methode new en privée 
+    # je met la methode new en privée 
     private_class_method :new
 
 
-    #**********************************************
-    #       ContreLaMontre.creer()
+
+    # creer un objet ContreLaMontre
     #
-    #creer un objet ContreLaMontre
+    # ==== ATTRIBUTS
     #
-    #==== ATTRIBUTS
-    #
-    #   unPlateau : une référence vers le plateau de jeu de la partie courante
-    #   unNiveau : le numéro du niveau choisis
-    #   unPseudo : le nom du joueur qui va jouer
-    #   uneDifficulte : la difficulté choisis
+    # * +unPlateau+ : une référence vers le plateau de jeu de la partie courante
+    # * +unNiveau+ : le numéro du niveau choisis
+    # * +unPseudo+ : le nom du joueur qui va jouer
+    # * +uneDifficulte+ : la difficulté choisis
     #
     def ContreLaMontre.creer(unPlateau, unNiveau, unPseudo, uneDifficulte)
         new(unPlateau, unNiveau, unPseudo, uneDifficulte)
     end
 
-    #************************************************
-    #       initialize()
+
+    # initialise un objet
     #
-    #initialise un objet
+    # ==== ATTRIBUTS
     #
-    #==== ATTRIBUTS
-    #
-    #   unPlateau : une référence vers le plateau de jeu de la partie courante
-    #   unNiveau : le numéro du niveau choisis
-    #   unPseudo : le nom du joueur qui va jouer
-    #   uneDifficulte : la difficulté choisis
+    # * +unPlateau+ : une référence vers le plateau de jeu de la partie courante
+    # * +unNiveau+ : le numéro du niveau choisis
+    # * +unPseudo+ : le nom du joueur qui va jouer
+    # * +uneDifficulte+ : la difficulté choisis
     #
     def initialize(unPlateau, unNiveau, unPseudo, uneDifficulte)
         super(unPlateau, unNiveau, unPseudo, uneDifficulte)
@@ -76,20 +72,16 @@ class ContreLaMontre < Genie
         @hypothese = false
     end
 
-    #************************************
-    #           lancerChrono()
-    #
-    #permet de lancer le chronometre dans le sens inverse (part de 300 et se décrémente jusqu'à ce que le temps soit à 0) (5min pour toutes les maps)
+
+    # permet de lancer le chronometre dans le sens inverse (part de 300 et se décrémente jusqu'à ce que le temps soit à 0) (5min pour toutes les maps)
     def lancerChrono()
         @chrono.lancerChronoInverse(300)
     end
 
 
-    #**********************************
-    #       corrigerErreur
-    #
-    #   Permet de corriger des erreurs
-    #  lit dans le fichier passé en parametre
+
+    # Permet de corriger des erreurs
+    # lit dans le fichier passé en parametre.
     #
     def corrigerErreur()
         for i in 0..@plateau.x-1 
@@ -121,11 +113,14 @@ class ContreLaMontre < Genie
     end
 
 
-    #**********************************
-    #       corrigerErreur
+
+    # Permet de corriger des erreurs
+    # enlève des ponts en fonction d'un nombre donné.
     #
-    #   Permet de corriger des erreurs
-    #  enlève des ponts en fonction d'un nombre donné
+    # ==== Attributs
+    #
+    # * +uneCase+
+    # * +unNombre+
     #
     def enleverErreur(uneCase, unNombre)
         case unNombre

@@ -404,15 +404,15 @@ class Case
 		end
 	end
 
-	#****************************************************
-	#					enleverPontSens()
+
+	# enleverPontSens()
 	#
-	#permet d'enlever un pont voisin, dans un sens donné
+	# permet d'enlever un pont voisin, dans un sens donné
 	#
-	#===== ATTRIBUTS
+	# ===== ATTRIBUTS
 	#
-	#*+unSens+ : String => la direction à vérifier
-	#*+unBool+ : Boolean => !!!Demander à Pierre!!!
+	# *+unSens+ : String => la direction à vérifier
+	# *+unBool+ : Boolean => Indique si le pont préssent sur la case doit être retiré ou pas
 	#
 	def enleverPontSens(unSens, unBool)
 		if(@element.estPont?)then

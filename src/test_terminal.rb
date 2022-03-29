@@ -1,6 +1,8 @@
 load "ContreLaMontre.rb"
+load "Normal.rb"
+load "Genie.rb"
 
-mode = ContreLaMontre.creer(Plateau.creer(), "theo", "tuto", "4")
+mode = Normal.creer(Plateau.creer(), "4", "theo", "tuto")
 mode.initialiserJeu()
 
 fin = false

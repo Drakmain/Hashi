@@ -49,9 +49,6 @@ class Case
 	# Accès a l'élément de la case
 	attr_accessor :element
 
-	##################################################################################################
-	#						Methode d'accès aux voisines
-	##################################################################################################
 	
 
 	# Methode qui retourne la case de droite

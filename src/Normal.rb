@@ -8,7 +8,7 @@ load "Chrono.rb"
 #
 #  Elle peut donc faire tous ce que peut faire la classe ContreLaMontre
 #
-class Normal < ContrelaMontre
+class Normal < ContreLaMontre
 
     # New est privée
     private_class_method :new

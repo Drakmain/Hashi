@@ -9,8 +9,11 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
+
+# User settings
 /data/settings/settings.json
 
+# RubyMine
 /.idea
 
 # Used by dotenv library to load environment variables.

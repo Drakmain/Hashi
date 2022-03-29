@@ -1,6 +1,6 @@
 load "ContreLaMontre.rb"
 
-mode = ContreLaMontre.creer(Plateau.creer(1), "theo", "difficile", "6")
+mode = ContreLaMontre.creer(Plateau.creer(), "theo", "tuto", "4")
 mode.initialiserJeu()
 
 fin = false
@@ -17,11 +17,24 @@ hyp = 0
 
 while(!fin)
     mode.afficherPlateau
+
     puts "Voulez-vous vérifiez le plateau ? (1/0)"
     verif = gets
     verif = verif.to_i
     if(verif == 1)then
         mode.corrigerErreur
+	end
+ 
+=begin
+    if(i==1)then
+        puts "Voulez-vous désactiver le mode hypothèse (0/1)?"
+        verif = gets
+        verif = verif.to_i
+        if(verif == 0)then
+            mode.desactiverHypothese
+            i=0
+        end
+
     end
 
     if(hyp == 0)
@@ -31,6 +44,19 @@ while(!fin)
         if(hyp == 1)then
             mode.activerHypothese
         end
+
+    end      
+=end    
+
+
+    puts "Voulez-vous vérifiez(0) le plateau(1) ?"
+    verif = gets
+    verif = verif.to_i
+    puts verif.class
+    if(verif == 0)then
+        mode.afficherErreurs
+ 
+
         hyp = 1
     else
         puts "Voulez-vous enlever le mode hypothese ? (1/0)"
@@ -39,6 +65,7 @@ while(!fin)
         if(desHyp == 1)
             mode.desactiverHypothese
         end
+
     end
 
     puts "Voulez-vous undo le coup ? (1/0)"
@@ -83,3 +110,5 @@ puts "Felicitation !!!!"
 mode.afficherPlateau
 
 puts "\n\n****************************************\nfin du jeu\n*******************************************\n\n"
+
+

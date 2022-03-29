@@ -76,7 +76,7 @@ class Genie
     #   uneDifficulte : la difficulté choisis
     #   unNiveau : le numéro du niveau choisis
     #
-    def initialize(unPlateau, unPseudo,  uneDifficulte, unNiveau)
+    def initialize(unPlateau, unNiveau, unPseudo, uneDifficulte)
 		@score = 0
         @chrono = Chrono.new
         @anciensCoups = []

@@ -1,5 +1,3 @@
-require 'json'
-
 ##
 # @userName = Nom de l'utilisateur courant
 # @theme = reference du pont sur la quelle le click est fait
@@ -11,14 +9,8 @@ class Options < Gtk::Builder
   # Methode qui charge les donnees de
   def initialize(fenetre)
     super()
-    begin
-      @fichierOptions = File.read('../data/settings/settings.json')
-    rescue
-      @fichierOptions = File.open('../data/settings/settings.json', 'w')
-      @fichierOptions.write('{"username": "Oue","resolutionratio": 1,"theme": "clair","langue": "Francais"}')
-      @fichierOptions.close
-      @fichierOptions = File.read('../data/settings/settings.json')
-    end
+
+    @fichierOptions = File.read('../data/settings/settings.json')
 
     @hashOptions = JSON.parse(@fichierOptions)
     @user = @hashOptions['username']
@@ -114,23 +106,25 @@ class Options < Gtk::Builder
     if state == true
       switch.set_state(true)
       puts 'Theme mis a jour en sombre'
-      @hashOptions["theme"] = 'sombre'
+      @hashOptions['theme'] = 'sombre'
       @theme = 'sombre'
     else
       switch.set_state(false)
       puts 'Theme mis a jour en clair'
-      @hashOptions["theme"] = 'clair'
+      @hashOptions['theme'] = 'clair'
       @theme = 'clair'
     end
   end
 
   def on_enregistre_button_clicked
     puts 'Settings saved'
+    @fenetre.resize(1280 * @ratio, 720 * @ratio)
     fichier = File.open('../data/settings/settings.json', 'w')
     fichier.write(JSON.dump(@hashOptions))
+    fichier.close
   end
 
   def to_s
-    puts("Username : #{@user} \nResolution : #{(9 * @ratio.to_i())}p \nLangue : #{@langue} \nTheme : #{@theme}\n")
+    "Username : #{@user} \nResolution : #{(9 * @ratio.to_i())}p \nLangue : #{@langue} \nTheme : #{@theme}\n"
   end
 end

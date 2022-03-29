@@ -38,7 +38,7 @@ class Genie
     #@correction    => le plateau de jeu avec la correction
     #@chronoFirst   => temps au début du tour de jeu
     #@hypothese     => état du mode hypothèse
-
+    #@autoCorrecteur : boolean qui indique si le mode auto-correcteur est activé
 
     ##############################################################################################
     #                               Methode de classe

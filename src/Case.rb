@@ -1,8 +1,6 @@
 ##
 #
-#
-# La classe case représente un élément du plateau, elle peut être soit une île, soit un pont, soit un élément
-# elle connait le plateau
+# La classe case représente un élément du plateau, elle peut être soit une île, soit un pont, soit un élément.
 #
 # Elle peut : 
 #
@@ -15,9 +13,33 @@
 # - Le plateau
 # - Son élément
 #
+# ==== Variables d'instance
+# * @x => coordonées x de la case
+# * @y => coordonées y de la case
+# * @plateau => le plateau de jeux
+# * @element => l'élément de la case
+#
 class Case
 
-	##
+	
+	# Methode qui permet de créer une case
+	#
+	# ==== Attributs
+	#
+	# * +unX+ - coordonées x de la case
+	# * +unY+ - coordonées y de la case
+	# * +unPlateau+ - le plateau de jeux
+	# * +unElem+ - l'élément de la case
+	#
+	def Case.creer(unX,unY,unPlateau,unElem)
+		new(unX,unY,unPlateau,unElem)
+	end
+
+
+	# new est en privée 
+	private_class_method :new
+
+	
 	# Methode d'initialisation de la classe
 	#
 	# ==== Attributs
@@ -25,17 +47,8 @@ class Case
 	# * +unX+ - coordonées x de la case
 	# * +unY+ - coordonées y de la case
 	# * +unPlateau+ - le plateau de jeux
-	# * +unElem+ - l'élément de la case'
+	# * +unElem+ - l'élément de la case
 	#
-	def Case.creer(unX,unY,unPlateau,unElem)
-		new(unX,unY,unPlateau,unElem)
-	end
-
-
-	# new est en privée car il y a un parametre à passer dans la création
-	private_class_method :new
-
-
 	def initialize(unX,unY,unPlateau,unElem)
 		@x = unX
 		@y = unY
@@ -405,14 +418,13 @@ class Case
 	end
 
 
-	# enleverPontSens()
 	#
-	# permet d'enlever un pont voisin, dans un sens donné
+	# Méthode qui permet d'enlever un pont voisin, dans un sens donné
 	#
 	# ===== ATTRIBUTS
 	#
-	# *+unSens+ : String => la direction à vérifier
-	# *+unBool+ : Boolean => Indique si le pont préssent sur la case doit être retiré ou pas
+	# * +unSens+ - La direction à vérifier
+	# * +unBool+ - Indique si le pont préssent sur la case doit être retiré ou pas
 	#
 	def enleverPontSens(unSens, unBool)
 		if(@element.estPont?)then
@@ -447,4 +459,4 @@ class Case
 		return "x:#{@x}, y:#{@y}"
 	end
 
-end #fin de la classe Case
+end 

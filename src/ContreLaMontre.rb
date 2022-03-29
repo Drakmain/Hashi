@@ -16,29 +16,26 @@ load "Genie.rb"
 # - charger une partie
 # - sauvegarder une partie
 # - activer/désactiver des aides
-
-
-
+#
+# ==== Variables d'instance
+# * @hypothese => boolean qui est a vrai si le mode hypothèse est activé
+# * @assiste => boolean qui indique si le mode assiste est active ou pas
+# * @fichier => le fichier qui contient les réponses au niveau que le joueur éxécute
+#
 class ContreLaMontre < Genie
-    #
-    #@hypothese : boolean qui est a vrai si le mode hypothèse est activé
-    #@assite : boolean qui indique si le mode assiste est active ou pas
-    #@fichier : le fichier qui contient les réponses au niveau que le joueur éxécute
-    #@autoCorrecteur : boolean qui indique si le mode auto-correcteur est activé
-    #
+
     @hypothese
     @assiste
-
     @fichier
 
-    # je met la methode new en privée 
+    # new en privée 
     private_class_method :new
 
 
 
     # creer un objet ContreLaMontre
     #
-    # ==== ATTRIBUTS
+    # ==== Attributs
     #
     # * +unPlateau+ : une référence vers le plateau de jeu de la partie courante
     # * +unNiveau+ : le numéro du niveau choisis
@@ -52,7 +49,7 @@ class ContreLaMontre < Genie
 
     # initialise un objet
     #
-    # ==== ATTRIBUTS
+    # ==== Attributs
     #
     # * +unPlateau+ : une référence vers le plateau de jeu de la partie courante
     # * +unNiveau+ : le numéro du niveau choisis

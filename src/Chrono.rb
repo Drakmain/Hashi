@@ -9,11 +9,13 @@
 # - lancerChronoInverse(unTemps) : qui lance le chronomètre décompteur pour unTemps donné en paramètre.
 # - stopperChrono : qui permet de stopper n'importe quel des deux chronomètre.
 # - remiseAZero : qui réinitialise le chronomètre.
+#
+# ==== Variables d'instance
+# * @thr => le thread qui contient le chrono
+# * @tempsDebut => le temps de début du chrono
+# * @chrono => le chrono
+#
 class Chrono
-    #
-    #@thr => le thread qui contient le chrono
-    #@tempsDebut => le temps de début du chrono
-    #@chrono => le chrono
 
     @thr
     @tempsDebut

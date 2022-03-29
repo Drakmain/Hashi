@@ -287,6 +287,59 @@ class Genie
         
     end
 
+    # jouerCoupInterface
+    #
+    # Permet de jouer un coup sur une interface
+    #
+    # ==== ATTRIBUTS
+    #
+    # *+unX+ : entier : la coordonnée x de la case
+    # *+unY+ : entier : La coordonnée y de la case
+    # *+unClic+ : click : l'action effectué par l'utilisateur
+    def jouerCoupInterface(unX, unY, unClic)
+        caseCourante = @plateau.getCase(unX, unY)
+
+        if(caseCourante.element.estPont?)then
+            if(unClic)then
+                if(caseCourante.element.nb_ponts > 0)then
+                    sens = caseCourante.creerPontDefaut
+                elsif (caseCourante.element.aDeuxSens) then
+                    return false
+                else
+                    sens = caseCourante.creerPontDefaut
+                end
+                unClic = "ajouter"
+            else
+                sens = caseCourante.enleverPont
+                unClic = "enlever"
+            end
+
+            if(@hypothese)then
+                @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
+            else
+                @coups.push(Coup.creer(unClic, caseCourante, sens))
+            end
+
+        else
+            puts "case pas un pont"
+        end
+
+        if(@autoCorrecteur)then
+            corrigerErreur
+        end
+
+        return true
+    end
+
+
+    def jouerCoupHorizontaleInterface(unX, unY, unClic)
+
+    end
+
+    def jouerCoupVerticaleInterface(unX, unY, unClic)
+
+    end
+
 
     # Méthode qui permet d'afficher le mode génie
     #

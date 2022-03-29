@@ -99,14 +99,14 @@ class Chrono
         remiseAZero
     end
 
-<<<<<<< HEAD
+ 
     #*******************************************************
     #                   remiseAZero()
     #
     #Remet les attributs à 0
-=======
+ 
     # Remet les variables tempsDebut et chrono à 0.
->>>>>>> fe6266b20a59b6cbbb6eddd0cf9f165e8dad5599
+ 
     def remiseAZero()
         @tempsDebut = 0
         @chrono = 0
@@ -115,11 +115,11 @@ class Chrono
     # remise à zero est privée car appelé que en interne
     private :remiseAZero
 
-<<<<<<< HEAD
+ 
     #accesseur en lecture du chrono
-=======
+ 
     # permet de lire le chrono
->>>>>>> fe6266b20a59b6cbbb6eddd0cf9f165e8dad5599
+ 
     attr_reader :chrono
 
 end

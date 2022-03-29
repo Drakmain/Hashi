@@ -10,11 +10,8 @@ load "Chrono.rb"
 #
 class Normal < ContreLaMontre
 
-<<<<<<< HEAD
+ 
 	#la method new est en privé
-=======
-    # New est privée
->>>>>>> fe6266b20a59b6cbbb6eddd0cf9f165e8dad5599
     private_class_method :new
 
     # Normal.creer

@@ -91,6 +91,7 @@ class Genie
         @correction = PlateauCorrection.creer()
         @chronoFirst = 0
         @hypothese = true
+        @autoCorrecteur = false
 	end
 
     #############################################################################################
@@ -289,6 +290,10 @@ class Genie
         else
             puts "case pas un pont"
             return false
+        end
+
+        if(@autoCorrecteur)then
+
         end
 
         return @plateau.partieFini?

@@ -34,7 +34,7 @@ class ContreLaMontre < Genie
     #
     @hypothese
     @assiste
-    @autoCorrecteur
+
     @fichier
 
     #je met la methode new en privée 
@@ -256,7 +256,6 @@ class ContreLaMontre < Genie
     #permet de desactiver le mode AutoCorrecteur et de supprimer tous les mauvais liens que l'utilisateur à créé
     def desactiverAutoCorrecteur()
         @autoCorrecteur = false
-        corrigerErreur(unFichier)
     end
 
 

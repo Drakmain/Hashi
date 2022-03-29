@@ -1,6 +1,8 @@
 load "ContreLaMontre.rb"
+load "Normal.rb"
+load "Genie.rb"
 
-mode = ContreLaMontre.creer(Plateau.creer(), "theo", "tuto", "4")
+mode = ContreLaMontre.creer(Plateau.creer(), "4", "theo", "facile")
 mode.initialiserJeu()
 
 fin = false
@@ -18,6 +20,16 @@ hyp = 0
 while(!fin)
     mode.afficherPlateau
 
+    puts "Voulez-vous activer le mode auto-correcteur ? (1/0)"
+    verif = gets
+    verif = verif.to_i
+    if(verif == 1)then
+        mode.activerAutoCorrecteur
+    else
+        mode.desactiverAutoCorrecteur
+	end
+
+=begin
     puts "Voulez-vous vérifiez le plateau ? (1/0)"
     verif = gets
     verif = verif.to_i
@@ -25,7 +37,7 @@ while(!fin)
         mode.corrigerErreur
 	end
  
-=begin
+
     if(i==1)then
         puts "Voulez-vous désactiver le mode hypothèse (0/1)?"
         verif = gets
@@ -46,7 +58,7 @@ while(!fin)
         end
 
     end      
-=end    
+ 
 
 
     puts "Voulez-vous vérifiez(0) le plateau(1) ?"
@@ -87,7 +99,7 @@ while(!fin)
         undo = gets
         undo = undo.to_i
     end
-
+=end   
     print "\nJouer un coup \n"
     print "\nx : "
     x = gets

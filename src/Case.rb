@@ -290,14 +290,14 @@ class Case
 				end
 			elsif(@element.nb_ponts == 2)then
 				return true
-			elsif(unSens == "droite")then
+			elsif(unSens == "droite" && voisineDroite != nil)then
 				return voisineDroite.pontAjoutable(unSens, false)
-			elsif(unSens == "gauche")
-				return  voisineGauche.pontAjoutable(unSens, false)
-			elsif(unSens == "haut")
+			elsif(unSens == "gauche" && voisineGauche != nil)
+				return voisineGauche.pontAjoutable(unSens, false)
+			elsif(unSens == "haut" && voisineHaut != nil)
 				return voisineHaut.pontAjoutable(unSens, false)
-			elsif(unSens == "bas")
-				voisineBas.pontAjoutable(unSens, false)
+			elsif(unSens == "bas" && voisineBas != nil)
+				return voisineBas.pontAjoutable(unSens, false)
 			else
 				puts "erreur de comprehension"
 				return false
@@ -321,35 +321,39 @@ class Case
 	#===== ATTRIBUT
 	#
 	def pontAjoutables()
-		
-		puts "x: #{@x} y: #{@y}"
 		n = 0
 		if self.element.estIle?
-			puts "Droite"
-			if (@y<@plateau.y)
-				if(voisineDroite.element.estPont? && voisineDroite.pontAjoutable("droite", false))then
-					n+=1
+			if (@y<@plateau.y-1)
+				if(voisineDroite.element.estPont?) 
+					if(voisineDroite.pontAjoutable("droite", false))
+						n+=1
+					end
 				end
 			end
-			puts "Gauche"
+
 			if (@y>0)
-				if(voisineGauche.element.estPont? && voisineGauche.pontAjoutable("gauche", false))then
-					n+=10
+				if(voisineGauche.element.estPont?)
+					if(voisineGauche.pontAjoutable("gauche", false))
+						n+=10
+					end
 				end
 			end
-			puts "Haut"
+
 			if (@x>0)
-				if(voisineHaut.element.estPont? && voisineHaut.pontAjoutable("haut", false))then
-					n+=100
+				if(voisineHaut.element.estPont?)
+					if(voisineHaut.pontAjoutable("haut", false))
+						n+=100
+					end
 				end
 			end
-			puts "Bas"
-			if (@x<@plateau.x)
-				if(voisineBas.element.estPont? && voisineBas.pontAjoutable("bas", false))then
-					n+=1000
+			
+			if (@x<@plateau.x-1)
+				if(voisineBas.element.estPont?)
+					if(voisineBas.pontAjoutable("bas", false))
+						n+=1000
+					end
 				end
 			end
-			puts n
 			return n
 		end
 	end

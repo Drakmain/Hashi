@@ -299,12 +299,6 @@ class ContreLaMontre < Genie
     #et doit les corriger avant d'avoir un coup à jouer
     def suggestion()
         puts("Mode suggestion activé")
-<<<<<<< HEAD
-=======
-        
-    end
->>>>>>> 5ec0dac2956b441f91977633cb431b7e15aa39e9
-
         #On parcours toutes les cases
         x=-1
 		y=-1
@@ -314,7 +308,8 @@ class ContreLaMontre < Genie
 			item.each{ |elem| 
 				y+=1
                 #Si la case est une ile
-				if(elem.element.estIle?)			
+                
+				if(elem.element.estIle?)	
 					bitPonts = elem.pontAjoutables
                     valeurActuelle = elem.element.valeur-elem.element.nbLiens
                     #Cas ou valeur <= 2 et nbVoisines = 1
@@ -322,13 +317,13 @@ class ContreLaMontre < Genie
                         puts ("L'ile a la position #{x}, #{y} a encore 2 ou 1 ponts a faire et n'as qu'une seule voisine, il faut donc la connecter a sa voisine")
                         case bitPonts
                         when 1
-                            return(coup.creer(false,voisineDroite.element))
+                            return(Coup.creer(false,elem.voisineDroite.element,true))
                         when 10
-                            return(coup.creer(false,voisineGauche.element))
+                            return(Coup.creer(false,elem.voisineGauche.element,true))
                         when 100
-                            return(coup.creer(false,voisineHaut.element))
+                            return(Coup.creer(false,elem.voisineHaut.element,false))
                         when 1000
-                            return(coup.creer(false,voisineBas.element))
+                            return(Coup.creer(false,elem.voisineBas.element,false))
                         end
                     end
                     #Cas ou valeur = 3 et nbVoisines = 2
@@ -336,15 +331,15 @@ class ContreLaMontre < Genie
                         puts ("L'ile a la position #{x}, #{y} a encore 3 ponts a faire et posséde 2 voisines, il faut donc la connecter a une de ses voisines")
                         case bitPonts
                         when 11
-                            return(coup.creer(false,voisineDroite.element))
+                            return(Coup.creer(false,elem.voisineDroite.element,true))
                         when 110
-                            return(coup.creer(false,voisineGauche.element))
+                            return(Coup.creer(false,elem.voisineGauche.element,true))
                         when 101
-                            return(coup.creer(false,voisineHaut.element))
+                            return(Coup.creer(false,elem.voisineHaut.element,false))
                         when 1010
-                            return(coup.creer(false,voisineBas.element))
+                            return(Coup.creer(false,elem.voisineBas.element,false))
                         when 1001
-                            return(coup.creer(false,voisineBas.element))
+                            return(Coup.creer(false,elem.voisineBas.element,false))
                         end
                     end
                     #Cas ou valeur = 4 et nbVoisines = 2
@@ -352,15 +347,15 @@ class ContreLaMontre < Genie
                         puts ("L'ile a la position #{x}, #{y} a encore 4 ponts a faire et posséde 2 voisines, il faut donc la connecter toutes ses voisines")
                         case bitPonts
                         when 11
-                            return(coup.creer(false,voisineDroite.element))
+                            return(Coup.creer(false,elem.voisineDroite.element,true))
                         when 110
-                            return(coup.creer(false,voisineGauche.element))
+                            return(Coup.creer(false,elem.voisineGauche.element,true))
                         when 101
-                            return(coup.creer(false,voisineHaut.element))
+                            return(Coup.creer(false,elem.voisineHaut.element,false))
                         when 1010
-                            return(coup.creer(false,voisineBas.element))
+                            return(Coup.creer(false,elem.voisineBas.element,false))
                         when 1001
-                            return(coup.creer(false,voisineBas.element))
+                            return(Coup.creer(false,elem.voisineBas.element,false))
                         end
                     end
                     #Cas ou valeur = 5 et nbVoisines = 3
@@ -368,13 +363,13 @@ class ContreLaMontre < Genie
                         puts ("L'ile a la position #{x}, #{y} a encore 5 ponts a faire et posséde 3 voisines, il faut donc la connecter a une de ses voisines")
                         case bitPonts
                         when 111
-                            return(coup.creer(false,voisineDroite.element))
+                            return(Coup.creer(false,elem.voisineDroite.element,true))
                         when 1011
-                            return(coup.creer(false,voisineBas.element))
+                            return(Coup.creer(false,elem.voisineBas.element,false))
                         when 1110
-                            return(coup.creer(false,voisineBas.element))
+                            return(Coup.creer(false,elem.voisineBas.element,false))
                         when 1101
-                            return(coup.creer(false,voisineBas.element))
+                            return(Coup.creer(false,elem.voisineBas.element,false))
                         end
                     end
                     #Cas ou valeur = 6 et nbVoisines = 3
@@ -382,23 +377,23 @@ class ContreLaMontre < Genie
                         puts ("L'ile a la position #{x}, #{y} a encore 6 ponts a faire et posséde 3 voisines, il faut donc la connecter a toutes ses voisines")
                         case bitPonts
                         when 111
-                            return(coup.creer(false,voisineDroite.element))
+                            return(Coup.creer(false,elem.voisineDroite.element,true))
                         when 1011
-                            return(coup.creer(false,voisineBas.element))
+                            return(Coup.creer(false,elem.voisineBas.element,false))
                         when 1110
-                            return(coup.creer(false,voisineBas.element))
+                            return(Coup.creer(false,elem.voisineBas.element,false))
                         when 1101
-                            return(coup.creer(false,voisineBas.element))
+                            return(Coup.creer(false,elem.voisineBas.element,false))
                         end
                     end
                     #Cas ou valeur = 7 et nbVoisines = 4
                     if (valeurActuelle == 7 && (bitPonts == 1111))
                         puts ("L'ile a la position #{x}, #{y} a encore 7 ponts a faire et posséde 5 voisines, il faut donc la connecter a un de ses voisines")
-                        return(coup.creer(false,voisineDroite.element))
+                        return(Coup.creer(false,elem.voisineDroite.element,true))
                     end
                     if (valeurActuelle == 8 && (bitPonts == 1111))
                         puts ("L'ile a la position #{x}, #{y} a encore 8 ponts a faire et posséde 5 voisines, il faut donc la connecter a un de ses voisines")
-                        return(coup.creer(false,voisineDroite.element))
+                        return(Coup.creer(false,elem.voisineDroite.element,true))
                     end
                 end
 			}

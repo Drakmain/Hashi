@@ -19,6 +19,9 @@ require 'matrix'
 #Le plateau est composé de case, et chaque case est composé d'un element, qui est soit une ile, soit un pont, soit un element
 #
 class Plateau
+	#
+	#===== ATTRIBUTS
+	#
 	#@matrice => la matrice de case avec les éléments
 	#@x => la largeur du tableau
 	#@y => la longueur du tableau
@@ -28,6 +31,9 @@ class Plateau
 	#						Methodes de classe
 	###########################################################################################
 
+	#Mettre new en privée
+	private_class_method :new
+	
 	#************************************************************
 	#				Plateau.creer()
 	#
@@ -53,15 +59,11 @@ class Plateau
 		@x = 0
 		@y = 0 
 		@matrice = Array.new() {Array.new()} #On initialise le tableau des cases pour le charger
-		#@plateau = Array.new() {Array.new()} #On initialise le tableau des cases pour le charger
-		@LesIles = Array.new()
+		@LesIles = Array.new() #On initialise le tableau des ILes
 	
 	end
 
-	#Mettre new en privée
-	private_class_method :new
-
-
+	
 	##########################################################################################
 	#						Methodes
 	##########################################################################################
@@ -73,8 +75,9 @@ class Plateau
 	#****************************************************************
 	#				generateMatrice()
 	#
-	#génère la matrice à partir du fichier passé en parametre
-	#elle récupère le x et le y de la matrice dans le fichier
+	#Génère la matrice à partir du fichier passé en parametre
+	#elle récupère la taille de la matrice, valeur de x(lignes) et la valeur de y(colonne),
+	#puis parcourir la matrice et charger les valeurs.
 	#
 	#====== ATTRIBUTS
 	#
@@ -126,7 +129,7 @@ class Plateau
 	#**********************************************************
 	#						to_s
 	#
-	#permet de retourner la matrice de jeu en string
+	#permet de retourner la matrice de jeu en string.
 	#
 	#@return = string
 	def to_s()
@@ -143,6 +146,8 @@ class Plateau
 	
 
 	#**********************************************************
+	# Méthodes de débogage :
+	#
 	#					affiche()
 	#
 	#permet d'afficher la matrice une fois que les éléments ont été initialisé
@@ -161,62 +166,7 @@ class Plateau
 			print "\n"
 	  	end
 	end
-
-
-=begin
-	def initPont()
-		@matrice.each do |row|
-			row.each do |column|
-				if column.element.instance_of?(Ile) then
-					casetmp = column
-					for i in column.y...@y
-						casetmp2 = casetmp.voisineDroite
-						if(casetmp2 != nil)
-							if(casetmp2.element.instance_of?(Ile))then
-								creerPontVide(column, casetmp2)
-								break
-							end							
-							casetmp = casetmp2
-						end
-					end
-					
-
-					casetmp = column
-					for i in column.x...@x
-						casetmp2 = casetmp.voisineBas
-						if(casetmp2 != nil)
-							if(casetmp2.element.instance_of?(Ile))then
-								creerPontVide(column, casetmp2)
-								break
-							end
-							casetmp = casetmp2
-						end
-					end
-				end
-			end
-	  	end
-	end
 	
-
-	#Cases valables
-	def creerPontVide(case1, case2)
-		if(case1.x == case2.x)
-			long = case2.y - case1.y
-
-			caseTmp = case1
-			for i in 0...long-1
-				caseTmp.voisineDroite.element = Pont.creer()
-				caseTmp = caseTmp.voisineDroite
-			end
-		else
-			long = case2.x - case1.x
-			caseTmp = case1
-			for i in 0...long-1@nb_pontsTmp.voisineBas.element = Pont.creer()
-				caseTmp = caseTmp.voisineBas
-			end
-		end
-	end
-=end
 
 	#**************************************************************************
 	#					ajouterPont()
@@ -294,19 +244,34 @@ class Plateau
 
 
 	#*************************************************************************
-	#					getCase()
+	#					getCase( unX, unY )
 	#
-	#permet de récuperer la case en x y
+	#Méthode qui prend 2 coordonnées correspondants, à la valeur de la ligne(unX) et la colonne(unY) 
+	# et retourne la case correspondante dans la matrice.
+	#
 	def getCase(unX, unY)
 		return @matrice[unX][unY]
 	end
 
-
+	#*************************************************************************
+	#					verifCoord(unX, unY)
+	#
+	#Méthode qui permet de verifie les coordonneés passées en parametre si elles ne debordent pas 
+	#par-apport à la dimension de la matrice et retourne un boulean (true/false).
+	#
+	
 	def verifCoord(unX, unY)
 		return (unX>=0 && unX<@x) && (unY>=0 && unY<@y)
 	end
 
 
+	#*************************************************************************
+	#					partieFini?()
+	#
+	#Méthode qui permet de savoir si une partie est finie. 
+	#retourne un boulean (true/false).
+	#
+	
 	def partieFini?()
 		res = true
 		@LesIles.map{|x| res = res && x.estFini?}
@@ -316,31 +281,31 @@ class Plateau
 end	
 
 =begin
-test = Plateau.creer(1)
-test.generateMatrice("../map/facile/correction/2.txt")
+	test = Plateau.creer(1)
+	test.generateMatrice("../map/facile/correction/2.txt")
 
-puts test
-print "\n"
+	puts test
+	print "\n"
 
-test.generateCorrection()
-test.affiche()
+	test.generateCorrection()
+	test.affiche()
 
-test = Plateau.creer(1)
-test.generateMatrice("../map/facile/demarrage/2.txt")
+	test = Plateau.creer(1)
+	test.generateMatrice("../map/facile/demarrage/2.txt")
 
-puts test
-print "\n"
+	puts test
+	print "\n"
 
-test.generateCorrection()
-test.affiche()
+	test.generateCorrection()
+	test.affiche()
 
 
-print "INIT PONT V1\n"
-test.initPont()
-test.affiche()
+	print "INIT PONT V1\n"
+	test.initPont()
+	test.affiche()
 
-print "INIT PONT V2\n"
-test.ajouterPont()
-test.affiche()
+	print "INIT PONT V2\n"
+	test.ajouterPont()
+	test.affiche()
 =end
 

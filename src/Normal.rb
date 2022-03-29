@@ -1,9 +1,9 @@
-class Normal < ContrelaMontre
+class Normal < ContreLaMontre
 
     private_class_method :new
 
-    def Normal.creer(unFichier)
-        super(unFichier)
+    def Normal.creer(unPlateau, unNiveau, unPseudo, uneDifficulte)
+        super(unPlateau, unNiveau, unPseudo, uneDifficulte)
     end
 
     #************************************

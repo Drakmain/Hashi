@@ -1,4 +1,7 @@
 load 'Plateau.rb'
+load 'Genie.rb'
+load 'ContreLaMontre.rb'
+load 'Normal.rb'
 
 class SelectionMap < Gtk::Builder
 
@@ -43,15 +46,14 @@ class SelectionMap < Gtk::Builder
     tv = Gtk::TreeView.new(model)
 
     renderer = Gtk::CellRendererText.new
-    column = Gtk::TreeViewColumn.new("Niveau", renderer, {
-      :text => 0,
+    column = Gtk::TreeViewColumn.new('Niveau', renderer, {
+      :text => 0
     })
 
     tv.append_column(column)
 
-    # column 2
     renderer = Gtk::CellRendererText.new
-    column = Gtk::TreeViewColumn.new("Taille", renderer, {
+    column = Gtk::TreeViewColumn.new('Taille', renderer, {
       :text => 1
     })
 
@@ -63,8 +65,9 @@ class SelectionMap < Gtk::Builder
 
     @fenetre.show_all
 
-    tv.signal_connect('row-activated') do
-      @jouer_button.set_sensitive(true);
+    tv.signal_connect('row-activated') do |handler, niveau|
+      @jouer_button.set_sensitive(true)
+      @niveau = niveau.to_s.to_i + 1
     end
 
     connect_signals do |handler|
@@ -77,6 +80,23 @@ class SelectionMap < Gtk::Builder
   def on_retour_button_clicked
     @fenetre.remove(@selection_map_box)
     SelectionDifficulte.new(@fenetre, @mode)
+  end
+
+  def on_jouer_button_clicked
+    @fichierOptions = File.read('../data/settings/settings.json')
+    @hashOptions = JSON.parse(@fichierOptions)
+    @user = @hashOptions['username']
+
+    case @mode
+    when 'genie'
+      map = Genie.creer(Plateau.creer, @niveau.to_s, @user, @difficulte)
+    when 'normal'
+      map = Normal.creer(Plateau.creer, @niveau.to_s, @user, @difficulte)
+    when 'contre la montre'
+      map = ContreLaMontre.creer(Plateau.creer, @niveau.to_s, @user, @difficulte)
+    end
+    map.initialiserJeu
+    map.afficherPlateau
   end
 
 end

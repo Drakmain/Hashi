@@ -1,6 +1,6 @@
 ##
 #
-# La classe case représente un élément du plateau, elle peut être soit une île, soit un pont, soit un élément.
+# La classe Case représente un élément du plateau, elle peut être soit une île, soit un pont, soit un élément.
 #
 # Elle peut : 
 #

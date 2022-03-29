@@ -1,7 +1,7 @@
 load "Genie.rb"
 
 ##
-# La classe contre la montre permet de lancer un niveau, en plus d'un chronomètre qui, une fois arrivé à 0, arrètera la partie
+# La classe ContreLaMontre permet de lancer un niveau, en plus d'un chronomètre qui, une fois arrivé à 0, arrètera la partie
 #
 # Les aides disponibles sont : 
 # - Hypothèse

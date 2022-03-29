@@ -1,35 +1,32 @@
 load "Chrono.rb"
 
-
-# class Normal
+# La classe Normal est une sous-classe de la classe ContreLaMontre, elle possède les mêmes caractèristiques.
+# La seule chose qui change est le sens du chronomètre
 #
-# La classe normal est une sous-classe de la classe contre-la-montre, elle possède les mêmes caractèristiques
-# la seule chose qui change est le sens du chronometre
-#
-#  Elle peut donc faire tous ce que peut faire la classe ContreLaMontre
+# Elle peut donc faire tous ce que peut faire la classe ContreLaMontre.
 #
 class Normal < ContreLaMontre
 
  
-	#la method new est en privé
+	# new est en privé
     private_class_method :new
 
-    # Normal.creer
+
+    # Méthode qui permet de créer un mode normal.
     #
-    # permet de creer un nouveau mode normal
+    # ==== Attributs
     #
-    # ==== ATTRIBUTS
-    # 
-    # *+unPlateau+ : unPlateau
-    #
+    # * +unPlateau+ : une référence vers le plateau de jeu de la partie courante
+    # * +unNiveau+ : le numéro du niveau choisis
+    # * +unPseudo+ : le nom du joueur qui va jouer
+    # * +uneDifficulte+ : la difficulté choisis
     #
     def Normal.creer(unPlateau, unNiveau, unPseudo, uneDifficulte)
         super(unPlateau, unNiveau, unPseudo, uneDifficulte)
     end
 
-    #   lancerChrono
-    #
-    # permet de lancer le chronometre dans le sens normal (part de 0 et s'incrémente jusqu'à ce que la partie soit terminé)
+
+    # Méthode qui permet de lancer le chronometre dans le sens normal (part de 0 et s'incrémente jusqu'à ce que la partie soit terminée)
     def lancerChrono()
         @chrono.lancerChrono
     end

@@ -5,76 +5,68 @@ load "PlateauCorrection.rb"
 load "Coup.rb"
 
 
-##
+# La classe Genie représente le mode génie, c'est le mode le plus "simple" dans le sens où aucune aide ne sera disponible.
+# Elle est donc la classe mère des autres mode de jeu.
 #
-#class Genie
+# Elle peut : 
 #
-#la classe génie représente le mode génie, c'est le mode le plus "simple" dans le sens ou aucune aide ne sera disponible
-#Elle est donc la classe mère des autres mode de jeu
+# - sauvegarder la partie
+# - charger une partie
+# - calculer le score du joueur
+# - lancer le chronometre
+# - Supprimer/remettre un coup
+# - jouer un coup
+# - récupérer le coup jouer
 #
-#elle peut : 
-#
-#   - sauvegarder la partie
-#   - charger une partie
-#   - calculer le score du joueur
-#   - lancer le chronometre
-#   - Supprimer/remettre un coup
-#   - jouer un coup
-#   - récupérer le coup jouer
+# ==== Variables d'instance
+# * @score         => le score du joueur
+# * @chrono        => le chrono qui se lance en début de partie
+# * @anciensCoups  => la file des anciens coups
+# * @coups         => la pile de coups
+# * @pileHypothese => la pile de coups du mode hypothèse
+# * @fichierJeu    => le chemin vers le fichier qui contient la grille basique
+# * @fichierCorrection => le chemin vers le fichier qui contient la correction
+# * @plateau       => le plateau de jeu courant
+# * @save          => la sauvegarde de la partie
+# * @dir           => le chemin vers le dossier qui contient les fichiers
+# * @pseudo        => le pseudo du joueur
+# * @correction    => le plateau de jeu avec la correction
+# * @chronoFirst   => temps au début du tour de jeu
+# * @hypothese     => état du mode hypothèse
+# * @autoCorrecteur : boolean qui indique si le mode auto-correcteur est activé
 #
 class Genie
-    #
-    #@score         => le score du joueur
-    #@chrono        => le chrono qui se lance en début de partie
-    #@anciensCoups  => la file des anciens coups
-    #@coups         => la pile de coups
-    #@pileHypothese => la pile de coups du mode hypothèse
-    #@fichierJeu    => le chemin vers le fichier qui contient la grille basique
-    #@fichierCorrection => le chemin vers le fichier qui contient la correction
-    #@plateau       => le plateau de jeu courant
-    #@save          => la sauvegarde de la partie
-    #@dir           => le chemin vers le dossier qui contient les fichiers
-    #@pseudo        => le pseudo du joueur
-    #@correction    => le plateau de jeu avec la correction
-    #@chronoFirst   => temps au début du tour de jeu
-    #@hypothese     => état du mode hypothèse
-    #@autoCorrecteur : boolean qui indique si le mode auto-correcteur est activé
 
     ##############################################################################################
     #                               Methode de classe
     ##############################################################################################
 
 
-    #la method new est en privé
+    # La méthode new est en privé
     private_class_method :new
 
-    #**************************************************
-    #           Genie.creer()
+
+    # Méthode qui permet de créer un mode génie
     #
-    #permet de creer une instance de génie
+    # ==== Attributs
     #
-    #==== ATTRIBUTS
-    #
-    #   unPlateau : une référence vers le plateau de jeu de la partie courante
-    #   unNiveau : le numéro du niveau choisis
-    #   unPseudo : le nom du joueur qui va jouer
-    #   uneDifficulte : la difficulté choisis
+    # * +unPlateau+ : une référence vers le plateau de jeu de la partie courante
+    # * +unNiveau+ : le numéro du niveau choisis
+    # * +unPseudo+ : le nom du joueur qui va jouer
+    # * +uneDifficulte+ : la difficulté choisis
     #
     def Genie.creer(unPlateau, unNiveau, unPseudo, uneDifficulte)
         new(unPlateau, unNiveau, unPseudo, uneDifficulte)
     end
 
-    #**************************************************
-    #           Genie.creer()
+    # Méthode qui permet d'initialiser un mode génie
     #
-    #permet d'initialiser une instance de génie
+    # ==== Attributs
     #
-    #==== ATTRIBUTS
-    #
-    #   unPlateau : une référence vers le plateau de jeu de la partie courante
-    #   unPseudo : le nom du joueur qui va jouer
-    #   uneDifficulte : la difficulté choisis
-    #   unNiveau : le numéro du niveau choisis
+    # * +unPlateau+ : une référence vers le plateau de jeu de la partie courante
+    # * +unNiveau+ : le numéro du niveau choisis
+    # * +unPseudo+ : le nom du joueur qui va jouer
+    # * +uneDifficulte+ : la difficulté choisis
     #
     def initialize(unPlateau, unNiveau, unPseudo, uneDifficulte)
 		@score = 0
@@ -94,11 +86,13 @@ class Genie
         @autoCorrecteur = false
 	end
 
+
     #############################################################################################
     #                               Methodes
     #############################################################################################
 
 
+    # Méthode qui permet d'initialiser le jeu (le plateau de jeu et sa correction)
     def initialiserJeu()
         @plateau.generateMatrice(@fichierJeu)
         @plateau.generatePlateau
@@ -108,10 +102,12 @@ class Genie
         @correction.generatePlateau
     end
 
-    #************************************
-    #           save()
+
+    # Méthode qui permet de sauvegarder une partie, elle sérialize l'objet courant
     #
-    #permet de sauvegarder une partie, elle sérialize l'objet courant
+    # ==== Attributs
+    #
+    # * +nomFichier+ - Le nom du fichier pour la sauvegarde
     def save(nomFichier)
         puts "\nsave..."
         Dir.mkdir(@dir) unless File.exists?(@dir)
@@ -121,10 +117,12 @@ class Genie
         f.close()
     end
 
-    #***********************************
-    #           load()
+
+    # Méthode qui permet de charger une partie, elle désérialize le fichier demandé
     #
-    #permet de charger une partie, elle déserialize le fiichier demandé
+    # ==== Attributs
+    #
+    # * +nomFichier+ - Le nom du fichier pour le chargement
     def load(nomFichier)
         puts "\nload..."
         f = File.open(File.expand_path(@dir + @pseudo + nomFichier + ".bn"), "r")
@@ -133,10 +131,8 @@ class Genie
         return Marshal::load(@save)
     end
 
-    #***********************************
-    #           calculerScore()
-    #
-    #permet de calculer le score du joueur
+
+    # Méthode qui permet de calculer le score du joueur
     def calculScore()
         chronoNow = @chrono.chrono
         if @chronoFirst - chronoNow != 0 then
@@ -144,34 +140,26 @@ class Genie
         end
     end
 
-    #************************************
-    #           lancerChrono()
-    #
-    #permet de lancer le chronometre dans le sens normal (part de 0 et s'incrémente jusqu'à ce que la partie soit terminé)
+
+    # Méthode qui permet de lancer le chronometre dans le sens normal (part de 0 et s'incrémente jusqu'à ce que la partie soit terminé)
     def lancerChrono()
         @chrono.lancerChrono
     end
-    #
-    #permet de supprimer le dernier coup dans la liste des coups, le met dans a liste des anciens coups 
+    
+
+    # Méthode qui permet de supprimer le dernier coup dans la liste des coups, le met dans à liste des anciens coups 
     def deleteCoup()
         @anciensCoups.push(@coup.pop)
     end
 
-    def corrigerErreur()
-    end
-
-    #***********************************
-    #               getCoup()
-    #
-    #permet de récupérer l'ancien coup supprimer dans la liste des anciens coups
+    
+    # Méthode qui permet de récupérer l'ancien coup supprimer dans la liste des anciens coups
     def getCoup()
         @coups.push(@anciensCoups.pop)
     end
 
-    #************************************
-    #               undo
-    #
-    #permet d'enlever le dernier coup 
+
+    # Méthode qui permet d'enlever le dernier coup 
     def undo
         if(!@coups.empty?)then
             coup = @coups.pop
@@ -198,11 +186,8 @@ class Genie
     end
 
 
-    #*************************************
-    #               redo
-    #
-    #
-    #permet de remettre le dernier coup supprimer
+
+    # Méthode qui permet de remettre le dernier coup supprimer
     def redo
         if(!@anciensCoups.empty?)then
             coup = @anciensCoups.pop
@@ -226,17 +211,19 @@ class Genie
         end
     end
 
-    #**********************************
-    #               jouerCoup()
+
+    # Méthode qui permet de jouer un coup
     #
-    #permet de jouer un coup
+    # ==== Attributs
     #
-    #===== ATTRIBUTS
+    # * +unX+ - coordonnée X de la case
+    # * +unY+ - Coordonnée Y de la case
+    # * +unClic+ - type de clic fait par le joueur
     #
-    #*+unX+ => coordonnée X de la case
-    #*+unY+ => Coordonnée Y de la case
-    #*+unClic+ => type de clic fait par le joueur
+    # ==== Retourne
     #
+    # - true si la partie est finie, 
+    # - false si la case jouée n'est pas un pont ou si la partie n'est pas finie
     def jouerCoup(unX, unY, unClic)
 
         caseCourante = @plateau.getCase(unX, unY)
@@ -300,43 +287,37 @@ class Genie
         
     end
 
-    #**********************************
-    #              to_s
+
+    # Méthode qui permet d'afficher le mode génie
     #
-    #Permet d'afficher le mode génie
+    # ==== Retourne
     #
-    #Affiche l'état de la partie en cours
+    # L'état de la partie en cours
     #
     def to_s
         return "Je suis en mode génie \n" + "plateau : " + @plateau.to_s + "\nScore : " + @score.to_s
     end
 
 
-    #**********************************
-    #              afficherPlateau
-    #
-    #Affiche le plateau
+
+    # Méthode qui affiche le plateau sur le terminal    
     def afficherPlateau()
         @plateau.afficherJeu()
     end
 
-     #**********************************
-    #              afficherCorrection
-    #
-    #Affiche le plateau avec la correction
+
+    # Méthode qui affiche le plateau de correction sur le terminal  
     def afficherCorrection()
         @correction.afficherJeu()
     end
 
-    #**********************************
-    #               verifCoord()
+
+    # Méthode qui permet de verifier les coordonnées d'une case
     #
-    #permet de verifier les coordonnées
+    # ==== ATTRIBUTS
     #
-    #===== ATTRIBUTS
-    #
-    #*+unX+ => coordonnée X de la case
-    #*+unY+ => Coordonnée Y de la case
+    # * +unX+ - coordonnée X de la case
+    # * +unY+ - Coordonnée Y de la case
     #
     def verifCoord(unX, unY)
         @plateau.verifCoord(unX, unY)

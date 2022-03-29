@@ -14,6 +14,9 @@ class Element
     #                               Methodes de classe
     ####################################################################################################
     
+    #la method new est en privé
+    private_class_method :new
+    
     #***********************************************************
     #               Element.creer()
     #
@@ -21,9 +24,6 @@ class Element
     def Element.creer()
         new()
     end
-
-    #new en privée
-    private_class_method :new
 
     ####################################################################################################
     #                                   Methodes

@@ -293,7 +293,7 @@ class Genie
         end
 
         if(@autoCorrecteur)then
-
+            corrigerErreur
         end
 
         return @plateau.partieFini?

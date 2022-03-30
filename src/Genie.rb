@@ -298,24 +298,19 @@ class Genie
         caseCourante = @plateau.getCase(unX, unY)
 
         if(caseCourante.element.estPont?)then
-            if(unClic)then
-                if (caseCourante.element.aDeuxSens) then
-                    return false
-                elsif(caseCourante.element.nb_ponts >= 0 && caseCourante.element.nb_ponts < 2)then
-                        sens = caseCourante.element.estVertical?
-                        if(sens)then
-                            sens = "vertical"
-                            return "vertical"
-                        else
-                            sens = "horizontal"
-                            return "horizontal"
-                        end
-                end
-                unClic = "ajouter"
+            if (caseCourante.element.aDeuxSens) then
+                return false
+            elsif(caseCourante.element.nb_ponts >= 0 && caseCourante.element.nb_ponts < 2)then
+                    sens = caseCourante.element.estVertical?
+                    if(sens)then    
+                        sens = "vertical"
+                    else
+                        sens = "horizontal"
+                    end
             else
-                sens = caseCourante.enleverPont
-                unClic = "enlever"
+                return "erreur"
             end
+            unClic = "ajouter"
 
             if(@hypothese)then
                 @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
@@ -323,12 +318,10 @@ class Genie
                 @coups.push(Coup.creer(unClic, caseCourante, sens))
             end
 
-        else
-            puts "la case n'est pas un pont"
-        end
 
-        if(@autoCorrecteur)then
-            corrigerErreur
+            if(@autoCorrecteur)then
+                corrigerErreur
+            end
         end
 
         return sens
@@ -343,15 +336,19 @@ class Genie
     # * +unClic+ - l'action effectué par l'utilisateur
     def jouerCoupHorizontaleInterface(unX, unY, unClic)
         caseCourante = @plateau.getCase(unX, unY)
-        if(caseCourante.pontAjoutable("droite",true) && caseCourante.pontAjoutable("gauche",true))then
-            caseCourante.creerPont("droite", true)
-            caseCourante.creerPont("gauche", false)
-            sens = "horizontal"
-        end
-        if(@hypothese)then
-            @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
+        if(unClic)then
+            if(caseCourante.pontAjoutable("droite",true) && caseCourante.pontAjoutable("gauche",true))then
+                caseCourante.creerPont("droite", true)
+                caseCourante.creerPont("gauche", false)
+                sens = "horizontal"
+            end
+            if(@hypothese)then
+                @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
+            else
+                @coups.push(Coup.creer(unClic, caseCourante, sens))
+            end
         else
-            @coups.push(Coup.creer(unClic, caseCourante, sens))
+            caseCourante.enleverPont
         end
     end
 
@@ -364,15 +361,19 @@ class Genie
     # * +unClic+ - l'action effectué par l'utilisateur
     def jouerCoupVerticaleInterface(unX, unY, unClic)
         caseCourante = @plateau.getCase(unX, unY)
-        if(caseCourante.pontAjoutable("haut",true) && caseCourante.pontAjoutable("bas",true))then
-            caseCourante.creerPont("haut", true)
-            caseCourante.creerPont("bas", false)
-            sens = "vertical"
-        end
-        if(@hypothese)then
-            @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
+        if(unClic)then
+            if(caseCourante.pontAjoutable("haut",true) && caseCourante.pontAjoutable("bas",true))then
+                caseCourante.creerPont("haut", true)
+                caseCourante.creerPont("bas", false)
+                sens = "vertical"
+            end
+            if(@hypothese)then
+                @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
+            else
+                @coups.push(Coup.creer(unClic, caseCourante, sens))
+            end
         else
-            @coups.push(Coup.creer(unClic, caseCourante, sens))
+            caseCourante.enleverPont
         end
     end
 

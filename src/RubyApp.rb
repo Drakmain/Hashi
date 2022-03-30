@@ -53,8 +53,8 @@ class RubyApp < Gtk::Fixed
       @Tabevents[i].add(image)
       @Tabevents[i].signal_connect 'button-press-event' do |widget, event|
         tmp = widget.child.name.split('_')
-        x = tmp[1].to_i
-        y = tmp[2].to_i
+        @x = tmp[1].to_i
+        @y = tmp[2].to_i
 
         case event.button
         when 1
@@ -63,12 +63,14 @@ class RubyApp < Gtk::Fixed
           @click = false
         end
 
-        sens = @map.jouerCoupInterface(x, y, @click)
+        sens = @map.jouerCoupInterface(@x, @y, @click)
         puts @map.plateau.partieFini?
 
         puts sens
 
-        afficher_pont(sens, x, y, @click)
+        @sens_popover.set_relative_to(widget)
+
+        afficher_pont(sens, @x, @y, @click)
       end
     end
   end
@@ -91,7 +93,11 @@ class RubyApp < Gtk::Fixed
   end
 
   def set_sens(sens)
-    afficher_pont(sens, x, y, @click)
+    puts sens
+    puts @x
+    puts @y
+    puts @click
+    afficher_pont(sens, @x, @y, @click)
     @sens_popover.popdown
   end
 
@@ -101,7 +107,6 @@ class RubyApp < Gtk::Fixed
     when 'vertical'
       @map.jouerCoupVerticaleInterface(x, y, click)
       nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
-      puts nb_ponts
       while @map.plateau.getCase(x, y).element.estPont?
         x += 1
       end
@@ -129,7 +134,6 @@ class RubyApp < Gtk::Fixed
     when 'horizontal'
       @map.jouerCoupHorizontaleInterface(x, y, click)
       nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
-      puts nb_ponts
       while @map.plateau.getCase(x, y).element.estPont?
         y += 1
       end
@@ -153,7 +157,6 @@ class RubyApp < Gtk::Fixed
       end
       @fenetre.show_all
     when false
-      @sens_popover.set_relative_to(widget)
       @sens_popover.popup
     end
 

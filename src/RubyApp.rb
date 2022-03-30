@@ -1,5 +1,6 @@
 require 'gtk3'
 load 'Donnees.rb'
+load 'Plateau.rb'
 
 class RubyApp < Gtk::Fixed
 
@@ -39,7 +40,7 @@ class RubyApp < Gtk::Fixed
     end
 
     for i in 0...@matrixPix.length do
-      pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/image/#{numbers[i]}.png")
+      pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/#{numbers[i]}.png")
       image = Gtk::Image.new(:pixbuf => pixbuf)
       image.set_name(@matrixPix[i])
       @Tabevents[i].add(image)
@@ -53,7 +54,24 @@ class RubyApp < Gtk::Fixed
         elsif event.button == 3 then
           click = false
         end
-        @map.jouerCoup(x, y, click)
+
+        sens = @map.jouerCoupInterface(x, y, click)
+        @map.afficherPlateau
+
+        if sens == "vertical"
+          while @map.plateau.getCase(x, y).estPont? do
+            x+=1
+          end
+
+          while @map.plateau.getCase(x, y).estPont? do
+            puts @Tabevents[x * y + y].child.name
+            x-=1
+          end
+
+        else
+          puts sens
+          puts widget.child.name
+        end
 
       end
     end

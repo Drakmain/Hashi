@@ -326,7 +326,7 @@ class Genie
             corrigerErreur
         end
 
-        return true
+        return sens
     end
 
     # Méthode qui permet de jouer un coup horizontale sur une interface

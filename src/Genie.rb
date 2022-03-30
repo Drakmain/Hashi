@@ -298,9 +298,17 @@ class Genie
         caseCourante = @plateau.getCase(unX, unY)
 
         if(caseCourante.element.estPont?)then
-            if (caseCourante.element.aDeuxSens) then
+            if(caseCourante.element.nb_ponts >0 && caseCourante.element.nb_ponts<2)then
+                sens = caseCourante.element.estVertical?
+                if(sens)
+                    sens = "vertical"
+                else
+                    sens = "horizontal"
+                end
+            elsif (caseCourante.element.aDeuxSens) then
+                puts "a deux sens"
                 return false
-            elsif(caseCourante.element.nb_ponts >= 0 && caseCourante.element.nb_ponts <= 2)then
+            elsif(caseCourante.element.nb_ponts == 0 )then
                     sens = caseCourante.element.estVertical?
                     if(sens)then    
                         sens = "vertical"
@@ -310,6 +318,7 @@ class Genie
             else
                 return "erreur"
             end
+
             unClic = "ajouter"
 
             if(@hypothese)then

@@ -182,13 +182,13 @@ class Genie
                 @anciensCoups.push(Coup.creer("enlever", coup.pont, sens))
             end
         end
+      return pontCourant
     end
 
 
 
     # Méthode qui permet de remettre le dernier coup supprimer
     def redo
-        puts 'redo'
         if(!@anciensCoups.empty?)then
             coup = @anciensCoups.pop
             pontCourant = coup.pont
@@ -209,6 +209,7 @@ class Genie
             @score -= 10
             @coups.push(coup)
         end
+        return pontCourant
     end
 
 
@@ -311,7 +312,7 @@ class Genie
                 return false
             elsif(caseCourante.element.nb_ponts == 0 )then
                     sens = caseCourante.element.estVertical?
-                    if(sens)then    
+                    if(sens)then
                         sens = "vertical"
                     else
                         sens = "horizontal"
@@ -380,7 +381,7 @@ class Genie
                 caseCourante.creerPont("haut", true)
                 caseCourante.creerPont("bas", false)
                 sens = "vertical"
-                
+
                 unClic = "ajouter"
                 if(@hypothese)then
                     @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))

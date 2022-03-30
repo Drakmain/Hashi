@@ -64,7 +64,7 @@ class Coup < Element
 
 	# Méthode qui affiche le sens du coup
 	def to_s
-		"sens du coup : " + @sens
+		"sens du coup : " + @sens.to_s
 	end
 
 	# Accès en lecture

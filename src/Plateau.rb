@@ -209,7 +209,7 @@ class Plateau
 				end
 			end
 		end
-		print "\n"
+		print "\n\n"
 	end
 
 	# Méthode qui trouve une case dans la matrice

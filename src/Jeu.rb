@@ -77,10 +77,12 @@ class Jeu < Gtk::Builder
 
   def on_corriger_erreur_button_clicked
     puts 'on_corriger_erreur_button_clicked'
+    #@grille.corrigerErreur
   end
 
   def on_afficher_erreur_button_clicked
     puts 'on_afficher_erreur_button_clicked'
+    # @grille.afficherErreur
   end
 
   def on_mode_hypothese_button_clicked

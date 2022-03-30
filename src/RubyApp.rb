@@ -268,4 +268,19 @@ class RubyApp < Gtk::Fixed
 
   end
 
+
+
+  def corrigerErreur
+    plateauCourant = @map.plateau.clone
+    @map.corrigerErreur
+
+    plateauCourant.afficherJeu
+    @map.afficherPlateau
+
+  end
+
+  def afficherErreur
+
+  end
+
 end

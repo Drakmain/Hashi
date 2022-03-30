@@ -302,8 +302,14 @@ class Genie
                 if (caseCourante.element.aDeuxSens) then
                     return false
                 elsif(caseCourante.element.nb_ponts >= 0 && caseCourante.element.nb_ponts < 2)then
-                        sens = caseCourante.creerPontDefaut
-                        puts "if 1"
+                        sens = caseCourante.element.estVertical?
+                        if(sens)then
+                            sens = "vertical"
+                            return "vertical"
+                        else
+                            sens = "horizontal"
+                            return "horizontal"
+                        end
                 end
                 unClic = "ajouter"
             else

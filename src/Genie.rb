@@ -319,14 +319,6 @@ class Genie
                 return "erreur"
             end
 
-            unClic = "ajouter"
-
-            if(@hypothese)then
-                @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
-            else
-                @coups.push(Coup.creer(unClic, caseCourante, sens))
-            end
-
 
             if(@autoCorrecteur)then
                 corrigerErreur
@@ -350,6 +342,8 @@ class Genie
                 caseCourante.creerPont("droite", true)
                 caseCourante.creerPont("gauche", false)
                 sens = "horizontal"
+
+                unClic = "ajouter"
                 if(@hypothese)then
                     @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
                 else
@@ -359,6 +353,12 @@ class Genie
             end
         else
             caseCourante.enleverPont
+            unClic = "enlever"
+            if(@hypothese)then
+                @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
+            else
+                @coups.push(Coup.creer(unClic, caseCourante, sens))
+            end
             return true
         end
 
@@ -379,6 +379,8 @@ class Genie
                 caseCourante.creerPont("haut", true)
                 caseCourante.creerPont("bas", false)
                 sens = "vertical"
+                
+                unClic = "ajouter"
                 if(@hypothese)then
                     @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
                 else
@@ -388,6 +390,12 @@ class Genie
             end
         else
             caseCourante.enleverPont
+            unClic = "enlever"
+            if(@hypothese)then
+                @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
+            else
+                @coups.push(Coup.creer(unClic, caseCourante, sens))
+            end
             return true
         end
         return false

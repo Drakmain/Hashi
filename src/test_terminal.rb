@@ -79,7 +79,7 @@ while(!fin)
         end
 
     end
-
+=end
     puts "Voulez-vous undo le coup ? (1/0)"
     undo = gets
     undo = undo.to_i
@@ -99,7 +99,7 @@ while(!fin)
         undo = gets
         undo = undo.to_i
     end
-=end   
+
     print "\nJouer un coup \n"
     print "\nx : "
     x = gets

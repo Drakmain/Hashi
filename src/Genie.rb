@@ -299,12 +299,11 @@ class Genie
 
         if(caseCourante.element.estPont?)then
             if(unClic)then
-                if(caseCourante.element.nb_ponts > 0)then
-                    sens = caseCourante.creerPontDefaut
-                elsif (caseCourante.element.aDeuxSens) then
+                if (caseCourante.element.aDeuxSens) then
                     return false
-                else
-                    sens = caseCourante.creerPontDefaut
+                elsif(caseCourante.element.nb_ponts >= 0 && caseCourante.element.nb_ponts < 2)then
+                        sens = caseCourante.creerPontDefaut
+                        puts "if 1"
                 end
                 unClic = "ajouter"
             else

@@ -83,7 +83,7 @@ class PlateauCorrection < Plateau
 					elem = Case.creer(x, y, self, Element.creer)
 				else
 					e = Ile.creer(elem)
-					@LesIles.push(e)
+					@lesIles.push(e)
 					elem = Case.creer(x, y, self, e)					
 				end
                 

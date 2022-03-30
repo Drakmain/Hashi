@@ -56,62 +56,68 @@ class RubyApp < Gtk::Fixed
           click = false
         end
 
-        sens = @map.jouerCoupInterface(x, y, click)
-        @map.afficherPlateau
-        puts @map.plateau.estFini?
+        if(@map.plateau.getCase(x, y).element.estPont?)then
+          sens = @map.jouerCoupInterface(x, y, click)
+          @map.afficherPlateau
+          puts @map.plateau.partieFini?
 
-        double = @map.plateau.getCase(x, y).element.nb_ponts
+          double = @map.plateau.getCase(x, y).element.nb_ponts
 
-        if sens == "vertical"
-          while @map.plateau.getCase(x, y).element.estPont? do
-            x += 1
-          end
-
-          x -= 1
-
-          while @map.plateau.getCase(x, y).element.estPont? do
-            case double
-            when 0
-              pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/0.png")
-            when 1
-              pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/pontV1.png")
-            when 2
-              pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/pontV2.png")
+          if sens == "vertical"
+            while @map.plateau.getCase(x, y).element.estPont? do
+              x += 1
             end
 
-            @Tabevents[@map.plateau.y * x + y].remove(@Tabevents[@map.plateau.y * x + y].child)
-            image = Gtk::Image.new(:pixbuf => pixbuf)
-            image.set_name("Img_#{x}_#{y}")
-            @Tabevents[@map.plateau.y * x + y].child = image
             x -= 1
-          end
+            puts "sens : Vertical"
 
-          @fenetre.show_all
+            while @map.plateau.getCase(x, y).element.estPont? do
+              case double
+              when 0
+                pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/0.png")
+              when 1
+                pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/pontV1.png")
+              when 2
+                pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/pontV2.png")
+              end
 
-        elsif sens == "horizontal"
-          while @map.plateau.getCase(x, y).element.estPont? do
-            y += 1
-          end
-
-          y -= 1
-
-          while @map.plateau.getCase(x, y).element.estPont? do
-            case double
-            when 0
-              pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/0.png")
-            when 1
-              pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/pontH1.png")
-            when 2
-              pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/pontH2.png")
+              @Tabevents[@map.plateau.y * x + y].remove(@Tabevents[@map.plateau.y * x + y].child)
+              image = Gtk::Image.new(:pixbuf => pixbuf)
+              image.set_name("Img_#{x}_#{y}")
+              @Tabevents[@map.plateau.y * x + y].child = image
+              x -= 1
             end
-            @Tabevents[@map.plateau.y * x + y].remove(@Tabevents[@map.plateau.y * x + y].child)
-            image = Gtk::Image.new(:pixbuf => pixbuf)
-            image.set_name("Img_#{x}_#{y}")
-            @Tabevents[@map.plateau.y * x + y].child = image
-            y -= 1
-          end
 
-          @fenetre.show_all
+            @fenetre.show_all
+
+          elsif sens == "horizontal"
+            while @map.plateau.getCase(x, y).element.estPont? do
+              y += 1
+            end
+
+            y -= 1
+            puts "sens : horizontal"
+
+            while @map.plateau.getCase(x, y).element.estPont? do
+              case double
+              when 0
+                pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/0.png")
+              when 1
+                pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/pontH1.png")
+              when 2
+                pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/pontH2.png")
+              end
+              @Tabevents[@map.plateau.y * x + y].remove(@Tabevents[@map.plateau.y * x + y].child)
+              image = Gtk::Image.new(:pixbuf => pixbuf)
+              image.set_name("Img_#{x}_#{y}")
+              @Tabevents[@map.plateau.y * x + y].child = image
+              y -= 1
+            end
+
+            @fenetre.show_all
+          elsif !sens then
+            puts "faire un choix"
+          end
         end
 
       end

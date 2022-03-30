@@ -2,7 +2,7 @@ load "ContreLaMontre.rb"
 load "Normal.rb"
 load "Genie.rb"
 
-mode = Genie.creer(Plateau.creer(), "4", "theo", "facile")
+mode = ContreLaMontre.creer(Plateau.creer(), "4", "theo", "facile")
 mode.initialiserJeu()
 
 fin = false

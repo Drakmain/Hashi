@@ -4,8 +4,21 @@
 #
 # - De charger une matrice avec un fichier
 # - De s'afficher
+#
+# ==== Variables d'instance
+# * @matrix => Matrice du jeu
+# * @x => Le nombre de ligne de la matrice
+# * @y => Le nombre de colonne de la matrice
 class Donnees
 
+
+  # Méthode d'initialisation d'un donnée
+  #
+  # Par défaut :
+  #
+  # - @matrix = Array.new()
+  # - @x = 0
+  # - @y = 0
   def initialize()
     @matrix = Array.new()
     @x = 0

@@ -66,8 +66,6 @@ class RubyApp < Gtk::Fixed
         sens = @map.jouerCoupInterface(@x, @y, @click)
         puts @map.plateau.partieFini?
 
-        puts sens
-
         @sens_popover.set_relative_to(widget)
 
         afficher_pont(sens, @x, @y, @click)
@@ -93,10 +91,6 @@ class RubyApp < Gtk::Fixed
   end
 
   def set_sens(sens)
-    puts sens
-    puts @x
-    puts @y
-    puts @click
     afficher_pont(sens, @x, @y, @click)
     @sens_popover.popdown
   end
@@ -106,6 +100,7 @@ class RubyApp < Gtk::Fixed
     case sens
     when 'vertical'
       @map.jouerCoupVerticaleInterface(x, y, click)
+      puts 'jouerCoupVerticaleInterface'
       nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
       while @map.plateau.getCase(x, y).element.estPont?
         x += 1
@@ -130,9 +125,11 @@ class RubyApp < Gtk::Fixed
         x -= 1
       end
       @fenetre.show_all
+      @map.afficherPlateau
 
     when 'horizontal'
       @map.jouerCoupHorizontaleInterface(x, y, click)
+      puts 'jouerCoupHorizontaleInterface'
       nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
       while @map.plateau.getCase(x, y).element.estPont?
         y += 1
@@ -156,11 +153,11 @@ class RubyApp < Gtk::Fixed
         y -= 1
       end
       @fenetre.show_all
+      @map.afficherPlateau
     when false
       @sens_popover.popup
     end
 
-    @map.afficherPlateau
   end
 
 end

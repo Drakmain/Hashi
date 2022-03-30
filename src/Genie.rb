@@ -39,6 +39,7 @@ class Genie
     #@chronoFirst   => temps au début du tour de jeu
     #@hypothese     => état du mode hypothèse
 
+    attr_reader :fichierJeu
 
     ##############################################################################################
     #                               Methode de classe

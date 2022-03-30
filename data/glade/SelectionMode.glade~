@@ -98,7 +98,6 @@
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="valign">end</property>
         <property name="margin-top">20</property>
         <property name="margin-bottom">20</property>
         <child>

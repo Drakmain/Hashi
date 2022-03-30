@@ -4,9 +4,11 @@ load 'Options.rb'
 
 class MenuPrincipal < Gtk::Builder
 
-  def initialize(fenetre)
+  def initialize(fenetre, ratio)
     super()
     add_from_file('../data/glade/MenuPrincipal.glade')
+    @ratio = ratio
+    @fenetre = fenetre
 
     objects.each do |p|
       unless p.builder_name.start_with?('___object')
@@ -14,26 +16,26 @@ class MenuPrincipal < Gtk::Builder
       end
     end
 
-    @fenetre = fenetre
-    @fenetre.add(@menu_principale_box)
-
-    @classement.set_sensitive(false);
+    @fenetre.set_title('Hashi - Menu Principal')
+    @classement.set_sensitive(false)
 
     connect_signals do |handler|
       method(handler)
     rescue StandardError
       puts "#{handler} n'est pas encore implementer !"
     end
+
+    @fenetre.add(@menu_principale_box)
   end
 
   def on_jouer_clicked
     @fenetre.remove(@menu_principale_box)
-    SelectionMode.new(@fenetre)
+    SelectionMode.new(@fenetre, @ratio)
   end
 
   def on_catalogue_clicked
     @fenetre.remove(@menu_principale_box)
-    Catalogue.new(@fenetre)
+    Catalogue.new(@fenetre, @ratio)
   end
 
   def on_classement_clicked

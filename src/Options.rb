@@ -9,16 +9,16 @@ class Options < Gtk::Builder
   # Methode qui charge les donnees de
   def initialize(fenetre)
     super()
+    add_from_file('../data/glade/Options.glade')
+    @fenetre = fenetre
 
-    @fichierOptions = File.read('../data/settings/settings.json')
+    @fichierOptions = File.read('../data/settings/options.json')
 
     @hashOptions = JSON.parse(@fichierOptions)
     @user = @hashOptions['username']
-    @ratio = @hashOptions['resolutionratio']
+    @ratio = @hashOptions['resolution_ratio']
     @theme = @hashOptions['theme']
     @langue = @hashOptions['langue']
-
-    add_from_file('../data/glade/Options.glade')
 
     objects.each do |p|
       unless p.builder_name.start_with?('___object')
@@ -26,8 +26,7 @@ class Options < Gtk::Builder
       end
     end
 
-    @fenetre = fenetre
-    @fenetre.add(@options_box)
+    @retour_button.set_size_request(-1, 50 * @ratio)
 
     @nom_utilisateur_entry.set_text(@user)
 
@@ -62,24 +61,27 @@ class Options < Gtk::Builder
     rescue StandardError
       puts "#{handler} n'est pas encore implementer !"
     end
+
+    @fenetre.add(@options_box)
   end
 
   def on_retour_button_clicked
     @fenetre.remove(@options_box)
-    MenuPrincipal.new(@fenetre)
+    @fenetre.resize(1280 * @ratio, 720 * @ratio)
+    MenuPrincipal.new(@fenetre, @ratio)
   end
 
   def on_resolution_comboboxtext_changed(resolution)
     puts "Resolution mis a jour #{resolution.active_text}"
     case resolution.active_text
     when '720p'
-      @hashOptions['resolutionratio'] = 1
+      @hashOptions['resolution_ratio'] = 1
       @ratio = 1
     when '900p'
-      @hashOptions['resolutionratio'] = 1.25
+      @hashOptions['resolution_ratio'] = 1.25
       @ratio = 1.25
     when '1080p'
-      @hashOptions['resolutionratio'] = 1.5
+      @hashOptions['resolution_ratio'] = 1.5
       @ratio = 1.5
     end
 
@@ -117,9 +119,8 @@ class Options < Gtk::Builder
   end
 
   def on_enregistre_button_clicked
-    puts 'Settings saved'
-    @fenetre.resize(1280 * @ratio, 720 * @ratio)
-    fichier = File.open('../data/settings/settings.json', 'w')
+    puts 'Options sauvegarde'
+    fichier = File.open('../data/settings/options.json', 'w')
     fichier.write(JSON.dump(@hashOptions))
     fichier.close
   end

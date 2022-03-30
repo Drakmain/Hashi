@@ -310,10 +310,8 @@ class Case
 	#*********************************************************************
 	#					pontAjoutables()
 	#
-	#Retourne un nombre binaire a 4 bits, si un bits vaut 1 la case posséde une ile voisine dans un sens. l'ordre est le suivant du bit droit au gauche : Droite,Gauche,Haut,Bas
-	#
-	#===== ATTRIBUT
-	#
+	# Retourne un nombre binaire a 4 bits, si un bits vaut 1 la case posséde une ile voisine dans un sens.
+	# l'ordre est le suivant du bit droit au gauche : Droite,Gauche,Haut,Bas
 	def pontAjoutables()
 		n = 0
 		if self.element.estIle?

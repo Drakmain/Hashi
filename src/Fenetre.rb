@@ -31,7 +31,7 @@ class Fenetre < Gtk::Builder
     @fenetre.set_resizable(false)
     @fenetre.set_default_size(1280 * @ratio, 720 * @ratio)
     @fenetre.show_all
-    @fenetre.set_window_position Gtk::WindowPosition::CENTER_ALWAYS
+    @fenetre.set_window_position Gtk::WindowPosition::CENTER
 
     @fenetre.set_name(@ratio.to_s)
 

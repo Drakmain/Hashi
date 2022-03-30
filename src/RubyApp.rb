@@ -4,10 +4,11 @@ load 'Plateau.rb'
 
 class RubyApp < Gtk::Fixed
 
-  def initialize(fenetre, map, sens_popover)
+  def initialize(fenetre, map, sens_popover, fini_dialog)
     super()
     @fenetre = fenetre
     @sens_popover = sens_popover
+    @fini_dialog = fini_dialog
 
     @map = map
 
@@ -64,7 +65,6 @@ class RubyApp < Gtk::Fixed
         end
 
         sens = @map.jouerCoupInterface(@x, @y, @click)
-        puts @map.plateau.partieFini?
 
         @sens_popover.set_relative_to(widget)
 
@@ -158,6 +158,9 @@ class RubyApp < Gtk::Fixed
       @sens_popover.popup
     end
 
+    if !@map.plateau.partieFini? then
+      @fini_dialog.run
+    end
   end
 
 end

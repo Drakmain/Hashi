@@ -134,6 +134,7 @@ class Case
 	# - Si elle a du vide
 	#
 	# ==== Retourne
+	#
 	# True si le pont peut être créé, false sinon	
 	def ajouterPontDroite()
 		droite = voisineDroite()

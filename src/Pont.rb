@@ -1,26 +1,25 @@
 load 'Element.rb'
 
-#
-#class Pont 
-#
-#la classe Pont est une spécification de la classe Element
-#
-#On peut : 
-#       - Creer un pont
-#       - savoir si l'element est un pont
-#       - ajouter un pont (soit il y a 1 pont, soit 2, soit 0)
-#       - enlever le(s) pont(s)
-#       - Connaitre l'orientation du pont (horizontale ou verticale)
-#
-# Un pont est un éléménent contenu dans une case, il permet de faire le lien entre 2 îles
 
+# La classe Pont représente un pont sur le plateau, elle hérite de Element
+# Un Pont est un Element contenu dans une case, il permet de faire le lien entre 2 Ile
+#
+# Elle peut : 
+# - Créer un pont
+# - Savoir si l'element est un pont
+# - Ajouter un pont (soit il y a 1 pont, soit 2, soit 0)
+# - Enlever le(s) pont(s)
+# - Connaître l'orientation du pont (horizontale ou verticale)
+#
+# ==== Variables d'instance
+#
+# * @sensHorizontale => un boolean qui indique si le pont est horizontal ou pas
+# * @nb_ponts => le nombre de ponts (0,1,2)
+# * @deuxSens => le nombre de sens que le pont peut avoir (horizontal et/ou vertical)
+# * @erreur => un boolean qui indique si le pont est faux ou non
+# * @pontPossible => un boolean qui indique s'il faut surbriller le pont ou non
 class Pont < Element
-    #@sensHorizontale => un boolean qui indique si le pont est horizontale ou pas
-    #@nb_ponts => le nombre de ponts (0,1,2)
-    #@deuxSens => le nombre de sens que le pont peut avoir (horizontal et/ou vertical)
-    #@erreur => un boolean qui indique si le pont est faux ou non
-    #@pontPossible => un boolean qui indique s'il faut surbriller le pont ou non
-
+   
     ##############################################################################################################
     #                                           Methodes de classe
     ##############################################################################################################
@@ -28,24 +27,30 @@ class Pont < Element
 	#la method new est en privé
     private_class_method :new
     
-    #******************************************************
-    #               Pont.creer()
-    #
-    #Permet de creer un pont
-    
+    # Méthode qui permet de créer un pont
+	#
+	# ==== Attributs
+	#
+    # * +unSens+ - booléen vérifiant si le sens du pont est horizontal
+	# * +uneValeur+ - le nombre de ponts (un entier)
+	#
     def Pont.creer(unSens, uneValeur=0)
         new(unSens, uneValeur)
     end
 
-    #******************************************************
-    #               initialize()
+
+    # Méthode qui permet d'initialiser un pont
     #
-    #Permet d'initialiser un pont
+    # Par defaut : 
+    # - @sensHorizontal = false
+    # - @erreur = false
+    # - @deuxSens = 0
     #
-    #Par defaut : 
-    #   - sensHorizontale = false
-    #   - @erreur = false
-    #
+    # ==== Attributs
+	#
+    # * +unSens+ - booléen vérifiant si le sens du pont est horizontal
+	# * +uneValeur+ - le nombre de ponts (un entier)
+	#
 	def initialize(unSens, uneValeur)
 		@sensHorizontal = unSens
         @nb_ponts= uneValeur
@@ -60,23 +65,22 @@ class Pont < Element
     ###############################################################################################################
 
 
-    # Créer les getters et setters de la variable sensHorizontal
+    # Accès en lecture et en écriture
     attr_accessor :sensHorizontal, :nb_ponts, :erreur, :pontPossible
 
 
-    # *****************************************************
-    #               estPont?()
+
+    # Méthode qui vérifie si c'est un pont
     #
-    #methode qui permet de dire que c'est un pont
+    # ==== Retourne
+    #
+    # true
     def estPont?
         return true
     end
 
-    #*****************************************************
-    #               ajoutePont()
-    #
-    #Methode qui permet d'ajouter un pont (s'active lorsque l'utilisateur fait un clic droit)
-    #
+
+    # Méthode qui permet d'ajouter un pont (s'active lorsque l'utilisateur fait un clic droit)
     def ajoutePont()
         if(@nb_ponts < 2)then
             @nb_ponts += 1  
@@ -84,10 +88,7 @@ class Pont < Element
         end
     end
 
-    #****************************************************
-    #                   enlevePont()
-    #
-    #Methode qui permet d'enlever les ponts (mettre à 0)
+    # Méthode qui permet d'enlever les ponts (mettre à 0)
     def enlevePont()
         nb_ponts = 0
         @erreur = false
@@ -98,60 +99,53 @@ class Pont < Element
         return nb_ponts
     end
 
-    #***************************************************
-    #                   estHorizontale()
-    #
-    #Permet de dire que le pont est horizontale en modifiant le boolean
+    # Méthode qui permet de dire que le pont est horizontale en modifiant le boolean
     def estHorizontal()
         @sensHorizontal = true
     end
 
-
-    #***************************************************
-    #                   estVertical()
-    #
-    #Permet de dire que le pont est horizontale en modifiant le boolean
+    # Méthode qui permet de dire que le pont est horizontale en modifiant le boolean
     def estVertical()
         @sensHorizontal = false
     end
 
-    #***************************************************
-    #                   estHorizontal?()
+    # Méthode qui vérifie si le sens est horizontal
     #
-    #returne vrai si le pont est horizontale
+    # ==== Retourne
+    #
+    # true si le sens est horizontal, false sinon
     def estHorizontal?()
         @sensHorizontal
     end
 
-    #***************************************************
-    #                   estHorizontal?()
+    # Méthode qui vérifie si le sens est vertical
     #
-    #returne vrai si le pont est vertical
+    # ==== Retourne
+    #
+    # true si le sens est vertical, false sinon
     def estVertical?()
         @sensHorizontal == false
     end
 
-    #**********************************************************
-    #                   estElement?()
+    # Méthode qui vérifie si l'element est un élément
     #
-    #retourne faux car c'est un pont
+    # ==== Retourne
+    #
+    # false
     def estElement?()
         return false
     end
 
-    #***********************************************************
-    #                   deuxSens()
-    #
-    #permet de d'incrémenter le nombre de sens d'un pont
+    # Méthode qui permet de d'incrémenter le nombre de sens d'un pont
     def deuxSens
         @deuxSens += 1
     end
 
-
-    #***********************************************************
-    #                   aDeuxSens()
+    # Méthode qui vérifie si le pont a deux sens possible
     #
-    #Retourne vrai si le pont a deux sens possible, faux sinon
+    # ==== Retourne
+    #
+    # true si le pont a deux sens, false sinon
     def aDeuxSens()
         return @deuxSens>0
     end

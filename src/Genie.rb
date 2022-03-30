@@ -328,7 +328,7 @@ class Genie
             corrigerErreur
         end
 
-        return true
+        return sens
     end
 
 

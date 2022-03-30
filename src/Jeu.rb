@@ -27,7 +27,8 @@ class Jeu < Gtk::Builder
 
     @username_label.set_size_request(-1, 50 * @ratio)
     @suggerer_un_coup_button.set_size_request(-1, 50 * @ratio)
-    @verrifier_la_grille_button.set_size_request(-1, 50 * @ratio)
+    @afficher_erreur_button.set_size_request(-1, 50 * @ratio)
+    @corriger_erreur_button.set_size_request(-1, 50 * @ratio)
     @mode_hypothese_button.set_size_request(-1, 50 * @ratio)
     @fini_dialog.set_window_position Gtk::WindowPosition::CENTER_ON_PARENT
     @fini_dialog.set_resizable(false)
@@ -74,8 +75,12 @@ class Jeu < Gtk::Builder
     puts 'on_suggerer_un_coup_button_clicked'
   end
 
-  def on_verrifier_la_grille_button_clicked
-    puts 'on_verrifier_la_grille_button_clicked'
+  def on_corriger_erreur_button_clicked
+    puts 'on_corriger_erreur_button_clicked'
+  end
+
+  def on_afficher_erreur_button_clicked
+    puts 'on_afficher_erreur_button_clicked'
   end
 
   def on_mode_hypothese_button_clicked

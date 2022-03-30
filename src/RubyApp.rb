@@ -268,7 +268,15 @@ class RubyApp < Gtk::Fixed
 
   end
 
+  def refaire
+    @map.redo
+    @map.afficherPlateau
+  end
 
+  def annuller
+    @map.undo
+    @map.afficherPlateau
+  end
 
   def corrigerErreur
     plateauCourant = @map.plateau.clone
@@ -280,7 +288,6 @@ class RubyApp < Gtk::Fixed
   end
 
   def afficherErreur
-
   end
 
 end

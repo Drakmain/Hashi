@@ -118,68 +118,81 @@ class RubyApp < Gtk::Fixed
   def afficher_pont(sens, x, y, click)
 
     case sens
+
     when 'vertical'
-      @map.jouerCoupVerticaleInterface(x, y, click)
-      nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
-      while @map.plateau.getCase(x, y).element.estPont?
-        x += 1
-      end
+      bool = @map.jouerCoupVerticaleInterface(x, y, click)
 
-      x -= 1
-
-      while @map.plateau.getCase(x, y).element.estPont?
-        case nb_ponts
-        when 0
-          pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/0.png')
-        when 1
-          pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontV1.png')
-        when 2
-          pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontV2.png')
+      if(bool)then
+        nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
+        while @map.plateau.getCase(x, y).element.estPont?
+          x += 1
         end
 
-        @Tabevents[@map.plateau.y * x + y].remove(@Tabevents[@map.plateau.y * x + y].child)
-        image = Gtk::Image.new(:pixbuf => pixbuf)
-        image.set_name("Img_#{x}_#{y}")
-        @Tabevents[@map.plateau.y * x + y].child = image
         x -= 1
+
+        while @map.plateau.getCase(x, y).element.estPont?
+          case nb_ponts
+          when 0
+            pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/0.png')
+          when 1
+            pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontV1.png')
+          when 2
+            pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontV2.png')
+          end
+
+          @Tabevents[@map.plateau.y * x + y].remove(@Tabevents[@map.plateau.y * x + y].child)
+          image = Gtk::Image.new(:pixbuf => pixbuf)
+          image.set_name("Img_#{x}_#{y}")
+          @Tabevents[@map.plateau.y * x + y].child = image
+          x -= 1
+        end
+        @fenetre.show_all
+        @map.afficherPlateau
       end
-      @fenetre.show_all
-      @map.afficherPlateau
 
     when 'horizontal'
-      @map.jouerCoupHorizontaleInterface(x, y, click)
+      bool = @map.jouerCoupHorizontaleInterface(x, y, click)
       puts 'jouerCoupHorizontaleInterface'
-      nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
-      while @map.plateau.getCase(x, y).element.estPont?
-        y += 1
-      end
 
-      y -= 1
-
-      while @map.plateau.getCase(x, y).element.estPont?
-        case nb_ponts
-        when 0
-          pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/0.png')
-        when 1
-          pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontH1.png')
-        when 2
-          pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontH2.png')
+      if(bool) then
+        nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
+        while @map.plateau.getCase(x, y).element.estPont?
+          y += 1
         end
-        @Tabevents[@map.plateau.y * x + y].remove(@Tabevents[@map.plateau.y * x + y].child)
-        image = Gtk::Image.new(:pixbuf => pixbuf)
-        image.set_name("Img_#{x}_#{y}")
-        @Tabevents[@map.plateau.y * x + y].child = image
+
         y -= 1
+
+        while @map.plateau.getCase(x, y).element.estPont?
+          case nb_ponts
+          when 0
+            pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/0.png')
+          when 1
+            pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontH1.png')
+          when 2
+            pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontH2.png')
+          end
+          @Tabevents[@map.plateau.y * x + y].remove(@Tabevents[@map.plateau.y * x + y].child)
+          image = Gtk::Image.new(:pixbuf => pixbuf)
+          image.set_name("Img_#{x}_#{y}")
+          @Tabevents[@map.plateau.y * x + y].child = image
+          y -= 1
+        end
+        @fenetre.show_all
+        @map.afficherPlateau
       end
-      @fenetre.show_all
-      @map.afficherPlateau
+
     when false
       @sens_popover.popup
+
+
     end
 
-    if !@map.plateau.partieFini? then
+    if @map.plateau.partieFini? then
       @fini_dialog.run
     end
+
+    @fenetre.show_all
+    @map.afficherPlateau
   end
 
 

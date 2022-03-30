@@ -61,6 +61,7 @@ class Jeu < Gtk::Builder
 
   def on_annuler_button_clicked
     puts 'on_annuler_button_clicked'
+    @grille.annuller
   end
 
   def on_pause_button_clicked
@@ -68,7 +69,7 @@ class Jeu < Gtk::Builder
   end
 
   def on_refaire_button_clicked
-    puts 'on_refaire_button_clicked'
+    @grille.refaire
   end
 
   def on_suggerer_un_coup_button_clicked
@@ -93,6 +94,42 @@ class Jeu < Gtk::Builder
 
   def on_horizontal_button_clicked
     @grille.set_sens('horizontal')
+  end
+
+  def on_menu_principal_button_clicked
+    @fini_dialog.response(1)
+
+    @fenetre.remove(@jeu_box)
+    @fenetre.resize(1280 * @ratio, 720 * @ratio)
+    MenuPrincipal.new(@fenetre, @ratio)
+  end
+
+  def on_selection_button_clicked
+    @fini_dialog.response(2)
+
+    @fenetre.remove(@jeu_box)
+    @fenetre.resize(1280 * @ratio, 720 * @ratio)
+    SelectionMap.new(@fenetre, @ratio, @mode, @difficulte)
+  end
+
+  def on_recommencer_button_clicked
+    @fini_dialog.response(3)
+    @fenetre.remove(@jeu_box)
+
+    case @mode
+    when 'genie'
+      map = Genie.creer(Plateau.creer, @niveau.to_s, @user, @difficulte)
+    when 'normal'
+      map = Normal.creer(Plateau.creer, @niveau.to_s, @user, @difficulte)
+    when 'contre la montre'
+      map = ContreLaMontre.creer(Plateau.creer, @niveau.to_s, @user, @difficulte)
+    end
+
+    Jeu.new(@fenetre, @ratio, @mode, @difficulte, map, @niveau.to_s)
+  end
+
+  def on_fini_dialog_response(widget, response)
+    widget.close
   end
 
 end

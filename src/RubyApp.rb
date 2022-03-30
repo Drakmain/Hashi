@@ -159,6 +159,7 @@ class RubyApp < Gtk::Fixed
     end
 
     if !@map.plateau.partieFini? then
+      set_sensitive(false)
       @fini_dialog.run
     end
   end

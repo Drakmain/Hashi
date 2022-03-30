@@ -41,6 +41,10 @@ class RubyApp < Gtk::Fixed
       @Tabevents << instance_variable_set("@#{name}", Gtk::EventBox.new)
     end
 
+=begin
+    @Tabevents[i].signal_connect "button-enter-notify-event" do |widget, event|
+=end
+
     (0...@matrixPix.length).each do |i|
       pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/#{numbers[i]}.png")
       image = Gtk::Image.new(:pixbuf => pixbuf)
@@ -59,12 +63,9 @@ class RubyApp < Gtk::Fixed
         end
 
         sens = @map.jouerCoupInterface(x, y, click)
-        @map.afficherPlateau
         puts @map.plateau.partieFini?
 
-        nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
-
-        afficher_pont(sens, x, y, nb_ponts, click)
+        afficher_pont(sens, x, y, click)
       end
     end
   end
@@ -88,22 +89,23 @@ class RubyApp < Gtk::Fixed
 
   def set_sens(sens)
     afficher_pont(sens, x, y, nb_ponts, click)
-
     @sens_popover.popdown
   end
 
-  def afficher_pont(sens, x, y, nb_ponts, click)
+  def afficher_pont(sens, x, y, click)
 
     case sens
     when 'vertical'
       @map.jouerCoupVerticaleInterface(x, y, click)
-      while @map.plateau.getCase(x, y).element.estPont? do
+      nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
+      puts nb_ponts
+      while @map.plateau.getCase(x, y).element.estPont?
         x += 1
       end
 
       x -= 1
 
-      while @map.plateau.getCase(x, y).element.estPont? do
+      while @map.plateau.getCase(x, y).element.estPont?
         case nb_ponts
         when 0
           pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/0.png')
@@ -122,14 +124,16 @@ class RubyApp < Gtk::Fixed
       @fenetre.show_all
 
     when 'horizontal'
-      @map.jouerCoupHorizontaleInterface(x, y, @click)
-      while @map.plateau.getCase(x, y).element.estPont? do
+      @map.jouerCoupHorizontaleInterface(x, y, click)
+      nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
+      puts nb_ponts
+      while @map.plateau.getCase(x, y).element.estPont?
         y += 1
       end
 
       y -= 1
 
-      while @map.plateau.getCase(x, y).element.estPont? do
+      while @map.plateau.getCase(x, y).element.estPont?
         case nb_ponts
         when 0
           pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/0.png')

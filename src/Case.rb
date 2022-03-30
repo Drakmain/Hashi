@@ -406,14 +406,16 @@ class Case
 	# Methode qui permet d'enlever un pont
 	def enleverPont()
 		if(@element.estPont?)then
-			if(@element.estVertical?)
-				enleverPontSens("haut", true)
-				enleverPontSens("bas", false)
-				return "vertical"
-			else
-				enleverPontSens("droite", true)
-				enleverPontSens("gauche", false)
-				return "horizontal"
+			if(@element.nb_ponts>0)then
+				if(@element.estVertical?)
+					enleverPontSens("haut", true)
+					enleverPontSens("bas", false)
+					return "vertical"
+				else
+					enleverPontSens("droite", true)
+					enleverPontSens("gauche", false)
+					return "horizontal"
+				end
 			end
 		end
 	end

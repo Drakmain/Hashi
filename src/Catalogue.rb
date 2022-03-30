@@ -1,6 +1,6 @@
 class Catalogue < Gtk::Builder
 
-  def initialize(fenetre)
+  def initialize(fenetre, ratio)
     super()
     add_from_file('../data/glade/Catalogue.glade')
 
@@ -10,6 +10,7 @@ class Catalogue < Gtk::Builder
       end
     end
 
+    @ratio = ratio
     @fenetre = fenetre
     @fenetre.add(@catalogue_box)
 
@@ -47,7 +48,8 @@ class Catalogue < Gtk::Builder
 
   def on_retour_button_clicked
     @fenetre.remove(@catalogue_box)
-    MenuPrincipal.new(@fenetre)
+    @fenetre.resize(1280 * @ratio, 720 * @ratio)
+    MenuPrincipal.new(@fenetre, @ratio)
   end
 
 end

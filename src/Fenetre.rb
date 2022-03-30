@@ -4,6 +4,8 @@ load 'MenuPrincipal.rb'
 
 class Fenetre < Gtk::Builder
 
+  attr_reader :ratio
+
   def initialize
     super()
     add_from_file('../data/glade/Fenetre.glade')
@@ -15,28 +17,30 @@ class Fenetre < Gtk::Builder
     }
 
     begin
-      @fichierOptions = File.read('../data/settings/settings.json')
+      @fichierOptions = File.read('../data/settings/options.json')
     rescue
-      @fichierOptions = File.open('../data/settings/settings.json', 'w')
-      @fichierOptions.write('{"username": "Oue","resolutionratio": 1,"theme": "clair","langue": "Francais"}')
+      @fichierOptions = File.open('../data/settings/options.json', 'w')
+      @fichierOptions.write('{"username": "Invité","resolution_ratio": 1,"theme": "clair","langue": "Francais"}')
       @fichierOptions.close
-      @fichierOptions = File.read('../data/settings/settings.json')
+      @fichierOptions = File.read('../data/settings/options.json')
     end
 
     @hashOptions = JSON.parse(@fichierOptions)
-    @ratio = @hashOptions['resolutionratio']
+    @ratio = @hashOptions['resolution_ratio']
 
     @fenetre.set_resizable(false)
     @fenetre.set_default_size(1280 * @ratio, 720 * @ratio)
-    @fenetre.set_title('Hashi')
     @fenetre.show_all
     @fenetre.set_window_position Gtk::WindowPosition::CENTER_ALWAYS
+
+    @fenetre.set_name(@ratio.to_s)
+
     @fenetre.signal_connect('destroy') do
       puts 'Gtk.main_quit'
       Gtk.main_quit
     end
 
-    MenuPrincipal.new(@fenetre)
+    MenuPrincipal.new(@fenetre, @ratio)
   end
 
 end

@@ -30,9 +30,9 @@ class Jeu < Gtk::Builder
     @verrifier_la_grille_button.set_size_request(-1, 50 * @ratio)
     @mode_hypothese_button.set_size_request(-1, 50 * @ratio)
 
-    grille = RubyApp.new(@fenetre, @map)
+    @grille = RubyApp.new(@fenetre, @map, @sens_popover)
 
-    @plateau_box.add(grille)
+    @plateau_box.add(@grille)
 
     @fenetre.set_title("Hashi - Niveau n°#{niveau}")
 
@@ -76,6 +76,14 @@ class Jeu < Gtk::Builder
 
   def on_mode_hypothese_button_clicked
     puts 'on_mode_hypothese_button_clicked'
+  end
+
+  def on_vertical_button_clicked
+    @grille.set_sens('vertical')
+  end
+
+  def on_horizontal_button_clicked
+    @grille.set_sens('horizontal')
   end
 
 end

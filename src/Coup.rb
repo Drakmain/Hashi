@@ -1,10 +1,13 @@
 #
-#class Coup
+# La classe Coup permet de sauvegarder les coups pour pouvoir faire les undo ou les redo.
 #
-#permet de sauvegarder les coups pour pouvoir faire les undo ou les redo
+# On peut créer un coup (qui sera créé à chaque action de l'utilisateur)
 #
-#On peut juste créer un coup (qui sera créer à chaques coup d el'utilsiateur)
+# ==== Variables d'instance
 #
+# * @typeCoup : le type de coup réaliser par le joueur
+# * @pont : le pont sur lequel le clic est réalisé
+# * @sens : le sens du pont
 class Coup < Element
 
 	###################################################################################
@@ -12,65 +15,60 @@ class Coup < Element
 	###################################################################################
 
 
-
-    ## La classe Pont possède une variable d'instance
+	# Méthode qui permet de créer un nouveau coup
 	#
-	# @coupAjouter = le coup donner : boolean qui dit si c'est un ajout ou pas
-	# @pont = reference du pont sur la quelle le click est fait
-
-	#***********************************************************************
-	#				Coup.creer()
+	# ==== Attributs
 	#
-	#Permet de creer un nouveau coup
-	#
-	#===== ATTRIBUT
-	#
-	#*+typeCoup+ : le type de coup réaliser par le joueur
-	#*+pont+ : le pont sur lequel le clic est réalisé
-	#*+sens+ : le sens du pont
+	# * +typeCoup+ : le type de coup réaliser par le joueur (clic gauche ou droit)
+	# * +pont+ : le pont sur lequel le clic est réalisé
+	# * +sens+ : le sens du pont (horizontal ou vertical)
 	#
 	def Coup.creer(typeCoup, pont, sens)
 		new(typeCoup, pont, sens)
 	end
 
-	#***********************************************************************
-	#				initialize()
+
+	# Méthode qui permet de initialiser un coup
 	#
-	#Permet de initialiser un coup
+	# ==== Attributs
 	#
-	#===== ATTRIBUT
-	#
-	#*+clickDroit+ : boolean qui indique si le clic etait droit ou pas
-	#*+pont+ : le pont sur lequel le clic est réalisé
+	# * +typeCoup+ : le type de coup réaliser par le joueur (clic gauche ou droit)
+	# * +pont+ : le pont sur lequel le clic est réalisé
+	# * +sens+ : le sens du pont (horizontal ou vertical)
 	#
 	def initialize(typeCoup, pont, sens)
-		@coupAjouter = typeCoup
+		@typeCoup = typeCoup
 		@pont = pont
 		@sens = sens
 	end
 
+	# Méthode qui vérifie si type de coup est ajouter
 	def estAjout?
-		@coupAjouter == "ajouter"
+		@typeCoup == "ajouter"
 	end
 
+	# Méthode qui vérifie si type de coup est ajouter
 	def estEnleve?
-		@coupAjouter == "enlever"
+		@typeCoup == "enlever"
 	end
 
+	# Méthode qui vérifie si le sens du coup est vertical
 	def estVertical?
 		return @sens == "vertical"
 	end
 
+	# Méthode qui vérifie si le sens du coup est horizontal
 	def estHorizontal?
 		return @sens == "horizontal"
 	end
 
+	# Méthode qui affiche le sens du coup
 	def to_s
 		"sens du coup : " + @sens
 	end
 
-	#les readers
-	attr_reader :coupAjouter, :pont, :sens
+	# Accès en lecture
+	attr_reader :typeCoup, :pont, :sens
 
 
 

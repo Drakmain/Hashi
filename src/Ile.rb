@@ -1,46 +1,46 @@
 load "Element.rb"
 
-#class Ile
+
+# La classe Ile représente une île sur le plateau, elle hérite de Element
 #
-#la classe Ile représente un ile sur le plateau, elle hérite de Element
+# Elle peut : 
+# - Dire qu'elle est une île
+# - Dire si elle est terminée (si le nombre de pont qui la relie est équivalent à sa valeur)
 #
-#Elle peut : 
-#		- Dire qu'elle est une ile
-#		- Dire si elel est terminé (si le nombre de pont qui la relie est équivalent à sa valeur)
+# ==== Variables d'instance
+# * @valeur => un int, représentant le nombre de pont devant être connecté à l'île
+# * @nbLiens => un int, représentant le nombre de liens (ponts), connecté à l'île
+# * @estFini => un bool, vrai si l'île à le bon nombre de liens, et faux dans le cas inverse
+#
 class Ile < Element
-	# @valeur = un int, représentant le nombre de pont devant être connecté à l'île
-	# @nbLiens = un int, représentant le nombre de liens (ponts), connecté à l'île
-	# @estFini = un bool, vrai si l'île à le bon nombre de liens, et faux dans le cas inverse
+	
 
 	########################################################################################################
 	#								Methode de classe
 	########################################################################################################
 
-	#**************************************************
-	#			Ile.creer()
+
+	# Méthode qui permet de créer une ile
 	#
-	#permet de créer une ile
+	# ==== Attributs
 	#
-	#====== ATTRIBUTS
-	#
-	#*+uneValeur+ : la valeur de l'ile (un entier)
+	# * +uneValeur+ - la valeur de l'île (un entier)
 	#
 	def Ile.creer(uneValeur)
 		new(uneValeur)
 	end
 	
-	#**************************************************
-	#			initialize()
+
+	
+	# Méthode qui permet d'initialiser une ile
 	#
-	#permet d'initialiser une ile
+	# Par defaut : 
+	# - nbLiens = 0
+	# - estFini = false
 	#
-	#Par defaut : 
-	#		- nbLiens = 0
-	#		- estFini = false
+	# ==== Attributs
 	#
-	#====== ATTRIBUTS
-	#
-	#*+uneValeur+ : la valeur de l'ile (un entier)
+	# * +uneValeur+ - la valeur de l'île (un entier)
 	#
 	def initialize(uneValeur)  
 		@valeur = uneValeur 
@@ -52,39 +52,44 @@ class Ile < Element
 	#									Methodes
 	########################################################################################################
 
-	#accessor
+	# Accès en lecture
 	attr_reader :valeur 
+
+	# Accès en lecture et en écriture
 	attr_accessor :nbLiens, :estFini
 
 
-	#**************************************************
-	#				estIle?()
-	#
-	#retourne vrai car c'est une ile
+	# Méthode qui vérifie si c'est une île
+    #
+    # ==== Retourne
+    #
+    # true
 	def estIle?() 
         return true
     end
 
-	#**********************************************************
-    #                   estElement?()
+	# Méthode qui vérifie si l'element est un élément
     #
-    #retourne faux car c'est une ile
+    # ==== Retourne
+    #
+    # false
     def estElement?()
         return false
     end
 
-	#**************************************************
-	#				estFini?()
-	#
-	#retourne vrai car c'est l'ile est terminé
+
+	# Méthode qui vérifie si l'île est finie
+    #
+    # ==== Retourne
+    #
+    # true si l'île est complétée, false sinon
 	def estFini?() 
         return @estFini
     end
 
-	#**************************************************
-	#				ajouterPont()
-	#
-	#incrémente de 1 @nbLiens et vérifie si l'île est fini
+
+
+	# Méthode qui incrémente de 1 @nbLiens et vérifie si l'île est fini
 	def ajouterPont
 		if(!estFini)then
 			@nbLiens += 1
@@ -96,19 +101,15 @@ class Ile < Element
 		end
 	end
 
-	#**************************************************
-	#				ajouterPont()
-	#
-	#décrémente de 1 @nbLiens
+
+	# Méthode qui décrémente de 1 @nbLiens
 	def enlevePont()
 		@nbLiens -= 1
 		@estFini = false
 	end
 
-	#***********************************************************
-    #                         to_s()
-    #
-    #affiche une ile
+
+    # Méthode qui affiche une ile
     def to_s
         return "Ile"
     end

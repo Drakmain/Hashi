@@ -25,10 +25,14 @@ class Pont < Element
     #                                           Methodes de classe
     ##############################################################################################################
 
+	#la method new est en privé
+    private_class_method :new
+    
     #******************************************************
     #               Pont.creer()
     #
     #Permet de creer un pont
+    
     def Pont.creer(unSens, uneValeur=0)
         new(unSens, uneValeur)
     end
@@ -49,10 +53,7 @@ class Pont < Element
         @erreur = false
         @pontPossible = false
 	end
-
-    #new est privée
-    private_class_method :new
-
+    
 
     ###############################################################################################################
     #                                               Methodes

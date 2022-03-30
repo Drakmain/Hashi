@@ -1,12 +1,11 @@
 
-#class Element 
+# La classe Element représente un élément du plateau.
+# Elle est la classe mère de Pont et Ile. 
+# Une case peut donc être un Pont, une Ile ou un Element.
 #
-#La classe element représente un element du plateau
-#c'est une classe qui va être sois un pont, soit une ile, soit un element
-#
-#elle peut : 
-#   - S'afficher
-#   - dire si elle est un pont ou une ile
+# Elle peut : 
+# - S'afficher
+# - dire si elle est un pont ou une île
 #
 class Element
 
@@ -14,53 +13,57 @@ class Element
     #                               Methodes de classe
     ####################################################################################################
     
-    #***********************************************************
-    #               Element.creer()
-    #
-    #Creer un nouvelle element
+    # La méthode new est en privé
+    private_class_method :new
+    
+
+    # Méthode qui créer un nouvel élément
     def Element.creer()
         new()
     end
-
-    #new en privée
-    private_class_method :new
 
     ####################################################################################################
     #                                   Methodes
     ####################################################################################################
 
-    #***********************************************************
-    #                       estPont?()
+
+    # Méthode qui vérifie si l'element est un pont
     #
-    #retourne vrai si c'est un pont
+    # ==== Retourne
+    #
+    # false par défaut
     def estPont?() 
         return false
     end
 
-    #**********************************************************
-    #                       estIle?()
+
+    # Méthode qui vérifie si l'element est une île
     #
-    #retourne vrai si c'est une ile
+    # ==== Retourne
+    #
+    # false par défaut
     def estIle?() 
         return false
     end
 
 
-    #**********************************************************
-    #                   estElement?()
+
+    # Méthode qui vérifie si l'element est un élément
     #
-    #retourne vrai car c'est un élément
+    # ==== Retourne
+    #
+    # true par défaut
     def estElement?()
         return true
     end
 
-    #***********************************************************
-    #                         to_s()
-    #
-    #affiche un element
+
+    
+    # Méthode qui affiche un élément
     def to_s
         return " element du tableau"
     end
+
 end #fin de classe Element
 
 

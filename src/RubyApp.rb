@@ -58,15 +58,17 @@ class RubyApp < Gtk::Fixed
 
         case event.button
         when 1
-          click = true
+          @click = true
         when 3
-          click = false
+          @click = false
         end
 
-        sens = @map.jouerCoupInterface(x, y, click)
+        sens = @map.jouerCoupInterface(x, y, @click)
         puts @map.plateau.partieFini?
 
-        afficher_pont(sens, x, y, click)
+        puts sens
+
+        afficher_pont(sens, x, y, @click)
       end
     end
   end
@@ -89,7 +91,7 @@ class RubyApp < Gtk::Fixed
   end
 
   def set_sens(sens)
-    afficher_pont(sens, x, y, nb_ponts, click)
+    afficher_pont(sens, x, y, @click)
     @sens_popover.popdown
   end
 
@@ -155,6 +157,7 @@ class RubyApp < Gtk::Fixed
       @sens_popover.popup
     end
 
+    @map.afficherPlateau
   end
 
 end

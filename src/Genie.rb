@@ -300,7 +300,7 @@ class Genie
         if(caseCourante.element.estPont?)then
             if (caseCourante.element.aDeuxSens) then
                 return false
-            elsif(caseCourante.element.nb_ponts >= 0 && caseCourante.element.nb_ponts < 2)then
+            elsif(caseCourante.element.nb_ponts >= 0 && caseCourante.element.nb_ponts <= 2)then
                     sens = caseCourante.element.estVertical?
                     if(sens)then    
                         sens = "vertical"

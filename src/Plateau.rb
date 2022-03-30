@@ -5,27 +5,23 @@ load 'Case.rb'
 
 require 'matrix'
 
+# La classe Plateau représente les Case du jeu, le plateau a une taille défini dans le fichier
 #
-#class Plateau
+# Elle est capable : 
+# - De charger un fichier
+# - De générer le plateau en fonction du fichier
+# - D'ajouter les ponts possible
+# - De s'afficher
 #
-#la classe plateau représente les cases du jeu, le plateau a une taille défini dans le fichier
+# Le plateau est composé de case, et chaque case est composé d'un Element, qui est soit une ile, soit un pont, soit un element
 #
-#Elle est capable : 
-#	- De charger un fichier
-#	- de générer le plateau en fonction du fichier
-#	- d'ajouter les ponts possible
-#	- de s'afficher
+# ==== Variables d'instance
 #
-#Le plateau est composé de case, et chaque case est composé d'un element, qui est soit une ile, soit un pont, soit un element
-#
+# * @matrice => la matrice de case avec les éléments
+# * @x => la largeur du tableau
+# * @y => la longueur du tableau
+# * @lesIles => tableau des iles du plateau
 class Plateau
-	#
-	#===== ATTRIBUTS
-	#
-	#@matrice => la matrice de case avec les éléments
-	#@x => la largeur du tableau
-	#@y => la longueur du tableau
-	#@LesIles => tableau des iles du plateau
 
 	###########################################################################################
 	#						Methodes de classe
@@ -34,32 +30,23 @@ class Plateau
 	#Mettre new en privée
 	private_class_method :new
 	
-	#************************************************************
-	#				Plateau.creer()
-	#
-	#permet de créer un plateau
-	#
-	#===== ATTRIBUTS
-	#
-	#
+	# Méthode qui permet de créer un plateau
 	def Plateau.creer()
 		new()
 	end
 
-	#************************************************************
-	#				Plateau.creer()
+
+	# Méthode qui permet d'initialiser un plateau
 	#
-	#permet d'initialiser un plateau
-	#
-	#===== ATTRIBUTS
-	#
-	#*+uneID+ : l'id du niveau
+	# Par defaut : 
+	# - @x = 0
+	# - @y = 0
 	#
 	def initialize()
 		@x = 0
 		@y = 0 
 		@matrice = Array.new() {Array.new()} #On initialise le tableau des cases pour le charger
-		@LesIles = Array.new() #On initialise le tableau des ILes
+		@lesIles = Array.new() #On initialise le tableau des ILes
 	
 	end
 
@@ -68,20 +55,17 @@ class Plateau
 	#						Methodes
 	##########################################################################################
 
-	#******************* Accessors **********************************************
+	# Accès en lecture et en écriture
 	attr_accessor :matrice, :plateau, :x, :y
 
 
-	#****************************************************************
-	#				generateMatrice()
+	# Méthode qui génère la matrice à partir du fichier passé en parametre
+	# elle récupère la taille de la matrice, valeur de x(lignes) et la valeur de y(colonne),
+	# puis parcourir la matrice et charger les valeurs.
 	#
-	#Génère la matrice à partir du fichier passé en parametre
-	#elle récupère la taille de la matrice, valeur de x(lignes) et la valeur de y(colonne),
-	#puis parcourir la matrice et charger les valeurs.
+	# ===== Attributs
 	#
-	#====== ATTRIBUTS
-	#
-	#*+file+ : le fichier qui contient le niveau à charger
+	# * +file+ - le fichier qui contient le niveau à charger
 	#
 	def generateMatrice(file)
 		File.open(file,'r') do |fichier|
@@ -99,10 +83,7 @@ class Plateau
 	end
 
 		
-	#************************************************************
-	#					generatePlateau()
-	#
-	#Permet de générer le plateau (transformer les entiers en Elements et en Ile)
+	# Méthode qui permet de générer le plateau (transformer les entiers en Elements et en Ile)
 	#
 	def generatePlateau()
 		#Ne plus toucher!
@@ -117,7 +98,7 @@ class Plateau
 					elem = Case.creer(x, y, self, Element.creer)
 				else
 					e = Ile.creer(elem)
-					@LesIles.push(e)
+					@lesIles.push(e)
 					elem = Case.creer(x, y, self, e)
 				end
 			}
@@ -125,13 +106,11 @@ class Plateau
 	end
 
 
-
-	#**********************************************************
-	#						to_s
+	# Méthode qui permet de retourner la matrice de jeu en string.
 	#
-	#permet de retourner la matrice de jeu en string.
+	# ==== Retourne
 	#
-	#@return = string
+	# un string
 	def to_s()
 		res = "le x : #{@x} , le y : #{@y}\n"
     	res = res + "la matrice du jeu : \n"
@@ -145,12 +124,8 @@ class Plateau
 	end
 	
 
-	#**********************************************************
-	# Méthodes de débogage :
-	#
-	#					affiche()
-	#
-	#permet d'afficher la matrice une fois que les éléments ont été initialisé
+
+	# Méthode de débogage qui permet d'afficher la matrice une fois que les éléments ont été initialisé
 	#
 	def affiche()
 		@matrice.each do |row|
@@ -168,10 +143,8 @@ class Plateau
 	end
 	
 
-	#**************************************************************************
-	#					ajouterPont()
-	#
-	#Permet d'ajouter des ponts là ou le joueur pourra en créer
+
+	# Méthode qui permet d'ajouter des ponts là ou le joueur pourra en créer
 	#
 	def ajouterPont()
 		@matrice.each do |row|
@@ -185,15 +158,12 @@ class Plateau
 	end
 
 
-	#************************************************************
-	#						afficherJeu()
+	# Méthode de débogage qui permet d'afficher un plateau de jeu en terminal
 	#
-	#permet d'afficher un plateau de jeu en terminal
-	#
-	#	* . : ponts possibles
-	#	* - : pont simple
-	#	* = : ponts doubles
-	#	* n : iles (valeur)
+	# * . : ponts possibles
+	# * - : pont simple
+	# * = : ponts doubles
+	# * n : iles (valeur)
 	def afficherJeu()
 		i = 0
 		print "     " 
@@ -242,39 +212,39 @@ class Plateau
 		print "\n"
 	end
 
-
-	#*************************************************************************
-	#					getCase( unX, unY )
+	# Méthode qui trouve une case dans la matrice
 	#
-	#Méthode qui prend 2 coordonnées correspondants, à la valeur de la ligne(unX) et la colonne(unY) 
-	# et retourne la case correspondante dans la matrice.
+	# ==== Attributs
 	#
+	# * +unX+ - coordonnée x de la case
+	# * +unY+ - coordonnée y de la case
+	#
+	# ==== Retourne
+	#
+	# une case
 	def getCase(unX, unY)
 		return @matrice[unX][unY]
 	end
 
-	#*************************************************************************
-	#					verifCoord(unX, unY)
+	# Méthode qui permet de verifier les coordonnées passées en paramètre si elles ne débordent pas 
+	# par rapport à la dimension de la matrice
 	#
-	#Méthode qui permet de verifie les coordonneés passées en parametre si elles ne debordent pas 
-	#par-apport à la dimension de la matrice et retourne un boulean (true/false).
+	# ==== Retourne
 	#
+	# true si les coordonnées sont bonnes, false sinon
 	
 	def verifCoord(unX, unY)
 		return (unX>=0 && unX<@x) && (unY>=0 && unY<@y)
 	end
 
-
-	#*************************************************************************
-	#					partieFini?()
+	# Méthode qui permet de savoir si une partie est finie. 
 	#
-	#Méthode qui permet de savoir si une partie est finie. 
-	#retourne un boulean (true/false).
+	# ==== Retourne
 	#
-	
+	# true si la partie est fini, false sinon
 	def partieFini?()
 		res = true
-		@LesIles.map{|x| res = res && x.estFini?}
+		@lesIles.map{|x| res = res && x.estFini?}
 		return res
 	end
 

@@ -8,7 +8,7 @@ load "Coup.rb"
 # La classe Genie représente le mode génie, c'est le mode le plus "simple" dans le sens où aucune aide ne sera disponible.
 # Elle est donc la classe mère des autres mode de jeu.
 #
-# Elle peut : 
+# Elle peut :
 #
 # - sauvegarder la partie
 # - charger une partie
@@ -45,7 +45,7 @@ class Genie
     # La méthode new est en privé
     private_class_method :new
 
-
+    attr_accessor :fichierJeu
     # Méthode qui permet de créer un mode génie
     #
     # ==== Attributs
@@ -145,21 +145,21 @@ class Genie
     def lancerChrono()
         @chrono.lancerChrono
     end
-    
 
-    # Méthode qui permet de supprimer le dernier coup dans la liste des coups, le met dans à liste des anciens coups 
+
+    # Méthode qui permet de supprimer le dernier coup dans la liste des coups, le met dans à liste des anciens coups
     def deleteCoup()
         @anciensCoups.push(@coup.pop)
     end
 
-    
+
     # Méthode qui permet de récupérer l'ancien coup supprimer dans la liste des anciens coups
     def getCoup()
         @coups.push(@anciensCoups.pop)
     end
 
 
-    # Méthode qui permet d'enlever le dernier coup 
+    # Méthode qui permet d'enlever le dernier coup
     def undo
         if(!@coups.empty?)then
             coup = @coups.pop
@@ -179,7 +179,7 @@ class Genie
                 else
                     puts "erreur de undo"
                 end
-                @score -= 10 
+                @score -= 10
                 @anciensCoups.push(Coup.creer("enlever", coup.pont, sens))
             end
         end
@@ -206,7 +206,7 @@ class Genie
                     puts "erreur de redo"
                 end
             end
-            @score -= 10 
+            @score -= 10
             @coups.push(coup)
         end
     end
@@ -222,7 +222,7 @@ class Genie
     #
     # ==== Retourne
     #
-    # - true si la partie est finie, 
+    # - true si la partie est finie,
     # - false si la case jouée n'est pas un pont ou si la partie n'est pas finie
     def jouerCoup(unX, unY, unClic)
 
@@ -284,7 +284,7 @@ class Genie
         end
 
         return @plateau.partieFini?
-        
+
     end
 
     # jouerCoupInterface
@@ -373,13 +373,13 @@ class Genie
 
 
 
-    # Méthode qui affiche le plateau sur le terminal    
+    # Méthode qui affiche le plateau sur le terminal
     def afficherPlateau()
         @plateau.afficherJeu()
     end
 
 
-    # Méthode qui affiche le plateau de correction sur le terminal  
+    # Méthode qui affiche le plateau de correction sur le terminal
     def afficherCorrection()
         @correction.afficherJeu()
     end
@@ -398,6 +398,3 @@ class Genie
 
 
 end# fin de la classe génie
-
-
-

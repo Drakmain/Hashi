@@ -1,4 +1,5 @@
 load 'RubyApp.rb'
+load 'Chrono.rb'
 
 class Jeu < Gtk::Builder
 
@@ -18,6 +19,17 @@ class Jeu < Gtk::Builder
       end
     end
 
+    if @map.instance_of?(Genie)
+      @annuler_button.set_sensitive(false)
+      @pause_button.set_sensitive(false)
+      @refaire_button.set_sensitive(false)
+      @suggerer_un_coup_button.set_sensitive(false)
+      @afficher_erreur_button.set_sensitive(false)
+      @corriger_erreur_button.set_sensitive(false)
+      @hypothese_switch.set_sensitive(false)
+      @autocorrecteur_switch.set_sensitive(false)
+    end
+
     @fichierOptions = File.read('../data/settings/options.json')
 
     @hashOptions = JSON.parse(@fichierOptions)
@@ -29,13 +41,16 @@ class Jeu < Gtk::Builder
     @suggerer_un_coup_button.set_size_request(-1, 50 * @ratio)
     @afficher_erreur_button.set_size_request(-1, 50 * @ratio)
     @corriger_erreur_button.set_size_request(-1, 50 * @ratio)
-    @mode_hypothese_button.set_size_request(-1, 50 * @ratio)
     @fini_dialog.set_window_position Gtk::WindowPosition::CENTER_ON_PARENT
     @fini_dialog.set_resizable(false)
     @fini_dialog.set_title("Gagné !")
-    @fini_label.set_text("Bravo !\nVous avez fini le niveau " + niveau + " en mode " + mode + " et en difficulte " + difficulte)
+    @fini_label.set_text("Bravo !\nVous avez fini le niveau #{niveau} en mode #{mode} et en difficulte #{difficulte}")
 
     @grille = RubyApp.new(@fenetre, @map, @sens_popover, @fini_dialog)
+
+    #chrono = Chrono.new
+    #chrono.lancerChrono
+    #@timer_label.set_text("Timer : #{chrono.chrono}")
 
     @plateau_box.add(@grille)
 
@@ -54,6 +69,8 @@ class Jeu < Gtk::Builder
   end
 
   def on_retour_button_clicked
+    #@map.save('oue')
+
     @fenetre.remove(@jeu_box)
     @fenetre.resize(1280 * @ratio, 720 * @ratio)
     SelectionMap.new(@fenetre, @ratio, @mode, @difficulte)
@@ -80,13 +97,36 @@ class Jeu < Gtk::Builder
     #@grille.corrigerErreur
   end
 
-  def on_afficher_erreur_button_clicked
+  def on_afficher_erreur_button_clicked(switch, state)
     puts 'on_afficher_erreur_button_clicked'
-    # @grille.afficherErreur
+    #@grille.afficherErreur
   end
 
-  def on_mode_hypothese_button_clicked
-    puts 'on_mode_hypothese_button_clicked'
+  def on_autocorrecteur_switch_state_set(switch, state)
+
+    switch.set_state(state)
+    if state
+      @hypothese_switch.set_sensitive(false)
+      puts 'activerAutoCorrecteur'
+      @map.activerAutoCorrecteur
+    else
+      @hypothese_switch.set_sensitive(true)
+      puts 'desactiverAutoCorrecteur'
+      @map.desactiverAutoCorrecteur
+    end
+  end
+
+  def on_hypothese_switch_state_set(switch, state)
+    switch.set_state(state)
+    if state
+      @autocorrecteur_switch.set_sensitive(false)
+      puts 'activerHypothese'
+      @map.activerHypothese
+    else
+      @autocorrecteur_switch.set_sensitive(true)
+      puts 'desactiverHypothese'
+      @map.desactiverHypothese
+    end
   end
 
   def on_vertical_button_clicked

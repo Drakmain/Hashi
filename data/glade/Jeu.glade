@@ -354,17 +354,29 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="mode_hypothese_button">
-            <property name="label" translatable="yes">Mode Hypothese</property>
+          <object class="GtkLabel" id="hypothese_label">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <signal name="clicked" handler="on_mode_hypothese_button_clicked" swapped="no"/>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Mode Hypothese :</property>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSwitch" id="hypothese_switch">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="halign">center</property>
+            <property name="valign">start</property>
+            <signal name="state-set" handler="on_hypothese_switch_state_set" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">4</property>
           </packing>
         </child>
         <child>
@@ -377,20 +389,21 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">4</property>
+            <property name="position">5</property>
           </packing>
         </child>
         <child>
-          <object class="GtkSwitch">
+          <object class="GtkSwitch" id="autocorrecteur_switch">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="halign">center</property>
             <property name="valign">start</property>
+            <signal name="state-set" handler="on_autocorrecteur_switch_state_set" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">5</property>
+            <property name="position">6</property>
           </packing>
         </child>
       </object>

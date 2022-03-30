@@ -118,33 +118,6 @@
       </packing>
     </child>
     <child>
-      <object class="GtkLabel" id="theme_label">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="margin-top">20</property>
-        <property name="label" translatable="yes">Theme sombre :</property>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">7</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkSwitch" id="theme_switch">
-        <property name="visible">True</property>
-        <property name="can-focus">True</property>
-        <property name="halign">center</property>
-        <property name="valign">start</property>
-        <signal name="state-set" handler="on_theme_switch_state_set" swapped="no"/>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">8</property>
-      </packing>
-    </child>
-    <child>
       <object class="GtkButton" id="enregistre_button">
         <property name="label" translatable="yes">Enregistre</property>
         <property name="visible">True</property>

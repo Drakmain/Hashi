@@ -23,6 +23,8 @@
       <object class="GtkLabel" id="titre_label">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="margin-top">20</property>
+        <property name="margin-bottom">20</property>
         <property name="label" translatable="yes">Selection map</property>
         <attributes>
           <attribute name="size" value="15360"/>

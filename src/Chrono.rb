@@ -37,9 +37,6 @@ class Chrono
     ###############################################################################
 
 
-    # Créer le getter de la variable chrono
-    attr_reader :chrono
-
     # Lance le chronomètre, et compte le nombre de secondes depuis ce lancement.
     def lancerChrono()
         @thr = Thread.new {
@@ -121,7 +118,6 @@ class Chrono
     #accesseur en lecture du chrono
  
     # permet de lire le chrono
- 
     attr_reader :chrono
 
 end

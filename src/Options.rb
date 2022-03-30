@@ -48,11 +48,11 @@ class Options < Gtk::Builder
       @langue_comboboxtext.set_active(2)
     end
 
-    if @theme == 'sombre'
-      @theme_switch.set_active(true)
-    else
-      @theme_switch.set_active(false)
-    end
+    #if @theme == 'sombre'
+    #  @theme_switch.set_active(true)
+    #else
+    #  @theme_switch.set_active(false)
+    #end
 
     @fenetre.set_title('Hashi - Options')
 

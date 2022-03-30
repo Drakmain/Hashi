@@ -20,10 +20,9 @@ class SelectionMap < Gtk::Builder
       end
     end
 
-
     @fenetre.set_title('Hashi - Selection de la map')
 
-    @titre_label.set_text("Choix de la map en #{@mode}, Difficulté #{@difficulte}")
+    @titre_label.set_text("Choix de la map en mode #{@mode}, difficulté #{@difficulte}")
 
     @jouer_button.set_sensitive(false);
 

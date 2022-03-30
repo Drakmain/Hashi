@@ -36,10 +36,8 @@
         <property name="visible">True</property>
         <property name="can-focus">True</property>
         <property name="receives-default">True</property>
-        <property name="margin-start">150</property>
-        <property name="margin-end">150</property>
         <property name="margin-top">20</property>
-        <property name="margin-bottom">29</property>
+        <property name="margin-bottom">20</property>
         <signal name="clicked" handler="on_facile_clicked" swapped="no"/>
       </object>
       <packing>
@@ -54,8 +52,6 @@
         <property name="visible">True</property>
         <property name="can-focus">True</property>
         <property name="receives-default">True</property>
-        <property name="margin-start">150</property>
-        <property name="margin-end">150</property>
         <property name="margin-top">20</property>
         <property name="margin-bottom">20</property>
         <signal name="clicked" handler="on_moyen_clicked" swapped="no"/>
@@ -72,8 +68,6 @@
         <property name="visible">True</property>
         <property name="can-focus">True</property>
         <property name="receives-default">True</property>
-        <property name="margin-start">150</property>
-        <property name="margin-end">150</property>
         <property name="margin-top">20</property>
         <property name="margin-bottom">20</property>
         <signal name="clicked" handler="on_difficile_clicked" swapped="no"/>

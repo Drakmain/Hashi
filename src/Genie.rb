@@ -188,6 +188,7 @@ class Genie
 
     # Méthode qui permet de remettre le dernier coup supprimer
     def redo
+        puts 'redo'
         if(!@anciensCoups.empty?)then
             coup = @anciensCoups.pop
             pontCourant = coup.pont

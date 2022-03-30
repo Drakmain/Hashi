@@ -60,7 +60,6 @@ class Jeu < Gtk::Builder
   end
 
   def on_annuler_button_clicked
-    puts 'on_annuler_button_clicked'
     @grille.annuller
   end
 

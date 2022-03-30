@@ -1,5 +1,16 @@
 load 'Plateau.rb'
 
+# La classe PlateauCorrection représente un Plateau corrigé, elle hérite de Plateau
+#
+# Elle est capable de faire tous ce que peut faire un Plateau
+#
+# Le plateau est composé de case, et chaque case est composé d'un Element, qui est soit une ile, soit un pont, soit un element
+#
+# ==== Variables d'instance
+#
+# * @matrice => la matrice de case avec les éléments
+# * @x => la largeur du tableau
+# * @y => la longueur du tableau
 class PlateauCorrection < Plateau
 
 	#la method new est en privé
@@ -9,17 +20,15 @@ class PlateauCorrection < Plateau
         super()
     end
 
-
-    #****************************************************************
-	#				generateMatrice()
-	#Redéfinition car le plateau de correction contient des "-"
+	# Redéfinition de la méthode car le plateau de correction contient des "-"
 	#
-	#génère la matrice à partir du fichier passé en parametre
-	#elle récupère le x et le y de la matrice dans le fichier
+	# Méthode qui génère la matrice à partir du fichier passé en parametre
+	# elle récupère la taille de la matrice, valeur de x(lignes) et la valeur de y(colonne),
+	# puis parcourir la matrice et charger les valeurs.
 	#
-	#====== ATTRIBUTS
+	# ===== Attributs
 	#
-	#*+file+ : le fichier qui contient le niveau à charger
+	# * +file+ - le fichier qui contient le niveau à charger
 	#
     def generateMatrice(file)
         File.open(file,'r') do |fichier|
@@ -39,18 +48,16 @@ class PlateauCorrection < Plateau
 
 
 
-    #************************************************************
-	#					generatePlateau()
+ 
+	# Méthode qui permet de générer le plateau de correction (transformer les entiers en Ponts, en Elements et en Ile)
 	#
-	#Permet de générer le plateau de correction (transformer les entiers en Ponts, en Elements et en Ile)
-	#
-	# légende : 
-	#   -1 : correspond à un lien vertical (pont)          :  |
-	#	-2 : correspond à deux liens verticals  (pont)     :  ||
-	#	-3 : correspond à un lien horizontale   (pont)     :  -
-	#	-4 : correspond à deux liens horizontales  (pont)  :  =
-	#   1 à 8 : correspond à une Ile 
-	#   0 : correspond à un Element.
+	# ==== Légende : 
+	# - -1 : correspond à un lien vertical (pont)          :  |
+	# - -2 : correspond à deux liens verticals  (pont)     :  ||
+	# - -3 : correspond à un lien horizontale   (pont)     :  -
+	# - -4 : correspond à deux liens horizontales  (pont)  :  =
+	# - 1 à 8 : correspond à une Ile 
+	# - 0 : correspond à un Element.
 	#
 	
 	def generatePlateau()

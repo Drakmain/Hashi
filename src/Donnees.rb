@@ -1,13 +1,37 @@
+# La classe Donnee créée la matrice du jeu à partir d'un fichier donnée.
+#
+# Elle est capable :
+#
+# - De charger une matrice avec un fichier
+# - De s'afficher
+#
+# ==== Variables d'instance
+# * @matrix => Matrice du jeu
+# * @x => Le nombre de ligne de la matrice
+# * @y => Le nombre de colonne de la matrice
 class Donnees
 
+
+  # Méthode d'initialisation d'un donnée
+  #
+  # Par défaut :
+  #
+  # - @matrix = Array.new()
+  # - @x = 0
+  # - @y = 0
   def initialize()
     @matrix = Array.new()
     @x = 0
     @y = 0
   end
 
+  # Accès en lecture et en écriture
   attr_accessor :matrix, :x, :y, :string
 
+  # Méthode qui permet de générer une matrice avec un fichier donné
+  #
+  # ==== Attribut
+  # * +file+ - Un fichier
   def getMatrice(file)
     File.open(file, 'r') do |fichier|
       while line = fichier.gets
@@ -25,12 +49,7 @@ class Donnees
 
     end
 
-    def changeMatrice()
-      @matrix.map! { |item|
-        item.map! { |elem| elem }
-      }
-    end
-
+    # Méthode qui affiche la matrice générée
     def to_s ()
       puts "le x : #{@x} , le y : #{@y}"
       puts "la matrice du jeu : "

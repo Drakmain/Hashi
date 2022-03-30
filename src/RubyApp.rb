@@ -42,11 +42,6 @@ class RubyApp < Gtk::Fixed
       @Tabevents << instance_variable_set("@#{name}", Gtk::EventBox.new)
     end
 
-=begin
-    @Tabevents[i].signal_connect "enter-notify-event" do |widget, event|
-    @Tabevents[i].signal_connect "leave-notify-event" do |widget, event|
-=end
-
     (0...@matrixPix.length).each do |i|
       pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/#{numbers[i]}.png")
       image = Gtk::Image.new(:pixbuf => pixbuf)

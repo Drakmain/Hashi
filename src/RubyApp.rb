@@ -70,6 +70,25 @@ class RubyApp < Gtk::Fixed
 
         afficher_pont(sens, @x, @y, @click)
       end
+
+      @Tabevents[i].signal_connect "enter-notify-event" do |widget, event|
+        tmp = widget.child.name.split('_')
+        x = tmp[1].to_i
+        y = tmp[2].to_i
+
+        actualiserPontAjoutables(@map.plateau.getCase(x, y), x, y, true)
+
+      end
+
+      @Tabevents[i].signal_connect "leave-notify-event" do |widget, event|
+        tmp = widget.child.name.split('_')
+        x = tmp[1].to_i
+        y = tmp[2].to_i
+
+        actualiserPontAjoutables(@map.plateau.getCase(x, y), x, y, false)
+
+      end
+
     end
   end
 
@@ -98,53 +117,127 @@ class RubyApp < Gtk::Fixed
   def afficher_pont(sens, x, y, click)
 
     case sens
+
     when 'vertical'
-      @map.jouerCoupVerticaleInterface(x, y, click)
-      puts 'jouerCoupVerticaleInterface'
-      nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
-      while @map.plateau.getCase(x, y).element.estPont?
-        x += 1
-      end
+      bool = @map.jouerCoupVerticaleInterface(x, y, click)
 
-      x -= 1
-
-      while @map.plateau.getCase(x, y).element.estPont?
-        case nb_ponts
-        when 0
-          pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/0.png')
-        when 1
-          pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontV1.png')
-        when 2
-          pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontV2.png')
+      if (bool) then
+        nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
+        while @map.plateau.getCase(x, y).element.estPont?
+          x += 1
         end
 
+        x -= 1
+
+        while @map.plateau.getCase(x, y).element.estPont?
+          case nb_ponts
+          when 0
+            pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/0.png')
+          when 1
+            pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontV1.png')
+          when 2
+            pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontV2.png')
+          end
+
+          @Tabevents[@map.plateau.y * x + y].remove(@Tabevents[@map.plateau.y * x + y].child)
+          image = Gtk::Image.new(:pixbuf => pixbuf)
+          image.set_name("Img_#{x}_#{y}")
+          @Tabevents[@map.plateau.y * x + y].child = image
+          x -= 1
+        end
+        @fenetre.show_all
+        @map.afficherPlateau
+      end
+
+    when 'horizontal'
+      bool = @map.jouerCoupHorizontaleInterface(x, y, click)
+      puts 'jouerCoupHorizontaleInterface'
+
+      if (bool) then
+        nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
+        while @map.plateau.getCase(x, y).element.estPont?
+          y += 1
+        end
+
+        y -= 1
+
+        while @map.plateau.getCase(x, y).element.estPont?
+          case nb_ponts
+          when 0
+            pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/0.png')
+          when 1
+            pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontH1.png')
+          when 2
+            pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontH2.png')
+          end
+          @Tabevents[@map.plateau.y * x + y].remove(@Tabevents[@map.plateau.y * x + y].child)
+          image = Gtk::Image.new(:pixbuf => pixbuf)
+          image.set_name("Img_#{x}_#{y}")
+          @Tabevents[@map.plateau.y * x + y].child = image
+          y -= 1
+        end
+        @fenetre.show_all
+        @map.afficherPlateau
+      end
+
+    when false
+      @sens_popover.popup
+
+    end
+
+    if @map.plateau.partieFini? then
+      @fini_dialog.run
+    end
+
+    @fenetre.show_all
+    @map.afficherPlateau
+  end
+
+  def actualiserPontAjoutables(caseCourante, unX, unY, unBool)
+    nbPonts = caseCourante.pontAjoutables
+    pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/0.png')
+    x = unX
+    y = unY
+    if (nbPonts - 1000 >= 0) then
+      nbPonts -= 1000
+      x += 1
+      while (@map.plateau.getCase(x, y).element.estPont?) do
+        if (unBool) then
+          pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontPV1.png')
+        end
+        @Tabevents[@map.plateau.y * x + y].remove(@Tabevents[@map.plateau.y * x + y].child)
+        image = Gtk::Image.new(:pixbuf => pixbuf)
+        image.set_name("Img_#{x}_#{y}")
+        @Tabevents[@map.plateau.y * x + y].child = image
+        x += 1
+      end
+    end
+
+    x = unX
+    y = unY
+    if (nbPonts - 100 >= 0) then
+      nbPonts -= 100
+      x -= 1
+      while (@map.plateau.getCase(x, y).element.estPont?) do
+        if (unBool) then
+          pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontPV1.png')
+        end
         @Tabevents[@map.plateau.y * x + y].remove(@Tabevents[@map.plateau.y * x + y].child)
         image = Gtk::Image.new(:pixbuf => pixbuf)
         image.set_name("Img_#{x}_#{y}")
         @Tabevents[@map.plateau.y * x + y].child = image
         x -= 1
       end
-      @fenetre.show_all
-      @map.afficherPlateau
+    end
 
-    when 'horizontal'
-      @map.jouerCoupHorizontaleInterface(x, y, click)
-      puts 'jouerCoupHorizontaleInterface'
-      nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
-      while @map.plateau.getCase(x, y).element.estPont?
-        y += 1
-      end
-
+    x = unX
+    y = unY
+    if (nbPonts - 10 >= 0) then
+      nbPonts -= 10
       y -= 1
-
-      while @map.plateau.getCase(x, y).element.estPont?
-        case nb_ponts
-        when 0
-          pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/0.png')
-        when 1
-          pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontH1.png')
-        when 2
-          pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontH2.png')
+      while (@map.plateau.getCase(x, y).element.estPont?) do
+        if (unBool) then
+          pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontPH1.png')
         end
         @Tabevents[@map.plateau.y * x + y].remove(@Tabevents[@map.plateau.y * x + y].child)
         image = Gtk::Image.new(:pixbuf => pixbuf)
@@ -152,16 +245,32 @@ class RubyApp < Gtk::Fixed
         @Tabevents[@map.plateau.y * x + y].child = image
         y -= 1
       end
-      @fenetre.show_all
-      @map.afficherPlateau
-    when false
-      @sens_popover.popup
     end
 
-    if !@map.plateau.partieFini? then
+    x = unX
+    y = unY
+    if (nbPonts - 1 >= 0) then
+      nbPonts -= 1
+      y += 1
+      while (@map.plateau.getCase(x, y).element.estPont?) do
+        if (unBool) then
+          pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontPH1.png')
+        end
+        @Tabevents[@map.plateau.y * x + y].remove(@Tabevents[@map.plateau.y * x + y].child)
+        image = Gtk::Image.new(:pixbuf => pixbuf)
+        image.set_name("Img_#{x}_#{y}")
+        @Tabevents[@map.plateau.y * x + y].child = image
+        y += 1
+      end
+    end
+
+    @fenetre.show_all
+
+    if @map.plateau.partieFini?
       set_sensitive(false)
       @fini_dialog.run
     end
+
   end
 
 end

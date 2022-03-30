@@ -350,15 +350,19 @@ class Genie
                 caseCourante.creerPont("droite", true)
                 caseCourante.creerPont("gauche", false)
                 sens = "horizontal"
-            end
-            if(@hypothese)then
-                @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
-            else
-                @coups.push(Coup.creer(unClic, caseCourante, sens))
+                if(@hypothese)then
+                    @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
+                else
+                    @coups.push(Coup.creer(unClic, caseCourante, sens))
+                end
+                return true
             end
         else
             caseCourante.enleverPont
+            return true
         end
+
+        return false
     end
 
     # Méthode qui permet de jouer un coup verticale sur une interface
@@ -375,15 +379,18 @@ class Genie
                 caseCourante.creerPont("haut", true)
                 caseCourante.creerPont("bas", false)
                 sens = "vertical"
-            end
-            if(@hypothese)then
-                @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
-            else
-                @coups.push(Coup.creer(unClic, caseCourante, sens))
+                if(@hypothese)then
+                    @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
+                else
+                    @coups.push(Coup.creer(unClic, caseCourante, sens))
+                end
+                return true
             end
         else
             caseCourante.enleverPont
+            return true
         end
+        return false
     end
 
 

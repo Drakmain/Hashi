@@ -365,8 +365,8 @@ class Case
 					end
 				end
 			end
-			return n
 		end
+		return n
 	end
 
 

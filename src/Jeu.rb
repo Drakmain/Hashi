@@ -29,8 +29,10 @@ class Jeu < Gtk::Builder
     @suggerer_un_coup_button.set_size_request(-1, 50 * @ratio)
     @verrifier_la_grille_button.set_size_request(-1, 50 * @ratio)
     @mode_hypothese_button.set_size_request(-1, 50 * @ratio)
+    @fini_dialog.set_window_position Gtk::WindowPosition::CENTER_ON_PARENT
+    #@fini_label.set_text()
 
-    @grille = RubyApp.new(@fenetre, @map, @sens_popover)
+    @grille = RubyApp.new(@fenetre, @map, @sens_popover, @fini_dialog)
 
     @plateau_box.add(@grille)
 

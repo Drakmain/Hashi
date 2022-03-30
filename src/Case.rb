@@ -300,7 +300,7 @@ class Case
 					return false
 				end
 			elsif(@element.nb_ponts == 2)then
-				return true
+				return false
 			elsif(unSens == "droite" && voisineDroite != nil)then
 				return voisineDroite.pontAjoutable(unSens, false)
 			elsif(unSens == "gauche" && voisineGauche != nil)

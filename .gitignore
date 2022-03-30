@@ -11,7 +11,7 @@
 /tmp/
 
 # User settings
-/data/settings/settings.json
+/data/settings/options.json
 
 # RubyMine
 /.idea

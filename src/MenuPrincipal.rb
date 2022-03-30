@@ -6,7 +6,7 @@ load 'Options.rb'
 #
 # la classe MenuTerminal permet d'afficher la fenetre du menu principal.
 #
-# le menu est composé de 5 choix : 
+# le menu est composé de 5 choix :
 #
 #   - Jouer
 #   - Catalogue
@@ -25,9 +25,11 @@ class MenuPrincipal < Gtk::Builder
   # ===== ATTRIBUT
   #
   # fenetre => une fenetre
-  def initialize(fenetre)
+  def initialize(fenetre, ratio)
     super()
     add_from_file('../data/glade/MenuPrincipal.glade')
+    @ratio = ratio
+    @fenetre = fenetre
 
     objects.each do |p|
       unless p.builder_name.start_with?('___object')
@@ -35,16 +37,16 @@ class MenuPrincipal < Gtk::Builder
       end
     end
 
-    @fenetre = fenetre
-    @fenetre.add(@menu_principale_box)
-
-    @classement.set_sensitive(false);
+    @fenetre.set_title('Hashi - Menu Principal')
+    @classement.set_sensitive(false)
 
     connect_signals do |handler|
       method(handler)
     rescue StandardError
       puts "#{handler} n'est pas encore implementer !"
     end
+
+    @fenetre.add(@menu_principale_box)
   end
 
   # on_jouer_clicked
@@ -54,7 +56,7 @@ class MenuPrincipal < Gtk::Builder
   # ferme la box des menus et affiche une nouvelle box
   def on_jouer_clicked
     @fenetre.remove(@menu_principale_box)
-    SelectionMode.new(@fenetre)
+    SelectionMode.new(@fenetre, @ratio)
   end
 
   # on_jouer_clicked
@@ -64,7 +66,7 @@ class MenuPrincipal < Gtk::Builder
   # ferme la box des menus et affiche une nouvelle box
   def on_catalogue_clicked
     @fenetre.remove(@menu_principale_box)
-    Catalogue.new(@fenetre)
+    Catalogue.new(@fenetre, @ratio)
   end
 
   # on_classement_clicked
@@ -80,7 +82,7 @@ class MenuPrincipal < Gtk::Builder
   #
   # Action qui s'execute lorsque l'on clique sur le bouton option
   #
-  # ferme la box des menus et affiche une nouvelle box  
+  # ferme la box des menus et affiche une nouvelle box
   def on_options_clicked
     @fenetre.remove(@menu_principale_box)
     Options.new(@fenetre)
@@ -90,7 +92,7 @@ class MenuPrincipal < Gtk::Builder
   #
   # Action qui s'execute lorsque l'on clique sur le bouton quitter
   #
-  #ferme l'application
+  # ferme l'application
   def on_quitter_clicked
     puts 'Gtk.main_quit'
     Gtk.main_quit

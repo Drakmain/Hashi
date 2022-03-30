@@ -2,12 +2,17 @@ load 'Plateau.rb'
 load 'Genie.rb'
 load 'ContreLaMontre.rb'
 load 'Normal.rb'
+load 'Jeu.rb'
 
 class SelectionMap < Gtk::Builder
 
-  def initialize(fenetre, mode, difficulte)
+  def initialize(fenetre, ratio, mode, difficulte)
     super()
     add_from_file('../data/glade/SelectionMap.glade')
+    @ratio = ratio
+    @difficulte = difficulte
+    @mode = mode
+    @fenetre = fenetre
 
     objects.each do |p|
       unless p.builder_name.start_with?('___object')
@@ -15,10 +20,7 @@ class SelectionMap < Gtk::Builder
       end
     end
 
-    @difficulte = difficulte
-    @mode = mode
-    @fenetre = fenetre
-    @fenetre.add(@selection_map_box)
+
     @fenetre.set_title('Hashi - Selection de la map')
 
     @titre_label.set_text("Choix de la map en #{@mode}, Difficulté #{@difficulte}")
@@ -26,6 +28,8 @@ class SelectionMap < Gtk::Builder
     @jouer_button.set_sensitive(false);
 
     @selection_map_scrolled.set_min_content_height(500)
+
+    @retour_button.set_size_request(-1, 50 * @ratio)
 
     dir = "../data/map/#{@difficulte}/demarrage"
     nb_niv = Dir[File.join(dir, '**', '*')].count { |file| File.file?(file) }
@@ -63,8 +67,6 @@ class SelectionMap < Gtk::Builder
 
     @selection_map_scrolled.add(tv)
 
-    @fenetre.show_all
-
     tv.signal_connect('row-activated') do |handler, niveau|
       @jouer_button.set_sensitive(true)
       @niveau = niveau.to_s.to_i + 1
@@ -75,15 +77,19 @@ class SelectionMap < Gtk::Builder
     rescue StandardError
       puts "#{handler} n'est pas encore implementer !"
     end
+
+    @fenetre.add(@selection_map_box)
+    @fenetre.show_all
   end
 
   def on_retour_button_clicked
     @fenetre.remove(@selection_map_box)
-    SelectionDifficulte.new(@fenetre, @mode)
+    @fenetre.resize(1280 * @ratio, 720 * @ratio)
+    SelectionDifficulte.new(@fenetre, @ratio, @mode)
   end
 
   def on_jouer_button_clicked
-    @fichierOptions = File.read('../data/settings/settings.json')
+    @fichierOptions = File.read('../data/settings/options.json')
     @hashOptions = JSON.parse(@fichierOptions)
     @user = @hashOptions['username']
 
@@ -95,8 +101,8 @@ class SelectionMap < Gtk::Builder
     when 'contre la montre'
       map = ContreLaMontre.creer(Plateau.creer, @niveau.to_s, @user, @difficulte)
     end
-    map.initialiserJeu
-    map.afficherPlateau
+    @fenetre.remove(@selection_map_box)
+    Jeu.new(@fenetre, @ratio, @mode, @difficulte, map, @niveau.to_s)
   end
 
 end

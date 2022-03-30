@@ -165,7 +165,6 @@ class Genie
             coup = @coups.pop
             pontCourant = coup.pont
             sens = coup.sens
-            puts coup
             if(coup.estAjout?)then
                 pontCourant.enleverPont
                 @anciensCoups.push(Coup.creer("ajouter", coup.pont, sens))
@@ -287,15 +286,14 @@ class Genie
         
     end
 
-    # jouerCoupInterface
+
+    # Méthode qui permet de jouer un coup sur une interface
     #
-    # Permet de jouer un coup sur une interface
+    # ==== Attributs
     #
-    # ==== ATTRIBUTS
-    #
-    # *+unX+ : entier : la coordonnée x de la case
-    # *+unY+ : entier : La coordonnée y de la case
-    # *+unClic+ : click : l'action effectué par l'utilisateur
+    # * +unX+ - la coordonnée x de la case
+    # * +unY+ - La coordonnée y de la case
+    # * +unClic+ - l'action effectué par l'utilisateur
     def jouerCoupInterface(unX, unY, unClic)
         caseCourante = @plateau.getCase(unX, unY)
 
@@ -331,7 +329,13 @@ class Genie
         return true
     end
 
-
+    # Méthode qui permet de jouer un coup horizontale sur une interface
+    #
+    # ==== Attributs
+    #
+    # * +unX+ - la coordonnée x de la case
+    # * +unY+ - La coordonnée y de la case
+    # * +unClic+ - l'action effectué par l'utilisateur
     def jouerCoupHorizontaleInterface(unX, unY, unClic)
         caseCourante = @plateau.getCase(unX, unY)
         if(caseCourante.pontAjoutable("droite",true) && caseCourante.pontAjoutable("gauche",true))then
@@ -346,6 +350,13 @@ class Genie
         end
     end
 
+    # Méthode qui permet de jouer un coup verticale sur une interface
+    #
+    # ==== Attributs
+    #
+    # * +unX+ - la coordonnée x de la case
+    # * +unY+ - La coordonnée y de la case
+    # * +unClic+ - l'action effectué par l'utilisateur
     def jouerCoupVerticaleInterface(unX, unY, unClic)
         caseCourante = @plateau.getCase(unX, unY)
         if(caseCourante.pontAjoutable("haut",true) && caseCourante.pontAjoutable("bas",true))then

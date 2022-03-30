@@ -333,11 +333,31 @@ class Genie
 
 
     def jouerCoupHorizontaleInterface(unX, unY, unClic)
-
+        caseCourante = @plateau.getCase(unX, unY)
+        if(caseCourante.pontAjoutable("droite",true) && caseCourante.pontAjoutable("gauche",true))then
+            caseCourante.creerPont("droite", true)
+            caseCourante.creerPont("gauche", false)
+            sens = "horizontal"
+        end
+        if(@hypothese)then
+            @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
+        else
+            @coups.push(Coup.creer(unClic, caseCourante, sens))
+        end
     end
 
     def jouerCoupVerticaleInterface(unX, unY, unClic)
-
+        caseCourante = @plateau.getCase(unX, unY)
+        if(caseCourante.pontAjoutable("haut",true) && caseCourante.pontAjoutable("bas",true))then
+            caseCourante.creerPont("haut", true)
+            caseCourante.creerPont("bas", false)
+            sens = "vertical"
+        end
+        if(@hypothese)then
+            @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
+        else
+            @coups.push(Coup.creer(unClic, caseCourante, sens))
+        end
     end
 
 

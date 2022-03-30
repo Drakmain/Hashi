@@ -457,7 +457,7 @@ class Case
 	#
 	# Les coordonnées de la case.
  	def to_s()
-		return "x:#{@x}, y:#{@y}"
+		return "x:#{@x}, y:#{@y} type : " + @element.to_s
 	end
 
 end 

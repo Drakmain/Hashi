@@ -45,7 +45,7 @@ class Genie
     # La méthode new est en privé
     private_class_method :new
 
-    attr_accessor :fichierJeu
+    attr_accessor :fichierJeu, :plateau
     # Méthode qui permet de créer un mode génie
     #
     # ==== Attributs
@@ -319,7 +319,7 @@ class Genie
             end
 
         else
-            puts "case pas un pont"
+            puts "la case n'est pas un pont"
         end
 
         if(@autoCorrecteur)then

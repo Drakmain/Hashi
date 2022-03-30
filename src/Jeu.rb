@@ -1,4 +1,4 @@
-load 'test2.rb'
+load 'RubyApp.rb'
 
 class Jeu < Gtk::Builder
 
@@ -30,7 +30,7 @@ class Jeu < Gtk::Builder
     @verrifier_la_grille_button.set_size_request(-1, 50 * @ratio)
     @mode_hypothese_button.set_size_request(-1, 50 * @ratio)
 
-    grille = RubyApp.new(@map)
+    grille = RubyApp.new(@fenetre, @map)
 
     @plateau_box.add(grille)
 

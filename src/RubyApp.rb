@@ -4,8 +4,9 @@ load 'Plateau.rb'
 
 class RubyApp < Gtk::Fixed
 
-  def initialize(map)
+  def initialize(fenetre, map)
     super()
+    @fenetre = fenetre
 
     @map = map
 
@@ -57,20 +58,60 @@ class RubyApp < Gtk::Fixed
 
         sens = @map.jouerCoupInterface(x, y, click)
         @map.afficherPlateau
+        puts @map.plateau.estFini?
+
+        double = @map.plateau.getCase(x, y).element.nb_ponts
 
         if sens == "vertical"
-          while @map.plateau.getCase(x, y).estPont? do
-            x+=1
+          while @map.plateau.getCase(x, y).element.estPont? do
+            x += 1
           end
 
-          while @map.plateau.getCase(x, y).estPont? do
-            puts @Tabevents[x * y + y].child.name
-            x-=1
+          x -= 1
+
+          while @map.plateau.getCase(x, y).element.estPont? do
+            case double
+            when 0
+              pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/0.png")
+            when 1
+              pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/pontV1.png")
+            when 2
+              pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/pontV2.png")
+            end
+
+            @Tabevents[@map.plateau.y * x + y].remove(@Tabevents[@map.plateau.y * x + y].child)
+            image = Gtk::Image.new(:pixbuf => pixbuf)
+            image.set_name("Img_#{x}_#{y}")
+            @Tabevents[@map.plateau.y * x + y].child = image
+            x -= 1
           end
 
-        else
-          puts sens
-          puts widget.child.name
+          @fenetre.show_all
+
+        elsif sens == "horizontal"
+          while @map.plateau.getCase(x, y).element.estPont? do
+            y += 1
+          end
+
+          y -= 1
+
+          while @map.plateau.getCase(x, y).element.estPont? do
+            case double
+            when 0
+              pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/0.png")
+            when 1
+              pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/pontH1.png")
+            when 2
+              pixbuf = GdkPixbuf::Pixbuf.new(:file => "../data/img/pontH2.png")
+            end
+            @Tabevents[@map.plateau.y * x + y].remove(@Tabevents[@map.plateau.y * x + y].child)
+            image = Gtk::Image.new(:pixbuf => pixbuf)
+            image.set_name("Img_#{x}_#{y}")
+            @Tabevents[@map.plateau.y * x + y].child = image
+            y -= 1
+          end
+
+          @fenetre.show_all
         end
 
       end

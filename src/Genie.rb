@@ -309,6 +309,7 @@ class Genie
                 end
             elsif (caseCourante.element.aDeuxSens) then
                 puts "a deux sens"
+                @anciensCoups.clear
                 return false
             elsif(caseCourante.element.nb_ponts == 0 )then
                     sens = caseCourante.element.estVertical?
@@ -351,6 +352,7 @@ class Genie
                 else
                     @coups.push(Coup.creer(unClic, caseCourante, sens))
                 end
+                @anciensCoups.clear
                 return true
             end
         else
@@ -361,9 +363,10 @@ class Genie
             else
                 @coups.push(Coup.creer(unClic, caseCourante, sens))
             end
+            @anciensCoups.clear
             return true
         end
-
+        @anciensCoups.clear
         return false
     end
 
@@ -388,6 +391,7 @@ class Genie
                 else
                     @coups.push(Coup.creer(unClic, caseCourante, sens))
                 end
+                @anciensCoups.clear
                 return true
             end
         else
@@ -398,8 +402,10 @@ class Genie
             else
                 @coups.push(Coup.creer(unClic, caseCourante, sens))
             end
+            @anciensCoups.clear
             return true
         end
+        @anciensCoups.clear
         return false
     end
 

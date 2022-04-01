@@ -41,6 +41,7 @@ class Jeu < Gtk::Builder
     @suggerer_un_coup_button.set_size_request(-1, 50 * @ratio)
     @afficher_erreur_button.set_size_request(-1, 50 * @ratio)
     @corriger_erreur_button.set_size_request(-1, 50 * @ratio)
+    @nb_erreur_button.set_size_request(-1, 50 * @ratio)
     @fini_dialog.set_window_position Gtk::WindowPosition::CENTER_ON_PARENT
     @fini_dialog.set_resizable(false)
     @fini_dialog.set_title("Gagné !")
@@ -92,6 +93,16 @@ class Jeu < Gtk::Builder
 
   def on_suggerer_un_coup_button_clicked
     puts 'on_suggerer_un_coup_button_clicked'
+  end
+
+  def on_nb_erreur_button_clicked
+    nb_erreur = @map.nombreErreurs.to_s
+    if '0' == nb_erreur
+      @nb_erreur_label.set_text('Vous n\'avez pas d\'erreur.')
+    else
+      @nb_erreur_label.set_text('Vous ' + nb_erreur + ' erreur(s).')
+    end
+    @nb_erreur_popover.popup
   end
 
   def on_corriger_erreur_button_clicked

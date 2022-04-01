@@ -31,7 +31,7 @@ class SelectionMap < Gtk::Builder
     @jouer_button.set_sensitive(false)
     @recommencer_button.set_sensitive(false)
 
-    @selection_map_scrolled.set_min_content_height(500)
+    @selection_map_scrolled.set_min_content_height(450 * @ratio)
 
     @retour_button.set_size_request(-1, 50 * @ratio)
     @jouer_button.set_size_request(-1, 25 * @ratio)

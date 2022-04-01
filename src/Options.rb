@@ -12,9 +12,9 @@ class Options < Gtk::Builder
     add_from_file('../data/glade/Options.glade')
     @fenetre = fenetre
 
-    @fichierOptions = File.read('../data/settings/options.json')
+    @fichier_options = File.read('../data/options.json')
 
-    @hashOptions = JSON.parse(@fichierOptions)
+    @hashOptions = JSON.parse(@fichier_options)
     @user = @hashOptions['username']
     @ratio = @hashOptions['resolution_ratio']
     @theme = @hashOptions['theme']

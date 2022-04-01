@@ -20,14 +20,19 @@ class RubyApp < Gtk::Fixed
 
     @donnee.getMatrice(@map.fichierJeu)
 
-    @map.initialiserJeu
-
-    init_ui
-  end
-
-  def init_ui
     create_imgs
     put_img(@tab_events)
+
+    if !@map.coups.empty?
+      @map.coups.each do |i|
+        if i.estHorizontal?
+          afficher_pont('horizontal', i.pont.x, i.pont.y)
+        else
+          afficher_pont('vertical', i.pont.x, i.pont.y)
+        end
+        @fenetre.show_all
+      end
+    end
   end
 
   def create_imgs
@@ -222,9 +227,6 @@ class RubyApp < Gtk::Fixed
 
         x -= 1
       end
-
-      @fenetre.show_all
-      @map.afficherPlateau
     when 'horizontal'
 
       nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
@@ -252,12 +254,10 @@ class RubyApp < Gtk::Fixed
 
         y -= 1
       end
-
-      @fenetre.show_all
-      @map.afficherPlateau
-
     end
 
+    @fenetre.show_all
+    @map.afficherPlateau
   end
 
   def actualiserPontAjoutables(caseCourante, unX, unY, unBool)
@@ -342,6 +342,7 @@ class RubyApp < Gtk::Fixed
 
   def refaire
     caseO = @map.redo
+    puts caseO.class
 
     unless caseO.nil?
       @map.afficherPlateau

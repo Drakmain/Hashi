@@ -30,9 +30,9 @@ class Jeu < Gtk::Builder
       @autocorrecteur_switch.set_sensitive(false)
     end
 
-    @fichierOptions = File.read('../data/settings/options.json')
+    @fichier_options = File.read('../data/options.json')
 
-    @hashOptions = JSON.parse(@fichierOptions)
+    @hashOptions = JSON.parse(@fichier_options)
     @username = @hashOptions['username']
 
     @username_label.set_text(@username)
@@ -69,7 +69,9 @@ class Jeu < Gtk::Builder
   end
 
   def on_retour_button_clicked
-    #@map.save('oue')
+    if !@map.coups.empty?
+      @map.save
+    end
 
     @fenetre.remove(@jeu_box)
     @fenetre.resize(1280 * @ratio, 720 * @ratio)

@@ -45,7 +45,7 @@ class Genie
     # La méthode new est en privé
     private_class_method :new
 
-    attr_accessor :fichierJeu, :plateau
+    attr_accessor :fichierJeu, :plateau, :coups
     # Méthode qui permet de créer un mode génie
     #
     # ==== Attributs
@@ -69,7 +69,7 @@ class Genie
     # * +uneDifficulte+ : la difficulté choisis
     #
     def initialize(unPlateau, unNiveau, unPseudo, uneDifficulte)
-		@score = 0
+		    @score = 0
         @chrono = Chrono.new
         @anciensCoups = []
         @coups = []
@@ -77,13 +77,15 @@ class Genie
         @fichierJeu = "../data/map/" + uneDifficulte + "/demarrage/" + unNiveau + ".txt"
         @fichierCorrection = "../data/map/" + uneDifficulte + "/correction/" + unNiveau + ".txt"
         @plateau = unPlateau
-        @save = nil;
-        @dir = "../data/save" + self.class.to_s + unNiveau + "/"
+        @save = nil
+        @dir = "../data/sauvegarde/"
         @pseudo = unPseudo
         @correction = PlateauCorrection.creer()
         @chronoFirst = 0
         @hypothese = true
         @autoCorrecteur = false
+        @difficulte = uneDifficulte
+        @niveau = unNiveau
 	end
 
 
@@ -104,14 +106,11 @@ class Genie
 
 
     # Méthode qui permet de sauvegarder une partie, elle sérialize l'objet courant
-    #
-    # ==== Attributs
-    #
-    # * +nomFichier+ - Le nom du fichier pour la sauvegarde
-    def save(nomFichier)
-        puts "\nsave..."
+    def save
+        puts "\nSauvegarde de " + @dir + @pseudo + "_" + self.class.to_s.downcase + "_" + @difficulte + "_" + @niveau + ".bn ..."
+
         Dir.mkdir(@dir) unless File.exists?(@dir)
-        f = File.open(File.expand_path(@dir + @pseudo + nomFichier + ".bn"), "w")
+        f = File.open(File.expand_path(@dir + @pseudo + "_" + self.class.to_s.downcase + "_" + @difficulte + "_" + @niveau + ".bn"), "w")
         @save = Marshal::dump(self)
         f.write(@save)
         f.close()
@@ -119,16 +118,15 @@ class Genie
 
 
     # Méthode qui permet de charger une partie, elle désérialize le fichier demandé
-    #
-    # ==== Attributs
-    #
-    # * +nomFichier+ - Le nom du fichier pour le chargement
-    def load(nomFichier)
-        puts "\nload..."
-        f = File.open(File.expand_path(@dir + @pseudo + nomFichier + ".bn"), "r")
+    def load
+        puts "\nChargement de " + @dir + @pseudo + "_" + self.class.to_s.downcase + "_" + @difficulte + "_" + @niveau + ".bn" + " ..."
+
+        f = File.open(File.expand_path(@dir + @pseudo + "_" + self.class.to_s.downcase + "_" + @difficulte + "_" + @niveau + ".bn"), "r")
         @save = f.read()
         f.close()
-        return Marshal::load(@save)
+
+        oue = Marshal::load(@save)
+        return oue
     end
 
 

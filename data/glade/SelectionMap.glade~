@@ -7,6 +7,11 @@
     <property name="can-focus">False</property>
     <property name="icon-name">go-next</property>
   </object>
+  <object class="GtkImage" id="jouer_icon1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">go-next</property>
+  </object>
   <object class="GtkImage" id="retour_icon">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -23,6 +28,8 @@
       <object class="GtkLabel" id="titre_label">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="margin-top">20</property>
+        <property name="margin-bottom">20</property>
         <property name="label" translatable="yes">Selection map</property>
         <attributes>
           <attribute name="size" value="15360"/>
@@ -79,17 +86,47 @@
           <placeholder/>
         </child>
         <child>
-          <object class="GtkButton" id="jouer_button">
-            <property name="label" translatable="yes">Jouer</property>
+          <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="halign">end</property>
-            <property name="hexpand">True</property>
-            <property name="image">jouer_icon</property>
-            <property name="image-position">right</property>
-            <property name="always-show-image">True</property>
-            <signal name="clicked" handler="on_jouer_button_clicked" swapped="no"/>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkButton" id="jouer_button">
+                <property name="label" translatable="yes">Jouer</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="halign">end</property>
+                <property name="hexpand">True</property>
+                <property name="image">jouer_icon</property>
+                <property name="image-position">right</property>
+                <property name="always-show-image">True</property>
+                <signal name="clicked" handler="on_jouer_button_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="recommencer_button">
+                <property name="label" translatable="yes">Recommencer</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="halign">end</property>
+                <property name="hexpand">True</property>
+                <property name="image">jouer_icon1</property>
+                <property name="image-position">right</property>
+                <property name="always-show-image">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>

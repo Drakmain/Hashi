@@ -17,15 +17,15 @@ class Fenetre < Gtk::Builder
     }
 
     begin
-      @fichierOptions = File.read('../data/settings/options.json')
+      @fichier_options = File.read('../data/options.json')
     rescue
-      @fichierOptions = File.open('../data/settings/options.json', 'w')
-      @fichierOptions.write('{"username": "Invité","resolution_ratio": 1,"theme": "clair","langue": "Francais"}')
-      @fichierOptions.close
-      @fichierOptions = File.read('../data/settings/options.json')
+      @fichier_options = File.open('../data/options.json', 'w')
+      @fichier_options.write('{"username": "Invité","resolution_ratio": 1,"theme": "clair","langue": "Francais"}')
+      @fichier_options.close
+      @fichier_options = File.read('../data/options.json')
     end
 
-    @hashOptions = JSON.parse(@fichierOptions)
+    @hashOptions = JSON.parse(@fichier_options)
     @ratio = @hashOptions['resolution_ratio']
 
     @fenetre.set_resizable(false)

@@ -70,7 +70,7 @@ class Jeu < Gtk::Builder
 
   def on_retour_button_clicked
     if !@map.coups.empty?
-      @map.save
+      @map.save(@mode)
     end
 
     @fenetre.remove(@jeu_box)
@@ -99,7 +99,7 @@ class Jeu < Gtk::Builder
     #@grille.corrigerErreur
   end
 
-  def on_afficher_erreur_button_clicked(switch, state)
+  def on_afficher_erreur_button_clicked
     puts 'on_afficher_erreur_button_clicked'
     #@grille.afficherErreur
   end

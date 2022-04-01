@@ -133,7 +133,7 @@ class SelectionMap < Gtk::Builder
 
     begin
       f = File.open(File.expand_path("../data/sauvegarde/" + @user + "_" + @mode + "_" + @difficulte + "_" + @niveau.to_s + ".bn"), "r")
-      map = map.load
+      map = map.load(@mode)
       f.close
     rescue StandardError
     end

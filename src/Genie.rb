@@ -106,11 +106,11 @@ class Genie
 
 
     # Méthode qui permet de sauvegarder une partie, elle sérialize l'objet courant
-    def save
-        puts "\nSauvegarde de " + @dir + @pseudo + "_" + self.class.to_s.downcase + "_" + @difficulte + "_" + @niveau + ".bn ..."
+    def save(mode)
+        puts "\nSauvegarde de " + @dir + @pseudo + "_" + mode + "_" + @difficulte + "_" + @niveau + ".bn ..."
 
         Dir.mkdir(@dir) unless File.exists?(@dir)
-        f = File.open(File.expand_path(@dir + @pseudo + "_" + self.class.to_s.downcase + "_" + @difficulte + "_" + @niveau + ".bn"), "w")
+        f = File.open(File.expand_path(@dir + @pseudo + "_" + mode + "_" + @difficulte + "_" + @niveau + ".bn"), "w")
         @save = Marshal::dump(self)
         f.write(@save)
         f.close()
@@ -118,10 +118,10 @@ class Genie
 
 
     # Méthode qui permet de charger une partie, elle désérialize le fichier demandé
-    def load
-        puts "\nChargement de " + @dir + @pseudo + "_" + self.class.to_s.downcase + "_" + @difficulte + "_" + @niveau + ".bn" + " ..."
+    def load(mode)
+        puts "\nChargement de " + @dir + @pseudo + "_" + mode + "_" + @difficulte + "_" + @niveau + ".bn" + " ..."
 
-        f = File.open(File.expand_path(@dir + @pseudo + "_" + self.class.to_s.downcase + "_" + @difficulte + "_" + @niveau + ".bn"), "r")
+        f = File.open(File.expand_path(@dir + @pseudo + "_" + mode + "_" + @difficulte + "_" + @niveau + ".bn"), "r")
         @save = f.read()
         f.close()
 

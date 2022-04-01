@@ -30,7 +30,6 @@ class RubyApp < Gtk::Fixed
         else
           afficher_pont('vertical', i.pont.x, i.pont.y)
         end
-        @fenetre.show_all
       end
     end
   end
@@ -341,30 +340,29 @@ class RubyApp < Gtk::Fixed
   end
 
   def refaire
-    caseO = @map.redo
-    puts caseO.class
+    case_redo = @map.redo
 
-    unless caseO.nil?
+    unless case_redo.nil?
       @map.afficherPlateau
 
-      if caseO.element.sensHorizontal
-        afficher_pont('horizontal', caseO.x, caseO.y)
+      if case_redo.element.sensHorizontal
+        afficher_pont('horizontal', case_redo.x, case_redo.y)
       else
-        afficher_pont('vertical', caseO.x, caseO.y)
+        afficher_pont('vertical', case_redo.x, case_redo.y)
       end
     end
   end
 
   def annuller
-    caseO = @map.undo
+    case_undo = @map.undo
 
-    unless caseO.nil?
+    unless case_undo.nil?
       @map.afficherPlateau
 
-      if caseO.element.sensHorizontal
-        afficher_pont('horizontal', caseO.x, caseO.y)
+      if case_undo.element.sensHorizontal
+        afficher_pont('horizontal', case_undo.x, case_undo.y)
       else
-        afficher_pont('vertical', caseO.x, caseO.y)
+        afficher_pont('vertical', case_undo.x, case_undo.y)
       end
     end
   end

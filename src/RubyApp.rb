@@ -408,11 +408,11 @@ class RubyApp < Gtk::Fixed
                   if(@map.plateau.getCase(j,i).element.estVertical?)then
                     pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontV1.png')
                     image = Gtk::Image.new(:pixbuf => pixbuf)
-                    image.set_name("p1v_#{i}_#{j}")
+                    image.set_name("p1v_#{j}_#{i}")
                   else
                     pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontH1.png')
                     image = Gtk::Image.new(:pixbuf => pixbuf)
-                    image.set_name("p1h_#{i}_#{j}")
+                    image.set_name("p1h_#{j}_#{i}")
                   end
                   @tab_events[@map.plateau.y * j + i].child = image
                 end
@@ -427,7 +427,7 @@ class RubyApp < Gtk::Fixed
                 @tab_events[@map.plateau.y * j + i].remove(@tab_events[@map.plateau.y * j + i].child)
                 pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/0.png')
                 image = Gtk::Image.new(:pixbuf => pixbuf)
-                image.set_name("Img_#{i}_#{j}")
+                image.set_name("Img_#{j}_#{i}")
                 @tab_events[@map.plateau.y * j + i].child = image
               end
             end
@@ -437,10 +437,11 @@ class RubyApp < Gtk::Fixed
 
     (0...@donnee.y).each do |i|
       (0...@donnee.x).each do |j|
-        if(@tab_events[@map.plateau.y * j + i].child.name.match(/^p/))
-          puts @tab_events[@map.plateau.y * j + i].child.name + "\n"
-        end
+        #if(@tab_events[@map.plateau.y * j + i].child.name.match(/^p/))
+          print @tab_events[@map.plateau.y * i + j].child.name
+        #end
       end
+      print "\n"
     end
 
     @fenetre.show_all

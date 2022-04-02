@@ -23,11 +23,7 @@ class Jeu < Gtk::Builder
       @annuler_button.set_sensitive(false)
       @pause_button.set_sensitive(false)
       @refaire_button.set_sensitive(false)
-      @suggerer_un_coup_button.set_sensitive(false)
-      @afficher_erreur_button.set_sensitive(false)
-      @corriger_erreur_button.set_sensitive(false)
-      @hypothese_switch.set_sensitive(false)
-      @autocorrecteur_switch.set_sensitive(false)
+      @droite_box.set_sensitive(false)
     end
 
     if @map.autoCorrecteur == true

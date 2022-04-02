@@ -90,7 +90,7 @@ class Jeu < Gtk::Builder
   end
 
   def on_annuler_button_clicked
-    @grille.annuller
+    @grille.annuler
   end
 
   def on_pause_button_clicked

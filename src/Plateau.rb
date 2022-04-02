@@ -45,7 +45,7 @@ class Plateau
     @x = 0
     @y = 0
     @matrice = Array.new { Array.new } # On initialise le tableau des cases pour le charger
-    @lesIles = Array.new # On initialise le tableau des ILes
+    @lesIles = [] # On initialise le tableau des ILes
   end
 
   ##########################################################################################
@@ -80,7 +80,7 @@ class Plateau
 
   # Méthode qui permet de générer le plateau (transformer les entiers en Elements et en Ile)
   def generatePlateau
-    #Ne plus toucher!
+    # Ne plus toucher!
     x = -1
     y = -1
     @matrice.map! do |item|
@@ -138,7 +138,7 @@ class Plateau
   def ajouterPont
     @matrice.each do |row|
       row.each do |column|
-        if column != nil && column.element.instance_of?(Ile)
+        if !column.nil? && column.element.instance_of?(Ile)
           column.ajouterPontDroite
           column.ajouterPontBas
         end
@@ -177,20 +177,16 @@ class Plateau
         elsif elem.estPont?
           if elem.nb_ponts == 0
             print ' . '
-          else
-            if elem.nb_ponts == 1
-              if elem.estHorizontal?
-                print '---'
-              else
-                print ' | '
-              end
+          elsif elem.nb_ponts == 1
+            if elem.estHorizontal?
+              print '---'
             else
-              if elem.estHorizontal?
-                print '==='
-              else
-                print '|| '
-              end
+              print ' | '
             end
+          elsif elem.estHorizontal?
+            print '==='
+          else
+            print '|| '
           end
         else
           print '   '
@@ -211,7 +207,7 @@ class Plateau
   #
   # une case
   def getCase(unX, unY)
-    return @matrice[unX][unY]
+    @matrice[unX][unY]
   end
 
   # Méthode qui permet de verifier les coordonnées passées en paramètre si elles ne débordent pas

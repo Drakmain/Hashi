@@ -16,7 +16,7 @@ class PlateauCorrection < Plateau
   # la method new est en privé
   private_class_method :new
 
-  def PlateauCorrection.creer()
+  def PlateauCorrection.creer
     super()
   end
 

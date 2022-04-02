@@ -50,6 +50,7 @@ class Pont < Element
   # * +uneValeur+ - le nombre de ponts (un entier)
   #
   def initialize(unSens, uneValeur)
+    super()
     @sensHorizontal = unSens
     @nb_ponts = uneValeur
     @deuxSens = 0
@@ -70,7 +71,7 @@ class Pont < Element
   #
   # true
   def estPont?
-    return true
+    true
   end
 
   # Méthode qui permet d'ajouter un pont (s'active lorsque l'utilisateur fait un clic droit)
@@ -126,7 +127,7 @@ class Pont < Element
   #
   # false
   def estElement?
-    return false
+    false
   end
 
   # Méthode qui permet de d'incrémenter le nombre de sens d'un pont
@@ -140,7 +141,7 @@ class Pont < Element
   #
   # true si le pont a deux sens, false sinon
   def aDeuxSens
-    return @deuxSens > 0
+    @deuxSens > 0
   end
 
   def to_s

@@ -12,11 +12,11 @@ class RubyApp < Gtk::Fixed
 
     @map = map
 
-    @matrixPix = Array.new
-    @matrixImg = Array.new
+    @matrixPix = []
+    @matrixImg = []
     @donnee = Donnees.new
-    @events = Array.new
-    @tab_events = Array.new
+    @events = []
+    @tab_events = []
 
     @donnee.getMatrice(@map.fichierJeu)
 
@@ -35,7 +35,7 @@ class RubyApp < Gtk::Fixed
   end
 
   def create_imgs
-    numbers = Array.new()
+    numbers = []
 
     (0...@donnee.y).each do |i|
       (0...@donnee.x).each do |j|

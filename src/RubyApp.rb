@@ -440,6 +440,13 @@ class RubyApp < Gtk::Fixed
   def actualiserAffichage
     (0...@donnee.x).each do |i|
       (0...@donnee.y).each do |j|
+        if(@tab_events[@map.plateau.y * j + i].child.name.match(/^Img/))then
+          if(@map.plateau.getCase(j, i).element.estIle?)then
+            if(!@map.plateau.getCase(j, i).element.estFini?)then
+              afficher_ile_pleine(j,i);
+            end
+          end
+        end
         if @tab_events[@map.plateau.y * j + i].child.name.match(/^p2/)
           if @map.plateau.getCase(j, i).element.estPont?
             if @map.plateau.getCase(j, i).element.nb_ponts <= 1

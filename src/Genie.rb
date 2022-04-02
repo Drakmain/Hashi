@@ -193,7 +193,7 @@ class Genie
             coup = @anciensCoups.pop
             pontCourant = coup.pont
             puts pontCourant
-            if(coup.estEnleve?)then
+            if(!coup.estAjout?)then
                 pontCourant.enleverPont
             else
                 if(coup.estVertical?)then
@@ -337,33 +337,41 @@ class Genie
     def jouerCoupHorizontaleInterface(unX, unY, unClic)
         caseCourante = @plateau.getCase(unX, unY)
         res = false
+        sens = "horizontal"
 
         if(unClic)then
             if(caseCourante.pontAjoutable("droite",true) && caseCourante.pontAjoutable("gauche",true))then
                 caseCourante.creerPont("droite", true)
                 caseCourante.creerPont("gauche", false)
-                sens = "horizontal"
 
                 unClic = "ajouter"
 
                 res = true
             end
         else
-            caseCourante.enleverPont
-            unClic = "enlever"
-            res = true
+            if(caseCourante.element.nb_ponts > 0)then
+                caseCourante.enleverPont
+                unClic = "enlever"
+                res = true
+            end
         end
 
 
-        if(@hypothese)then
-            @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
-        else
-            if(@autoCorrecteur)then
-                erreur = corrigerErreur
-                if(erreur)then
-                    return "mort"
+        if(res)then
+            if(@hypothese)then
+                @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
+            else
+                if(@autoCorrecteur)then
+                    erreur = corrigerErreur
+                    if(erreur)then
+                        return "mort"
+                    else
+                        @coups.push(Coup.creer(unClic, caseCourante, sens))
+                    end
                 else
                     @coups.push(Coup.creer(unClic, caseCourante, sens))
+                    puts "LEs coups de la listes : \n"
+                    @coups.each(){|e| puts e}
                 end
             end
         end
@@ -381,28 +389,34 @@ class Genie
     def jouerCoupVerticaleInterface(unX, unY, unClic)
         caseCourante = @plateau.getCase(unX, unY)
         res = false
+        sens = "vertical"
         if(unClic)then
             if(caseCourante.pontAjoutable("haut",true) && caseCourante.pontAjoutable("bas",true))then
                 caseCourante.creerPont("haut", true)
                 caseCourante.creerPont("bas", false)
-                sens = "vertical"
 
                 unClic = "ajouter"
                 res = true
             end
         else
-            caseCourante.enleverPont
-            unClic = "enlever"
-            res = true
+            if(caseCourante.element.nb_ponts > 0)then
+                caseCourante.enleverPont
+                unClic = "enlever"
+                res = true
+            end
         end
 
-        if(@hypothese)then
-            @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
-        else
-            if(@autoCorrecteur)then
-                erreur = corrigerErreur
-                if(erreur)then
-                    return "mort"
+        if(res)then
+            if(@hypothese)then
+                @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
+            else
+                if(@autoCorrecteur)then
+                    erreur = corrigerErreur
+                    if(erreur)then
+                        return "mort"
+                    else
+                        @coups.push(Coup.creer(unClic, caseCourante, sens))
+                    end
                 else
                     @coups.push(Coup.creer(unClic, caseCourante, sens))
                 end

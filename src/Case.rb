@@ -310,7 +310,7 @@ class Case
 			elsif(unSens == "bas" && voisineBas != nil)
 				return voisineBas.pontAjoutable(unSens, false)
 			else
-				puts "erreur de comprehension"
+				puts "Il n'y a pas de pont"
 				return false
 			end
 		elsif(@element.estIle?)then

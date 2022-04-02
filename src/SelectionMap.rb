@@ -53,11 +53,11 @@ class SelectionMap < Gtk::Builder
       root_iter[1] = "#{p.x} * #{p.y}"
 
       begin
-        f = File.open(File.expand_path("../data/sauvegarde/" + @user + "_" + @mode + "_" + @difficulte + "_" + i.to_s + ".bn"), "r")
-        root_iter[2] = "Sauvegarde disponible"
+        f = File.open(File.expand_path("../data/sauvegarde/#{@user}_#{@mode}_#{@difficulte}_#{i.to_s}.bn"), 'r')
+        root_iter[2] = 'Sauvegarde disponible'
         f.close
       rescue StandardError => e
-        root_iter[2] = "Sauvegarde non disponible"
+        root_iter[2] = 'Sauvegarde non disponible'
       end
 
     end
@@ -94,7 +94,7 @@ class SelectionMap < Gtk::Builder
       @niveau = niveau.to_s.to_i + 1
 
       begin
-        f = File.open(File.expand_path("../data/sauvegarde/" + @user + "_" + @mode + "_" + @difficulte + "_" + @niveau.to_s + ".bn"), "r")
+        f = File.open(File.expand_path("../data/sauvegarde/#{@user}_#{@mode}_#{@difficulte}_#{@niveau.to_s}.bn"), 'r')
         @recommencer_button.set_sensitive(true)
         f.close
       rescue StandardError
@@ -132,8 +132,8 @@ class SelectionMap < Gtk::Builder
     map.initialiserJeu
 
     begin
-      f = File.open(File.expand_path("../data/sauvegarde/" + @user + "_" + @mode + "_" + @difficulte + "_" + @niveau.to_s + ".bn"), "r")
-      map = map.load(@mode)
+      f = File.open(File.expand_path("../data/sauvegarde/#{@user}_#{@mode}_#{@difficulte}_#{@niveau.to_s}.bn"), 'r')
+      map = map.charger(@mode)
       f.close
     rescue StandardError
     end

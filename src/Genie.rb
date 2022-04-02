@@ -1,4 +1,3 @@
-
 load "Chrono.rb"
 load "Plateau.rb"
 load "PlateauCorrection.rb"
@@ -82,7 +81,7 @@ class Genie
         @save = nil
         @dir = "../data/sauvegarde/"
         @pseudo = unPseudo
-        @correction = PlateauCorrection.creer()
+        @correction = PlateauCorrection.creer
         @chronoFirst = 0
         @hypothese = false
         @autoCorrecteur = false
@@ -97,7 +96,7 @@ class Genie
 
 
     # Méthode qui permet d'initialiser le jeu (le plateau de jeu et sa correction)
-    def initialiserJeu()
+    def initialiserJeu
         @plateau.generateMatrice(@fichierJeu)
         @plateau.generatePlateau
         @plateau.ajouterPont
@@ -108,7 +107,7 @@ class Genie
 
 
     # Méthode qui permet de sauvegarder une partie, elle sérialize l'objet courant
-    def save(mode)
+    def sauvegarder(mode)
         puts "\nSauvegarde de " + @dir + @pseudo + "_" + mode + "_" + @difficulte + "_" + @niveau + ".bn ..."
 
         Dir.mkdir(@dir) unless File.exists?(@dir)
@@ -120,7 +119,7 @@ class Genie
 
 
     # Méthode qui permet de charger une partie, elle désérialize le fichier demandé
-    def load(mode)
+    def charger(mode)
         puts "\nChargement de " + @dir + @pseudo + "_" + mode + "_" + @difficulte + "_" + @niveau + ".bn" + " ..."
 
         f = File.open(File.expand_path(@dir + @pseudo + "_" + mode + "_" + @difficulte + "_" + @niveau + ".bn"), "r")
@@ -133,7 +132,7 @@ class Genie
 
 
     # Méthode qui permet de calculer le score du joueur
-    def calculScore()
+    def calculScore
         chronoNow = @chrono.chrono
         if @chronoFirst - chronoNow != 0 then
             @score += 100 - (5 * 100 / (@chronoFirst - chronoNow))
@@ -142,25 +141,25 @@ class Genie
 
 
     # Méthode qui permet de lancer le chronometre dans le sens normal (part de 0 et s'incrémente jusqu'à ce que la partie soit terminé)
-    def lancerChrono()
+    def lancerChrono
         @chrono.lancerChrono
     end
 
 
     # Méthode qui permet de supprimer le dernier coup dans la liste des coups, le met dans à liste des anciens coups
-    def deleteCoup()
+    def deleteCoup
         @anciensCoups.push(@coup.pop)
     end
 
 
     # Méthode qui permet de récupérer l'ancien coup supprimer dans la liste des anciens coups
-    def getCoup()
+    def getCoup
         @coups.push(@anciensCoups.pop)
     end
 
 
     # Méthode qui permet d'enlever le dernier coup
-    def undo
+    def annuler
         if(!@coups.empty?)then
             coup = @coups.pop
             pontCourant = coup.pont
@@ -188,7 +187,7 @@ class Genie
 
 
     # Méthode qui permet de remettre le dernier coup supprimer
-    def redo
+    def refaire
         if(!@anciensCoups.empty?)then
             coup = @anciensCoups.pop
             pontCourant = coup.pont
@@ -439,16 +438,15 @@ class Genie
     end
 
 
-
     # Méthode qui affiche le plateau sur le terminal
-    def afficherPlateau()
-        @plateau.afficherJeu()
+    def afficherPlateau
+        @plateau.afficherJeu
     end
 
 
     # Méthode qui affiche le plateau de correction sur le terminal
-    def afficherCorrection()
-        @correction.afficherJeu()
+    def afficherCorrection
+        @correction.afficherJeu
     end
 
 

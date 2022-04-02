@@ -11,7 +11,6 @@
 # * @y => Le nombre de colonne de la matrice
 class Donnees
 
-
   # Méthode d'initialisation d'un donnée
   #
   # Par défaut :
@@ -19,8 +18,8 @@ class Donnees
   # - @matrix = Array.new()
   # - @x = 0
   # - @y = 0
-  def initialize()
-    @matrix = Array.new()
+  def initialize
+    @matrix = []
     @x = 0
     @y = 0
   end
@@ -34,23 +33,20 @@ class Donnees
   # * +file+ - Un fichier
   def getMatrice(file)
     File.open(file, 'r') do |fichier|
-      while line = fichier.gets
-        if line = ~/^(x:)([0-9]+)( )(y:)([0-9]+)/ then
+      while (line = fichier.gets)
+        if (line = ~/^(x:)([0-9]+)( )(y:)([0-9]+)/)
           @x = $2.to_i
           @y = $5.to_i
 
-        else
-          if line = ~/(^([0-9]+( )*)+)/ then
-            ligne = $3 + $1
-            @matrix.push(ligne.split(' ').map(&:to_i))
-          end
+        elsif (line = ~/(^([0-9]+( )*)+)/)
+          ligne = $3 + $1
+          @matrix.push(ligne.split(' ').map(&:to_i))
         end
       end
-
     end
 
     # Méthode qui affiche la matrice générée
-    def to_s ()
+    def to_s
       puts "le x : #{@x} , le y : #{@y}"
       puts "la matrice du jeu : "
       puts @matrix.inspect
@@ -61,6 +57,6 @@ class Donnees
         print "\n"
       end
     end
-
   end
+
 end

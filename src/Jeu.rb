@@ -34,14 +34,6 @@ class Jeu < Gtk::Builder
       @hypothese_switch.set_sensitive(true)
     end
 
-    if @map.hypothese == true
-      @hypothese_switch.set_state(true)
-      @autocorrecteur_switch.set_sensitive(false)
-    else
-      @hypothese_switch.set_state(false)
-      @autocorrecteur_switch.set_sensitive(true)
-    end
-
     @fichier_options = File.read('../data/options.json')
 
     @hashOptions = JSON.parse(@fichier_options)
@@ -82,7 +74,8 @@ class Jeu < Gtk::Builder
   end
 
   def on_retour_button_clicked
-    @map.save(@mode)
+    @map.desactiverHypothese
+    @map.sauvegarder(@mode)
 
     @fenetre.remove(@jeu_box)
     @fenetre.resize(1280 * @ratio, 720 * @ratio)

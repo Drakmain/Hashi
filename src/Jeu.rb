@@ -135,6 +135,7 @@ class Jeu < Gtk::Builder
       @hypothese_switch.set_sensitive(false)
       puts 'activerAutoCorrecteur'
       @map.activerAutoCorrecteur
+      @grille.actualiserAffichage
     else
       @hypothese_switch.set_sensitive(true)
       puts 'desactiverAutoCorrecteur'

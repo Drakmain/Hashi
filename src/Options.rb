@@ -1,9 +1,8 @@
 ##
 # @userName = Nom de l'utilisateur courant
-# @theme = reference du pont sur la quelle le click est fait
 # @resolutionRatio = ratio par le quelle on multiplie le format de l'ecran. Exemple 16/9 * 120 = 1920*1080. 100 donne 1600*900, 80 donne 1280*720
 class Options < Gtk::Builder
-  attr_reader :user, :ratio, :theme, :langue
+  attr_reader :user, :ratio, :langue
 
   ##
   # Methode qui charge les donnees de
@@ -17,7 +16,6 @@ class Options < Gtk::Builder
     @hashOptions = JSON.parse(@fichier_options)
     @user = @hashOptions['username']
     @ratio = @hashOptions['resolution_ratio']
-    @theme = @hashOptions['theme']
     @langue = @hashOptions['langue']
 
     objects.each do |p|
@@ -47,12 +45,6 @@ class Options < Gtk::Builder
     when 'Espagnol'
       @langue_comboboxtext.set_active(2)
     end
-
-    #if @theme == 'sombre'
-    #  @theme_switch.set_active(true)
-    #else
-    #  @theme_switch.set_active(false)
-    #end
 
     @fenetre.set_title('Hashi - Options')
 
@@ -93,29 +85,10 @@ class Options < Gtk::Builder
     @langue = langue.active_text
   end
 
-  def on_changed_theme(theme)
-    puts "Theme mis a jour #{theme.active_text}"
-    @option.updateTheme(theme.active_text)
-  end
-
   def on_nom_utilisateur_entry_changed(username)
     puts "Nom d'utilisateur mis a jour to \"#{username.text}\""
     @hashOptions['username'] = username.text
     @user = username.text
-  end
-
-  def on_theme_switch_state_set(switch, state)
-    if state == true
-      switch.set_state(true)
-      puts 'Theme mis a jour en sombre'
-      @hashOptions['theme'] = 'sombre'
-      @theme = 'sombre'
-    else
-      switch.set_state(false)
-      puts 'Theme mis a jour en clair'
-      @hashOptions['theme'] = 'clair'
-      @theme = 'clair'
-    end
   end
 
   def on_enregistre_button_clicked
@@ -126,6 +99,6 @@ class Options < Gtk::Builder
   end
 
   def to_s
-    "Username : #{@user} \nResolution : #{(9 * @ratio.to_i())}p \nLangue : #{@langue} \nTheme : #{@theme}\n"
+    "Username : #{@user} \nResolution : #{(9 * @ratio.to_i())}p \nLangue : #{@langue}\n"
   end
 end

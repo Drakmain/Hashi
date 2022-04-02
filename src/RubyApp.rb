@@ -252,6 +252,8 @@ class RubyApp < Gtk::Fixed
         x += 1
       end
 
+      afficher_ile_pleine(x, y)
+
       x -= 1
 
       while @map.plateau.getCase(x, y).element.estPont?
@@ -276,12 +278,16 @@ class RubyApp < Gtk::Fixed
 
         x -= 1
       end
+
+      afficher_ile_pleine(x, y)
     when 'horizontal'
 
       nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
       while @map.plateau.getCase(x, y).element.estPont?
         y += 1
       end
+
+      afficher_ile_pleine(x, y)
 
       y -= 1
 
@@ -306,6 +312,8 @@ class RubyApp < Gtk::Fixed
 
         y -= 1
       end
+
+      afficher_ile_pleine(x, y)
     end
 
     @fenetre.show_all

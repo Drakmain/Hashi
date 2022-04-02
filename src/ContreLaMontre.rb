@@ -75,6 +75,7 @@ class ContreLaMontre < Genie
     # lit dans le fichier passé en parametre.
     #
     def corrigerErreur()
+        erreur = false
         for i in 0..@plateau.x-1 
 			for j in 0..@plateau.y-1 
                 elementCourant = @plateau.getCase(i,j).element
@@ -82,15 +83,19 @@ class ContreLaMontre < Genie
                 if (elementCourant.estPont? && elementCourant.nb_ponts > 0) then
                     if elementCorrection.estElement? then
                         @plateau.getCase(i,j).enleverPont
+                        erreur = true
                     elsif elementCourant.nb_ponts > elementCorrection.nb_ponts then 
                         enleverErreur(@plateau.getCase(i,j), elementCourant.nb_ponts - elementCorrection.nb_ponts)
+                        erreur = true
                     elsif elementCourant.estHorizontal? then
                         if(elementCorrection.estVertical?)then
                             enleverErreur(@plateau.getCase(i,j), elementCourant.nb_ponts)
+                            erreur = true
                         end
                     elsif elementCourant.estVertical? then
                         if(elementCorrection.estHorizontal?)then
                             enleverErreur(@plateau.getCase(i,j), elementCourant.nb_ponts)
+                            erreur = true
                         end
                     end
 
@@ -100,6 +105,8 @@ class ContreLaMontre < Genie
 		end
 
         @plateau.afficherJeu
+
+        return erreur
 
     end
 

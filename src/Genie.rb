@@ -322,10 +322,6 @@ class Genie
                 return "erreur"
             end
 
-
-            if(@autoCorrecteur)then
-                corrigerErreur
-            end
         end
 
         return sens
@@ -353,6 +349,13 @@ class Genie
                     @coups.push(Coup.creer(unClic, caseCourante, sens))
                 end
                 @anciensCoups.clear
+
+                if(@autoCorrecteur)then
+                    erreur = corrigerErreur
+                    if(erreur)then
+                        return "mort"
+                    end
+                end
                 return true
             end
         else
@@ -364,6 +367,13 @@ class Genie
                 @coups.push(Coup.creer(unClic, caseCourante, sens))
             end
             @anciensCoups.clear
+
+            if(@autoCorrecteur)then
+                erreur = corrigerErreur
+                if(erreur)then
+                    return "mort"
+                end
+            end
             return true
         end
         @anciensCoups.clear
@@ -392,6 +402,13 @@ class Genie
                     @coups.push(Coup.creer(unClic, caseCourante, sens))
                 end
                 @anciensCoups.clear
+
+                if(@autoCorrecteur)then
+                    erreur = corrigerErreur
+                    if(erreur)then
+                        return "mort"
+                    end
+                end
                 return true
             end
         else
@@ -403,6 +420,13 @@ class Genie
                 @coups.push(Coup.creer(unClic, caseCourante, sens))
             end
             @anciensCoups.clear
+
+            if(@autoCorrecteur)then
+                erreur = corrigerErreur
+                if(erreur)then
+                    return "mort"
+                end
+            end
             return true
         end
         @anciensCoups.clear

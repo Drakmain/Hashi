@@ -128,6 +128,8 @@ class RubyApp < Gtk::Fixed
           x += 1
         end
 
+        afficher_ile_pleine(x, y)
+
         x -= 1
 
         while @map.plateau.getCase(x, y).element.estPont?
@@ -160,6 +162,8 @@ class RubyApp < Gtk::Fixed
 
           x -= 1
         end
+
+        afficher_ile_pleine(x, y)
       end
 
       @fenetre.show_all
@@ -172,6 +176,8 @@ class RubyApp < Gtk::Fixed
         while @map.plateau.getCase(x, y).element.estPont?
           y += 1
         end
+
+        afficher_ile_pleine(x, y)
 
         y -= 1
 
@@ -205,6 +211,8 @@ class RubyApp < Gtk::Fixed
           y -= 1
         end
 
+        afficher_ile_pleine(x, y)
+
         @fenetre.show_all
         @map.afficherPlateau
       end
@@ -214,6 +222,23 @@ class RubyApp < Gtk::Fixed
 
     if @map.plateau.partieFini?
       @fini_dialog.run
+    end
+  end
+
+  def afficher_ile_pleine(x, y)
+    valeur = @map.plateau.getCase(x, y).element.valeur
+    if @map.plateau.getCase(x, y).element.estFini?
+      pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/' + valeur.to_s + 'Pleine.png')
+      image = Gtk::Image.new(:pixbuf => pixbuf)
+      image.set_name("Img_#{x}_#{y}")
+      @tab_events[@map.plateau.y * x + y].remove(@tab_events[@map.plateau.y * x + y].child)
+      @tab_events[@map.plateau.y * x + y].child = image
+    else
+      pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/' + valeur.to_s + '.png')
+      image = Gtk::Image.new(:pixbuf => pixbuf)
+      image.set_name("Img_#{x}_#{y}")
+      @tab_events[@map.plateau.y * x + y].remove(@tab_events[@map.plateau.y * x + y].child)
+      @tab_events[@map.plateau.y * x + y].child = image
     end
   end
 

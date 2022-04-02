@@ -414,7 +414,7 @@ class RubyApp < Gtk::Fixed
     end
   end
 
-  def annuller
+  def annuler
     case_undo = @map.undo
 
     unless case_undo.nil?

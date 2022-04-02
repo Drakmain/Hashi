@@ -153,6 +153,7 @@ class Jeu < Gtk::Builder
       @autocorrecteur_switch.set_sensitive(true)
       puts 'desactiverHypothese'
       @map.desactiverHypothese
+      @grille.actualiserAffichage
     end
   end
 

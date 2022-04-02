@@ -137,11 +137,19 @@ class RubyApp < Gtk::Fixed
             image = Gtk::Image.new(:pixbuf => pixbuf)
             image.set_name("Img_#{x}_#{y}")
           when 1
-            pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontV1.png')
+            if @map.hypothese == false
+              pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontV1.png')
+            else
+              pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontHV1.png')
+            end
             image = Gtk::Image.new(:pixbuf => pixbuf)
             image.set_name("p1v_#{x}_#{y}")
           when 2
-            pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontV2.png')
+            if @map.hypothese == false
+              pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontV2.png')
+            else
+              pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontHV2.png')
+            end
             image = Gtk::Image.new(:pixbuf => pixbuf)
             image.set_name("p2v_#{x}_#{y}")
           end
@@ -174,11 +182,19 @@ class RubyApp < Gtk::Fixed
             image = Gtk::Image.new(:pixbuf => pixbuf)
             image.set_name("Img_#{x}_#{y}")
           when 1
-            pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontH1.png')
+            if @map.hypothese == false
+              pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontH1.png')
+            else
+              pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontHH1.png')
+            end
             image = Gtk::Image.new(:pixbuf => pixbuf)
             image.set_name("p1h_#{x}_#{y}")
           when 2
-            pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontH2.png')
+            if @map.hypothese == false
+              pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontH2.png')
+            else
+              pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontHH2.png')
+            end
             image = Gtk::Image.new(:pixbuf => pixbuf)
             image.set_name("p2h_#{x}_#{y}")
           end

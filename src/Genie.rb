@@ -84,7 +84,7 @@ class Genie
         @pseudo = unPseudo
         @correction = PlateauCorrection.creer()
         @chronoFirst = 0
-        @hypothese = true
+        @hypothese = false
         @autoCorrecteur = false
         @difficulte = uneDifficulte
         @niveau = unNiveau

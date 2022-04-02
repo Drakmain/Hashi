@@ -121,7 +121,7 @@ class Jeu < Gtk::Builder
 
   def on_corriger_erreur_button_clicked
     puts 'on_corriger_erreur_button_clicked'
-    #@grille.corrigerErreur
+    @grille.corrigerErreur
   end
 
   def on_afficher_erreur_button_clicked

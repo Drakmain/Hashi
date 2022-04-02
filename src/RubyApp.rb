@@ -134,16 +134,19 @@ class RubyApp < Gtk::Fixed
           case nb_ponts
           when 0
             pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/0.png')
+            image = Gtk::Image.new(:pixbuf => pixbuf)
+           image.set_name("Img_#{x}_#{y}")
           when 1
             pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontV1.png')
+            image = Gtk::Image.new(:pixbuf => pixbuf)
+            image.set_name("p1v_#{x}_#{y}")
           when 2
             pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontV2.png')
+            image = Gtk::Image.new(:pixbuf => pixbuf)
+            image.set_name("p2v_#{x}_#{y}")
           end
 
           @tab_events[@map.plateau.y * x + y].remove(@tab_events[@map.plateau.y * x + y].child)
-
-          image = Gtk::Image.new(:pixbuf => pixbuf)
-          image.set_name("Img_#{x}_#{y}")
 
           @tab_events[@map.plateau.y * x + y].child = image
 
@@ -168,15 +171,18 @@ class RubyApp < Gtk::Fixed
           case nb_ponts
           when 0
             pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/0.png')
+            image = Gtk::Image.new(:pixbuf => pixbuf)
+            image.set_name("Img_#{x}_#{y}")
           when 1
             pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontH1.png')
+            image = Gtk::Image.new(:pixbuf => pixbuf)
+           image.set_name("p1h_#{x}_#{y}")
           when 2
             pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontH2.png')
+            image = Gtk::Image.new(:pixbuf => pixbuf)
+            image.set_name("p2h_#{x}_#{y}")
           end
           @tab_events[@map.plateau.y * x + y].remove(@tab_events[@map.plateau.y * x + y].child)
-
-          image = Gtk::Image.new(:pixbuf => pixbuf)
-          image.set_name("Img_#{x}_#{y}")
 
           @tab_events[@map.plateau.y * x + y].child = image
 
@@ -192,6 +198,14 @@ class RubyApp < Gtk::Fixed
 
     if @map.plateau.partieFini?
       @fini_dialog.run
+    end
+
+    (0...@donnee.y).each do |i|
+      (0...@donnee.x).each do |j|
+        if(@tab_events[@map.plateau.y * j + i].child.name.match(/^p/))
+          puts @tab_events[@map.plateau.y * j + i].child.name + "\n"
+        end
+      end
     end
   end
 
@@ -211,16 +225,19 @@ class RubyApp < Gtk::Fixed
         case nb_ponts
         when 0
           pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/0.png')
+          image = Gtk::Image.new(:pixbuf => pixbuf)
+          image.set_name("Img_#{x}_#{y}")
         when 1
           pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontV1.png')
+          image = Gtk::Image.new(:pixbuf => pixbuf)
+          image.set_name("p1v_#{x}_#{y}")
         when 2
           pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontV2.png')
+          image = Gtk::Image.new(:pixbuf => pixbuf)
+          image.set_name("p2v_#{x}_#{y}")
         end
 
         @tab_events[@map.plateau.y * x + y].remove(@tab_events[@map.plateau.y * x + y].child)
-
-        image = Gtk::Image.new(:pixbuf => pixbuf)
-        image.set_name("Img_#{x}_#{y}")
 
         @tab_events[@map.plateau.y * x + y].child = image
 
@@ -239,15 +256,18 @@ class RubyApp < Gtk::Fixed
         case nb_ponts
         when 0
           pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/0.png')
+          image = Gtk::Image.new(:pixbuf => pixbuf)
+          image.set_name("Img_#{x}_#{y}")
         when 1
           pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontH1.png')
+          image = Gtk::Image.new(:pixbuf => pixbuf)
+          image.set_name("p1h_#{x}_#{y}")
         when 2
           pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontH2.png')
+          image = Gtk::Image.new(:pixbuf => pixbuf)
+          image.set_name("p2h_#{x}_#{y}")
         end
         @tab_events[@map.plateau.y * x + y].remove(@tab_events[@map.plateau.y * x + y].child)
-
-        image = Gtk::Image.new(:pixbuf => pixbuf)
-        image.set_name("Img_#{x}_#{y}")
 
         @tab_events[@map.plateau.y * x + y].child = image
 
@@ -368,14 +388,62 @@ class RubyApp < Gtk::Fixed
   end
 
   def corrigerErreur
-    plateauCourant = @map.plateau.clone
     @map.corrigerErreur
-
-    plateauCourant.afficherJeu
     @map.afficherPlateau
+    actualiserAffichage
   end
 
   def afficherErreur
+  end
+
+  def actualiserAffichage()
+    (0...@donnee.x).each do |i|
+      (0...@donnee.y).each do |j|
+          if(@tab_events[@map.plateau.y * j + i].child.name.match(/^p2/))then
+              if(@map.plateau.getCase(j,i).element.estPont?)then
+                if(@map.plateau.getCase(j,i).element.nb_ponts <= 1)then
+                  puts @tab_events[@map.plateau.y * j + i].child.name + "\n"
+                  @tab_events[@map.plateau.y * j + i].remove(@tab_events[@map.plateau.y * j + i].child)
+                  if(@map.plateau.getCase(j,i).element.estVertical?)then
+                    pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontV1.png')
+                    image = Gtk::Image.new(:pixbuf => pixbuf)
+                    image.set_name("p1v_#{j}_#{i}")
+                  else
+                    pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/pontH1.png')
+                    image = Gtk::Image.new(:pixbuf => pixbuf)
+                    image.set_name("p1h_#{j}_#{i}")
+                  end
+                  @tab_events[@map.plateau.y * j + i].child = image
+                end
+              end
+          end
+
+          if(@tab_events[@map.plateau.y * j + i].child.name.match(/^p1/))then
+            if(@map.plateau.getCase(j,i).element.estPont?)then
+              if(@map.plateau.getCase(j,i).element.nb_ponts == 0)then
+                puts @tab_events[@map.plateau.y * j + i].child.name + "\n"
+                puts "i : " + i.to_s() + " j : " + j.to_s
+                @tab_events[@map.plateau.y * j + i].remove(@tab_events[@map.plateau.y * j + i].child)
+                pixbuf = GdkPixbuf::Pixbuf.new(:file => '../data/img/0.png')
+                image = Gtk::Image.new(:pixbuf => pixbuf)
+                image.set_name("Img_#{j}_#{i}")
+                @tab_events[@map.plateau.y * j + i].child = image
+              end
+            end
+          end
+      end
+    end
+
+    (0...@donnee.y).each do |i|
+      (0...@donnee.x).each do |j|
+        #if(@tab_events[@map.plateau.y * j + i].child.name.match(/^p/))
+          print @tab_events[@map.plateau.y * i + j].child.name
+        #end
+      end
+      print "\n"
+    end
+
+    @fenetre.show_all
   end
 
 end

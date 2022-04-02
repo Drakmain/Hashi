@@ -30,6 +30,22 @@ class Jeu < Gtk::Builder
       @autocorrecteur_switch.set_sensitive(false)
     end
 
+    if @map.autoCorrecteur == true
+      @autocorrecteur_switch.set_state(true)
+      @hypothese_switch.set_sensitive(false)
+    else
+      @autocorrecteur_switch.set_state(false)
+      @hypothese_switch.set_sensitive(true)
+    end
+
+    if @map.hypothese == true
+      @hypothese_switch.set_state(true)
+      @autocorrecteur_switch.set_sensitive(false)
+    else
+      @hypothese_switch.set_state(false)
+      @autocorrecteur_switch.set_sensitive(true)
+    end
+
     @fichier_options = File.read('../data/options.json')
 
     @hashOptions = JSON.parse(@fichier_options)
@@ -70,9 +86,7 @@ class Jeu < Gtk::Builder
   end
 
   def on_retour_button_clicked
-    if !@map.coups.empty?
-      @map.save(@mode)
-    end
+    @map.save(@mode)
 
     @fenetre.remove(@jeu_box)
     @fenetre.resize(1280 * @ratio, 720 * @ratio)
@@ -116,12 +130,12 @@ class Jeu < Gtk::Builder
   end
 
   def on_autocorrecteur_switch_state_set(switch, state)
-
     switch.set_state(state)
     if state
       @hypothese_switch.set_sensitive(false)
       puts 'activerAutoCorrecteur'
       @map.activerAutoCorrecteur
+      @grille.actualiserAffichage
     else
       @hypothese_switch.set_sensitive(true)
       puts 'desactiverAutoCorrecteur'

@@ -20,7 +20,7 @@ class Fenetre < Gtk::Builder
       @fichier_options = File.read('../data/options.json')
     rescue
       @fichier_options = File.open('../data/options.json', 'w')
-      @fichier_options.write('{"username": "Invité","resolution_ratio": 1,"theme": "clair","langue": "Francais"}')
+      @fichier_options.write('{"username": "Invité","resolution_ratio": 1,"langue": "Francais"}')
       @fichier_options.close
       @fichier_options = File.read('../data/options.json')
     end

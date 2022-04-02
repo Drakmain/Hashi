@@ -37,15 +37,17 @@ load "Coup.rb"
 #
 class Genie
 
+    # La méthode new est en privé
+    private_class_method :new
+
+    attr_accessor :fichierJeu, :plateau, :coups
+    attr_reader :autoCorrecteur, :hypothese
+
     ##############################################################################################
     #                               Methode de classe
     ##############################################################################################
 
 
-    # La méthode new est en privé
-    private_class_method :new
-
-    attr_accessor :fichierJeu, :plateau, :coups
     # Méthode qui permet de créer un mode génie
     #
     # ==== Attributs

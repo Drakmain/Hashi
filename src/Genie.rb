@@ -334,6 +334,8 @@ class Genie
     # * +unClic+ - l'action effectué par l'utilisateur
     def jouerCoupHorizontaleInterface(unX, unY, unClic)
         caseCourante = @plateau.getCase(unX, unY)
+        res = false
+
         if(unClic)then
             if(caseCourante.pontAjoutable("droite",true) && caseCourante.pontAjoutable("gauche",true))then
                 caseCourante.creerPont("droite", true)
@@ -341,41 +343,30 @@ class Genie
                 sens = "horizontal"
 
                 unClic = "ajouter"
-                if(@hypothese)then
-                    @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
-                else
-                    @coups.push(Coup.creer(unClic, caseCourante, sens))
-                end
-                @anciensCoups.clear
 
-                if(@autoCorrecteur)then
-                    erreur = corrigerErreur
-                    if(erreur)then
-                        return "mort"
-                    end
-                end
-                return true
+                res = true
             end
         else
             caseCourante.enleverPont
             unClic = "enlever"
-            if(@hypothese)then
-                @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
-            else
-                @coups.push(Coup.creer(unClic, caseCourante, sens))
-            end
-            @anciensCoups.clear
+            res = true
+        end
 
+
+        if(@hypothese)then
+            @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
+        else
             if(@autoCorrecteur)then
                 erreur = corrigerErreur
                 if(erreur)then
                     return "mort"
+                else
+                    @coups.push(Coup.creer(unClic, caseCourante, sens))
                 end
             end
-            return true
         end
         @anciensCoups.clear
-        return false
+        return res
     end
 
     # Méthode qui permet de jouer un coup verticale sur une interface
@@ -387,6 +378,7 @@ class Genie
     # * +unClic+ - l'action effectué par l'utilisateur
     def jouerCoupVerticaleInterface(unX, unY, unClic)
         caseCourante = @plateau.getCase(unX, unY)
+        res = false
         if(unClic)then
             if(caseCourante.pontAjoutable("haut",true) && caseCourante.pontAjoutable("bas",true))then
                 caseCourante.creerPont("haut", true)
@@ -394,41 +386,29 @@ class Genie
                 sens = "vertical"
 
                 unClic = "ajouter"
-                if(@hypothese)then
-                    @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
-                else
-                    @coups.push(Coup.creer(unClic, caseCourante, sens))
-                end
-                @anciensCoups.clear
-
-                if(@autoCorrecteur)then
-                    erreur = corrigerErreur
-                    if(erreur)then
-                        return "mort"
-                    end
-                end
-                return true
+                res = true
             end
         else
             caseCourante.enleverPont
             unClic = "enlever"
-            if(@hypothese)then
-                @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
-            else
-                @coups.push(Coup.creer(unClic, caseCourante, sens))
-            end
-            @anciensCoups.clear
+            res = true
+        end
 
+        if(@hypothese)then
+            @pileHypothese.push(Coup.creer(unClic, caseCourante, sens))
+        else
             if(@autoCorrecteur)then
                 erreur = corrigerErreur
                 if(erreur)then
                     return "mort"
+                else
+                    @coups.push(Coup.creer(unClic, caseCourante, sens))
                 end
             end
-            return true
         end
+
         @anciensCoups.clear
-        return false
+        return res
     end
 
 

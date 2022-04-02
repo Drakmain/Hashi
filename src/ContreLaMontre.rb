@@ -236,6 +236,7 @@ class ContreLaMontre < Genie
     # permet d'activer le mode AutoCorrecteur
     def activerAutoCorrecteur()
         @autoCorrecteur = true
+        corrigerErreur
     end
 
 

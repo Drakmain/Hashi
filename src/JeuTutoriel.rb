@@ -4,7 +4,7 @@ class JeuTutoriel < Gtk::Builder
 
   def initialize(fenetre, ratio, mode, difficulte, map, niveau)
     super()
-    add_from_file('../data/glade/Jeu.glade')
+    add_from_file('../data/glade/JeuTutoriel.glade')
     @ratio = ratio
     @fenetre = fenetre
     @mode = mode
@@ -22,17 +22,11 @@ class JeuTutoriel < Gtk::Builder
 
     @plateau_box.add(@grille)
 
-    @fenetre.set_title("Hashi - Niveau n°#{niveau}")
+    @retour_button.set_size_request(-1, 50 * @ratio)
 
-    @gauche_box.remove(@timer_label)
+    @fenetre.set_title("Hashi - Tutoriel n°#{niveau}")
 
-    @jeu_box.remove(@droite_box)
-
-    @action_button_box.each do |i|
-      @action_button_box.remove(i)
-    end
-
-    @action_button_box.add(Gtk::Label.new(File.read(File.expand_path("../data/catalogue/#{niveau}.txt"))))
+    @tutoriel_label.set_text((File.read(File.expand_path("../data/catalogue/#{niveau}.txt"))))
 
     @map.afficherPlateau
 

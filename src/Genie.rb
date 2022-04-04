@@ -38,7 +38,7 @@ class Genie
   # La méthode new est en privé
   private_class_method :new
 
-  attr_accessor :fichierJeu, :plateau, :coups
+  attr_accessor :fichierJeu, :plateau, :coups, :label
   attr_reader :autoCorrecteur, :hypothese
 
   ##############################################################################################
@@ -69,7 +69,6 @@ class Genie
   #
   def initialize(unPlateau, unNiveau, unPseudo, uneDifficulte)
     @score = 0
-    @chrono = Chrono.new
     @anciensCoups = []
     @coups = []
     @pileHypothese = []
@@ -85,6 +84,7 @@ class Genie
     @autoCorrecteur = false
     @difficulte = uneDifficulte
     @niveau = unNiveau
+    @chrono = 0
   end
 
   #############################################################################################
@@ -104,6 +104,10 @@ class Genie
   # Méthode qui permet de sauvegarder une partie, elle sérialize l'objet courant
   def sauvegarder(mode)
     puts "\nSauvegarde de #{@dir}#{@pseudo}_#{mode}_#{@difficulte}_#{@niveau}.bn ..."
+
+    @label = nil
+
+    @chrono = @chrono.chrono
 
     Dir.mkdir(@dir) unless File.exists?(@dir)
     f = File.open(File.expand_path("#{@dir}#{@pseudo}_#{mode}_#{@difficulte}_#{@niveau}.bn"), 'w')
@@ -132,8 +136,15 @@ class Genie
   end
 
   # Méthode qui permet de lancer le chronometre dans le sens normal (part de 0 et s'incrémente jusqu'à ce que la partie soit terminé)
-  def lancerChrono
-    @chrono.lancerChrono
+  def lancerChrono(unLabel)
+    if(@chrono == 0)then
+      @chrono = Chrono.new(unLabel)
+      @chrono.lancerChrono
+    else
+      valeur = @chrono
+      @chrono = Chrono.new(unLabel)
+      @chrono.lancerChronoValeur(valeur)
+    end
   end
 
   # Méthode qui permet de supprimer le dernier coup dans la liste des coups, le met dans à liste des anciens coups

@@ -27,6 +27,8 @@ class ContreLaMontre < Genie
   # new en privée
   private_class_method :new
 
+  attr_reader :chrono
+
   # creer un objet ContreLaMontre
   #
   # ==== Attributs
@@ -57,8 +59,15 @@ class ContreLaMontre < Genie
   end
 
   # permet de lancer le chronometre dans le sens inverse (part de 300 et se décrémente jusqu'à ce que le temps soit à 0) (5min pour toutes les maps)
-  def lancerChrono
-    @chrono.lancerChronoInverse(300)
+  def lancerChrono(unLabel)
+    if(@chrono == 0)then
+      @chrono = Chrono.new(unLabel)
+      @chrono.lancerChronoInverse(300)
+    else
+      valeur = @chrono
+      @chrono = Chrono.new(unLabel)
+      @chrono.lancerChronoInverse(valeur)
+    end
   end
 
   # Permet de corriger des erreurs

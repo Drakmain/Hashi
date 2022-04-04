@@ -24,8 +24,17 @@ class Normal < ContreLaMontre
   end
 
   # Méthode qui permet de lancer le chronometre dans le sens normal (part de 0 et s'incrémente jusqu'à ce que la partie soit terminée)
-  def lancerChrono
-    @chrono.lancerChrono
+  def lancerChrono(unLabel)
+    if(@chrono == 0)then
+      @chrono = Chrono.new(unLabel)
+      @chrono.lancerChrono
+    else
+      valeur = @chrono
+      @chrono = Chrono.new(unLabel)
+      @chrono.lancerChronoValeur(valeur)
+    end
   end
+
+  attr_reader :chrono
 
 end

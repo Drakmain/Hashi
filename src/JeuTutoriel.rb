@@ -32,8 +32,7 @@ class JeuTutoriel < Gtk::Builder
       @action_button_box.remove(i)
     end
 
-    #@action_button_box.add(Gtk::Label.new(File.read(File.expand_path("../data/catalogue/#{niveau}.txt"))))
-    @action_button_box.add(Gtk::Label.new('Oue'))
+    @action_button_box.add(Gtk::Label.new(File.read(File.expand_path("../data/catalogue/#{niveau}.txt"))))
 
     @map.afficherPlateau
 
@@ -50,7 +49,7 @@ class JeuTutoriel < Gtk::Builder
   def on_retour_button_clicked
     @fenetre.remove(@jeu_box)
     @fenetre.resize(1280 * @ratio, 720 * @ratio)
-    SelectionMap.new(@fenetre, @ratio, @mode, @difficulte)
+    SelectionMap.new(@fenetre, @ratio, 'tutoriel', 'tutoriel')
   end
 
 end

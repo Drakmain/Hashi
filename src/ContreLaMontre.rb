@@ -176,19 +176,19 @@ class ContreLaMontre < Genie
         elementCorrection = @correction.getCase(i, j).element
         if (elementCourant.estPont? && elementCourant.nb_ponts > 0) then
           if elementCorrection.estElement? then
-            elementCourant = true
+            elementCourant.erreur = true
           elsif elementCourant.nb_ponts > elementCorrection.nb_ponts then
-            elementCourant = true
+            elementCourant.erreur = true
           elsif elementCourant.estHorizontal? then
             if (elementCorrection.estVertical?) then
-              elementCourant = true
+              elementCourant.erreur = true
             end
           elsif elementCourant.estVertical? then
             if (elementCorrection.estHorizontal?) then
-              elementCourant = true
+              elementCourant.erreur = true
             end
           end
-        end
+        end  
       end
     end
   end
@@ -262,7 +262,8 @@ class ContreLaMontre < Genie
   # Permet de suggérer un coup à l'utilisateur, si le joueur a des erreurs, alors elles lui sont indiqué
   # et doit les corriger avant d'avoir un coup à jouer
   def suggestion
-    puts('Mode suggestion activé')
+    res = []
+    coup = nil
     # On parcours toutes les cases
     x = -1
     y = -1
@@ -276,87 +277,46 @@ class ContreLaMontre < Genie
           bitPonts = elem.pontAjoutables
           valeurActuelle = elem.element.valeur - elem.element.nbLiens
           # Cas ou valeur <= 2 et nbVoisines = 1
-          if valeurActuelle <= 2 && (bitPonts == 1 || bitPonts == 10 || bitPonts == 100 || bitPonts == 1000)
-            puts "L'ile a la position #{x}, #{y} a encore 2 ou 1 ponts a faire et n'as qu'une seule voisine, il faut donc la connecter a sa voisine"
-            case bitPonts
-            when 1
-              return(Coup.creer(false, elem.voisineDroite.element, true))
-            when 10
-              return(Coup.creer(false, elem.voisineGauche.element, true))
-            when 100
-              return(Coup.creer(false, elem.voisineHaut.element, false))
-            when 1000
-              return(Coup.creer(false, elem.voisineBas.element, false))
-            end
-          end
+          if valeurActuelle > 0 && valeurActuelle <= 2 && (bitPonts == 1 || bitPonts == 10 || bitPonts == 100 || bitPonts == 1000)
+            res.push("Cette île a encore 2 ou 1 ponts a faire et n'as qu'une seule voisine, \nil faut donc la connecter à sa voisine")
+            coup = Coup.creer(false, elem, true)
+            res.push(coup)
+            return res
           # Cas ou valeur = 3 et nbVoisines = 2
-          if valeurActuelle == 3 && (bitPonts == 11 || bitPonts == 110 || bitPonts == 101 || bitPonts == 1010 || bitPonts == 1001)
-            puts "L'ile a la position #{x}, #{y} a encore 3 ponts a faire et posséde 2 voisines, il faut donc la connecter a une de ses voisines"
-            case bitPonts
-            when 11
-              return(Coup.creer(false, elem.voisineDroite.element, true))
-            when 110
-              return(Coup.creer(false, elem.voisineGauche.element, true))
-            when 101
-              return(Coup.creer(false, elem.voisineHaut.element, false))
-            when 1010
-              return(Coup.creer(false, elem.voisineBas.element, false))
-            when 1001
-              return(Coup.creer(false, elem.voisineBas.element, false))
-            end
-          end
+          elsif valeurActuelle == 3 && (bitPonts == 11 || bitPonts == 110 || bitPonts == 101 || bitPonts == 1010 || bitPonts == 1001)
+            res.push("Cette île a encore 3 ponts a faire et posséde 2 voisines, \nil faut donc la connecter à une de ses voisines")
+            coup = Coup.creer(false, elem, true)
+            res.push(coup)
+            return res
           # Cas ou valeur = 4 et nbVoisines = 2
-          if valeurActuelle == 4 && (bitPonts == 11 || bitPonts == 110 || bitPonts == 101 || bitPonts == 1010 || bitPonts == 1001)
-            puts "L'ile a la position #{x}, #{y} a encore 4 ponts a faire et posséde 2 voisines, il faut donc la connecter toutes ses voisines"
-            case bitPonts
-            when 11
-              return(Coup.creer(false, elem.voisineDroite.element, true))
-            when 110
-              return(Coup.creer(false, elem.voisineGauche.element, true))
-            when 101
-              return(Coup.creer(false, elem.voisineHaut.element, false))
-            when 1010
-              return(Coup.creer(false, elem.voisineBas.element, false))
-            when 1001
-              return(Coup.creer(false, elem.voisineBas.element, false))
-            end
-          end
+          elsif valeurActuelle == 4 && (bitPonts == 11 || bitPonts == 110 || bitPonts == 101 || bitPonts == 1010 || bitPonts == 1001)
+            res.push("Cette île a encore 4 ponts a faire et posséde 2 voisines, \nil faut donc la connecter à toutes ses voisines")
+            coup = Coup.creer(false, elem, true)
+            res.push(coup)
+            return res
           # Cas ou valeur = 5 et nbVoisines = 3
-          if valeurActuelle == 5 && (bitPonts == 111 || bitPonts == 1011 || bitPonts == 1110 || bitPonts == 1101)
-            puts "L'ile a la position #{x}, #{y} a encore 5 ponts a faire et posséde 3 voisines, il faut donc la connecter a une de ses voisines"
-            case bitPonts
-            when 111
-              return(Coup.creer(false, elem.voisineDroite.element, true))
-            when 1011
-              return(Coup.creer(false, elem.voisineBas.element, false))
-            when 1110
-              return(Coup.creer(false, elem.voisineBas.element, false))
-            when 1101
-              return(Coup.creer(false, elem.voisineBas.element, false))
-            end
-          end
+          elsif valeurActuelle == 5 && (bitPonts == 111 || bitPonts == 1011 || bitPonts == 1110 || bitPonts == 1101)
+            res.push("Cette île a encore 5 ponts a faire et posséde 3 voisines, \nil faut donc la connecter à une de ses voisines")
+            coup = Coup.creer(false, elem, true)
+            res.push(coup)
+            return res
           # Cas ou valeur = 6 et nbVoisines = 3
-          if valeurActuelle == 6 && (bitPonts == 111 || bitPonts == 1011 || bitPonts == 1110 || bitPonts == 1101)
-            puts "L'ile a la position #{x}, #{y} a encore 6 ponts a faire et posséde 3 voisines, il faut donc la connecter a toutes ses voisines"
-            case bitPonts
-            when 111
-              return(Coup.creer(false, elem.voisineDroite.element, true))
-            when 1011
-              return(Coup.creer(false, elem.voisineBas.element, false))
-            when 1110
-              return(Coup.creer(false, elem.voisineBas.element, false))
-            when 1101
-              return(Coup.creer(false, elem.voisineBas.element, false))
-            end
-          end
+          elsif valeurActuelle == 6 && (bitPonts == 111 || bitPonts == 1011 || bitPonts == 1110 || bitPonts == 1101)
+            res.push("Cette île a encore 6 ponts a faire et posséde 3 voisines, \nil faut donc la connecter à toutes ses voisines")
+            coup = Coup.creer(false, elem, true)
+            res.push(coup)
+            return res
           # Cas ou valeur = 7 et nbVoisines = 4
-          if valeurActuelle == 7 && (bitPonts == 1111)
-            puts "L'ile a la position #{x}, #{y} a encore 7 ponts a faire et posséde 5 voisines, il faut donc la connecter a un de ses voisines"
-            return(Coup.creer(false, elem.voisineDroite.element, true))
-          end
-          if valeurActuelle == 8 && (bitPonts == 1111)
-            puts "L'ile a la position #{x}, #{y} a encore 8 ponts a faire et posséde 5 voisines, il faut donc la connecter a un de ses voisines"
-            return(Coup.creer(false, elem.voisineDroite.element, true))
+          elsif valeurActuelle == 7 && (bitPonts == 1111)
+            res.push("Cette île a encore 7 ponts a faire et posséde 5 voisines, \nil faut donc la connecter à un de ses voisines")
+            coup = Coup.creer(false, elem, true)
+            res.push(coup)
+            return res
+          elsif valeurActuelle == 8 && (bitPonts == 1111)
+            res.push("Cette île a encore 8 ponts a faire et posséde 5 voisines, \nil faut donc la connecter à un de ses voisines")
+            coup = Coup.creer(false, elem, true)
+            res.push(coup)
+            return res
           end
         end
       end

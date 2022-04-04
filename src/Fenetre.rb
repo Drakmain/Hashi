@@ -1,4 +1,5 @@
 require 'gtk3'
+require 'json'
 
 load 'MenuPrincipal.rb'
 

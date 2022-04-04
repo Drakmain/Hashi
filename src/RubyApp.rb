@@ -180,6 +180,10 @@ class RubyApp < Gtk::Fixed
       sens = "H#{sens}"
     end
 
+    if @map.plateau.getCase(x, y).element.erreur
+      sens = "E#{sens}"
+    end
+
     case nb_ponts
     when 0
       pixbuf = GdkPixbuf::Pixbuf.new(file: '../data/img/0.png')
@@ -371,6 +375,12 @@ class RubyApp < Gtk::Fixed
   end
 
   def afficherErreur
+    @map.afficherPontErreur
+    (@map.coups).each do |c|
+      if(c.pont.element.erreur) then
+        afficher_pont(c.sens, c.pont.x, c.pont.y)
+      end
+    end
   end
 
   def actualiserAffichage

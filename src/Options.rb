@@ -89,7 +89,6 @@ class Options < Gtk::Builder
   # ferme la box des options et affiche la box du menu principal
   def on_retour_button_clicked
     @fenetre.remove(@options_box)
-    @fenetre.resize(1280 * @ratio, 720 * @ratio)
     MenuPrincipal.new(@fenetre, @ratio)
   end
 
@@ -106,12 +105,15 @@ class Options < Gtk::Builder
     when '720p'
       @hashOptions['resolution_ratio'] = 1
       @ratio = 1
+      @fenetre.resize(1280 * @ratio, 720 * @ratio)
     when '900p'
       @hashOptions['resolution_ratio'] = 1.25
       @ratio = 1.25
+      @fenetre.resize(1280 * @ratio, 720 * @ratio)
     when '1080p'
       @hashOptions['resolution_ratio'] = 1.5
       @ratio = 1.5
+      @fenetre.resize(1280 * @ratio, 720 * @ratio)
     end
 
   end
@@ -146,7 +148,7 @@ class Options < Gtk::Builder
   # ouvre le fichier d'options, et écrit dedans le contenu du hashOptions
   def on_enregistre_button_clicked
     puts 'Options sauvegarde'
-    fichier = File.open('../data/settings/options.json', 'w')
+    fichier = File.open('../data/options.json', 'w')
     fichier.write(JSON.dump(@hashOptions))
     fichier.close
   end

@@ -19,6 +19,8 @@ class Jeu < Gtk::Builder
       end
     end
 
+    @map.lancerChrono(@timer_label)
+
     if @map.instance_of?(Genie)
       @annuler_button.set_sensitive(false)
       @pause_button.set_sensitive(false)
@@ -48,13 +50,10 @@ class Jeu < Gtk::Builder
     @nb_erreur_button.set_size_request(-1, 50 * @ratio)
     @fini_dialog.set_window_position Gtk::WindowPosition::CENTER_ON_PARENT
     @fini_dialog.set_resizable(false)
-    @fini_dialog.set_title("Gagné !")
+    @fini_dialog.set_title('Gagné !')
     @fini_label.set_text("Bravo !\nVous avez fini le niveau #{niveau} en mode #{mode} et en difficulte #{difficulte}")
 
     @grille = RubyApp.new(@fenetre, @map, @sens_popover, @fini_dialog)
-
-    @map.lancerChrono(@timer_label)
-    @timer_label.set_text("Timer : ")
 
     @plateau_box.add(@grille)
 
@@ -70,10 +69,6 @@ class Jeu < Gtk::Builder
 
     @fenetre.add(@jeu_box)
     @fenetre.show_all
-  end
-
-  def majChrono(string)
-    @timer_label.set_text("Timer : #{@map.chrono.chrono}")
   end
 
   def on_retour_button_clicked
@@ -105,7 +100,7 @@ class Jeu < Gtk::Builder
       img = i.child.name.split('_')
       x = img[1].to_i
       y = img[2].to_i
-      if(x == suggerer[1].pont.x && y == suggerer[1].pont.y)then
+      if x == suggerer[1].pont.x && y == suggerer[1].pont.y
         @suggestion_popover.set_relative_to(i)
       end
     end
@@ -134,12 +129,10 @@ class Jeu < Gtk::Builder
     switch.set_state(state)
     if state
       @hypothese_switch.set_sensitive(false)
-      puts 'activerAutoCorrecteur'
       @map.activerAutoCorrecteur
       @grille.actualiserAffichage
     else
       @hypothese_switch.set_sensitive(true)
-      puts 'desactiverAutoCorrecteur'
       @map.desactiverAutoCorrecteur
     end
   end
@@ -150,13 +143,11 @@ class Jeu < Gtk::Builder
       @autocorrecteur_switch.set_sensitive(false)
       @annuler_button.set_sensitive(false)
       @refaire_button.set_sensitive(false)
-      puts 'activerHypothese'
       @map.activerHypothese
     else
       @autocorrecteur_switch.set_sensitive(true)
       @annuler_button.set_sensitive(true)
       @refaire_button.set_sensitive(true)
-      puts 'desactiverHypothese'
       @map.desactiverHypothese
       @grille.actualiserAffichage
     end

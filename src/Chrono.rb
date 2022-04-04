@@ -33,11 +33,11 @@ class Chrono
 
   # Lance le chronomètre, et compte le nombre de secondes depuis ce lancement.
   def lancerChrono
-    Thread.start() do
+    Thread.start do
       @estLancer = true
       @chrono = 0
       while @estLancer
-        @chrono = @chrono + 1
+        @chrono += 1
         sleep(1)
         @label.set_text("Timer : #{@chrono} s")
       end
@@ -50,7 +50,7 @@ class Chrono
       @estLancer = true
       @chrono = uneValeur
       while @estLancer
-        @chrono = @chrono + 1
+        @chrono += 1
         sleep(1)
         @label.set_text("Timer : #{@chrono} s")
       end
@@ -68,10 +68,10 @@ class Chrono
   # Avec un temps donné en paramètre de 25, la méthode
   # va stopper le chronomètre au bout de 25 secondes.
   def lancerChronoInverse(unTemps)
-    Thread.start() do
+    Thread.start do
       @chrono = unTemps
       while @chrono > 0
-        @chrono = @chrono - 1
+        @chrono -= 1
         sleep(1)
         @label.set_text("Timer : #{@chrono} s")
       end

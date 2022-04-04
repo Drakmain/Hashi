@@ -123,14 +123,14 @@ class SelectionMap < Gtk::Builder
 
         p.generateMatrice("#{dir}/#{i}.txt")
 
-        root_iter[0] = "Niveau #{i}"
+        root_iter[0] = "Tutoriel n°#{i}"
         root_iter[1] = "#{p.x} * #{p.y}"
       end
 
       tv = Gtk::TreeView.new(model)
 
       renderer = Gtk::CellRendererText.new
-      column = Gtk::TreeViewColumn.new('Niveau', renderer, {
+      column = Gtk::TreeViewColumn.new('Tutoriel', renderer, {
         :text => 0
       })
 
@@ -220,6 +220,7 @@ class SelectionMap < Gtk::Builder
     @fenetre.remove(@selection_map_box)
 
     map.initialiserJeu
+
     Jeu.new(@fenetre, @ratio, @mode, @difficulte, map, @niveau.to_s)
   end
 

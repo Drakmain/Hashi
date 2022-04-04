@@ -166,7 +166,12 @@ class SelectionMap < Gtk::Builder
   def on_retour_button_clicked
     @fenetre.remove(@selection_map_box)
     @fenetre.resize(1280 * @ratio, 720 * @ratio)
-    SelectionDifficulte.new(@fenetre, @ratio, @mode)
+
+    if @mode == 'tutoriel'
+      SelectionMode.new(@fenetre, @ratio)
+    else
+      SelectionDifficulte.new(@fenetre, @ratio, @mode)
+    end
   end
 
   def on_jouer_button_clicked

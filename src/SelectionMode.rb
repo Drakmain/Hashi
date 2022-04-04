@@ -48,7 +48,8 @@ class SelectionMode < Gtk::Builder
   end
 
   def on_tutoriel_clicked
-    puts "on_tutoriel_clicked"
+    @fenetre.remove(@selection_mode_box)
+    SelectionMap.new(@fenetre, @ratio, 'tutoriel', 'tutoriel')
   end
 
 end

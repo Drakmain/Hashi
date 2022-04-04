@@ -1,0 +1,4 @@
+Cas spécial d'un 6 au milieu du puzzle :
+Imaginons un cas où une île à indice de 6 possède quatres voisins possibles, dont un qui a 1 pour indice (voir cas de figure).
+Dans toutes les situations, vous aurez au minimum cinq ponts à placer sur les trois autres voisins. En suivant les règles, il devient obligatoire qu'il existe au moins un pont relié à ces trois îles.
+Le fait qu'un pont existe entre le 6 et le 1 pourra être déterminé plus tard.

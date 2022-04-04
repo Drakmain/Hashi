@@ -46,6 +46,8 @@ class Catalogue < Gtk::Builder
     end
   end
 
+  # Action qui s'exécute lorsque l'on clique sur le bouton retour,
+  # ferme la box des options et affiche la box du menu principal
   def on_retour_button_clicked
     @fenetre.remove(@catalogue_box)
     @fenetre.resize(1280 * @ratio, 720 * @ratio)

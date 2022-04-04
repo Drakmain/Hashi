@@ -155,7 +155,7 @@
             <property name="orientation">vertical</property>
             <property name="homogeneous">True</property>
             <child>
-              <object class="GtkBox">
+              <object class="GtkBox" id="action_button_box">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="margin-start">20</property>
@@ -519,6 +519,7 @@
         <property name="margin-end">10</property>
         <property name="margin-top">10</property>
         <property name="margin-bottom">10</property>
+        <property name="justify">center</property>
       </object>
     </child>
   </object>

@@ -9,7 +9,6 @@ class RubyApp < Gtk::Fixed
     @fenetre = fenetre
     @sens_popover = sens_popover
     @fini_dialog = fini_dialog
-
     @map = map
 
     @matrixPix = []
@@ -217,10 +216,9 @@ class RubyApp < Gtk::Fixed
 
   def afficher_pont(sens, x, y)
 
+    nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
     case sens
     when 'vertical'
-
-      nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
       while @map.plateau.getCase(x, y).element.estPont?
         x += 1
       end
@@ -237,8 +235,6 @@ class RubyApp < Gtk::Fixed
 
       afficher_ile_pleine(x, y)
     when 'horizontal'
-
-      nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
       while @map.plateau.getCase(x, y).element.estPont?
         y += 1
       end

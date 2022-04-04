@@ -136,10 +136,14 @@ class Jeu < Gtk::Builder
     switch.set_state(state)
     if state
       @autocorrecteur_switch.set_sensitive(false)
+      @annuler_button.set_sensitive(false)
+      @refaire_button.set_sensitive(false)
       puts 'activerHypothese'
       @map.activerHypothese
     else
       @autocorrecteur_switch.set_sensitive(true)
+      @annuler_button.set_sensitive(true)
+      @refaire_button.set_sensitive(true)
       puts 'desactiverHypothese'
       @map.desactiverHypothese
       @grille.actualiserAffichage

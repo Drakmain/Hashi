@@ -180,7 +180,7 @@ class RubyApp < Gtk::Fixed
       sens = "H#{sens}"
     end
 
-    if @map.getCase(x, y).element.erreur
+    if @map.plateau.getCase(x, y).element.erreur
       sens = "E#{sens}"
     end
 
@@ -375,9 +375,11 @@ class RubyApp < Gtk::Fixed
   end
 
   def afficherErreur
-    @map.afficherErreurs
+    @map.afficherPontErreur
     (@map.coups).each do |c|
+      #puts c.pont.element.erreur
       if(c.pont.element.erreur) then
+        puts "Erreur pont"
         afficher_pont(c.sens, c.pont.x, c.pont.y)
       end
     end

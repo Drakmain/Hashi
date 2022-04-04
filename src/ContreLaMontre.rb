@@ -176,19 +176,22 @@ class ContreLaMontre < Genie
         elementCorrection = @correction.getCase(i, j).element
         if (elementCourant.estPont? && elementCourant.nb_ponts > 0) then
           if elementCorrection.estElement? then
-            elementCourant = true
+            elementCourant.erreur = true
           elsif elementCourant.nb_ponts > elementCorrection.nb_ponts then
-            elementCourant = true
+            elementCourant.erreur = true
           elsif elementCourant.estHorizontal? then
             if (elementCorrection.estVertical?) then
-              elementCourant = true
+              elementCourant.erreur = true
             end
           elsif elementCourant.estVertical? then
             if (elementCorrection.estHorizontal?) then
-              elementCourant = true
+              elementCourant.erreur = true
             end
           end
         end
+        if(elementCourant.estPont?)then
+          puts elementCourant.erreur
+        end      
       end
     end
   end

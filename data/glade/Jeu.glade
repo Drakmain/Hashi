@@ -515,6 +515,11 @@
       <object class="GtkLabel" id="suggestion_label">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="margin-start">10</property>
+        <property name="margin-end">10</property>
+        <property name="margin-top">10</property>
+        <property name="margin-bottom">10</property>
+        <property name="justify">center</property>
       </object>
     </child>
   </object>

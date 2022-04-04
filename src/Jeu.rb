@@ -53,9 +53,8 @@ class Jeu < Gtk::Builder
 
     @grille = RubyApp.new(@fenetre, @map, @sens_popover, @fini_dialog)
 
-    #chrono = Chrono.new
-    #chrono.lancerChrono
-    #@timer_label.set_text("Timer : #{chrono.chrono}")
+    @map.lancerChrono(@timer_label)
+    @timer_label.set_text("Timer : ")
 
     @plateau_box.add(@grille)
 
@@ -71,6 +70,10 @@ class Jeu < Gtk::Builder
 
     @fenetre.add(@jeu_box)
     @fenetre.show_all
+  end
+
+  def majChrono(string)
+    @timer_label.set_text("Timer : #{@map.chrono.chrono}")
   end
 
   def on_retour_button_clicked

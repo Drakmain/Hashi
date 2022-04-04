@@ -22,7 +22,8 @@ class Chrono
   ###############################################################################
 
   # Initialise le chronomètre à vide grâce à la méthode de remise à zéro.
-  def initialize
+  def initialize(unChrono)
+    @label = unChrono
     remiseAZero
   end
 
@@ -32,25 +33,29 @@ class Chrono
 
   # Lance le chronomètre, et compte le nombre de secondes depuis ce lancement.
   def lancerChrono
-    @thr = Thread.new {
-
       Thread.start() {
-        @tempsDebut = Time.now.to_i
-        ancienne_valeur = @chrono
-        while true
-          @chrono = Time.now.to_i - @tempsDebut
-          if ancienne_valeur != @chrono
-            ancienne_valeur = @chrono
-            #puts(@chrono)
-          end
-
+        @estLancer = true
+        @chrono = 0
+        while @estLancer
+          @chrono = @chrono+1
+          sleep(1)
+          @label.set_text("Timer : #{@chrono} s")
         end
       }
-    }
-
-    @thr.run
-
   end
+
+  # Lance le chronomètre, et compte le nombre de secondes depuis ce lancement.
+  def lancerChronoValeur(uneValeur)
+    Thread.start() {
+      @estLancer = true
+      @chrono = uneValeur
+      while @estLancer
+        @chrono = @chrono+1
+        sleep(1)
+        @label.set_text("Timer : #{@chrono} s")
+      end
+    }
+end
 
   # Décompte à partir d'un temps donné et s'arrete à 0
   #
@@ -63,37 +68,27 @@ class Chrono
   # Avec un temps donné en paramètre de 25, la méthode
   # va stopper le chronomètre au bout de 25 secondes.
   def lancerChronoInverse(unTemps)
-    @thr = Thread.new {
-      @tempsDebut = Time.now.to_i
-      ancienne_valeur = unTemps
-      while true
-        @chrono = unTemps - (Time.now.to_i - @tempsDebut)
-        if ancienne_valeur != @chrono
-          ancienne_valeur = @chrono
-          #puts(@chrono+1)
+    Thread.start() {
+        @chrono = unTemps
+        while @chrono > 0
+          @chrono = @chrono-1
+          sleep(1)
+          @label.set_text("Timer : #{@chrono} s")
         end
-
-      end
     }
 
-    @thr.run
-
-    sleep(unTemps)
-
-    stopperChrono
-
+    return true
   end
 
   # Stoppe le chronomètre.
   def stopperChrono
-    @thr.exit
+    @estLancer = false
     remiseAZero
   end
 
   # Remet les variables tempsDebut et chrono à 0.
 
   def remiseAZero
-    @tempsDebut = 0
     @chrono = 0
   end
 
@@ -101,6 +96,6 @@ class Chrono
   private :remiseAZero
 
   # permet de lire le chrono
-  attr_reader :chrono
+  attr_accessor :chrono, :label
 
 end

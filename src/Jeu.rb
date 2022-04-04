@@ -109,13 +109,11 @@ class Jeu < Gtk::Builder
   end
 
   def on_corriger_erreur_button_clicked
-    puts 'on_corriger_erreur_button_clicked'
     @grille.corrigerErreur
   end
 
   def on_afficher_erreur_button_clicked
-    puts 'on_afficher_erreur_button_clicked'
-    #@grille.afficherErreur
+    @grille.afficherErreur
   end
 
   def on_autocorrecteur_switch_state_set(switch, state)

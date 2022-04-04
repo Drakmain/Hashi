@@ -180,6 +180,10 @@ class RubyApp < Gtk::Fixed
       sens = "H#{sens}"
     end
 
+    if @map.getCase(x, y).element.erreur
+      sens = "E#{sens}"
+    end
+
     case nb_ponts
     when 0
       pixbuf = GdkPixbuf::Pixbuf.new(file: '../data/img/0.png')

@@ -188,10 +188,7 @@ class ContreLaMontre < Genie
               elementCourant.erreur = true
             end
           end
-        end
-        if(elementCourant.estPont?)then
-          puts elementCourant.erreur
-        end      
+        end  
       end
     end
   end

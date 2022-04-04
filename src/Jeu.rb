@@ -96,17 +96,17 @@ class Jeu < Gtk::Builder
 
   def on_suggerer_un_coup_button_clicked
     suggerer = @map.suggestion
-    suggestion_label.set_text(suggerer[0])
+    @suggestion_label.set_text(suggerer[0])
 
     @grille.each do |i|
       img = i.child.name.split('_')
       x = img[1].to_i
       y = img[2].to_i
       if(x == suggerer[1].pont.x && y == suggerer[1].pont.y)then
-        suggestion_popover.set_relative_to(i)
+        @suggestion_popover.set_relative_to(i)
       end
     end
-
+    @suggestion_popover.popup
   end
 
   def on_nb_erreur_button_clicked

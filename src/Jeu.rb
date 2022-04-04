@@ -103,7 +103,7 @@ class Jeu < Gtk::Builder
     if '0' == nb_erreur
       @nb_erreur_label.set_text('Vous n\'avez pas d\'erreur.')
     else
-      @nb_erreur_label.set_text('Vous ' + nb_erreur + ' erreur(s).')
+      @nb_erreur_label.set_text("Vous #{nb_erreur} erreur(s).")
     end
     @nb_erreur_popover.popup
   end

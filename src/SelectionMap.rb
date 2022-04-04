@@ -96,8 +96,10 @@ class SelectionMap < Gtk::Builder
       begin
         f = File.open(File.expand_path("../data/sauvegarde/#{@user}_#{@mode}_#{@difficulte}_#{@niveau.to_s}.bn"), 'r')
         @recommencer_button.set_sensitive(true)
+        @jouer_button.set_label('Chager la sauvegarde')
         f.close
       rescue StandardError
+        @jouer_button.set_label('Jouer')
         @recommencer_button.set_sensitive(false)
       end
     end

@@ -509,4 +509,13 @@
       </object>
     </child>
   </object>
+  <object class="GtkPopover" id="suggestion_popover">
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkLabel" id="suggestion_label">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+      </object>
+    </child>
+  </object>
 </interface>

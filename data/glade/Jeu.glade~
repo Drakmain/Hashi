@@ -458,7 +458,7 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">Quels sens ?</property>
+            <property name="label" translatable="yes">Quels sens pour ce pont ?</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -506,6 +506,16 @@
             <property name="position">1</property>
           </packing>
         </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkPopover" id="suggestion_popover">
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkLabel" id="suggestion_label">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="label" translatable="yes">label</property>
       </object>
     </child>
   </object>

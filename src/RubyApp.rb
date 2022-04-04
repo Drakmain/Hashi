@@ -371,6 +371,12 @@ class RubyApp < Gtk::Fixed
   end
 
   def afficherErreur
+    @map.afficherErreurs
+    (@map.coups).each do |c|
+      if(c.pont.element.erreur) then
+        afficher_pont(c.sens, c.pont.x, c.pont.y)
+      end
+    end
   end
 
   def actualiserAffichage

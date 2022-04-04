@@ -1,11 +1,39 @@
-##
-# @userName = Nom de l'utilisateur courant
-# @resolutionRatio = ratio par le quelle on multiplie le format de l'ecran. Exemple 16/9 * 120 = 1920*1080. 100 donne 1600*900, 80 donne 1280*720
+# La Classe Options permet d'afficher la fenêtre d'option.
+#
+# Il y a trois personnalisation d'options possible :
+#
+# - Le nom de l'utilisateur
+# - La résolution du jeu
+# - La langue
+#
+# On peut cliquer sur un des choix
+#
+# ==== Variables d'instance
+#
+# * @fenetre => la fenêtre du jeu
+# * @ratio => la taille de la fenêtre
+# * @options_box => la box qui contient les boutons et permet l'affichage des options
+# * @fichier_options => fichier contenant les dernières options enregistrer
+# * @hashOptions => objet qui récupère les données du fichier_options
+# * @user => nom d'utilisateur extrait du hashOptions
+# * @ratio => résolution extraite du hashOptions
+# * @langue => langue extraite du hashOptions
+# * @retour_bouton => bouton retour permettant de retourner sur le menu principal
+# * @nom_utilisateur_entry => nom d'utilisateur actuel du jeu
+# * @resolution_combotext => résolution actuelle du jeu
+# * @langue_combotext => langue actuelle du jeu
+#
 class Options < Gtk::Builder
+
+  # Accès en lecture
   attr_reader :user, :ratio, :langue
 
-  ##
-  # Methode qui charge les donnees de
+  # Méthode d'initialisation de la classe
+  #
+  # ==== Attributs
+  #
+  # * +fenetre+ - la fenêtre du jeu
+  #
   def initialize(fenetre)
     super()
     add_from_file('../data/glade/Options.glade')
@@ -57,12 +85,21 @@ class Options < Gtk::Builder
     @fenetre.add(@options_box)
   end
 
+  # Action qui s'exécute lorsque l'on clique sur le bouton retour,
+  # ferme la box des options et affiche la box du menu principal
   def on_retour_button_clicked
     @fenetre.remove(@options_box)
     @fenetre.resize(1280 * @ratio, 720 * @ratio)
     MenuPrincipal.new(@fenetre, @ratio)
   end
 
+  # Action qui s'exécute lorsque l'on change la résolution,
+  # change la résolution dans les options en fonction du paramètre donné
+  #
+  # ==== Attributs
+  #
+  # * +resolution+ - la résolution choisis par l'utilisateur
+  #
   def on_resolution_comboboxtext_changed(resolution)
     puts "Resolution mis a jour #{resolution.active_text}"
     case resolution.active_text
@@ -79,18 +116,34 @@ class Options < Gtk::Builder
 
   end
 
+  # Action qui s'exécute lorsque l'on change la langue,
+  # change la langue dans les options en fonction du paramètre donné
+  #
+  # ==== Attributs
+  #
+  # * +langue+ - la langue choisis par l'utilisateur
+  #
   def on_langue_comboboxtext_changed(langue)
     puts "Langue mis a jour #{langue.active_text}"
     @hashOptions['langue'] = langue.active_text
     @langue = langue.active_text
   end
 
+  # Action qui s'exécute lorsque l'on change le nom d'utilisateur,
+  # change le nom d'utilisateur dans les options en fonction du paramètre donné
+  #
+  # ==== Attributs
+  #
+  # * +username+ - nom d'utilisateur choisis par l'utilisateur
+  #
   def on_nom_utilisateur_entry_changed(username)
     puts "Nom d'utilisateur mis a jour to \"#{username.text}\""
     @hashOptions['username'] = username.text
     @user = username.text
   end
 
+  # Action qui s'exécute lorsque l'on sauvegarde les options actuelles,
+  # ouvre le fichier d'options, et écrit dedans le contenu du hashOptions
   def on_enregistre_button_clicked
     puts 'Options sauvegarde'
     fichier = File.open('../data/settings/options.json', 'w')

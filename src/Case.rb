@@ -294,7 +294,6 @@ class Case
       elsif unSens == 'bas' && voisineBas != nil
         return voisineBas.pontAjoutable(unSens, false)
       else
-        puts "Il n'y a pas de pont"
         return false
       end
     elsif @element.estIle?

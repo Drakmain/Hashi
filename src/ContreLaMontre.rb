@@ -5,7 +5,6 @@ load 'Genie.rb'
 #
 # Les aides disponibles sont : 
 # - Hypothèse
-# - assiste
 # - Correcteur d'erreur
 # - auto-correction
 #
@@ -19,7 +18,7 @@ load 'Genie.rb'
 #
 # ==== Variables d'instance
 # * @hypothese => boolean qui est a vrai si le mode hypothèse est activé
-# * @assiste => boolean qui indique si le mode assiste est active ou pas
+# * @autoCorrecteur => boolean qui indique si le mode auto-correcteur est active ou pas
 # * @fichier => le fichier qui contient les réponses au niveau que le joueur éxécute
 #
 class ContreLaMontre < Genie
@@ -54,7 +53,6 @@ class ContreLaMontre < Genie
   def initialize(unPlateau, unNiveau, unPseudo, uneDifficulte)
     super(unPlateau, unNiveau, unPseudo, uneDifficulte)
     @autoCorrecteur = false
-    @assiste = false
     @hypothese = false
   end
 

@@ -142,7 +142,7 @@ class Genie
 
   # Méthode qui permet de lancer le chronometre dans le sens normal (part de 0 et s'incrémente jusqu'à ce que la partie soit terminé)
   def lancerChrono(unLabel)
-    if(@chrono == 0)then
+    if (@chrono == 0) then
       @chrono = Chrono.new(unLabel)
       @chrono.lancerChrono
     else
@@ -463,13 +463,12 @@ class Genie
     @plateau.verifCoord(unX, unY)
   end
 
-
   def sauvegarder_score()
     Dir.mkdir("../data/map/#{@difficulte.to_s}/score") unless File.exists?("../data/map/#{@difficulte.to_s}/score")
     fichierScore = "../data/map/#{@difficulte.to_s}/score/#{@niveau.to_s}#{self.to_s}.txt"
-    open(fichierScore, 'a+'){
-      |f| f.puts @pseudo + "_" + @score.to_s() + "_" + @chrono.chrono.to_s
-    }
+    open(fichierScore, 'a+') do |f|
+      f.puts "#{@pseudo}_#{@score.to_i.to_s}_#{@chrono.chrono.to_i.to_s}"
+    end
   end
 
   def activerHypothese; end

@@ -4,7 +4,7 @@ load 'Plateau.rb'
 
 class RubyApp < Gtk::Fixed
 
-  def initialize(fenetre, map, sens_popover, fini_dialog,fini_label,mode,difficulte,niveau)
+  def initialize(fenetre, map, sens_popover, fini_dialog, fini_label, mode, difficulte, niveau)
     super()
     @fenetre = fenetre
     @sens_popover = sens_popover
@@ -13,7 +13,7 @@ class RubyApp < Gtk::Fixed
     @mode = mode
     @difficulte = difficulte
     @niveau = niveau
-    @fini_label=fini_label
+    @fini_label = fini_label
 
     @matrixPix = []
     @matrixImg = []
@@ -340,7 +340,6 @@ class RubyApp < Gtk::Fixed
     @fenetre.show_all
 
     if @map.plateau.partieFini?
-      
       @fini_label.set_text("Bravo !\nVous avez fini le niveau #{@niveau} en mode #{@mode} en difficulte #{@difficulte} \nVotre temps est de #{@map.chrono.chrono} et votre score est de #{@map.score} ")
       @map.sauvegarder_score
       @map.chrono.pauserChrono

@@ -53,7 +53,12 @@ class Classement < Gtk::Builder
   end
 
   def on_chercher_button_clicked
-    puts File.read("../data/map/#{@difficulte}/score/#{@niveau}")
+    begin
+      @score = File.read("../data/map/#{@difficulte.downcase}/score/#{@niveau}.txt")
+      puts @score
+    rescue StandardError
+      @pas_score_popover.popup
+    end
   end
 
 end

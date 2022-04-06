@@ -37,9 +37,9 @@ class Chrono
       @estLancer = true
       @chrono = 0
       while @estLancer
-        @chrono += 1
-        sleep(1)
-        @label.set_text("Timer : #{@chrono} s")
+        @chrono += 0.1
+        sleep(0.1)
+        @label.set_text("Timer : #{'%.1f' % @chrono} s")
       end
     end
   end
@@ -50,9 +50,9 @@ class Chrono
       @estLancer = true
       @chrono = uneValeur
       while @estLancer
-        @chrono += 1
-        sleep(1)
-        @label.set_text("Timer : #{@chrono} s")
+        @chrono += 0.1
+        sleep(0.1)
+        @label.set_text("Timer : #{'%.1f' % @chrono} s")
       end
     end
   end
@@ -71,9 +71,9 @@ class Chrono
     Thread.start do
       @chrono = unTemps
       while @chrono > 0
-        @chrono -= 1
-        sleep(1)
-        @label.set_text("Timer : #{@chrono} s")
+        @chrono -= 0.1
+        sleep(0.1)
+        @label.set_text("Timer : #{'%.1f' % @chrono} s")
       end
     end
 
@@ -89,7 +89,13 @@ class Chrono
   # Remet les variables tempsDebut et chrono à 0.
 
   def pauserChrono
-    @estLancer = false
+    if(@estLancer)then
+      @estLancer = false
+    else
+      @estLancer = true
+      lancerChronoValeur(@chrono)
+    end
+
   end
 
   def remiseAZero

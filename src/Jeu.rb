@@ -23,8 +23,6 @@ load 'Chrono.rb'
 #
 class Jeu < Gtk::Builder
 
-  attr_reader :fini_label
-
   # Methode d'initialisation de la classe
   #
   # ==== Attributs
@@ -118,18 +116,20 @@ class Jeu < Gtk::Builder
   # Méthode activée lorque le bouton "Annuler" est cliquée
   # Annule le coup effectué
   def on_annuler_button_clicked
+    @map.sauvegarder(@mode)
     @grille.annuler
   end
 
   # Méthode activée lorque le bouton "Pause" est cliquée
   # 
   def on_pause_button_clicked
-    puts 'on_pause_button_clicked'
+    @map.chrono.pauserChrono
   end
 
   # Méthode activée lorque le bouton "Refaire" est cliquée
   # Refait le coup qu'on a annulé précédemment
   def on_refaire_button_clicked
+    @map.sauvegarder(@mode)
     @grille.refaire
   end
 
@@ -165,6 +165,7 @@ class Jeu < Gtk::Builder
   # Méthode activée lorque le bouton "Corriger erreur(s)" est cliquée
   # Corrige toutes les erreurs du joueur directement
   def on_corriger_erreur_button_clicked
+    @map.sauvegarder(@mode)
     @grille.corrigerErreur
   end
 
@@ -179,6 +180,7 @@ class Jeu < Gtk::Builder
   def on_autocorrecteur_switch_state_set(switch, state)
     switch.set_state(state)
     if state
+      @map.sauvegarder(@mode)
       @hypothese_switch.set_sensitive(false)
       @map.activerAutoCorrecteur
       @grille.actualiserAffichage

@@ -105,7 +105,7 @@ class Genie
   def sauvegarder(mode)
     puts "\nSauvegarde de #{@dir}#{@pseudo}_#{mode}_#{@difficulte}_#{@niveau}.bn ..."
 
-    @label = nil
+    unLabel = @chrono.label
 
     @chrono = @chrono.chrono
 
@@ -114,6 +114,11 @@ class Genie
     @save = Marshal::dump(self)
     f.write(@save)
     f.close
+
+    valeur = @chrono
+    @chrono = Chrono.new(unLabel)
+    @chrono.lancerChronoValeur(valeur)
+
   end
 
   # Méthode qui permet de charger une partie, elle désérialize le fichier demandé
@@ -371,7 +376,7 @@ class Genie
     calculScore
     @chronoFirst = @chrono.chrono
     puts @score
-
+    sauvegarder(self.class.name.downcase)
     @anciensCoups.clear
     return res
   end
@@ -423,6 +428,7 @@ class Genie
     @chronoFirst = @chrono.chrono
     puts @score
     @anciensCoups.clear
+    sauvegarder(self.class.name.downcase)
     return res
   end
 
@@ -459,8 +465,9 @@ class Genie
 
 
   def sauvegarder_score()
+    Dir.mkdir("../data/map/#{@difficulte.to_s}/score") unless File.exists?("../data/map/#{@difficulte.to_s}/score")
     fichierScore = "../data/map/#{@difficulte.to_s}/score/#{@niveau.to_s}#{self.to_s}.txt"
-    open(fichierScore, 'a'){
+    open(fichierScore, 'a+'){
       |f| f.puts @pseudo + "_" + @score.to_s() + "_" + @chrono.chrono.to_s
     }
   end

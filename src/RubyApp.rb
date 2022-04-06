@@ -2,9 +2,41 @@ require 'gtk3'
 load 'Donnees.rb'
 load 'Plateau.rb'
 
+# La Classe RubyApp permet de gérer l'affichage de la zone de jeu.
+#
+# ==== Variables d'instance
+#
+# * @fenetre => la fenêtre du jeu
+# * @mode => le mode choisis par l'utilisateur
+# * @difficulte => la difficulté choisis par l'utilisateur
+# * @niveau => la map choisis par l'utilisateur
+# * @sens_popover
+# * @fini_dialog
+# * @map
+# * @fini_label
+# * @matrixPix => Matrice de buffer pour pouvoir utilisé des images
+# * @matrixImg => Matrice d'images
+# * @donnee
+# * @tab_events
+# * @x
+# * @y
+#
 class RubyApp < Gtk::Fixed
 
-  def initialize(fenetre, map, sens_popover, fini_dialog, fini_label, mode, difficulte, niveau)
+  # Méthode d'initialisation de la classe
+  #
+  # ==== Attributs
+  #
+  # * +fenetre+ - la fenêtre du jeu
+  # * +map+
+  # * +sens_popover+
+  # * +fini_dialog+
+  # * +fini_label+
+  # * +mode+ - le mode de jeu
+  # * +difficulte+ - la difficulté de jeu
+  # * +niveau+
+  #
+  def initialize(fenetre, map, sens_popover, fini_dialog,fini_label,mode,difficulte,niveau)
     super()
     @fenetre = fenetre
     @sens_popover = sens_popover
@@ -37,6 +69,7 @@ class RubyApp < Gtk::Fixed
     end
   end
 
+  # Méthode qui place les liens au bon endroit vers les images en fonction du niveau
   def create_imgs
     numbers = []
 
@@ -97,6 +130,12 @@ class RubyApp < Gtk::Fixed
 
   end
 
+  # Méthode qui met l'image au bon endroit dans l'interface GTK
+  #
+  # ==== Attributs
+  #
+  # * +coups+ - tableau
+  #
   def put_img(coups)
     xl = 0
     yl = 0
@@ -114,11 +153,26 @@ class RubyApp < Gtk::Fixed
     end
   end
 
+  # Méthode qui permet de jouer un coup dans le sens donné en paramètre
+  #
+  # ==== Attributs
+  #
+  # * +sens+ - le sens à utiliser
+  #
   def set_sens(sens)
     jouer_afficher_pont(sens, @x, @y, @click)
     @sens_popover.popdown
   end
 
+  # Méthode qui joue un coup en fonction d'un sens, de sa position et du type de click
+  #
+  # ==== Attributs
+  #
+  # * +sens+ - le sens à utiliser
+  # * +x+ - la position x
+  # * +y+ - la position y
+  # * +click+ - le type de click fait par l'utilisateur
+  #
   def jouer_afficher_pont(sens, x, y, click)
 
     case sens
@@ -181,6 +235,15 @@ class RubyApp < Gtk::Fixed
     end
   end
 
+  # Méthode qui change le type d'image en fonction de la situation (mode hypothèse, affichage des erreurs, ect) et du nombre de pont
+  #
+  # ==== Attributs
+  #
+  # * +nb_ponts+ - le nombre de pont
+  # * +sens+ - le sens à utiliser
+  # * +x+ - la position x
+  # * +y+ - la position y
+  #
   def changer_image(nb_ponts, sens, x, y)
     if @map.hypothese == true
       sens = "H#{sens}"
@@ -209,6 +272,13 @@ class RubyApp < Gtk::Fixed
     @tab_events[@map.plateau.y * x + y].child = image
   end
 
+  # Méthode qui change l'image de l'île si elle est pleine
+  #
+  # ==== Attributs
+  #
+  # * +x+ - la position x de l'île
+  # * +y+ - la position y de l'île
+  #
   def afficher_ile_pleine(x, y)
     valeur = @map.plateau.getCase(x, y).element.valeur
 
@@ -224,6 +294,14 @@ class RubyApp < Gtk::Fixed
     @tab_events[@map.plateau.y * x + y].child = image
   end
 
+  # Méthode qui affiche les ponts à partir d'un sens et de la position
+  #
+  # ==== Attributs
+  #
+  # * +sens+ - le sens à utiliser
+  # * +x+ - la position x
+  # * +y+ - la position y
+  #
   def afficher_pont(sens, x, y)
 
     nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts
@@ -266,6 +344,15 @@ class RubyApp < Gtk::Fixed
     @map.afficherPlateau
   end
 
+  # Méthode qui permet l'actualisation de la prévisualisation des ponts possibles
+  #
+  # ==== Attributs
+  #
+  # * +caseCourante+ - le sens à utiliser
+  # * +unX+ - la position x
+  # * +unY+ - la position y
+  # * +unBool+ - un booléen
+  #
   def actualiserPontAjoutables(caseCourante, unX, unY, unBool)
     nbPonts = caseCourante.pontAjoutables
     pixbuf = GdkPixbuf::Pixbuf.new(file: '../data/img/0.png')
@@ -349,6 +436,7 @@ class RubyApp < Gtk::Fixed
 
   end
 
+  # Méthode qui permet de faire un redo sur le jeu
   def refaire
     case_redo = @map.refaire
 
@@ -363,6 +451,7 @@ class RubyApp < Gtk::Fixed
     end
   end
 
+  # Méthode qui permet de faire un undo sur le jeu
   def annuler
     case_undo = @map.annuler
 
@@ -377,12 +466,14 @@ class RubyApp < Gtk::Fixed
     end
   end
 
+  # Méthode qui permet de lancer la correction d'erreur
   def corrigerErreur
     @map.corrigerErreur
     @map.afficherPlateau
     actualiserAffichage
   end
 
+  # Méthode qui permet de lancer l'affichage des erreurs
   def afficherErreur
     @map.afficherPontErreur
     @map.coups.each do |c|
@@ -392,6 +483,7 @@ class RubyApp < Gtk::Fixed
     end
   end
 
+  # Méthode qui permet l'actualisation de l'affichage du jeu
   def actualiserAffichage
     (0...@donnee.x).each do |i|
       (0...@donnee.y).each do |j|

@@ -11,7 +11,6 @@
 # ==== Variables d'instance
 #
 # * @fenetre => la fenêtre du jeu
-# * @ratio => la taille de la fenêtre
 # * @options_box => la box qui contient les boutons et permet l'affichage des options
 # * @fichier_options => fichier contenant les dernières options enregistrer
 # * @hashOptions => objet qui récupère les données du fichier_options

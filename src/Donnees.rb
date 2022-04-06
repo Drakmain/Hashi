@@ -44,18 +44,18 @@ class Donnees
         end
       end
     end
+  end
 
-    # Méthode qui affiche la matrice générée
-    def to_s
-      puts "le x : #{@x} , le y : #{@y}"
-      puts "la matrice du jeu : "
-      puts @matrix.inspect
-      @matrix.each do |row|
-        row.each do |column|
-          print "#{column} "
-        end
-        print "\n"
+  # Méthode qui affiche la matrice générée
+  def to_s
+    puts "le x : #{@x} , le y : #{@y}"
+    puts "la matrice du jeu : "
+    puts @matrix.inspect
+    @matrix.each do |row|
+      row.each do |column|
+        print "#{column} "
       end
+      print "\n"
     end
   end
 

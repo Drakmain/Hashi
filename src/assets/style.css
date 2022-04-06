@@ -1,0 +1,17 @@
+
+.menu_jeu{
+    background-color: white;   
+}
+
+#title_hashi{
+    background-color: black;
+}
+
+.menu_jeu button{
+    background-color: black;
+
+}
+
+.menu_jeu button:hover{
+    background-color: black;
+}

@@ -1,3 +1,7 @@
+#menu_box{
+    background: none;
+}
+
 
 #title_hashi{
     animation-name: intro ;
@@ -20,7 +24,7 @@
     background: none;
     border-radius: 2%;
     font-size: 1em;
-    transition: border-radius 0.3s, font-size 0.3s,  background-color 0.3s, color 0.3s;
+    transition: border-radius 0.3s, font-size 0.3s,  background-color 0.3s, color 0.3s, border 0.3s;
     animation-name: intro ;
     animation-duration: 2s;
 }
@@ -41,7 +45,8 @@
     border-radius: 2%;
     font-size: 1.2em;
     color : white;
-    background-color: black;
+    background-color: rgb(83, 0, 0);;
+    border: 2px solid white;
 }
 
 

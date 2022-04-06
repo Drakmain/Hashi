@@ -2,15 +2,24 @@ load 'RubyApp.rb'
 load 'Chrono.rb'
 
 ##
-# La classe Jeu....
+# La classe Jeu permet d'afficher la fenêtre du jeu
+#
+# Le jeu est composé de :
+# 
+# - Le plateau
+# - Le temps
+# - Toutes les aides
+# - Le pseudo
+# - Le bouton "Pause"
+# - Le bouton "Retour"
 #
 # ==== Variables d'instance
-# * @ratio => 
-# * @fenetre => 
-# * @mode => 
-# * @difficulte => 
-# * @map => 
-# * @niveau => 
+# * @ratio => la taille de la fenêtre
+# * @fenetre => la fenêtre du jeu
+# * @mode => le mode du jeu
+# * @difficulte => la difficulté du plateau
+# * @map => la map
+# * @niveau => le niveau du plateau
 #
 class Jeu < Gtk::Builder
 
@@ -18,12 +27,12 @@ class Jeu < Gtk::Builder
   #
   # ==== Attributs
   #
-  # * +fenetre+ - 
-  # * +ratio+ - 
-  # * +mode+ - 
-  # * +difficulte+ - 
-  # * +map+ - 
-  # * +niveau+ - 
+  # * +fenetre+ - la fenêtre du jeu
+  # * +ratio+ - la taille de la fenêtre
+  # * +mode+ - le mode du jeu
+  # * +difficulte+ - la difficulté du plateau
+  # * +map+ - la map
+  # * +niveau+ - le niveau du plateau
   #
   def initialize(fenetre, ratio, mode, difficulte, map, niveau)
     super()

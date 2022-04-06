@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class ContreLaMontre - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Genie.html">Genie</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-creer">::creer</a>
+    
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-activerAutoCorrecteur">#activerAutoCorrecteur</a>
+    
+    <li ><a href="#method-i-activerHypothese">#activerHypothese</a>
+    
+    <li ><a href="#method-i-afficherErreurs">#afficherErreurs</a>
+    
+    <li ><a href="#method-i-afficherPontErreur">#afficherPontErreur</a>
+    
+    <li ><a href="#method-i-corrigerErreur">#corrigerErreur</a>
+    
+    <li ><a href="#method-i-desactiverAutoCorrecteur">#desactiverAutoCorrecteur</a>
+    
+    <li ><a href="#method-i-desactiverHypothese">#desactiverHypothese</a>
+    
+    <li ><a href="#method-i-enleverErreur">#enleverErreur</a>
+    
+    <li ><a href="#method-i-lancerChrono">#lancerChrono</a>
+    
+    <li ><a href="#method-i-nombreErreurs">#nombreErreurs</a>
+    
+    <li ><a href="#method-i-suggestion">#suggestion</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-ContreLaMontre">
+  <h1 id="class-ContreLaMontre" class="class">
+    class ContreLaMontre
+  </h1>
+
+  <section class="description">
+    
+<p>La classe <a href="ContreLaMontre.html"><code>ContreLaMontre</code></a> permet de lancer un niveau, en plus d&#39;un chronomètre qui, une fois arrivé à 0, arrètera la partie</p>
+
+<p>Les aides disponibles sont : </p>
+<ul><li>
+<p>Hypothèse</p>
+</li><li>
+<p>assiste</p>
+</li><li>
+<p>Correcteur d&#39;erreur</p>
+</li><li>
+<p>auto-correction</p>
+</li></ul>
+
+<p>La classe contrelaMontre est une spécialisation de la classe génie (elle ajoute des fontionnalités)</p>
+
+<p>elle peut : </p>
+<ul><li>
+<p>lancer un chrono</p>
+</li><li>
+<p>charger une partie</p>
+</li><li>
+<p>sauvegarder une partie</p>
+</li><li>
+<p>activer/désactiver des aides</p>
+</li></ul>
+
+<h4 id="class-ContreLaMontre-label-Variables+d-27instance">Variables d&#39;instance<span><a href="#class-ContreLaMontre-label-Variables+d-27instance">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p>@hypothese =&gt; boolean qui est a vrai si le mode hypothèse est activé</p>
+</li><li>
+<p>@assiste =&gt; boolean qui indique si le mode assiste est active ou pas</p>
+</li><li>
+<p>@fichier =&gt; le fichier qui contient les réponses au niveau que le joueur éxécute</p>
+</li></ul>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-chrono" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">chrono</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>new en privée</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-creer" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">creer</span><span
+            class="method-args">(unPlateau, unNiveau, unPseudo, uneDifficulte)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>creer un objet <a href="ContreLaMontre.html"><code>ContreLaMontre</code></a></p>
+
+<h4 id="method-c-creer-label-Attributs">Attributs<span><a href="#method-c-creer-label-Attributs">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>unPlateau</code> : une référence vers le plateau de jeu de la partie courante</p>
+</li><li>
+<p><code>unNiveau</code> : le numéro du niveau choisis</p>
+</li><li>
+<p><code>unPseudo</code> : le nom du joueur qui va jouer</p>
+</li><li>
+<p><code>uneDifficulte</code> : la difficulté choisis</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="creer-source">
+            <pre><span class="ruby-comment"># File ContreLaMontre.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">ContreLaMontre</span>.<span class="ruby-identifier ruby-title">creer</span>(<span class="ruby-identifier">unPlateau</span>, <span class="ruby-identifier">unNiveau</span>, <span class="ruby-identifier">unPseudo</span>, <span class="ruby-identifier">uneDifficulte</span>)
+  <span class="ruby-identifier">new</span>(<span class="ruby-identifier">unPlateau</span>, <span class="ruby-identifier">unNiveau</span>, <span class="ruby-identifier">unPseudo</span>, <span class="ruby-identifier">uneDifficulte</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(unPlateau, unNiveau, unPseudo, uneDifficulte)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>initialise un objet</p>
+
+<h4 id="method-c-new-label-Attributs">Attributs<span><a href="#method-c-new-label-Attributs">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>unPlateau</code> : une référence vers le plateau de jeu de la partie courante</p>
+</li><li>
+<p><code>unNiveau</code> : le numéro du niveau choisis</p>
+</li><li>
+<p><code>unPseudo</code> : le nom du joueur qui va jouer</p>
+</li><li>
+<p><code>uneDifficulte</code> : la difficulté choisis</p>
+</li></ul>
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="Genie.html#method-c-new"><code>Genie::new</code></a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File ContreLaMontre.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">unPlateau</span>, <span class="ruby-identifier">unNiveau</span>, <span class="ruby-identifier">unPseudo</span>, <span class="ruby-identifier">uneDifficulte</span>)
+  <span class="ruby-keyword">super</span>(<span class="ruby-identifier">unPlateau</span>, <span class="ruby-identifier">unNiveau</span>, <span class="ruby-identifier">unPseudo</span>, <span class="ruby-identifier">uneDifficulte</span>)
+  <span class="ruby-ivar">@autoCorrecteur</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@assiste</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@hypothese</span> = <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-activerAutoCorrecteur" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">activerAutoCorrecteur</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>permet d&#39;activer le mode AutoCorrecteur</p>
+          
+          
+
+          
+          <div class="method-source-code" id="activerAutoCorrecteur-source">
+            <pre><span class="ruby-comment"># File ContreLaMontre.rb, line 224</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">activerAutoCorrecteur</span>
+  <span class="ruby-ivar">@autoCorrecteur</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">corrigerErreur</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-activerHypothese" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">activerHypothese</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>permet d&#39;activer le mode hypothèse</p>
+          
+          
+
+          
+          <div class="method-source-code" id="activerHypothese-source">
+            <pre><span class="ruby-comment"># File ContreLaMontre.rb, line 239</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">activerHypothese</span>
+  <span class="ruby-ivar">@hypothese</span> = <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-afficherErreurs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">afficherErreurs</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>affiche le nombre d&#39;erreurs, puis, demande au joueur si il veut afficher ses erreurs, ou les supprimer</p>
+          
+          
+
+          
+          <div class="method-source-code" id="afficherErreurs-source">
+            <pre><span class="ruby-comment"># File ContreLaMontre.rb, line 206</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">afficherErreurs</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Tu as #{nombreErreurs.to_s} erreurs&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&#39;Afficher toutes les erreurs(0) ou supprimer toutes les erreurs(1) ?&#39;</span>
+  <span class="ruby-identifier">verif</span> = <span class="ruby-identifier">gets</span>
+  <span class="ruby-identifier">verif</span> = <span class="ruby-identifier">verif</span>.<span class="ruby-identifier">to_i</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">verif</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">afficherPontErreur</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">corrigerErreur</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-afficherPontErreur" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">afficherPontErreur</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>permet de mettre en surbrillance les erreurs sur les ponts mal placés</p>
+          
+          
+
+          
+          <div class="method-source-code" id="afficherPontErreur-source">
+            <pre><span class="ruby-comment"># File ContreLaMontre.rb, line 181</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">afficherPontErreur</span>
+  <span class="ruby-keyword">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">x</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">for</span> <span class="ruby-identifier">j</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">y</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">elementCourant</span> = <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">getCase</span>(<span class="ruby-identifier">i</span>, <span class="ruby-identifier">j</span>).<span class="ruby-identifier">element</span>
+      <span class="ruby-identifier">elementCorrection</span> = <span class="ruby-ivar">@correction</span>.<span class="ruby-identifier">getCase</span>(<span class="ruby-identifier">i</span>, <span class="ruby-identifier">j</span>).<span class="ruby-identifier">element</span>
+      <span class="ruby-keyword">if</span> (<span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">estPont?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>) <span class="ruby-keyword">then</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">elementCorrection</span>.<span class="ruby-identifier">estElement?</span> <span class="ruby-keyword">then</span>
+          <span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">erreur</span> = <span class="ruby-keyword">true</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">elementCorrection</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-keyword">then</span>
+          <span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">erreur</span> = <span class="ruby-keyword">true</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">estHorizontal?</span> <span class="ruby-keyword">then</span>
+          <span class="ruby-keyword">if</span> (<span class="ruby-identifier">elementCorrection</span>.<span class="ruby-identifier">estVertical?</span>) <span class="ruby-keyword">then</span>
+            <span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">erreur</span> = <span class="ruby-keyword">true</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">estVertical?</span> <span class="ruby-keyword">then</span>
+          <span class="ruby-keyword">if</span> (<span class="ruby-identifier">elementCorrection</span>.<span class="ruby-identifier">estHorizontal?</span>) <span class="ruby-keyword">then</span>
+            <span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">erreur</span> = <span class="ruby-keyword">true</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>  
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-corrigerErreur" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">corrigerErreur</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Permet de corriger des erreurs lit dans le fichier passé en parametre.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="corrigerErreur-source">
+            <pre><span class="ruby-comment"># File ContreLaMontre.rb, line 76</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">corrigerErreur</span>
+  <span class="ruby-identifier">erreur</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">x</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">for</span> <span class="ruby-identifier">j</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">y</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">elementCourant</span> = <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">getCase</span>(<span class="ruby-identifier">i</span>, <span class="ruby-identifier">j</span>).<span class="ruby-identifier">element</span>
+      <span class="ruby-identifier">elementCorrection</span> = <span class="ruby-ivar">@correction</span>.<span class="ruby-identifier">getCase</span>(<span class="ruby-identifier">i</span>, <span class="ruby-identifier">j</span>).<span class="ruby-identifier">element</span>
+      <span class="ruby-keyword">if</span> (<span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">estPont?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>) <span class="ruby-keyword">then</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">elementCorrection</span>.<span class="ruby-identifier">estElement?</span> <span class="ruby-keyword">then</span>
+          <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">getCase</span>(<span class="ruby-identifier">i</span>, <span class="ruby-identifier">j</span>).<span class="ruby-identifier">enleverPont</span>
+          <span class="ruby-identifier">erreur</span> = <span class="ruby-keyword">true</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">elementCorrection</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-keyword">then</span>
+          <span class="ruby-identifier">enleverErreur</span>(<span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">getCase</span>(<span class="ruby-identifier">i</span>, <span class="ruby-identifier">j</span>), <span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">elementCorrection</span>.<span class="ruby-identifier">nb_ponts</span>)
+          <span class="ruby-identifier">erreur</span> = <span class="ruby-keyword">true</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">estHorizontal?</span> <span class="ruby-keyword">then</span>
+          <span class="ruby-keyword">if</span> (<span class="ruby-identifier">elementCorrection</span>.<span class="ruby-identifier">estVertical?</span>) <span class="ruby-keyword">then</span>
+            <span class="ruby-identifier">enleverErreur</span>(<span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">getCase</span>(<span class="ruby-identifier">i</span>, <span class="ruby-identifier">j</span>), <span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">nb_ponts</span>)
+            <span class="ruby-identifier">erreur</span> = <span class="ruby-keyword">true</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">estVertical?</span> <span class="ruby-keyword">then</span>
+          <span class="ruby-keyword">if</span> (<span class="ruby-identifier">elementCorrection</span>.<span class="ruby-identifier">estHorizontal?</span>) <span class="ruby-keyword">then</span>
+            <span class="ruby-identifier">enleverErreur</span>(<span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">getCase</span>(<span class="ruby-identifier">i</span>, <span class="ruby-identifier">j</span>), <span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">nb_ponts</span>)
+            <span class="ruby-identifier">erreur</span> = <span class="ruby-keyword">true</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">afficherJeu</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">erreur</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-desactiverAutoCorrecteur" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">desactiverAutoCorrecteur</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>permet de desactiver le mode AutoCorrecteur et de supprimer tous les mauvais liens que l&#39;utilisateur à créé</p>
+          
+          
+
+          
+          <div class="method-source-code" id="desactiverAutoCorrecteur-source">
+            <pre><span class="ruby-comment"># File ContreLaMontre.rb, line 230</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">desactiverAutoCorrecteur</span>
+  <span class="ruby-ivar">@autoCorrecteur</span> = <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-desactiverHypothese" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">desactiverHypothese</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>permet de desactiver le mode hypothèse et de supprimer tous les mauvais liens que l&#39;utilisateur à créé</p>
+          
+          
+
+          
+          <div class="method-source-code" id="desactiverHypothese-source">
+            <pre><span class="ruby-comment"># File ContreLaMontre.rb, line 244</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">desactiverHypothese</span>
+  <span class="ruby-ivar">@hypothese</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">while</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@pileHypothese</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">coup</span> = <span class="ruby-ivar">@pileHypothese</span>.<span class="ruby-identifier">pop</span>
+    <span class="ruby-identifier">pontCourant</span> = <span class="ruby-identifier">coup</span>.<span class="ruby-identifier">pont</span>
+    <span class="ruby-identifier">sens</span> = <span class="ruby-identifier">coup</span>.<span class="ruby-identifier">sens</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">coup</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">coup</span>.<span class="ruby-identifier">estAjout?</span>
+      <span class="ruby-identifier">pontCourant</span>.<span class="ruby-identifier">enleverPont</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">coup</span>.<span class="ruby-identifier">estVertical?</span>
+        <span class="ruby-identifier">pontCourant</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;haut&#39;</span>, <span class="ruby-keyword">true</span>)
+        <span class="ruby-identifier">pontCourant</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;bas&#39;</span>, <span class="ruby-keyword">false</span>)
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">coup</span>.<span class="ruby-identifier">estHorizontal?</span>
+        <span class="ruby-identifier">pontCourant</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;gauche&#39;</span>, <span class="ruby-keyword">true</span>)
+        <span class="ruby-identifier">pontCourant</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;droite&#39;</span>, <span class="ruby-keyword">false</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">&#39;erreur de undo dans hypothese&#39;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-enleverErreur" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">enleverErreur</span><span
+            class="method-args">(uneCase, unNombre)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Permet de corriger des erreurs enlève des ponts en fonction d&#39;un nombre donné sur une case choisis.</p>
+
+<h4 id="method-i-enleverErreur-label-Attributs">Attributs<span><a href="#method-i-enleverErreur-label-Attributs">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>uneCase</code> : la case choisis</p>
+</li><li>
+<p><code>unNombre</code> : le nombre depont à enlever</p>
+</li></ul>
+
+<h4 id="method-i-enleverErreur-label-Exemples">Exemples<span><a href="#method-i-enleverErreur-label-Exemples">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>En prenant la case en coordonnée (2,2), et le nombre 1, la méthode va supprimer un pont à la case (2,2)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="enleverErreur-source">
+            <pre><span class="ruby-comment"># File ContreLaMontre.rb, line 123</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">enleverErreur</span>(<span class="ruby-identifier">uneCase</span>, <span class="ruby-identifier">unNombre</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">unNombre</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">2</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&#39;2&#39;</span>
+    <span class="ruby-identifier">uneCase</span>.<span class="ruby-identifier">enleverPont</span>
+    <span class="ruby-identifier">uneCase</span>.<span class="ruby-identifier">enleverPont</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&#39;1&#39;</span>
+    <span class="ruby-identifier">uneCase</span>.<span class="ruby-identifier">enleverPont</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&#39;Problème nombre de Pont&#39;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-lancerChrono" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">lancerChrono</span><span
+            class="method-args">(unLabel)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>permet de lancer le chronometre dans le sens inverse (part de 300 et se décrémente jusqu&#39;à ce que le temps soit à 0) (5min pour toutes les maps)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="lancerChrono-source">
+            <pre><span class="ruby-comment"># File ContreLaMontre.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">lancerChrono</span>(<span class="ruby-identifier">unLabel</span>)
+  <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@chrono</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>)<span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@chrono</span> = <span class="ruby-constant">Chrono</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">unLabel</span>)
+    <span class="ruby-ivar">@chrono</span>.<span class="ruby-identifier">lancerChronoInverse</span>(<span class="ruby-value">300</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">valeur</span> = <span class="ruby-ivar">@chrono</span>
+    <span class="ruby-ivar">@chrono</span> = <span class="ruby-constant">Chrono</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">unLabel</span>)
+    <span class="ruby-ivar">@chrono</span>.<span class="ruby-identifier">lancerChronoInverse</span>(<span class="ruby-identifier">valeur</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-nombreErreurs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">nombreErreurs</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Renvoie le nombre d&#39;erreur du joueur</p>
+          
+          
+
+          
+          <div class="method-source-code" id="nombreErreurs-source">
+            <pre><span class="ruby-comment"># File ContreLaMontre.rb, line 142</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">nombreErreurs</span>
+  <span class="ruby-identifier">nbErreurs</span> = <span class="ruby-value">0</span>
+
+  <span class="ruby-keyword">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">x</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">for</span> <span class="ruby-identifier">j</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">y</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">elementCourant</span> = <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">getCase</span>(<span class="ruby-identifier">i</span>, <span class="ruby-identifier">j</span>).<span class="ruby-identifier">element</span>
+      <span class="ruby-identifier">elementCorrection</span> = <span class="ruby-ivar">@correction</span>.<span class="ruby-identifier">getCase</span>(<span class="ruby-identifier">i</span>, <span class="ruby-identifier">j</span>).<span class="ruby-identifier">element</span>
+
+      <span class="ruby-keyword">if</span> (<span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">estPont?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">estHorizontal?</span>) <span class="ruby-keyword">then</span>
+        <span class="ruby-keyword">if</span> (<span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">getCase</span>(<span class="ruby-identifier">i</span>, <span class="ruby-identifier">j</span>).<span class="ruby-identifier">voisineGauche</span>.<span class="ruby-identifier">element</span>.<span class="ruby-identifier">estPont?</span>) <span class="ruby-keyword">then</span>
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">elementCorrection</span>.<span class="ruby-identifier">estElement?</span> <span class="ruby-keyword">then</span>
+            <span class="ruby-identifier">nbErreurs</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+          <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">elementCorrection</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-keyword">then</span>
+            <span class="ruby-identifier">nbErreurs</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+          <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">elementCorrection</span>.<span class="ruby-identifier">estVertical?</span>) <span class="ruby-keyword">then</span>
+            <span class="ruby-identifier">nbErreurs</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">estPont?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">estVertical?</span>) <span class="ruby-keyword">then</span>
+        <span class="ruby-keyword">if</span> (<span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>) <span class="ruby-keyword">then</span>
+          <span class="ruby-keyword">if</span> (<span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">getCase</span>(<span class="ruby-identifier">i</span>, <span class="ruby-identifier">j</span>).<span class="ruby-identifier">voisineHaut</span>.<span class="ruby-identifier">element</span>.<span class="ruby-identifier">estPont?</span>) <span class="ruby-keyword">then</span>
+            <span class="ruby-keyword">if</span> <span class="ruby-identifier">elementCorrection</span>.<span class="ruby-identifier">estElement?</span> <span class="ruby-keyword">then</span>
+              <span class="ruby-identifier">nbErreurs</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+            <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">elementCourant</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">elementCorrection</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-keyword">then</span>
+              <span class="ruby-identifier">nbErreurs</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+            <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">elementCorrection</span>.<span class="ruby-identifier">estHorizontal?</span>) <span class="ruby-keyword">then</span>
+              <span class="ruby-identifier">nbErreurs</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+            <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">nbErreurs</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-suggestion" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">suggestion</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Permet de suggérer un coup à l&#39;utilisateur, si le joueur a des erreurs, alors elles lui sont indiqué et doit les corriger avant d&#39;avoir un coup à jouer</p>
+          
+          
+
+          
+          <div class="method-source-code" id="suggestion-source">
+            <pre><span class="ruby-comment"># File ContreLaMontre.rb, line 273</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">suggestion</span>
+  <span class="ruby-identifier">res</span> = []
+  <span class="ruby-identifier">coup</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-comment"># On parcours toutes les cases</span>
+  <span class="ruby-identifier">x</span> = <span class="ruby-value">-1</span>
+  <span class="ruby-identifier">y</span> = <span class="ruby-value">-1</span>
+  <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">matrice</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">x</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">y</span> = <span class="ruby-value">-1</span>
+    <span class="ruby-identifier">item</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">elem</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">y</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-comment"># Si la case est une ile</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">elem</span>.<span class="ruby-identifier">element</span>.<span class="ruby-identifier">estIle?</span>
+        <span class="ruby-identifier">bitPonts</span> = <span class="ruby-identifier">elem</span>.<span class="ruby-identifier">pontAjoutables</span>
+        <span class="ruby-identifier">valeurActuelle</span> = <span class="ruby-identifier">elem</span>.<span class="ruby-identifier">element</span>.<span class="ruby-identifier">valeur</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">elem</span>.<span class="ruby-identifier">element</span>.<span class="ruby-identifier">nbLiens</span>
+        <span class="ruby-comment"># Cas ou valeur &lt;= 2 et nbVoisines = 1</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">valeurActuelle</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">valeurActuelle</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">2</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">10</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">100</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">1000</span>)
+          <span class="ruby-identifier">res</span>.<span class="ruby-identifier">push</span>(<span class="ruby-string">&quot;Cette île a encore 2 ou 1 ponts a faire et n&#39;as qu&#39;une seule voisine, \nil faut donc la connecter à sa voisine&quot;</span>)
+          <span class="ruby-identifier">coup</span> = <span class="ruby-constant">Coup</span>.<span class="ruby-identifier">creer</span>(<span class="ruby-keyword">false</span>, <span class="ruby-identifier">elem</span>, <span class="ruby-keyword">true</span>)
+          <span class="ruby-identifier">res</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">coup</span>)
+          <span class="ruby-keyword">return</span> <span class="ruby-identifier">res</span>
+        <span class="ruby-comment"># Cas ou valeur = 3 et nbVoisines = 2</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">valeurActuelle</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">11</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">110</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">101</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">1010</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">1001</span>)
+          <span class="ruby-identifier">res</span>.<span class="ruby-identifier">push</span>(<span class="ruby-string">&quot;Cette île a encore 3 ponts a faire et posséde 2 voisines, \nil faut donc la connecter à une de ses voisines&quot;</span>)
+          <span class="ruby-identifier">coup</span> = <span class="ruby-constant">Coup</span>.<span class="ruby-identifier">creer</span>(<span class="ruby-keyword">false</span>, <span class="ruby-identifier">elem</span>, <span class="ruby-keyword">true</span>)
+          <span class="ruby-identifier">res</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">coup</span>)
+          <span class="ruby-keyword">return</span> <span class="ruby-identifier">res</span>
+        <span class="ruby-comment"># Cas ou valeur = 4 et nbVoisines = 2</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">valeurActuelle</span> <span class="ruby-operator">==</span> <span class="ruby-value">4</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">11</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">110</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">101</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">1010</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">1001</span>)
+          <span class="ruby-identifier">res</span>.<span class="ruby-identifier">push</span>(<span class="ruby-string">&quot;Cette île a encore 4 ponts a faire et posséde 2 voisines, \nil faut donc la connecter à toutes ses voisines&quot;</span>)
+          <span class="ruby-identifier">coup</span> = <span class="ruby-constant">Coup</span>.<span class="ruby-identifier">creer</span>(<span class="ruby-keyword">false</span>, <span class="ruby-identifier">elem</span>, <span class="ruby-keyword">true</span>)
+          <span class="ruby-identifier">res</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">coup</span>)
+          <span class="ruby-keyword">return</span> <span class="ruby-identifier">res</span>
+        <span class="ruby-comment"># Cas ou valeur = 5 et nbVoisines = 3</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">valeurActuelle</span> <span class="ruby-operator">==</span> <span class="ruby-value">5</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">111</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">1011</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">1110</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">1101</span>)
+          <span class="ruby-identifier">res</span>.<span class="ruby-identifier">push</span>(<span class="ruby-string">&quot;Cette île a encore 5 ponts a faire et posséde 3 voisines, \nil faut donc la connecter à une de ses voisines&quot;</span>)
+          <span class="ruby-identifier">coup</span> = <span class="ruby-constant">Coup</span>.<span class="ruby-identifier">creer</span>(<span class="ruby-keyword">false</span>, <span class="ruby-identifier">elem</span>, <span class="ruby-keyword">true</span>)
+          <span class="ruby-identifier">res</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">coup</span>)
+          <span class="ruby-keyword">return</span> <span class="ruby-identifier">res</span>
+        <span class="ruby-comment"># Cas ou valeur = 6 et nbVoisines = 3</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">valeurActuelle</span> <span class="ruby-operator">==</span> <span class="ruby-value">6</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">111</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">1011</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">1110</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">1101</span>)
+          <span class="ruby-identifier">res</span>.<span class="ruby-identifier">push</span>(<span class="ruby-string">&quot;Cette île a encore 6 ponts a faire et posséde 3 voisines, \nil faut donc la connecter à toutes ses voisines&quot;</span>)
+          <span class="ruby-identifier">coup</span> = <span class="ruby-constant">Coup</span>.<span class="ruby-identifier">creer</span>(<span class="ruby-keyword">false</span>, <span class="ruby-identifier">elem</span>, <span class="ruby-keyword">true</span>)
+          <span class="ruby-identifier">res</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">coup</span>)
+          <span class="ruby-keyword">return</span> <span class="ruby-identifier">res</span>
+        <span class="ruby-comment"># Cas ou valeur = 7 et nbVoisines = 4</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">valeurActuelle</span> <span class="ruby-operator">==</span> <span class="ruby-value">7</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">1111</span>)
+          <span class="ruby-identifier">res</span>.<span class="ruby-identifier">push</span>(<span class="ruby-string">&quot;Cette île a encore 7 ponts a faire et posséde 5 voisines, \nil faut donc la connecter à un de ses voisines&quot;</span>)
+          <span class="ruby-identifier">coup</span> = <span class="ruby-constant">Coup</span>.<span class="ruby-identifier">creer</span>(<span class="ruby-keyword">false</span>, <span class="ruby-identifier">elem</span>, <span class="ruby-keyword">true</span>)
+          <span class="ruby-identifier">res</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">coup</span>)
+          <span class="ruby-keyword">return</span> <span class="ruby-identifier">res</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">valeurActuelle</span> <span class="ruby-operator">==</span> <span class="ruby-value">8</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">bitPonts</span> <span class="ruby-operator">==</span> <span class="ruby-value">1111</span>)
+          <span class="ruby-identifier">res</span>.<span class="ruby-identifier">push</span>(<span class="ruby-string">&quot;Cette île a encore 8 ponts a faire et posséde 5 voisines, \nil faut donc la connecter à un de ses voisines&quot;</span>)
+          <span class="ruby-identifier">coup</span> = <span class="ruby-constant">Coup</span>.<span class="ruby-identifier">creer</span>(<span class="ruby-keyword">false</span>, <span class="ruby-identifier">elem</span>, <span class="ruby-keyword">true</span>)
+          <span class="ruby-identifier">res</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">coup</span>)
+          <span class="ruby-keyword">return</span> <span class="ruby-identifier">res</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

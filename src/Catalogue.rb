@@ -1,5 +1,25 @@
+##
+# La classe Catalogue permet d'afficher la fenêtre contenant toutes les règles et toutes les techniques.
+#
+# Il y a deux parties :
+# - Comment jouer
+# - Techniques
+#
+# ==== Variables d'instance
+# * @ratio => la taille de la fenêtre
+# * @fenetre => la fenêtre du catalogue
+# * @catalogue => les techniques du jeu 
+# * @regle => les règles du jeu
+#
 class Catalogue < Gtk::Builder
 
+  # Methode d'initialisation de la classe
+  #
+  # ==== Attributs
+  #
+  # * +fenetre+ - la fenêtre du catalogue
+  # * +ratio+ - la taille de la fenêtre
+  #
   def initialize(fenetre, ratio)
     super()
     add_from_file('../data/glade/Catalogue.glade')

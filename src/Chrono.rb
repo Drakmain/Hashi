@@ -22,8 +22,9 @@ class Chrono
   ###############################################################################
 
   # Initialise le chronomètre à vide grâce à la méthode de remise à zéro.
-  def initialize(unChrono)
+  def initialize(unChrono, unJeu = nil)
     @label = unChrono
+    @jeu = unJeu
     remiseAZero
   end
 
@@ -68,7 +69,8 @@ class Chrono
   # Avec un temps donné en paramètre de 25, la méthode
   # va stopper le chronomètre au bout de 25 secondes.
   def lancerChronoInverse(unTemps)
-    Thread.start do
+    fin = false
+    Thread.new do
       @chrono = unTemps
       while @chrono > 0
         @chrono -= 0.1
@@ -76,8 +78,6 @@ class Chrono
         @label.set_text("Timer : #{'%.1f' % @chrono} s")
       end
     end
-
-    return true
   end
 
   # Stoppe le chronomètre.
@@ -89,7 +89,7 @@ class Chrono
   # Remet les variables tempsDebut et chrono à 0.
 
   def pauserChrono
-    if(@estLancer)then
+    if (@estLancer) then
       @estLancer = false
     else
       @estLancer = true
@@ -109,3 +109,4 @@ class Chrono
   attr_accessor :chrono, :label
 
 end
+

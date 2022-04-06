@@ -52,7 +52,7 @@ class JeuTutoriel < Gtk::Builder
       @suivant_button.set_sensitive(false)
     end
 
-    @grille = RubyApp.new(@fenetre, @map, @sens_popover, @fini_dialog)
+    @grille = RubyApp.new(@fenetre, @map, @sens_popover, @fini_dialog, @fini_label, @mode, @difficulte, @niveau)
 
     @plateau_box.add(@grille)
 

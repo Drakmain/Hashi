@@ -1,60 +1,65 @@
+But du jeu :
+	Chaque puzzle est basé sur un arrangement rectangulaire d'îles où les nombres dans chaque île représente combien de ponts sont connectés à celle-ci. Le but du jeu est de connecter toutes les îles en un bloc en fonction de ces nombres.
 
 
+Règles du jeu :
 
-/note :    https://www.xeeldy.com/hashi.html#regles
+	- Un pont commence et se termine sur une île
+	- Deux îles ont au maximum deux ponts en commun
+	- Deux ponts ne peuvent pas se croiser
+	- Les ponts sont soit à la verticale, soit à l'horizontale
 
-
-Les règles du jeu Hashi : 
--------------------------
-
-Hashi est un jeu de logique très addictif inventé au Japon. 
-Le but du jeu est de connecter les Iles de la grille entre elles. 
-Pour se faire vous pouvez connecter une Ile à une autre par le haut, le bas, la gauche ou la droite.
-
-Chaque connexion entre deux Iles peut avoir une ou deux lignes. 
-Une Ile sera donc reliée à minimum une ligne et maximum huit lignes. 
-Chaque Ile est marquée d'un nombre de 1 à 8 qui indique le nombre de lignes qui lui sont connectées.
-
-La grille sera résolue lorsque tous les Iles seront reliées les unes aux autres. 
-Il ne peut y avoir deux groupes d'Iles indépendantes.
+	Le partie se termine quand toutes les îles sont reliées et qu'elles possèdent tous leurs ponts.
 
 
-Pour résumer :
-----------------
+Comment jouer : 
 
-    Chaque Ile doit être relié à un nombre de lignes correspondant au nombre écrit dessus
-    Tous les Iles doivent être interconnectées (ne former qu'un seul groupe)
-
-
-Fonctionnement du jeu :
---------------------------
-
-    Cliquez sur un Ile pour faire apparaître les connexions possibles
-    Cliquez sur une connexion pour y ajouter une ligne
-    Un clic long sur une Ile permet de mettre en évidence les Iles qui lui sont connectées
-
-	 ( voir les sigles correspondants)
-	 
-	Permets de recommencer la partie.
-	Permets de faire un coup en arrière.
-	Permets de faire un coup en avant.
-	Permets de sauvegarder la partie.
+	Afin de placer un pont, sélectionnez un endroit où une connexion entre deux îles est possible. 
+	Avec un clic gauche, un pont sera ajouté si c'est possible. 
+	Il vous sera, dans le cas où les deux sont possibles, demandé si vous souhaiter placer un pont horizontal ou vertical.
+	Avec un clic droit, un pont sera supprimé s'il en existe au moins un.
+	
+	Selon le mode de jeu choisi, diverses aides vous seront proposées pour vous aider à terminer la partie. 
 
 
-// autres notes regles du jeux : 
+Aides :
 
-repeter:
- 
-- l'ensemble des liens des Ils doit former un ensemble connexe.
-	 (- ne relier(saturer une Ile de valeur 1 à une autres Ile de même valeur
-	  - ne relier(saturer une Ile de valeur 2 à une autres Ile de même valeur  )
+	- Coups possibles : indique les ponts que vous pouvez faire à partir d'une île en survolant cette dernière
+	- Détection d'erreurs : Permet de supprimer les mauvais ponts que vous avez créé
+	- Suggestion de coups : Permet d'obtenir un coup à jouer en fonction de la situation dans laquelle vous êtes. Si votre grille possède des erreurs, alors elles vous seront indiquées et vous devrez les corriger avant d'avoir un coup à jouer
+	- Auto-correcteur : Permet de supprimer les mauvais ponts dès leur création. Cette aide est désactivée par défaut.
 
-- chercher une Ile qui a 1 seul voisine la reliée à condition que le lien ne soit pas isolé !
-	  
-- chercher une Ile qui doit être reliée avec au moins un lien avec ses voisines.
+Mode de jeu :
 
-- chercher une Ile ayant la plus grande valeur
+	- Tutoriel : permet d'apprendre les bases du Hashi grâce à un exemple ou on vous accompagne dans la partie
+	- Normal : Mode de jeu simple, dans lequel un chronomètre est lancé pour le score, mais sans limite de temps.
 
-	-voir nbre de voisine
-	-voir nbre de voisin (*) 2 si = à la valeur de l'Ile consideré => commencer par relier cette Ile.
-		 ex: Ile(8) = ayant 4 voisines ( (3) (3) (4) (3) )
+			Les aides suivantes sont activées :
+				- Coups possibles
+				- Suggestion de coups
+
+		  	 Les aides suivantes sont accessibles :
+			   	- Détection d'erreurs
+			   	- Auto-correcteurs
+
+	- Contre la montre :  Mode de jeu ou vous devrez terminer le plateau avant le temps imparti.
+
+			Les aides suivantes sont activables :
+				- Coups possibles
+				- Suggestion de coups
+
+		  	Les aides suivantes sont accessibles :
+			   	- Détection d'erreurs
+			   	- Auto-correcteurs
+
+			l'activation d'une aide entraîne une baisse du chrono.
+
+
+	- Génie : Mode de jeu dans lequel toutes les aides sont désactivées.
+
+
+Difficultés :
+
+	- Facile : les plateaux sont petits et utilise les bases du jeu
+	- Moyen : les plateaux ont une taille variable et demande quelques techniques
+	- Difficile : les plateaux sont grands et demandent l'utilisation de techniques avancées de Hashi

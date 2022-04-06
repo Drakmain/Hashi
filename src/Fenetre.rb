@@ -4,15 +4,9 @@ require 'json'
 load 'MenuPrincipal.rb'
 
 ##
-# La classe Fenetre....
+# La classe Fenetre met en place la fenêtre principale
 #
-# ==== Variables d'instance
-# * @fichier_options => 
-# * @hashOptions => 
-# * @ratio => 
-# * @fenetre => 
 #
-
 class Fenetre < Gtk::Builder
 
   attr_reader :ratio

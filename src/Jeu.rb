@@ -23,8 +23,6 @@ load 'Chrono.rb'
 #
 class Jeu < Gtk::Builder
 
-  attr_reader :fini_label
-
   # Methode d'initialisation de la classe
   #
   # ==== Attributs

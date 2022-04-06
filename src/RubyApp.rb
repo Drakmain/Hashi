@@ -342,6 +342,7 @@ class RubyApp < Gtk::Fixed
     if @map.plateau.partieFini?
       
       @fini_label.set_text("Bravo !\nVous avez fini le niveau #{@niveau} en mode #{@mode} en difficulte #{@difficulte} \nVotre temps est de #{@map.chrono.chrono} et votre score est de #{@map.score} ")
+      @map.sauvegarder_score
       @map.chrono.pauserChrono
       set_sensitive(false)
       @fini_dialog.run

@@ -459,9 +459,9 @@ class Genie
 
 
   def sauvegarder_score()
-    fichierScore = "../data/map/#{uneDifficulte}/score/#{unNiveau}.txt"
+    fichierScore = "../data/map/#{@difficulte.to_s}/score/#{@niveau.to_s}.txt"
     open(fichierScore, 'a'){
-      |f| f.puts @pseudo + "_" + @score.to_s + "_" + @chrono.chrono
+      |f| f.puts @pseudo + "_" + @score.to_s() + "_" + @chrono.chrono.to_s
     }
   end
 

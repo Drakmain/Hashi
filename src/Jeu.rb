@@ -1,4 +1,4 @@
-load 'RubyApp.rb'
+load 'PlateauInterface.rb'
 load 'Chrono.rb'
 
 ##
@@ -86,7 +86,7 @@ class Jeu < Gtk::Builder
     @fini_dialog.set_window_position Gtk::WindowPosition::CENTER_ON_PARENT
     @fini_dialog.set_resizable(false)
 
-    @grille = RubyApp.new(@fenetre, @map, @sens_popover, @fini_dialog, @fini_label, @mode, @difficulte, @niveau)
+    @grille = PlateauInterface.new(@fenetre, @map, @sens_popover, @fini_dialog, @fini_label, @mode, @difficulte, @niveau)
 
     @plateau_box.add(@grille)
 

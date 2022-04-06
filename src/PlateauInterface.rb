@@ -2,7 +2,7 @@ require 'gtk3'
 load 'Donnees.rb'
 load 'Plateau.rb'
 
-# La Classe RubyApp permet de gérer l'affichage de la zone de jeu.
+# La Classe PlateauInterface permet de gérer l'affichage de la zone de jeu.
 #
 # ==== Variables d'instance
 #
@@ -21,7 +21,7 @@ load 'Plateau.rb'
 # * @x
 # * @y
 #
-class RubyApp < Gtk::Fixed
+class PlateauInterface < Gtk::Fixed
 
   # Méthode d'initialisation de la classe
   #
@@ -92,8 +92,10 @@ class RubyApp < Gtk::Fixed
       @tab_events[i].add(image)
 
       @tab_events[i].signal_connect 'button-press-event' do |widget, event|
-        if @map.chrono.chrono <= 0
-          fin_chrono
+        if @difficulte != 'tutoriel'
+          if @map.chrono.chrono <= 0
+            fin_chrono
+          end
         end
 
         tmp = widget.child.name.split('_')
@@ -115,8 +117,10 @@ class RubyApp < Gtk::Fixed
       end
 
       @tab_events[i].signal_connect "enter-notify-event" do |widget, event|
-        if @map.chrono.chrono <= 0
-          fin_chrono
+        if @difficulte != 'tutoriel'
+          if @map.chrono.chrono <= 0
+            fin_chrono
+          end
         end
 
         tmp = widget.child.name.split('_')
@@ -127,8 +131,10 @@ class RubyApp < Gtk::Fixed
       end
 
       @tab_events[i].signal_connect "leave-notify-event" do |widget, event|
-        if @map.chrono.chrono <= 0
-          fin_chrono
+        if @difficulte != 'tutoriel'
+          if @map.chrono.chrono <= 0
+            fin_chrono
+          end
         end
 
         tmp = widget.child.name.split('_')

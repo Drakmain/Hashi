@@ -1,4 +1,4 @@
-load 'RubyApp.rb'
+load 'PlateauInterface.rb'
 
 ##
 # La classe JeuTutoriel permet d'afficher la fenêtre du jeu quand le joueur à lancer le tutoriel
@@ -52,7 +52,7 @@ class JeuTutoriel < Gtk::Builder
       @suivant_button.set_sensitive(false)
     end
 
-    @grille = RubyApp.new(@fenetre, @map, @sens_popover, @fini_dialog, @fini_label, @mode, @difficulte, @niveau)
+    @grille = PlateauInterface.new(@fenetre, @map, @sens_popover, @fini_dialog, @fini_label, @mode, @difficulte, @niveau)
 
     @plateau_box.add(@grille)
 

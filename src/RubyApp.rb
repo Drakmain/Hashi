@@ -334,6 +334,7 @@ class RubyApp < Gtk::Fixed
     @fenetre.show_all
 
     if @map.plateau.partieFini?
+      @map.sauvegarder_score
       set_sensitive(false)
       @fini_dialog.run
     end

@@ -31,9 +31,12 @@ class MenuPrincipal < Gtk::Builder
   #
   def initialize(fenetre, ratio)
     super()
+    puts "1"
     add_from_file('../data/glade/MenuPrincipal.glade')
     @ratio = ratio
     @fenetre = fenetre
+
+    puts "1"
 
     objects.each do |p|
       unless p.builder_name.start_with?('___object')
@@ -49,6 +52,14 @@ class MenuPrincipal < Gtk::Builder
     rescue StandardError
       puts "#{handler} n'est pas encore implementer !"
     end
+
+    puts "1"
+    @provider = Gtk::CssProvider.new
+    @provider.load(:path => "assets/style.css")
+    Gdk::Screen.default.add_style_provider(@provider, 1000000000)
+
+    puts "1"
+    puts @provider
 
     @fenetre.add(@menu_principale_box)
   end

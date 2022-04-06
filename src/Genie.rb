@@ -451,6 +451,14 @@ class Genie
     @plateau.verifCoord(unX, unY)
   end
 
+
+  def sauvegarder_score()
+    fichierScore = "../data/map/#{uneDifficulte}/score/#{unNiveau}.txt"
+    open(fichierScore, 'a'){
+      |f| f.puts @pseudo + "_" + @score.to_s + "_" + @chrono.chrono
+    }
+  end
+
   def activerHypothese; end
 
   def desactiverHypothese; end

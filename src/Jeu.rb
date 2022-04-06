@@ -23,6 +23,8 @@ load 'Chrono.rb'
 #
 class Jeu < Gtk::Builder
 
+  attr_reader :fini_label
+
   # Methode d'initialisation de la classe
   #
   # ==== Attributs
@@ -82,9 +84,9 @@ class Jeu < Gtk::Builder
     @fini_dialog.set_window_position Gtk::WindowPosition::CENTER_ON_PARENT
     @fini_dialog.set_resizable(false)
     @fini_dialog.set_title('Gagné !')
-    @fini_label.set_text("Bravo !\nVous avez fini le niveau #{niveau} en mode #{mode} et en difficulte #{difficulte}")
+    @fini_label.set_text("Bravo !\nVous avez fini le niveau #{niveau} en mode #{mode} en difficulte #{difficulte} \nVotre temps est de #{@map.chrono.chrono} et votre score est de #{@map.score} ")
 
-    @grille = RubyApp.new(@fenetre, @map, @sens_popover, @fini_dialog)
+    @grille = RubyApp.new(@fenetre, @map, @sens_popover, @fini_dialog,@fini_label,@mode,@difficulte,@niveau)
 
     @plateau_box.add(@grille)
 

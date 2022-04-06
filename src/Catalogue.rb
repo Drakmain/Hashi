@@ -1,16 +1,21 @@
-##
-# La classe Catalogue permet d'afficher la fenêtre contenant toutes les règles et toutes les techniques.
 #
-# Il y a deux parties :
-# - Comment jouer
-# - Techniques
+# La Classe Catalogue permet d'afficher la fenêtre du catalogue.
+#
+# Il y a trois personnalisation d'options possible :
+#
+# - Le nom de l'utilisateur
+# - La résolution du jeu
+# - La langue
+#
+# On peut cliquer sur un des choix
 #
 # ==== Variables d'instance
+#
+# * @fenetre => la fenêtre du jeu
 # * @ratio => la taille de la fenêtre
-# * @fenetre => la fenêtre du catalogue
 # * @catalogue => les techniques du jeu 
 # * @regle => les règles du jeu
-#
+
 class Catalogue < Gtk::Builder
 
   # Methode d'initialisation de la classe

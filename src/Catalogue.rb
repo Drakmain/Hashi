@@ -1,3 +1,18 @@
+# La Classe Catalogue permet d'afficher la fenêtre du catalogue.
+#
+# Il y a trois personnalisation d'options possible :
+#
+# - Le nom de l'utilisateur
+# - La résolution du jeu
+# - La langue
+#
+# On peut cliquer sur un des choix
+#
+# ==== Variables d'instance
+#
+# * @fenetre => la fenêtre du jeu
+# * @ratio => la taille de la fenêtre
+
 class Catalogue < Gtk::Builder
 
   def initialize(fenetre, ratio)

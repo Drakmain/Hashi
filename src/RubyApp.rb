@@ -376,8 +376,8 @@ class RubyApp < Gtk::Fixed
 
   def afficherErreur
     @map.afficherPontErreur
-    (@map.coups).each do |c|
-      if (c.pont.element.erreur) then
+    @map.coups.each do |c|
+      if c.pont.element.erreur
         afficher_pont(c.sens, c.pont.x, c.pont.y)
       end
     end

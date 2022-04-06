@@ -30,6 +30,7 @@ class JeuTutoriel < Gtk::Builder
 
     @retour_button.set_size_request(-1, 50 * @ratio)
     @fini_label.set_text("Vous avez fini le tutoriel n°#{niveau}.")
+    @fini_dialog.set_title('Bravo !')
 
     @fenetre.set_title("Hashi - Tutoriel n°#{niveau}")
 

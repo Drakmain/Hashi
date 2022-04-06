@@ -52,7 +52,9 @@ class Fenetre < Gtk::Builder
       Gtk.main_quit
     end
 
+    puts "2"
     MenuPrincipal.new(@fenetre, @ratio)
+    puts "3"
   end
 
 end

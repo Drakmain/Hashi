@@ -14,10 +14,6 @@ load 'Chrono.rb'
 #
 class Jeu < Gtk::Builder
 
-<<<<<<< HEAD
-  attr_reader :fini_label
-
-=======
   # Methode d'initialisation de la classe
   #
   # ==== Attributs
@@ -29,7 +25,6 @@ class Jeu < Gtk::Builder
   # * +map+ - 
   # * +niveau+ - 
   #
->>>>>>> 898f40200e2bee9954a7a7da8a7b5eec03fa1379
   def initialize(fenetre, ratio, mode, difficulte, map, niveau)
     super()
     add_from_file('../data/glade/Jeu.glade')

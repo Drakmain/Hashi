@@ -2,6 +2,25 @@ require 'gtk3'
 load 'Donnees.rb'
 load 'Plateau.rb'
 
+# La Classe RubyApp permet de gérer l'affichage de la zone de jeu.
+#
+# ==== Variables d'instance
+#
+# * @fenetre => la fenêtre du jeu
+# * @mode => le mode choisis par l'utilisateur
+# * @difficulte => la difficulté choisis par l'utilisateur
+# * @niveau => la map choisis par l'utilisateur
+# * @sens_popover
+# * @fini_dialog
+# * @map
+# * @fini_label
+# * @matrixPix => Matrice de buffer pour pouvoir utilisé des images
+# * @matrixImg => Matrice d'images
+# * @donnee
+# * @tab_events
+# * @x
+# * @y
+#
 class RubyApp < Gtk::Fixed
 
   def initialize(fenetre, map, sens_popover, fini_dialog,fini_label,mode,difficulte,niveau)

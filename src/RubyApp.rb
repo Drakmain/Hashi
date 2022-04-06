@@ -23,6 +23,19 @@ load 'Plateau.rb'
 #
 class RubyApp < Gtk::Fixed
 
+  # Méthode d'initialisation de la classe
+  #
+  # ==== Attributs
+  #
+  # * +fenetre+ - la fenêtre du jeu
+  # * +map+
+  # * +sens_popover+
+  # * +fini_dialog+
+  # * +fini_label+
+  # * +mode+ - le mode de jeu
+  # * +difficulte+ - la difficulté de jeu
+  # * +niveau+
+  #
   def initialize(fenetre, map, sens_popover, fini_dialog,fini_label,mode,difficulte,niveau)
     super()
     @fenetre = fenetre
@@ -56,6 +69,7 @@ class RubyApp < Gtk::Fixed
     end
   end
 
+  # Méthode qui place les liens au bon endroit vers les images en fonction du niveau
   def create_imgs
     numbers = []
 
@@ -116,6 +130,7 @@ class RubyApp < Gtk::Fixed
 
   end
 
+  # Méthode qui met l'image au bon endroit dans l'interface GTK
   def put_img(coups)
     xl = 0
     yl = 0
@@ -133,11 +148,13 @@ class RubyApp < Gtk::Fixed
     end
   end
 
+  # Méthode qui 
   def set_sens(sens)
     jouer_afficher_pont(sens, @x, @y, @click)
     @sens_popover.popdown
   end
 
+  # Méthode qui joue un coup en fonction d'un sens, de sa position et du type de click
   def jouer_afficher_pont(sens, x, y, click)
 
     case sens
@@ -200,6 +217,7 @@ class RubyApp < Gtk::Fixed
     end
   end
 
+  # Méthode qui change le type d'image en fonction de la situation (mode hypothèse, affichage des erreurs, ect)
   def changer_image(nb_ponts, sens, x, y)
     if @map.hypothese == true
       sens = "H#{sens}"
@@ -228,6 +246,7 @@ class RubyApp < Gtk::Fixed
     @tab_events[@map.plateau.y * x + y].child = image
   end
 
+  # Méthode qui change l'image de l'île si elle est pleine
   def afficher_ile_pleine(x, y)
     valeur = @map.plateau.getCase(x, y).element.valeur
 
@@ -243,6 +262,7 @@ class RubyApp < Gtk::Fixed
     @tab_events[@map.plateau.y * x + y].child = image
   end
 
+  # Méthode qui affiche les ponts à partir d'un sens et de la position
   def afficher_pont(sens, x, y)
 
     nb_ponts = @map.plateau.getCase(x, y).element.nb_ponts

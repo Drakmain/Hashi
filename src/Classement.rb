@@ -131,7 +131,8 @@ class Classement < Gtk::Builder
       end
     end
 
-    @score = @score.sort_by { |obj| obj[1] }
+    @score = @score.sort_by { |obj| obj[1].to_i }
+    @score = @score.reverse
 
     model = Gtk::TreeStore.new(String, String, String)
 
@@ -178,7 +179,8 @@ class Classement < Gtk::Builder
       end
     end
 
-    @score = @score.sort_by { |obj| obj[2] }
+    @score = @score.sort_by { |obj| obj[2].to_i }
+    @score.each { |i| puts i[2] }
 
     model = Gtk::TreeStore.new(String, String, String)
 

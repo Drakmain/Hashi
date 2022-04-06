@@ -2,6 +2,11 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
+  <object class="GtkImage" id="retour_icon">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">go-previous</property>
+  </object>
   <object class="GtkBox" id="classement_box">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -30,6 +35,8 @@
       <object class="GtkBox" id="main_box">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
         <property name="spacing">20</property>
         <property name="homogeneous">True</property>
         <child>
@@ -38,6 +45,7 @@
             <property name="can-focus">False</property>
             <property name="orientation">vertical</property>
             <property name="spacing">20</property>
+            <property name="homogeneous">True</property>
             <child>
               <object class="GtkComboBoxText" id="mode_comboxbox">
                 <property name="visible">True</property>
@@ -106,12 +114,67 @@
           </packing>
         </child>
         <child>
-          <object class="GtkScrolledWindow" id="classement_scrolled">
+          <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="shadow-type">in</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+            <property name="spacing">10</property>
             <child>
-              <placeholder/>
+              <object class="GtkScrolledWindow" id="classement_scrolled">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="shadow-type">in</property>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">end</property>
+                <property name="spacing">20</property>
+                <child>
+                  <object class="GtkButton" id="trie_score_button">
+                    <property name="label" translatable="yes">Trier par le score</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="trie_temps_button">
+                    <property name="label" translatable="yes">Trier par le temps</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
             </child>
           </object>
           <packing>
@@ -152,6 +215,7 @@
   <object class="GtkPopover" id="pas_score_popover">
     <property name="can-focus">False</property>
     <property name="relative-to">chercher_button</property>
+    <property name="position">bottom</property>
     <child>
       <object class="GtkLabel">
         <property name="visible">True</property>
@@ -163,10 +227,5 @@
         <property name="label" translatable="yes">Pas de score disponible</property>
       </object>
     </child>
-  </object>
-  <object class="GtkImage" id="retour_icon">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="icon-name">go-previous</property>
   </object>
 </interface>

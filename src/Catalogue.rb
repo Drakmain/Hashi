@@ -1,3 +1,4 @@
+#
 # La Classe Catalogue permet d'afficher la fenêtre du catalogue.
 #
 # Il y a trois personnalisation d'options possible :
@@ -12,9 +13,18 @@
 #
 # * @fenetre => la fenêtre du jeu
 # * @ratio => la taille de la fenêtre
+# * @catalogue => les techniques du jeu 
+# * @regle => les règles du jeu
 
 class Catalogue < Gtk::Builder
 
+  # Methode d'initialisation de la classe
+  #
+  # ==== Attributs
+  #
+  # * +fenetre+ - la fenêtre du catalogue
+  # * +ratio+ - la taille de la fenêtre
+  #
   def initialize(fenetre, ratio)
     super()
     add_from_file('../data/glade/Catalogue.glade')

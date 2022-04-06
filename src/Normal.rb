@@ -35,6 +35,10 @@ class Normal < ContreLaMontre
     end
   end
 
+  def to_s
+    "normal"
+  end
+
   attr_reader :chrono
 
 end

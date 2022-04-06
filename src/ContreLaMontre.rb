@@ -332,6 +332,10 @@ class ContreLaMontre < Genie
     end
   end
 
+  def to_s
+    "contreLaMontre"
+  end
+
   #l'ordre est le suivant du bit droit au gauche : Droite,Gauche,Haut,Bas
 
 end

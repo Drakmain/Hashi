@@ -36,7 +36,7 @@ class RubyApp < Gtk::Fixed
   # * +difficulte+ - la difficulté de jeu
   # * +niveau+
   #
-  def initialize(fenetre, map, sens_popover, fini_dialog,fini_label,mode,difficulte,niveau)
+  def initialize(fenetre, map, sens_popover, fini_dialog, fini_label, mode, difficulte, niveau)
     super()
     @fenetre = fenetre
     @sens_popover = sens_popover
@@ -427,7 +427,7 @@ class RubyApp < Gtk::Fixed
     @fenetre.show_all
 
     if @map.plateau.partieFini?
-      @fini_label.set_text("Bravo !\nVous avez fini le niveau #{@niveau} en mode #{@mode} en difficulte #{@difficulte} \nVotre temps est de #{@map.chrono.chrono} et votre score est de #{@map.score} ")
+      @fini_label.set_text("Bravo !\nVous avez fini le niveau #{@niveau} en mode #{@mode} en difficulte #{@difficulte} \nVotre temps est de #{'%.1f' % @map.chrono.chrono}s et votre score est de #{@map.score.to_i}")
       @map.sauvegarder_score
       @map.chrono.pauserChrono
       set_sensitive(false)

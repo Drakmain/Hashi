@@ -51,13 +51,13 @@ class Catalogue < Gtk::Builder
     techniques_scrolled.set_min_content_height(600)
 
     comment_jouer_buffer = Gtk::TextBuffer.new
-    comment_jouer_buffer.set_text(@catalogue)
+    comment_jouer_buffer.set_text(@regle)
 
     comment_jouer_text_view = get_object('comment_jouer_text_view')
     comment_jouer_text_view.set_buffer(comment_jouer_buffer)
 
     techniques_jouer_buffer = Gtk::TextBuffer.new
-    techniques_jouer_buffer.set_text(@regle)
+    techniques_jouer_buffer.set_text(@catalogue)
 
     techniques_text_view = get_object('techniques_text_view')
     techniques_text_view.set_buffer(techniques_jouer_buffer)

@@ -7,11 +7,7 @@
     background-color: black;
 }
 
-.menu_jeu button{
-    background-color: black;
-
-}
-
-.menu_jeu button:hover{
+#btn_jouer{
+    border-radius: 45%;
     background-color: black;
 }

@@ -17,6 +17,9 @@
 # User settings
 /data/options.json
 
+# Score
+/data/map/*/score
+
 # User save
 /data/sauvegarde/
 

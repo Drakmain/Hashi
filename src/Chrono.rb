@@ -88,6 +88,10 @@ class Chrono
 
   # Remet les variables tempsDebut et chrono à 0.
 
+  def pauserChrono
+    @estLancer = false
+  end
+
   def remiseAZero
     @chrono = 0
   end

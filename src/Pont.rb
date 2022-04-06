@@ -144,6 +144,7 @@ class Pont < Element
     @deuxSens > 0
   end
 
+  # Affiche le sens du pont (true si horizontal, false sinon) et le nombre de pont
   def to_s
     "sens = #{@sensHorizontal} || nombre de ponts : #{@nb_ponts}"
   end

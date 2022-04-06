@@ -14,7 +14,7 @@
         <property name="margin-top">20</property>
         <property name="margin-bottom">20</property>
         <property name="orientation">vertical</property>
-        <property name="spacing">2</property>
+        <property name="spacing">20</property>
         <property name="homogeneous">True</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox">
@@ -54,7 +54,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
-                <signal name="clicked" handler="on_recommencer_button_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_suivant_button_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>

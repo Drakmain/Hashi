@@ -153,6 +153,7 @@ class Options < Gtk::Builder
     fichier.close
   end
 
+  # Affiche le nom, la résolution et la langue
   def to_s
     "Username : #{@user} \nResolution : #{(9 * @ratio.to_i())}p \nLangue : #{@langue}\n"
   end

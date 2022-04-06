@@ -3,10 +3,21 @@ require 'json'
 
 load 'MenuPrincipal.rb'
 
+##
+# La classe Fenetre....
+#
+# ==== Variables d'instance
+# * @fichier_options => 
+# * @hashOptions => 
+# * @ratio => 
+# * @fenetre => 
+#
+
 class Fenetre < Gtk::Builder
 
   attr_reader :ratio
 
+  # Methode d'initialisation de la classe
   def initialize
     super()
     add_from_file('../data/glade/Fenetre.glade')

@@ -267,7 +267,34 @@ class RubyApp < Gtk::Fixed
     y = unY
     if nbPonts - 1000 >= 0
       nbPonts -= 1000
-      x += 1
+      x += 1=begin
+      test = Plateau.creer(1)
+      test.generateMatrice("../map/facile/correction/2.txt")
+    
+      puts test
+      print "\n"
+    
+      test.generateCorrection()
+      test.affiche()
+    
+      test = Plateau.creer(1)
+      test.generateMatrice("../map/facile/demarrage/2.txt")
+    
+      puts test
+      print "\n"
+    
+      test.generateCorrection()
+      test.affiche()
+    
+    
+      print "INIT PONT V1\n"
+      test.initPont()
+      test.affiche()
+    
+      print "INIT PONT V2\n"
+      test.ajouterPont()
+      test.affiche()
+    =end
       while @map.plateau.getCase(x, y).element.estPont?
         if unBool
           pixbuf = GdkPixbuf::Pixbuf.new(file: '../data/img/pontPV1.png')

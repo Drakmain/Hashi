@@ -39,7 +39,7 @@ class Genie
   private_class_method :new
 
   attr_accessor :fichierJeu, :plateau, :coups, :label
-  attr_reader :autoCorrecteur, :hypothese
+  attr_reader :autoCorrecteur, :hypothese, :chrono, :score
 
   ##############################################################################################
   #                               Methode de classe
@@ -267,9 +267,9 @@ class Genie
       else
         @coups.push(Coup.creer(unClic, caseCourante, sens))
       end
-      #calculScore
-      #@chronoFirst = @chrono.chrono
-      #puts @score
+      calculScore
+      @chronoFirst = @chrono.chrono
+      puts @score
     else
       puts 'case pas un pont'
       return false
@@ -368,6 +368,10 @@ class Genie
         end
       end
     end
+    calculScore
+    @chronoFirst = @chrono.chrono
+    puts @score
+
     @anciensCoups.clear
     return res
   end
@@ -415,7 +419,9 @@ class Genie
         end
       end
     end
-
+    calculScore
+    @chronoFirst = @chrono.chrono
+    puts @score
     @anciensCoups.clear
     return res
   end
@@ -449,6 +455,14 @@ class Genie
   #
   def verifCoord(unX, unY)
     @plateau.verifCoord(unX, unY)
+  end
+
+
+  def sauvegarder_score()
+    fichierScore = "../data/map/#{@difficulte.to_s}/score/#{@niveau.to_s}.txt"
+    open(fichierScore, 'a'){
+      |f| f.puts @pseudo + "_" + @score.to_s() + "_" + @chrono.chrono.to_s
+    }
   end
 
   def activerHypothese; end

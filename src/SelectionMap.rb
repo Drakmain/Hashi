@@ -5,8 +5,36 @@ load 'Normal.rb'
 load 'Jeu.rb'
 load 'JeuTutoriel.rb'
 
+# La Classe SelectionMap permet d'afficher la fenêtre de séléction de maps.
+#
+# On peut cliquer sur un des choix, on peut choisir une des maps disponibles, pour jouer, ou recommencer la partie
+#
+# ==== Variables d'instance
+#
+# * @fenetre => la fenêtre du jeu
+# * @ratio => la taille de la fenêtre
+# * @mode => le mode choisis par l'utilisateur
+# * @difficulte => la difficulté choisis par l'utilisateur
+# * @niveau => la map choisis par l'utilisateur
+# * @selection_map_box => la box qui contient les boutons et permet l'affichage de la fenêtre
+# * @retour_button => bouton retour permettant de retourner sur la séléction de difficulté ou sur le menu principal (si on est en mode tutoriel)
+# * @user => nom d'utilisateur extrait du hashOptions
+# * @fichier_options => fichier contenant les dernières options enregistrer
+# * @hashOptions => objet qui récupère les données du fichier_options
+# * @jouer_button => bouton jouer permettant de lancer (ou continuer si il y a une sauvegarde) une partie de jeu
+# * @recommencer_button => bouton recommencer permettant de lancer une nouvelle partie de jeu si une sauvegarde est présente
+#
 class SelectionMap < Gtk::Builder
 
+  # Méthode d'initialisation de la classe
+  #
+  # ==== Attributs
+  #
+  # * +fenetre+ - la fenêtre du jeu
+  # * +ratio+ - la taille de la fenêtre
+  # * +mode+ - le mode de jeu
+  # * +difficulte+ - la difficulté de jeu
+  #
   def initialize(fenetre, ratio, mode, difficulte)
     super()
     add_from_file('../data/glade/SelectionMap.glade')
@@ -163,6 +191,8 @@ class SelectionMap < Gtk::Builder
     @fenetre.show_all
   end
 
+  # Action qui s'exécute lorsque l'on clique sur le bouton retour,
+  # ferme la box de séléction de map et affiche la box de séléction de difficulté ou la box du menue principal (si en mode tutoriel)
   def on_retour_button_clicked
     @fenetre.remove(@selection_map_box)
     @fenetre.resize(1280 * @ratio, 720 * @ratio)
@@ -174,6 +204,8 @@ class SelectionMap < Gtk::Builder
     end
   end
 
+  # Action qui s'exécute lorsque l'on clique sur le bouton jouer,
+  # ferme la box de séléction de map et lance ou continue une partie avec le mode, la difficulté, et le niveau choisis
   def on_jouer_button_clicked
 
     if @mode == 'tutoriel'
@@ -207,6 +239,8 @@ class SelectionMap < Gtk::Builder
     end
   end
 
+  # Action qui s'exécute lorsque l'on clique sur le bouton recommencer,
+  # ferme la box de séléction de map et lance une partie avec le mode, la difficulté, et le niveau choisis
   def on_recommencer_button_clicked
     case @mode
     when 'genie'

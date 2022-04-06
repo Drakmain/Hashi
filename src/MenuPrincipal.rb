@@ -1,6 +1,7 @@
 load 'Catalogue.rb'
 load 'SelectionMode.rb'
 load 'Options.rb'
+load 'Classement.rb'
 
 # La Classe MenuPrincipal permet d'afficher la fenêtre du menu principal.
 #
@@ -42,7 +43,6 @@ class MenuPrincipal < Gtk::Builder
     end
 
     @fenetre.set_title('Hashi - Menu Principal')
-    @classement.set_sensitive(false)
 
     connect_signals do |handler|
       method(handler)
@@ -71,6 +71,7 @@ class MenuPrincipal < Gtk::Builder
   # ferme la box des menus et affiche une nouvelle box
   def on_classement_clicked
     @fenetre.remove(@menu_principale_box)
+    Classement.new(@fenetre, @ratio)
   end
 
   # Action qui s'exécute lorsque l'on clique sur le bouton option,

@@ -53,14 +53,6 @@ class MenuPrincipal < Gtk::Builder
       puts "#{handler} n'est pas encore implementer !"
     end
 
-    puts "1"
-    @provider = Gtk::CssProvider.new
-    @provider.load(:path => "assets/style.css")
-    Gdk::Screen.default.add_style_provider(@provider, 1000000000)
-
-    puts "1"
-    puts @provider
-
     @fenetre.add(@menu_principale_box)
   end
 

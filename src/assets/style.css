@@ -1,0 +1,13 @@
+
+.menu_jeu{
+    background-color: white;   
+}
+
+#title_hashi{
+    background-color: black;
+}
+
+#btn_jouer{
+    border-radius: 45%;
+    background-color: black;
+}

@@ -433,7 +433,7 @@ class Genie
   # L'état de la partie en cours
   #
   def to_s
-    "Je suis en mode génie \nplateau : #{@plateau}\nScore : #{@score}"
+    "genie"
   end
 
   # Méthode qui affiche le plateau sur le terminal
@@ -459,9 +459,9 @@ class Genie
 
 
   def sauvegarder_score()
-    fichierScore = "../data/map/#{uneDifficulte}/score/#{unNiveau}.txt"
+    fichierScore = "../data/map/#{@difficulte.to_s}/score/#{@niveau.to_s}#{self.to_s}.txt"
     open(fichierScore, 'a'){
-      |f| f.puts @pseudo + "_" + @score.to_s + "_" + @chrono.chrono
+      |f| f.puts @pseudo + "_" + @score.to_s() + "_" + @chrono.chrono.to_s
     }
   end
 

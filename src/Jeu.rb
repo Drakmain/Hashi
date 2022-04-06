@@ -1,10 +1,35 @@
 load 'RubyApp.rb'
 load 'Chrono.rb'
 
+##
+# La classe Jeu....
+#
+# ==== Variables d'instance
+# * @ratio => 
+# * @fenetre => 
+# * @mode => 
+# * @difficulte => 
+# * @map => 
+# * @niveau => 
+#
 class Jeu < Gtk::Builder
 
+<<<<<<< HEAD
   attr_reader :fini_label
 
+=======
+  # Methode d'initialisation de la classe
+  #
+  # ==== Attributs
+  #
+  # * +fenetre+ - 
+  # * +ratio+ - 
+  # * +mode+ - 
+  # * +difficulte+ - 
+  # * +map+ - 
+  # * +niveau+ - 
+  #
+>>>>>>> 898f40200e2bee9954a7a7da8a7b5eec03fa1379
   def initialize(fenetre, ratio, mode, difficulte, map, niveau)
     super()
     add_from_file('../data/glade/Jeu.glade')
@@ -73,6 +98,8 @@ class Jeu < Gtk::Builder
     @fenetre.show_all
   end
 
+  # Méthode activée lorque le bouton "Retour" est cliquée
+  # Sauvegarde la partie et retourne à la page de sélection de map
   def on_retour_button_clicked
     @map.desactiverHypothese
     @map.sauvegarder(@mode)
@@ -82,18 +109,26 @@ class Jeu < Gtk::Builder
     SelectionMap.new(@fenetre, @ratio, @mode, @difficulte)
   end
 
+  # Méthode activée lorque le bouton "Annuler" est cliquée
+  # Annule le coup effectué
   def on_annuler_button_clicked
     @grille.annuler
   end
 
+  # Méthode activée lorque le bouton "Pause" est cliquée
+  # 
   def on_pause_button_clicked
     puts 'on_pause_button_clicked'
   end
 
+  # Méthode activée lorque le bouton "Refaire" est cliquée
+  # Refait le coup qu'on a annulé précédemment
   def on_refaire_button_clicked
     @grille.refaire
   end
 
+  # Méthode activée lorque le bouton "Suggerer un coup" est cliquée
+  # Suggère un coup à l'utilisateur en affichant un popup au niveau du coup à effectuer
   def on_suggerer_un_coup_button_clicked
     suggerer = @map.suggestion
     @suggestion_label.set_text(suggerer[0])
@@ -109,6 +144,8 @@ class Jeu < Gtk::Builder
     @suggestion_popover.popup
   end
 
+  # Méthode activée lorque le bouton "Nombre d'erreur(s)" est cliquée
+  # Affiche le nombre d'erreur
   def on_nb_erreur_button_clicked
     nb_erreur = @map.nombreErreurs.to_s
     if '0' == nb_erreur
@@ -119,14 +156,20 @@ class Jeu < Gtk::Builder
     @nb_erreur_popover.popup
   end
 
+  # Méthode activée lorque le bouton "Corriger erreur(s)" est cliquée
+  # Corrige toutes les erreurs du joueur directement
   def on_corriger_erreur_button_clicked
     @grille.corrigerErreur
   end
 
+  # Méthode activée lorque le bouton "Afficher erreur(s)" est cliquée
+  # Affiche toutes les erreurs du joueur en les surlignant en rouge
   def on_afficher_erreur_button_clicked
     @grille.afficherErreur
   end
 
+  # Méthode activée lorque le bouton "Mode autocorrecteur" est activé
+  # Corrige directement une erreur du joueur si le joueur pose un mauvais pont
   def on_autocorrecteur_switch_state_set(switch, state)
     switch.set_state(state)
     if state
@@ -139,6 +182,8 @@ class Jeu < Gtk::Builder
     end
   end
 
+  # Méthode activée lorque le bouton "Mode hypothèse" est activé
+  # Surligne en bleu les coups du joueur, les effacent si le joueur désactive ce bouton
   def on_hypothese_switch_state_set(switch, state)
     switch.set_state(state)
     if state
@@ -155,14 +200,20 @@ class Jeu < Gtk::Builder
     end
   end
 
+  # Méthode activée lorque le bouton "Vertical" est cliquée lors d'un coup
+  # Met un pont en vertical
   def on_vertical_button_clicked
     @grille.set_sens('vertical')
   end
 
+  # Méthode activée lorque le bouton "Horizontal" est cliquée lors d'un coup
+  # Met un pont en horizontal
   def on_horizontal_button_clicked
     @grille.set_sens('horizontal')
   end
 
+  # Méthode activée lorque le bouton "Menu principal" est cliquée
+  # Retourne à la fenêtre du menu principal
   def on_menu_principal_button_clicked
     @fini_dialog.response(1)
 
@@ -171,6 +222,8 @@ class Jeu < Gtk::Builder
     MenuPrincipal.new(@fenetre, @ratio)
   end
 
+  # Méthode activée lorque le bouton "Selection map" est cliquée
+  # Retourne à la fenêtre de la sélection des maps
   def on_selection_button_clicked
     @fini_dialog.response(2)
 
@@ -179,6 +232,8 @@ class Jeu < Gtk::Builder
     SelectionMap.new(@fenetre, @ratio, @mode, @difficulte)
   end
 
+  # Méthode activée lorque le bouton "Recommencer" est cliquée
+  # Relance la même map vide
   def on_recommencer_button_clicked
     @fini_dialog.response(3)
     @fenetre.remove(@jeu_box)
@@ -195,6 +250,8 @@ class Jeu < Gtk::Builder
     Jeu.new(@fenetre, @ratio, @mode, @difficulte, map, @niveau.to_s)
   end
 
+  # Méthode activée lorque le bouton pour fermer le popup "Fini" est cliquée
+  # Ferme le popup
   def on_fini_dialog_response(widget, response)
     widget.close
   end

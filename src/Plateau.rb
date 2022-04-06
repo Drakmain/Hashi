@@ -234,31 +234,3 @@ class Plateau
 
 end
 
-=begin
-	test = Plateau.creer(1)
-	test.generateMatrice("../map/facile/correction/2.txt")
-
-	puts test
-	print "\n"
-
-	test.generateCorrection()
-	test.affiche()
-
-	test = Plateau.creer(1)
-	test.generateMatrice("../map/facile/demarrage/2.txt")
-
-	puts test
-	print "\n"
-
-	test.generateCorrection()
-	test.affiche()
-
-
-	print "INIT PONT V1\n"
-	test.initPont()
-	test.affiche()
-
-	print "INIT PONT V2\n"
-	test.ajouterPont()
-	test.affiche()
-=end

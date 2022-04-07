@@ -100,7 +100,9 @@ class ContreLaMontre < Genie
         end
       end
     end
-
+    if(@score >= 200)then
+      @score -= 200
+   end
     @plateau.afficherJeu
 
     return erreur
@@ -214,6 +216,9 @@ class ContreLaMontre < Genie
     when 1
       corrigerErreur
     end
+    if(@score >= 150)then
+      @score -= 150
+   end
   end
 
   #################################################################################################
@@ -337,6 +342,10 @@ class ContreLaMontre < Genie
         end
       end
     end
+
+    if(@score >= 100)then
+      @score -= 100
+   end
   end
 
   

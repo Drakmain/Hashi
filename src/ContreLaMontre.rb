@@ -318,42 +318,42 @@ class ContreLaMontre < Genie
           valeurActuelle = elem.element.valeur - elem.element.nbLiens
           # Cas ou valeur <= 2 et nbVoisines = 1
           if valeurActuelle > 0 && valeurActuelle <= 2 && (bitPonts == 1 || bitPonts == 10 || bitPonts == 100 || bitPonts == 1000)
-            res.push("Cette île a encore 2 ou 1 ponts a faire et n'as qu'une seule voisine, \nil faut donc la connecter à sa voisine")
+            res.push("Cette île a encore 2 ou 1 ponts à faire et n'a qu'une seule voisine, \nil faut donc la connecter à sa voisine")
             coup = Coup.creer(false, elem, true)
             res.push(coup)
             return res
             # Cas ou valeur = 3 et nbVoisines = 2
           elsif valeurActuelle == 3 && (bitPonts == 11 || bitPonts == 110 || bitPonts == 101 || bitPonts == 1010 || bitPonts == 1001)
-            res.push("Cette île a encore 3 ponts a faire et posséde 2 voisines, \nil faut donc la connecter à une de ses voisines")
+            res.push("Cette île a encore 3 ponts à faire et possède 2 voisines, \nil faut donc la connecter à une de ses voisines")
             coup = Coup.creer(false, elem, true)
             res.push(coup)
             return res
             # Cas ou valeur = 4 et nbVoisines = 2
           elsif valeurActuelle == 4 && (bitPonts == 11 || bitPonts == 110 || bitPonts == 101 || bitPonts == 1010 || bitPonts == 1001)
-            res.push("Cette île a encore 4 ponts a faire et posséde 2 voisines, \nil faut donc la connecter à toutes ses voisines")
+            res.push("Cette île a encore 4 ponts à faire et possède 2 voisines, \nil faut donc la connecter à toutes ses voisines")
             coup = Coup.creer(false, elem, true)
             res.push(coup)
             return res
             # Cas ou valeur = 5 et nbVoisines = 3
           elsif valeurActuelle == 5 && (bitPonts == 111 || bitPonts == 1011 || bitPonts == 1110 || bitPonts == 1101)
-            res.push("Cette île a encore 5 ponts a faire et posséde 3 voisines, \nil faut donc la connecter à une de ses voisines")
+            res.push("Cette île a encore 5 ponts à faire et possède 3 voisines, \nil faut donc la connecter à une de ses voisines")
             coup = Coup.creer(false, elem, true)
             res.push(coup)
             return res
             # Cas ou valeur = 6 et nbVoisines = 3
           elsif valeurActuelle == 6 && (bitPonts == 111 || bitPonts == 1011 || bitPonts == 1110 || bitPonts == 1101)
-            res.push("Cette île a encore 6 ponts a faire et posséde 3 voisines, \nil faut donc la connecter à toutes ses voisines")
+            res.push("Cette île a encore 6 ponts à faire et possède 3 voisines, \nil faut donc la connecter à toutes ses voisines")
             coup = Coup.creer(false, elem, true)
             res.push(coup)
             return res
             # Cas ou valeur = 7 et nbVoisines = 4
           elsif valeurActuelle == 7 && (bitPonts == 1111)
-            res.push("Cette île a encore 7 ponts a faire et posséde 5 voisines, \nil faut donc la connecter à un de ses voisines")
+            res.push("Cette île a encore 7 ponts à faire et possède 5 voisines, \nil faut donc la connecter à un de ses voisines")
             coup = Coup.creer(false, elem, true)
             res.push(coup)
             return res
           elsif valeurActuelle == 8 && (bitPonts == 1111)
-            res.push("Cette île a encore 8 ponts a faire et posséde 5 voisines, \nil faut donc la connecter à un de ses voisines")
+            res.push("Cette île a encore 8 ponts à faire et possède 5 voisines, \nil faut donc la connecter à un de ses voisines")
             coup = Coup.creer(false, elem, true)
             res.push(coup)
             return res

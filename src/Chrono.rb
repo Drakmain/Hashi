@@ -22,9 +22,8 @@ class Chrono
   ###############################################################################
 
   # Initialise le chronomètre à vide grâce à la méthode de remise à zéro.
-  def initialize(unChrono, unJeu = nil)
+  def initialize(unChrono)
     @label = unChrono
-    @jeu = unJeu
     remiseAZero
   end
 

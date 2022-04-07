@@ -247,10 +247,11 @@ class PlateauInterface < Gtk::Fixed
 
     if @map.plateau.partieFini?
       if @difficulte != 'tutoriel'
+        @map.chrono.pauserChrono
         @fini_dialog.set_title('Gagné !')
         @fini_label.set_text("Bravo !\nVous avez fini le niveau #{@niveau} en mode #{@mode} en difficulte #{@difficulte} \nVotre temps est de #{@map.chrono.chrono} et votre score est de #{@map.score} ")
-        @map.chrono.pauserChrono
       end
+
       set_sensitive(false)
       @fini_dialog.run
     end

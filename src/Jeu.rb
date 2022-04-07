@@ -63,6 +63,10 @@ class Jeu < Gtk::Builder
       @droite_box.set_sensitive(false)
     end
 
+    if @map.instance_of?(ContreLaMontre)
+      @pause_button.set_sensitive(false)
+    end
+
     if @map.autoCorrecteur == true
       @autocorrecteur_switch.set_state(true)
       @hypothese_switch.set_sensitive(false)
@@ -85,10 +89,20 @@ class Jeu < Gtk::Builder
     @nb_erreur_button.set_size_request(-1, 50 * @ratio)
     @fini_dialog.set_window_position Gtk::WindowPosition::CENTER_ON_PARENT
     @fini_dialog.set_resizable(false)
+    @pause_button.name = 'Pause'
 
     @grille = PlateauInterface.new(@fenetre, @map, @sens_popover, @fini_dialog, @fini_label, @mode, @difficulte, @niveau)
 
     @plateau_box.add(@grille)
+
+    if @map.plateau.partieFini?
+      @map.chrono.pauserChrono
+      @annuler_button.set_sensitive(false)
+      @pause_button.set_sensitive(false)
+      @refaire_button.set_sensitive(false)
+      @droite_box.set_sensitive(false)
+      @grille.set_sensitive(false)
+    end
 
     @fenetre.set_title("Hashi - Niveau n°#{niveau}")
 
@@ -123,8 +137,41 @@ class Jeu < Gtk::Builder
   end
 
   # Méthode activée lorque le bouton "Pause" est cliquée
-  def on_pause_button_clicked
-    @map.chrono.pauserChrono
+  def on_pause_button_clicked(widget)
+    case widget.name
+    when 'Pause'
+      widget.name = 'Reprendre'
+      widget.label = 'Reprendre'
+
+      icon = Gtk::Image.new
+      icon.set_from_icon_name('media-playback-start', 4)
+      icon.set_margin_bottom(5)
+
+      widget.set_image_position(3)
+      widget.set_image(icon)
+
+      @map.chrono.pauserChrono
+      @annuler_button.set_sensitive(false)
+      @refaire_button.set_sensitive(false)
+      @droite_box.set_sensitive(false)
+      @grille.set_sensitive(false)
+    when 'Reprendre'
+      widget.name = 'Pause'
+      widget.label = 'Pause'
+
+      icon = Gtk::Image.new
+      icon.set_from_icon_name('media-playback-pause', 4)
+      icon.set_margin_bottom(5)
+
+      widget.set_image_position(3)
+      widget.set_image(icon)
+
+      @map.chrono.pauserChrono
+      @annuler_button.set_sensitive(true)
+      @refaire_button.set_sensitive(true)
+      @droite_box.set_sensitive(true)
+      @grille.set_sensitive(true)
+    end
   end
 
   # Méthode activée lorque le bouton "Refaire" est cliquée
@@ -267,6 +314,11 @@ class Jeu < Gtk::Builder
   # Ferme le popup
   def on_fini_dialog_response(widget, response)
     widget.close
+    @annuler_button.set_sensitive(false)
+    @pause_button.set_sensitive(false)
+    @refaire_button.set_sensitive(false)
+    @droite_box.set_sensitive(false)
+    @grille.set_sensitive(false)
   end
 
 end

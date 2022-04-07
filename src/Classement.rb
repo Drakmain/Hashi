@@ -36,6 +36,10 @@ class Classement < Gtk::Builder
     @difficulte_comboxbox.set_sensitive(false)
     @niveau_comboxbox.set_sensitive(false)
     @chercher_button.set_sensitive(false)
+    @trie_score_button.set_sensitive(false)
+    @trie_temps_button.set_sensitive(false)
+
+    @fenetre.set_title('Hashi - Classement')
 
     (0...10).each do |i|
       @niveau_comboxbox.append_text((1 + i).to_s)
@@ -96,6 +100,9 @@ class Classement < Gtk::Builder
       @pas_score_popover.popup
       return false
     end
+
+    @trie_score_button.set_sensitive(true)
+    @trie_temps_button.set_sensitive(true)
 
     @score = @score.split("\n")
 
@@ -199,7 +206,6 @@ class Classement < Gtk::Builder
     end
 
     @score = @score.sort_by { |obj| obj[2].to_i }
-    @score.each { |i| puts i[2] }
 
     model = Gtk::TreeStore.new(String, String, String)
 

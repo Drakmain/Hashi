@@ -1,5 +1,6 @@
 load 'Plateau.rb'
 
+##
 # La classe PlateauCorrection représente un Plateau corrigé, elle hérite de Plateau
 #
 # Elle est capable de faire tous ce que peut faire un Plateau

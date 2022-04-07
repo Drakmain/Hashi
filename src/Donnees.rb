@@ -1,3 +1,4 @@
+##
 # La classe Donnee créée la matrice du jeu à partir d'un fichier donnée.
 #
 # Elle est capable :

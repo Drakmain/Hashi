@@ -5,7 +5,7 @@ load 'Chrono.rb'
 # La classe Jeu permet d'afficher la fenêtre du jeu
 #
 # Le jeu est composé de :
-# 
+#
 # - Le plateau
 # - Le temps
 # - Toutes les aides
@@ -155,7 +155,7 @@ class Jeu < Gtk::Builder
   # Affiche le nombre d'erreur
   def on_nb_erreur_button_clicked
     nb_erreur = @map.nombreErreurs.to_s
-    if '0' == nb_erreur
+    if nb_erreur == '0'
       @nb_erreur_label.set_text('Vous n\'avez pas d\'erreur.')
     else
       @nb_erreur_label.set_text("Vous #{nb_erreur} erreur(s).")

@@ -1,5 +1,6 @@
 load 'SelectionMap.rb'
 
+##
 # La Classe SelectionDifficulte permet d'afficher la fenêtre de séléction de difficulté.
 #
 # Le menu est composé de 4 choix :

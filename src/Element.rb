@@ -1,3 +1,4 @@
+##
 # La classe Element représente un élément du plateau.
 # Elle est la classe mère de Pont et Ile.
 # Une case peut donc être un Pont, une Ile ou un Element.

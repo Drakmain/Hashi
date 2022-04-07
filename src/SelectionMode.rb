@@ -1,6 +1,6 @@
 load 'SelectionDifficulte.rb'
 
-
+##
 # La Classe SelectionMode permet d'afficher la fenêtre de séléction de modes de jeu.
 #
 # Le menu est composé de 5 choix :

@@ -5,6 +5,7 @@ load 'Normal.rb'
 load 'Jeu.rb'
 load 'JeuTutoriel.rb'
 
+##
 # La Classe SelectionMap permet d'afficher la fenêtre de séléction de maps.
 #
 # On peut cliquer sur un des choix, on peut choisir une des maps disponibles, pour jouer, ou recommencer la partie

@@ -3,6 +3,7 @@ load 'Plateau.rb'
 load 'PlateauCorrection.rb'
 load 'Coup.rb'
 
+##
 # La classe Genie représente le mode génie, c'est le mode le plus "simple" dans le sens où aucune aide ne sera disponible.
 # Elle est donc la classe mère des autres mode de jeu.
 #
@@ -103,7 +104,7 @@ class Genie
 
   # Méthode qui permet de sauvegarder une partie, elle sérialize l'objet courant
   def sauvegarder(mode)
-    puts "\nSauvegarde de #{@dir}#{@pseudo}_#{mode}_#{@difficulte}_#{@niveau}.bn ..."
+    puts "Sauvegarde de #{@dir}#{@pseudo}_#{mode}_#{@difficulte}_#{@niveau}.bn ..."
 
     unLabel = @chrono.label
 
@@ -124,7 +125,7 @@ class Genie
 
   # Méthode qui permet de charger une partie, elle désérialize le fichier demandé
   def charger(mode)
-    puts "\nChargement de #{@dir}#{@pseudo}_#{mode}_#{@difficulte}_#{@niveau}.bn ..."
+    puts "Chargement de #{@dir}#{@pseudo}_#{mode}_#{@difficulte}_#{@niveau}.bn ..."
 
     f = File.open(File.expand_path("#{@dir}#{@pseudo}_#{mode}_#{@difficulte}_#{@niveau}.bn"), 'r')
     @save = f.read
@@ -140,7 +141,7 @@ class Genie
     div = @chronoFirst - chronoNow
     div = div.to_i
     if div != 0
-      @score += (100/div).to_i
+      @score += (100 / div).to_i
     else
       @score += 100
     end
@@ -187,8 +188,8 @@ class Genie
         else
           puts 'erreur de undo'
         end
-        if(@score >= 110)then
-           @score -= 110
+        if (@score >= 110) then
+          @score -= 110
         end
         @anciensCoups.push(Coup.creer('enlever', coup.pont, sens))
       end
@@ -215,9 +216,9 @@ class Genie
           puts 'erreur de redo'
         end
       end
-      if(@score >= 110)then
+      if (@score >= 110) then
         @score -= 110
-     end
+      end
       @coups.push(coup)
     end
     return pontCourant
@@ -485,29 +486,21 @@ class Genie
     @plateau.verifCoord(unX, unY)
   end
 
-  #
-  #sauvegarder_score
-  #
-  #permet de sauvegarder le score du joueur dans un fichier pour faire le classement
-  #
-  def sauvegarder_score()
+  # Permet de sauvegarder le score du joueur dans un fichier pour faire le classement
+  def sauvegarder_score
+
     Dir.mkdir("../data/map/#{@difficulte.to_s}/score") unless File.exists?("../data/map/#{@difficulte.to_s}/score")
     fichierScore = "../data/map/#{@difficulte.to_s}/score/#{@niveau.to_s}#{self.to_s}.txt"
+
     open(fichierScore, 'a+') do |f|
       f.puts "#{@pseudo}_#{@score.to_i.to_s}_#{@chrono.chrono.to_i.to_s}"
     end
   end
 
-  #
-  #activerHypothese
-  #
-  #ne fait rien en mode Genie
+  # Ne fait rien en mode Genie
   def activerHypothese; end
 
-  #
-  #desactiverHypothese
-  #
-  #ne fait rien en mode Genie
+  # Ne fait rien en mode Genie
   def desactiverHypothese; end
 
 end

@@ -1,4 +1,4 @@
-#
+##
 # La classe Coup permet de sauvegarder les coups pour pouvoir faire les undo ou les redo.
 #
 # On peut créer un coup (qui sera créé à chaque action de l'utilisateur)
@@ -42,27 +42,27 @@ class Coup < Element
 
   # Méthode qui vérifie si type de coup est ajouter
   def estAjout?
-    @typeCoup == "ajouter"
+    @typeCoup == 'ajouter'
   end
 
   # Méthode qui vérifie si type de coup est ajouter
   def estEnleve?
-    @typeCoup == "enlever"
+    @typeCoup == 'enlever'
   end
 
   # Méthode qui vérifie si le sens du coup est vertical
   def estVertical?
-    return @sens == "vertical"
+    return @sens == 'vertical'
   end
 
   # Méthode qui vérifie si le sens du coup est horizontal
   def estHorizontal?
-    return @sens == "horizontal"
+    return @sens == 'horizontal'
   end
 
   # Méthode qui affiche le sens du coup
   def to_s
-    "sens du coup : " + @sens.to_s
+    "sens du coup : #{@sens.to_s}"
   end
 
   # Accès en lecture

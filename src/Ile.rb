@@ -1,4 +1,4 @@
-load "Element.rb"
+load 'Element.rb'
 
 # La classe Ile représente une île sur le plateau, elle hérite de Element
 #
@@ -100,7 +100,7 @@ class Ile < Element
 
   # Méthode qui affiche une ile
   def to_s
-    "Ile"
+    'Ile'
   end
 
 end

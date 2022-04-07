@@ -226,7 +226,7 @@ class Case
         end
       end
     end
-    puts sens
+    
     return sens
   end
 
@@ -332,6 +332,7 @@ class Case
         n += 1000
       end
     end
+
     return n
   end
 
@@ -367,7 +368,7 @@ class Case
 
   # Methode qui permet d'enlever un pont
   def enleverPont
-    if @element.estPont? && (@element.nb_ponts > 0)
+    if @element.estPont? && @element.nb_ponts > 0
       if @element.estVertical?
         enleverPontSens('haut', true)
         enleverPontSens('bas', false)

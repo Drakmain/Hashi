@@ -27,6 +27,7 @@ class Classement < Gtk::Builder
     add_from_file('../data/glade/Classement.glade')
     @ratio = ratio
     @fenetre = fenetre
+
     #chargement des variables de glade
     objects.each do |p|
       unless p.builder_name.start_with?('___object')
@@ -55,31 +56,36 @@ class Classement < Gtk::Builder
     @fenetre.add(@classement_box)
     @fenetre.show_all
   end
+
   # Méthode activée lorsque le bouton "Retour" est cliquée
-  # Retourne au menu principal 
+  # Retourne au menu principal
   def on_retour_button_clicked
     @fenetre.remove(@classement_box)
     @fenetre.resize(1280 * @ratio, 720 * @ratio)
     MenuPrincipal.new(@fenetre, @ratio)
   end
+
   # Méthode activée lorsque la combobox mode est changé
   # Active la combobox de difficulte
   def on_mode_comboxbox_changed(widget)
     @mode = widget.active_text.downcase
     @difficulte_comboxbox.set_sensitive(true)
   end
+
   # Méthode activée lorsque la combobox difficulte est changé
   # Active la combobox de niveau
   def on_difficulte_comboxbox_changed(widget)
     @difficulte = widget.active_text.downcase
     @niveau_comboxbox.set_sensitive(true)
   end
+
   # Méthode activée lorsque la combobox niveau est changé
   # Active le bouton chercher
   def on_niveau_comboxbox_changed(widget)
     @niveau = widget.active_text
     @chercher_button.set_sensitive(true)
   end
+
   # Méthode activée lorsque le bouton chercher est activé
   # Affiche les scores
   def on_chercher_button_clicked
@@ -138,6 +144,7 @@ class Classement < Gtk::Builder
 
     @fenetre.show_all
   end
+
   # Méthode activée lorsque le bouton trie score est activé
   # Trie les score par score
   def on_trie_score_button_clicked
@@ -186,6 +193,7 @@ class Classement < Gtk::Builder
 
     @fenetre.show_all
   end
+
   # Méthode activée lorsque le bouton trie temps est activé
   # Trie les scores par temps
   def on_trie_temps_button_clicked

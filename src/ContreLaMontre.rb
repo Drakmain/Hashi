@@ -60,7 +60,7 @@ class ContreLaMontre < Genie
 
   # permet de lancer le chronometre dans le sens inverse (part de 300 et se décrémente jusqu'à ce que le temps soit à 0) (5min pour toutes les maps)
   def lancerChrono(unLabel)
-    if(@chrono == 0)then
+    if @chrono == 0
       @chrono = Chrono.new(unLabel, @jeu)
       @chrono.lancerChronoInverse(5)
     else
@@ -75,24 +75,24 @@ class ContreLaMontre < Genie
   #
   def corrigerErreur
     erreur = false
-    for i in 0..@plateau.x - 1
-      for j in 0..@plateau.y - 1
+    (0..@plateau.x - 1).each do |i|
+      (0..@plateau.y - 1).each do |j|
         elementCourant = @plateau.getCase(i, j).element
         elementCorrection = @correction.getCase(i, j).element
-        if (elementCourant.estPont? && elementCourant.nb_ponts > 0) then
-          if elementCorrection.estElement? then
+        if elementCourant.estPont? && elementCourant.nb_ponts > 0
+          if elementCorrection.estElement?
             @plateau.getCase(i, j).enleverPont
             erreur = true
-          elsif elementCourant.nb_ponts > elementCorrection.nb_ponts then
+          elsif elementCourant.nb_ponts > elementCorrection.nb_ponts
             enleverErreur(@plateau.getCase(i, j), elementCourant.nb_ponts - elementCorrection.nb_ponts)
             erreur = true
-          elsif elementCourant.estHorizontal? then
-            if (elementCorrection.estVertical?) then
+          elsif elementCourant.estHorizontal?
+            if elementCorrection.estVertical?
               enleverErreur(@plateau.getCase(i, j), elementCourant.nb_ponts)
               erreur = true
             end
           elsif elementCourant.estVertical? then
-            if (elementCorrection.estHorizontal?) then
+            if elementCorrection.estHorizontal?
               enleverErreur(@plateau.getCase(i, j), elementCourant.nb_ponts)
               erreur = true
             end
@@ -100,9 +100,10 @@ class ContreLaMontre < Genie
         end
       end
     end
-    if(@score >= 200)then
+
+    if @score >= 200
       @score -= 200
-   end
+    end
     @plateau.afficherJeu
 
     return erreur
@@ -144,62 +145,62 @@ class ContreLaMontre < Genie
   def nombreErreurs
     nbErreurs = 0
 
-    for i in 0..@plateau.x - 1
+    (0..@plateau.x - 1).each { |i|
       for j in 0..@plateau.y - 1
         elementCourant = @plateau.getCase(i, j).element
         elementCorrection = @correction.getCase(i, j).element
 
-        if (elementCourant.estPont? && elementCourant.estHorizontal?) then
-          if (elementCourant.nb_ponts > 0 && !@plateau.getCase(i, j).voisineGauche.element.estPont?) then
-            if elementCorrection.estElement? then
+        if elementCourant.estPont? && elementCourant.estHorizontal?
+          if elementCourant.nb_ponts > 0 && !@plateau.getCase(i, j).voisineGauche.element.estPont?
+            if elementCorrection.estElement?
               nbErreurs += 1
             elsif elementCourant.nb_ponts > elementCorrection.nb_ponts then
               nbErreurs += 1
-            elsif (elementCorrection.estVertical?) then
+            elsif elementCorrection.estVertical?
               nbErreurs += 1
             end
           end
 
-        elsif (elementCourant.estPont? && elementCourant.estVertical?) then
-          if (elementCourant.nb_ponts > 0) then
-            if (elementCourant.nb_ponts > 0 && !@plateau.getCase(i, j).voisineHaut.element.estPont?) then
-              if elementCorrection.estElement? then
+        elsif elementCourant.estPont? && elementCourant.estVertical?
+          if elementCourant.nb_ponts > 0
+            if elementCourant.nb_ponts > 0 && !@plateau.getCase(i, j).voisineHaut.element.estPont?
+              if elementCorrection.estElement?
                 nbErreurs += 1
-              elsif elementCourant.nb_ponts > elementCorrection.nb_ponts then
+              elsif elementCourant.nb_ponts > elementCorrection.nb_ponts
                 nbErreurs += 1
-              elsif (elementCorrection.estHorizontal?) then
+              elsif elementCorrection.estHorizontal?
                 nbErreurs += 1
               end
             end
           end
         end
       end
-    end
+    }
 
     return nbErreurs
   end
 
   # permet de mettre en surbrillance les erreurs sur les ponts mal placés
   def afficherPontErreur
-    for i in 0..@plateau.x - 1
-      for j in 0..@plateau.y - 1
+    (0..@plateau.x - 1).each do |i|
+      (0..@plateau.y - 1).each do |j|
         elementCourant = @plateau.getCase(i, j).element
         elementCorrection = @correction.getCase(i, j).element
-        if (elementCourant.estPont? && elementCourant.nb_ponts > 0) then
-          if elementCorrection.estElement? then
+        if elementCourant.estPont? && elementCourant.nb_ponts > 0
+          if elementCorrection.estElement?
             elementCourant.erreur = true
-          elsif elementCourant.nb_ponts > elementCorrection.nb_ponts then
+          elsif elementCourant.nb_ponts > elementCorrection.nb_ponts
             elementCourant.erreur = true
-          elsif elementCourant.estHorizontal? then
-            if (elementCorrection.estVertical?) then
+          elsif elementCourant.estHorizontal?
+            if elementCorrection.estVertical?
               elementCourant.erreur = true
             end
-          elsif elementCourant.estVertical? then
-            if (elementCorrection.estHorizontal?) then
+          elsif elementCourant.estVertical?
+            if elementCorrection.estHorizontal?
               elementCourant.erreur = true
             end
           end
-        end  
+        end
       end
     end
   end
@@ -208,17 +209,20 @@ class ContreLaMontre < Genie
   def afficherErreurs
     puts "Tu as #{nombreErreurs.to_s} erreurs"
     puts 'Afficher toutes les erreurs(0) ou supprimer toutes les erreurs(1) ?'
+
     verif = gets
     verif = verif.to_i
+
     case verif
     when 0
       afficherPontErreur
     when 1
       corrigerErreur
     end
-    if(@score >= 150)then
+
+    if @score >= 150
       @score -= 150
-   end
+    end
   end
 
   #################################################################################################
@@ -285,6 +289,7 @@ class ContreLaMontre < Genie
   def suggestion
     res = []
     coup = nil
+
     # On parcours toutes les cases
     x = -1
     y = -1
@@ -303,31 +308,31 @@ class ContreLaMontre < Genie
             coup = Coup.creer(false, elem, true)
             res.push(coup)
             return res
-          # Cas ou valeur = 3 et nbVoisines = 2
+            # Cas ou valeur = 3 et nbVoisines = 2
           elsif valeurActuelle == 3 && (bitPonts == 11 || bitPonts == 110 || bitPonts == 101 || bitPonts == 1010 || bitPonts == 1001)
             res.push("Cette île a encore 3 ponts a faire et posséde 2 voisines, \nil faut donc la connecter à une de ses voisines")
             coup = Coup.creer(false, elem, true)
             res.push(coup)
             return res
-          # Cas ou valeur = 4 et nbVoisines = 2
+            # Cas ou valeur = 4 et nbVoisines = 2
           elsif valeurActuelle == 4 && (bitPonts == 11 || bitPonts == 110 || bitPonts == 101 || bitPonts == 1010 || bitPonts == 1001)
             res.push("Cette île a encore 4 ponts a faire et posséde 2 voisines, \nil faut donc la connecter à toutes ses voisines")
             coup = Coup.creer(false, elem, true)
             res.push(coup)
             return res
-          # Cas ou valeur = 5 et nbVoisines = 3
+            # Cas ou valeur = 5 et nbVoisines = 3
           elsif valeurActuelle == 5 && (bitPonts == 111 || bitPonts == 1011 || bitPonts == 1110 || bitPonts == 1101)
             res.push("Cette île a encore 5 ponts a faire et posséde 3 voisines, \nil faut donc la connecter à une de ses voisines")
             coup = Coup.creer(false, elem, true)
             res.push(coup)
             return res
-          # Cas ou valeur = 6 et nbVoisines = 3
+            # Cas ou valeur = 6 et nbVoisines = 3
           elsif valeurActuelle == 6 && (bitPonts == 111 || bitPonts == 1011 || bitPonts == 1110 || bitPonts == 1101)
             res.push("Cette île a encore 6 ponts a faire et posséde 3 voisines, \nil faut donc la connecter à toutes ses voisines")
             coup = Coup.creer(false, elem, true)
             res.push(coup)
             return res
-          # Cas ou valeur = 7 et nbVoisines = 4
+            # Cas ou valeur = 7 et nbVoisines = 4
           elsif valeurActuelle == 7 && (bitPonts == 1111)
             res.push("Cette île a encore 7 ponts a faire et posséde 5 voisines, \nil faut donc la connecter à un de ses voisines")
             coup = Coup.creer(false, elem, true)
@@ -343,17 +348,14 @@ class ContreLaMontre < Genie
       end
     end
 
-    if(@score >= 100)then
+    if @score >= 100
       @score -= 100
-   end
+    end
   end
 
-  
-  #permet de retrouner le nom de la classe
+  # Permet de retrouner le nom de la classe
   def to_s
-    "contreLaMontre"
+    'contreLaMontre'
   end
-
-  #l'ordre est le suivant du bit droit au gauche : Droite,Gauche,Haut,Bas
 
 end

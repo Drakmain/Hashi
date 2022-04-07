@@ -485,35 +485,21 @@ class Genie
     @plateau.verifCoord(unX, unY)
   end
 
-  << << << < HEAD
-
+  # Permet de sauvegarder le score du joueur dans un fichier pour faire le classement
   def sauvegarder_score
-    === === =
-      #
-      #sauvegarder_score
-      #
-      #permet de sauvegarder le score du joueur dans un fichier pour faire le classement
-      #
-      def sauvegarder_score()
-        >> >> >> > ddc68134c612713be6b534f1348410e3fafc7b42
-        Dir.mkdir("../data/map/#{@difficulte.to_s}/score") unless File.exists?("../data/map/#{@difficulte.to_s}/score")
-        fichierScore = "../data/map/#{@difficulte.to_s}/score/#{@niveau.to_s}#{self.to_s}.txt"
 
-        open(fichierScore, 'a+') do |f|
-          f.puts "#{@pseudo}_#{@score.to_i.to_s}_#{@chrono.chrono.to_i.to_s}"
-        end
-      end
+    Dir.mkdir("../data/map/#{@difficulte.to_s}/score") unless File.exists?("../data/map/#{@difficulte.to_s}/score")
+    fichierScore = "../data/map/#{@difficulte.to_s}/score/#{@niveau.to_s}#{self.to_s}.txt"
 
-      #
-      #activerHypothese
-      #
-      #ne fait rien en mode Genie
-    def activerHypothese; end
-
-      #
-      #desactiverHypothese
-      #
-      #ne fait rien en mode Genie
-    def desactiverHypothese; end
-
+    open(fichierScore, 'a+') do |f|
+      f.puts "#{@pseudo}_#{@score.to_i.to_s}_#{@chrono.chrono.to_i.to_s}"
+    end
   end
+
+  # Ne fait rien en mode Genie
+  def activerHypothese; end
+
+  # Ne fait rien en mode Genie
+  def desactiverHypothese; end
+
+end

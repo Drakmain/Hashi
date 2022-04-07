@@ -1,4 +1,4 @@
-#
+##
 # La Classe Catalogue permet d'afficher la fenêtre du catalogue.
 #
 # Il y a trois personnalisation d'options possible :

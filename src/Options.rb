@@ -52,6 +52,7 @@ class Options < Gtk::Builder
       end
     end
 
+    @langue_comboboxtext.set_sensitive(false)
     @retour_button.set_size_request(-1, 50 * @ratio)
 
     @nom_utilisateur_entry.set_text(@user)

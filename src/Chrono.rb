@@ -81,7 +81,6 @@ class Chrono
   # Stoppe le chronomètre.
   def stopperChrono
     @estLancer = false
-    remiseAZero
   end
 
   # Remet les variables tempsDebut et chrono à 0.

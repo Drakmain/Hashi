@@ -36,6 +36,21 @@ class Normal < ContreLaMontre
     end
   end
 
+  # Méthode qui permet de calculer le score du joueur
+  def calculScore
+    val = 100
+    chronoNow = @chrono.chrono
+    div = @chronoFirst - chronoNow
+    div = div.to_i
+    if div != 0
+      @score += (100 / div).to_i
+    else
+      @score += 100
+    end
+    @chronoFirst = chronoNow
+  end
+
+  # renvoie le nom de la classe
   def to_s
     'normal'
   end

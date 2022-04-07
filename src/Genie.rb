@@ -145,6 +145,7 @@ class Genie
     else
       @score += 100
     end
+    @chronoFirst = chronoNow
   end
 
   # Méthode qui permet de lancer le chronometre dans le sens normal (part de 0 et s'incrémente jusqu'à ce que la partie soit terminé)

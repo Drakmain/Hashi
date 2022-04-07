@@ -61,11 +61,11 @@ class ContreLaMontre < Genie
   # permet de lancer le chronometre dans le sens inverse (part de 300 et se décrémente jusqu'à ce que le temps soit à 0) (5min pour toutes les maps)
   def lancerChrono(unLabel)
     if @chrono == 0
-      @chrono = Chrono.new(unLabel, @jeu)
-      @chrono.lancerChronoInverse(5)
+      @chrono = Chrono.new(unLabel)
+      @chrono.lancerChronoInverse(300)
     else
       valeur = @chrono
-      @chrono = Chrono.new(unLabel, @jeu)
+      @chrono = Chrono.new(unLabel)
       @chrono.lancerChronoInverse(valeur)
     end
   end
@@ -280,6 +280,20 @@ class ContreLaMontre < Genie
     end
   end
 
+  # Méthode qui permet de calculer le score du joueur
+  def calculScore
+    val = 100
+    chronoNow = @chrono.chrono
+    div = chronoNow - @chronoFirst
+    div = div.to_i
+    if div != 0
+      @score += (100 / div).to_i
+    else
+      @score += 100
+    end
+    @chronoFirst = chronoNow
+  end
+
   #################################################################################################
   #                   Suggestion de coup
   #################################################################################################
@@ -355,7 +369,7 @@ class ContreLaMontre < Genie
 
   # Permet de retrouner le nom de la classe
   def to_s
-    'contreLaMontre'
+    'contrelamontre'
   end
 
 end

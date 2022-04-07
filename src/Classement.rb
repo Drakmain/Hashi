@@ -63,6 +63,7 @@ class Classement < Gtk::Builder
   # Active la combobox de difficulte
   def on_mode_comboxbox_changed(widget)
     @mode = widget.active_text.downcase
+    @mode.gsub!(/\s+/, '')
     @difficulte_comboxbox.set_sensitive(true)
   end
 

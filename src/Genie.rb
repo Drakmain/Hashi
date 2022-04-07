@@ -107,6 +107,7 @@ class Genie
 
     unLabel = @chrono.label
 
+    chrono = @chrono
     @chrono = @chrono.chrono
 
     Dir.mkdir(@dir) unless File.exists?(@dir)
@@ -116,8 +117,8 @@ class Genie
     f.close
 
     valeur = @chrono
-    @chrono = Chrono.new(unLabel)
-    @chrono.lancerChronoValeur(valeur)
+    @chrono = chrono
+    #@chrono.lancerChronoValeur(valeur)
 
   end
 
@@ -134,6 +135,7 @@ class Genie
 
   # Méthode qui permet de calculer le score du joueur
   def calculScore
+
     chronoNow = @chrono.chrono
     if @chronoFirst - chronoNow != 0
       @score += 100 - (5 * 100 / (@chronoFirst - chronoNow))
@@ -272,9 +274,11 @@ class Genie
       else
         @coups.push(Coup.creer(unClic, caseCourante, sens))
       end
-      calculScore
-      @chronoFirst = @chrono.chrono
-      puts @score
+      if @difficulte == 'tutoreiel'
+        calculScore
+        @chronoFirst = @chrono.chrono
+      end
+
     else
       puts 'case pas un pont'
       return false
@@ -373,11 +377,14 @@ class Genie
         end
       end
     end
-    calculScore
-    @chronoFirst = @chrono.chrono
-    puts @score
-    sauvegarder(self.class.name.downcase)
-    @anciensCoups.clear
+
+    if @difficulte == 'tutoreiel'
+      calculScore
+      @chronoFirst = @chrono.chrono
+      sauvegarder(self.class.name.downcase)
+      @anciensCoups.clear
+    end
+
     return res
   end
 
@@ -424,11 +431,14 @@ class Genie
         end
       end
     end
-    calculScore
-    @chronoFirst = @chrono.chrono
-    puts @score
-    @anciensCoups.clear
-    sauvegarder(self.class.name.downcase)
+
+    if @difficulte == 'tutoreiel'
+      calculScore
+      @chronoFirst = @chrono.chrono
+      @anciensCoups.clear
+      sauvegarder(self.class.name.downcase)
+    end
+
     return res
   end
 

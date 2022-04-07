@@ -27,6 +27,7 @@ class ContreLaMontre < Genie
   private_class_method :new
 
   attr_reader :chrono
+  attr_writer :jeu
 
   # creer un objet ContreLaMontre
   #
@@ -54,16 +55,17 @@ class ContreLaMontre < Genie
     super(unPlateau, unNiveau, unPseudo, uneDifficulte)
     @autoCorrecteur = false
     @hypothese = false
+    @jeu = nil
   end
 
   # permet de lancer le chronometre dans le sens inverse (part de 300 et se décrémente jusqu'à ce que le temps soit à 0) (5min pour toutes les maps)
   def lancerChrono(unLabel)
     if(@chrono == 0)then
-      @chrono = Chrono.new(unLabel)
-      @chrono.lancerChronoInverse(300)
+      @chrono = Chrono.new(unLabel, @jeu)
+      @chrono.lancerChronoInverse(5)
     else
       valeur = @chrono
-      @chrono = Chrono.new(unLabel)
+      @chrono = Chrono.new(unLabel, @jeu)
       @chrono.lancerChronoInverse(valeur)
     end
   end
@@ -227,6 +229,13 @@ class ContreLaMontre < Genie
   # permet de desactiver le mode AutoCorrecteur et de supprimer tous les mauvais liens que l'utilisateur à créé
   def desactiverAutoCorrecteur
     @autoCorrecteur = false
+  end
+
+  def sauvegarder(mode)
+    jeu = @jeu
+    @jeu = nil
+    super
+    @jeu = jeu
   end
 
   #################################################################################################

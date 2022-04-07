@@ -1,4 +1,4 @@
-load 'RubyApp.rb'
+load 'PlateauInterface.rb'
 load 'Chrono.rb'
 
 ##
@@ -44,6 +44,10 @@ class Jeu < Gtk::Builder
     @map = map
     @niveau = niveau
 
+    if @map.class.name == 'ContreLaMontre'
+      @map.jeu = self
+    end
+
     objects.each do |p|
       unless p.builder_name.start_with?('___object')
         instance_variable_set("@#{p.builder_name}".intern, self[p.builder_name])
@@ -81,9 +85,8 @@ class Jeu < Gtk::Builder
     @nb_erreur_button.set_size_request(-1, 50 * @ratio)
     @fini_dialog.set_window_position Gtk::WindowPosition::CENTER_ON_PARENT
     @fini_dialog.set_resizable(false)
-    @fini_dialog.set_title('Gagné !')
 
-    @grille = RubyApp.new(@fenetre, @map, @sens_popover, @fini_dialog,@fini_label,@mode,@difficulte,@niveau)
+    @grille = PlateauInterface.new(@fenetre, @map, @sens_popover, @fini_dialog, @fini_label, @mode, @difficulte, @niveau)
 
     @plateau_box.add(@grille)
 
@@ -120,7 +123,6 @@ class Jeu < Gtk::Builder
   end
 
   # Méthode activée lorque le bouton "Pause" est cliquée
-  # 
   def on_pause_button_clicked
     @map.chrono.pauserChrono
   end
@@ -197,11 +199,13 @@ class Jeu < Gtk::Builder
       @autocorrecteur_switch.set_sensitive(false)
       @annuler_button.set_sensitive(false)
       @refaire_button.set_sensitive(false)
+      @afficher_erreur_button.set_sensitive(false)
       @map.activerHypothese
     else
       @autocorrecteur_switch.set_sensitive(true)
       @annuler_button.set_sensitive(true)
       @refaire_button.set_sensitive(true)
+      @afficher_erreur_button.set_sensitive(true)
       @map.desactiverHypothese
       @grille.actualiserAffichage
     end
@@ -253,6 +257,8 @@ class Jeu < Gtk::Builder
     when 'contre la montre'
       map = ContreLaMontre.creer(Plateau.creer, @niveau.to_s, @user, @difficulte)
     end
+
+    map.initialiserJeu
 
     Jeu.new(@fenetre, @ratio, @mode, @difficulte, map, @niveau.to_s)
   end

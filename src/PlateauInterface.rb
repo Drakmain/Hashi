@@ -2,7 +2,7 @@ require 'gtk3'
 load 'Donnees.rb'
 load 'Plateau.rb'
 
-# La Classe RubyApp permet de gérer l'affichage de la zone de jeu.
+# La Classe PlateauInterface permet de gérer l'affichage de la zone de jeu.
 #
 # ==== Variables d'instance
 #
@@ -21,7 +21,7 @@ load 'Plateau.rb'
 # * @x
 # * @y
 #
-class RubyApp < Gtk::Fixed
+class PlateauInterface < Gtk::Fixed
 
   # Méthode d'initialisation de la classe
   #
@@ -92,6 +92,12 @@ class RubyApp < Gtk::Fixed
       @tab_events[i].add(image)
 
       @tab_events[i].signal_connect 'button-press-event' do |widget, event|
+        if @difficulte != 'tutoriel'
+          if @map.chrono.chrono <= 0
+            fin_chrono
+          end
+        end
+
         tmp = widget.child.name.split('_')
         @x = tmp[1].to_i
         @y = tmp[2].to_i
@@ -111,6 +117,12 @@ class RubyApp < Gtk::Fixed
       end
 
       @tab_events[i].signal_connect "enter-notify-event" do |widget, event|
+        if @difficulte != 'tutoriel'
+          if @map.chrono.chrono <= 0
+            fin_chrono
+          end
+        end
+
         tmp = widget.child.name.split('_')
         x = tmp[1].to_i
         y = tmp[2].to_i
@@ -119,6 +131,12 @@ class RubyApp < Gtk::Fixed
       end
 
       @tab_events[i].signal_connect "leave-notify-event" do |widget, event|
+        if @difficulte != 'tutoriel'
+          if @map.chrono.chrono <= 0
+            fin_chrono
+          end
+        end
+
         tmp = widget.child.name.split('_')
         x = tmp[1].to_i
         y = tmp[2].to_i
@@ -229,8 +247,12 @@ class RubyApp < Gtk::Fixed
     end
 
     if @map.plateau.partieFini?
-      @fini_label.set_text("Bravo !\nVous avez fini le niveau #{@niveau} en mode #{@mode} en difficulte #{@difficulte} \nVotre temps est de #{@map.chrono.chrono} et votre score est de #{@map.score} ")
-      @map.chrono.pauserChrono
+      if @difficulte != 'tutoriel'
+        @fini_dialog.set_title('Gagné !')
+        @fini_label.set_text("Bravo !\nVous avez fini le niveau #{@niveau} en mode #{@mode} en difficulte #{@difficulte} \nVotre temps est de #{@map.chrono.chrono} et votre score est de #{@map.score} ")
+        @map.chrono.pauserChrono
+      end
+      set_sensitive(false)
       @fini_dialog.run
     end
   end
@@ -427,9 +449,13 @@ class RubyApp < Gtk::Fixed
     @fenetre.show_all
 
     if @map.plateau.partieFini?
-      @fini_label.set_text("Bravo !\nVous avez fini le niveau #{@niveau} en mode #{@mode} en difficulte #{@difficulte} \nVotre temps est de #{'%.1f' % @map.chrono.chrono}s et votre score est de #{@map.score.to_i}")
-      @map.sauvegarder_score
-      @map.chrono.pauserChrono
+      if @difficulte != 'tutoriel'
+        @fini_dialog.set_title('Gagné !')
+        @fini_label.set_text("Bravo !\nVous avez fini le niveau #{@niveau} en mode #{@mode} en difficulte #{@difficulte} \nVotre temps est de #{'%.1f' % @map.chrono.chrono}s et votre score est de #{@map.score.to_i}")
+        @map.sauvegarder_score
+        @map.chrono.pauserChrono
+      end
+
       set_sensitive(false)
       @fini_dialog.run
     end
@@ -527,6 +553,13 @@ class RubyApp < Gtk::Fixed
     end
 
     @fenetre.show_all
+  end
+
+  def fin_chrono
+    set_sensitive(false)
+    @fini_dialog.set_title('Dommage !')
+    @fini_label.set_text("Vous n'avez pas reussi a finir le niveau #{@niveau} à temps.")
+    @fini_dialog.run
   end
 
 end

@@ -57,6 +57,7 @@
     <child>
       <object class="GtkButton" id="catalogue">
         <property name="label" translatable="yes">Catalogue</property>
+        <property name="name">btn_catalogue</property>
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
@@ -78,6 +79,7 @@
     <child>
       <object class="GtkButton" id="classement">
         <property name="label" translatable="yes">Classement</property>
+        <property name="name">btn_classement</property>
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
@@ -99,6 +101,7 @@
     <child>
       <object class="GtkButton" id="options">
         <property name="label" translatable="yes">Options</property>
+        <property name="name">btn_option</property>
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
@@ -120,6 +123,7 @@
     <child>
       <object class="GtkButton" id="quitter">
         <property name="label" translatable="yes">Quitter</property>
+        <property name="name">btn_quitter</property>
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>

@@ -15,7 +15,6 @@
 # * @ratio => la taille de la fenêtre
 # * @catalogue => les techniques du jeu 
 # * @regle => les règles du jeu
-
 class Catalogue < Gtk::Builder
 
   # Methode d'initialisation de la classe

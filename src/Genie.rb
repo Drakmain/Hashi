@@ -135,10 +135,14 @@ class Genie
 
   # Méthode qui permet de calculer le score du joueur
   def calculScore
-
+    val = 100
     chronoNow = @chrono.chrono
-    if @chronoFirst - chronoNow != 0
-      @score += 100 - (5 * 100 / (@chronoFirst - chronoNow))
+    div = @chronoFirst - chronoNow
+    div = div.to_i
+    if div != 0
+      @score += (100 / div).to_i
+    else
+      @score += 100
     end
   end
 
@@ -183,7 +187,9 @@ class Genie
         else
           puts 'erreur de undo'
         end
-        @score -= 10
+        if (@score >= 110) then
+          @score -= 110
+        end
         @anciensCoups.push(Coup.creer('enlever', coup.pont, sens))
       end
     end
@@ -209,7 +215,9 @@ class Genie
           puts 'erreur de redo'
         end
       end
-      @score -= 10
+      if (@score >= 110) then
+        @score -= 110
+      end
       @coups.push(coup)
     end
     return pontCourant
@@ -274,7 +282,7 @@ class Genie
       else
         @coups.push(Coup.creer(unClic, caseCourante, sens))
       end
-      if @difficulte == 'tutoreiel'
+      if @difficulte != 'tutoriel'
         calculScore
         @chronoFirst = @chrono.chrono
       end
@@ -350,12 +358,25 @@ class Genie
         unClic = 'ajouter'
 
         res = true
+
+        if @difficulte != 'tutoriel'
+          calculScore
+          @chronoFirst = @chrono.chrono
+          @anciensCoups.clear
+          sauvegarder(self.class.name.downcase)
+        end
       end
     else
       if caseCourante.element.nb_ponts > 0
         caseCourante.enleverPont
         unClic = 'enlever'
         res = true
+
+        if @difficulte != 'tutoriel'
+          @score -= 110
+          @anciensCoups.clear
+          sauvegarder(self.class.name.downcase)
+        end
       end
     end
 
@@ -374,13 +395,6 @@ class Genie
           @coups.push(Coup.creer(unClic, caseCourante, sens))
         end
       end
-    end
-
-    if @difficulte == 'tutoreiel'
-      calculScore
-      @chronoFirst = @chrono.chrono
-      sauvegarder(self.class.name.downcase)
-      @anciensCoups.clear
     end
 
     return res
@@ -404,6 +418,13 @@ class Genie
 
         unClic = 'ajouter'
         res = true
+
+        if @difficulte != 'tutoriel'
+          calculScore
+          @chronoFirst = @chrono.chrono
+          @anciensCoups.clear
+          sauvegarder(self.class.name.downcase)
+        end
       end
     else
       if caseCourante.element.nb_ponts > 0
@@ -428,13 +449,6 @@ class Genie
           @coups.push(Coup.creer(unClic, caseCourante, sens))
         end
       end
-    end
-
-    if @difficulte == 'tutoreiel'
-      calculScore
-      @chronoFirst = @chrono.chrono
-      @anciensCoups.clear
-      sauvegarder(self.class.name.downcase)
     end
 
     return res
@@ -471,17 +485,35 @@ class Genie
     @plateau.verifCoord(unX, unY)
   end
 
+  << << << < HEAD
+
   def sauvegarder_score
-    Dir.mkdir("../data/map/#{@difficulte.to_s}/score") unless File.exists?("../data/map/#{@difficulte.to_s}/score")
-    fichierScore = "../data/map/#{@difficulte.to_s}/score/#{@niveau.to_s}#{self.to_s}.txt"
+    === === =
+      #
+      #sauvegarder_score
+      #
+      #permet de sauvegarder le score du joueur dans un fichier pour faire le classement
+      #
+      def sauvegarder_score()
+        >> >> >> > ddc68134c612713be6b534f1348410e3fafc7b42
+        Dir.mkdir("../data/map/#{@difficulte.to_s}/score") unless File.exists?("../data/map/#{@difficulte.to_s}/score")
+        fichierScore = "../data/map/#{@difficulte.to_s}/score/#{@niveau.to_s}#{self.to_s}.txt"
 
-    open(fichierScore, 'a+') do |f|
-      f.puts "#{@pseudo}_#{@score.to_i.to_s}_#{@chrono.chrono.to_i.to_s}"
-    end
+        open(fichierScore, 'a+') do |f|
+          f.puts "#{@pseudo}_#{@score.to_i.to_s}_#{@chrono.chrono.to_i.to_s}"
+        end
+      end
+
+      #
+      #activerHypothese
+      #
+      #ne fait rien en mode Genie
+    def activerHypothese; end
+
+      #
+      #desactiverHypothese
+      #
+      #ne fait rien en mode Genie
+    def desactiverHypothese; end
+
   end
-
-  def activerHypothese; end
-
-  def desactiverHypothese; end
-
-end

@@ -151,11 +151,13 @@ class Jeu < Gtk::Builder
     @suggestion_popover.popup
   end
 
+  Gtk::Window
+
   # Méthode activée lorque le bouton "Nombre d'erreur(s)" est cliquée
   # Affiche le nombre d'erreur
   def on_nb_erreur_button_clicked
     nb_erreur = @map.nombreErreurs.to_s
-    if '0' == nb_erreur
+    if nb_erreur == '0'
       @nb_erreur_label.set_text('Vous n\'avez pas d\'erreur.')
     else
       @nb_erreur_label.set_text("Vous #{nb_erreur} erreur(s).")

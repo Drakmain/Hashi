@@ -103,7 +103,7 @@ class Genie
 
   # Méthode qui permet de sauvegarder une partie, elle sérialize l'objet courant
   def sauvegarder(mode)
-    puts "\nSauvegarde de #{@dir}#{@pseudo}_#{mode}_#{@difficulte}_#{@niveau}.bn ..."
+    puts "Sauvegarde de #{@dir}#{@pseudo}_#{mode}_#{@difficulte}_#{@niveau}.bn ..."
 
     unLabel = @chrono.label
 
@@ -124,7 +124,7 @@ class Genie
 
   # Méthode qui permet de charger une partie, elle désérialize le fichier demandé
   def charger(mode)
-    puts "\nChargement de #{@dir}#{@pseudo}_#{mode}_#{@difficulte}_#{@niveau}.bn ..."
+    puts "Chargement de #{@dir}#{@pseudo}_#{mode}_#{@difficulte}_#{@niveau}.bn ..."
 
     f = File.open(File.expand_path("#{@dir}#{@pseudo}_#{mode}_#{@difficulte}_#{@niveau}.bn"), 'r')
     @save = f.read
@@ -372,8 +372,6 @@ class Genie
           end
         else
           @coups.push(Coup.creer(unClic, caseCourante, sens))
-          puts "LEs coups de la listes : \n"
-          @coups.each() { |e| puts e }
         end
       end
     end
@@ -473,9 +471,10 @@ class Genie
     @plateau.verifCoord(unX, unY)
   end
 
-  def sauvegarder_score()
+  def sauvegarder_score
     Dir.mkdir("../data/map/#{@difficulte.to_s}/score") unless File.exists?("../data/map/#{@difficulte.to_s}/score")
     fichierScore = "../data/map/#{@difficulte.to_s}/score/#{@niveau.to_s}#{self.to_s}.txt"
+
     open(fichierScore, 'a+') do |f|
       f.puts "#{@pseudo}_#{@score.to_i.to_s}_#{@chrono.chrono.to_i.to_s}"
     end

@@ -406,7 +406,6 @@ class Case
         puts 'erreur de comprehension'
       end
     elsif @element.estIle?
-      puts 'Baisser la valeur du pont'
       @element.enlevePont
     end
   end

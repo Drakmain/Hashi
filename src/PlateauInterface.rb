@@ -520,6 +520,7 @@ class PlateauInterface < Gtk::Fixed
             end
           end
         end
+
         if @tab_events[@map.plateau.y * j + i].child.name.match(/^p2/)
           if @map.plateau.getCase(j, i).element.estPont?
             if @map.plateau.getCase(j, i).element.nb_ponts <= 1

@@ -47,7 +47,7 @@ class Chrono
 
   # Lance le chronomètre, et compte le nombre de secondes depuis ce lancement.
   def lancerChronoValeur(uneValeur)
-    Thread.start() do
+    Thread.start do
       @estLancer = true
       @chrono = uneValeur
       while @estLancer
@@ -69,7 +69,6 @@ class Chrono
   # Avec un temps donné en paramètre de 25, la méthode
   # va stopper le chronomètre au bout de 25 secondes.
   def lancerChronoInverse(unTemps)
-    fin = false
     Thread.new do
       @chrono = unTemps
       while @chrono > 0
@@ -89,7 +88,7 @@ class Chrono
   # Remet les variables tempsDebut et chrono à 0.
 
   def pauserChrono
-    if (@estLancer) then
+    if @estLancer
       @estLancer = false
     else
       @estLancer = true

@@ -1,9 +1,9 @@
-load "ContreLaMontre.rb"
-load "Normal.rb"
-load "Genie.rb"
+load 'ContreLaMontre.rb'
+load 'Normal.rb'
+load 'Genie.rb'
 
-mode = ContreLaMontre.creer(Plateau.creer(), "4", "theo", "facile")
-mode.initialiserJeu()
+mode = ContreLaMontre.creer(Plateau.creer, '4', 'theo', 'facile')
+mode.initialiserJeu
 
 fin = false
 
@@ -13,21 +13,17 @@ print "**************************************************\n\n\n"
 
 print "debut de la partie : \n\n"
 
-#Thread.start(){mode.lancerChrono}
+while (!fin)
+  mode.afficherPlateau
 
-hyp = 0
-
-while(!fin)
-    mode.afficherPlateau
-
-    puts "Voulez-vous activer le mode auto-correcteur ? (1/0)"
-    verif = gets
-    verif = verif.to_i
-    if(verif == 1)then
-        mode.activerAutoCorrecteur
-    else
-        mode.desactiverAutoCorrecteur
-	end
+  puts 'Voulez-vous activer le mode auto-correcteur ? (1/0)'
+  verif = gets
+  verif = verif.to_i
+  if verif == 1
+    mode.activerAutoCorrecteur
+  else
+    mode.desactiverAutoCorrecteur
+  end
 
 =begin
     puts "Voulez-vous vérifiez le plateau ? (1/0)"
@@ -102,24 +98,24 @@ while(!fin)
 
 =end
 
-    print "\nJouer un coup \n"
-    print "\nx : "
-    x = gets
-    print "\ny :"
-    y = gets
+  print "\nJouer un coup \n"
+  print "\nx : "
+  x = gets
+  print "\ny :"
+  y = gets
 
-    y = y.to_i
-    x = x.to_i
+  y = y.to_i
+  x = x.to_i
 
-    if(mode.verifCoord(x,y))then
-        fin = mode.jouerCoup(x, y, "droit")
-        print "\n"
-    else
-        puts "mauvaise coordonnées"
-    end
+  if mode.verifCoord(x, y)
+    fin = mode.jouerCoup(x, y, 'droit')
+    print "\n"
+  else
+    puts 'mauvaise coordonnées'
+  end
 end
 
-puts "Felicitation !!!!"
+puts 'Felicitation !!!!'
 
 mode.afficherPlateau
 

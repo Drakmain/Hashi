@@ -6,7 +6,6 @@ load 'MenuPrincipal.rb'
 ##
 # La classe Fenetre met en place la fenêtre principale
 #
-#
 class Fenetre < Gtk::Builder
 
   attr_reader :ratio

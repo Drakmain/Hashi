@@ -1,8 +1,9 @@
 load 'Element.rb'
 
+##
 # La classe Ile représente une île sur le plateau, elle hérite de Element
 #
-# Elle peut : 
+# Elle peut :
 # - Dire qu'elle est une île
 # - Dire si elle est terminée (si le nombre de pont qui la relie est équivalent à sa valeur)
 #

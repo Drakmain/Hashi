@@ -3,6 +3,7 @@ load 'SelectionMode.rb'
 load 'Options.rb'
 load 'Classement.rb'
 
+##
 # La Classe MenuPrincipal permet d'afficher la fenêtre du menu principal.
 #
 # Le menu est composé de 5 choix :

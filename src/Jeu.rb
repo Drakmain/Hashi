@@ -5,7 +5,7 @@ load 'Chrono.rb'
 # La classe Jeu permet d'afficher la fenêtre du jeu
 #
 # Le jeu est composé de :
-# 
+#
 # - Le plateau
 # - Le temps
 # - Toutes les aides
@@ -150,8 +150,6 @@ class Jeu < Gtk::Builder
     end
     @suggestion_popover.popup
   end
-
-  Gtk::Window
 
   # Méthode activée lorque le bouton "Nombre d'erreur(s)" est cliquée
   # Affiche le nombre d'erreur

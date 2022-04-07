@@ -1,4 +1,4 @@
-#
+##
 # La classe Coup permet de sauvegarder les coups pour pouvoir faire les undo ou les redo.
 #
 # On peut créer un coup (qui sera créé à chaque action de l'utilisateur)

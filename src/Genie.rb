@@ -3,6 +3,7 @@ load 'Plateau.rb'
 load 'PlateauCorrection.rb'
 load 'Coup.rb'
 
+##
 # La classe Genie représente le mode génie, c'est le mode le plus "simple" dans le sens où aucune aide ne sera disponible.
 # Elle est donc la classe mère des autres mode de jeu.
 #

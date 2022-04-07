@@ -1,3 +1,4 @@
+##
 # La Classe Options permet d'afficher la fenêtre d'option.
 #
 # Il y a trois personnalisation d'options possible :
@@ -154,6 +155,6 @@ class Options < Gtk::Builder
 
   # Affiche le nom, la résolution et la langue
   def to_s
-    "Username : #{@user} \nResolution : #{(9 * @ratio.to_i())}p \nLangue : #{@langue}\n"
+    "Username : #{@user} \nResolution : #{(9 * @ratio.to_i)}p \nLangue : #{@langue}\n"
   end
 end

@@ -5,6 +5,7 @@ load 'Case.rb'
 
 require 'matrix'
 
+##
 # La classe Plateau représente les Case du jeu, le plateau a une taille défini dans le fichier
 #
 # Elle est capable : 
@@ -31,8 +32,8 @@ class Plateau
   private_class_method :new
 
   # Méthode qui permet de créer un plateau
-  def Plateau.creer()
-    new()
+  def Plateau.creer
+    new
   end
 
   # Méthode qui permet d'initialiser un plateau
@@ -41,7 +42,7 @@ class Plateau
   # - @x = 0
   # - @y = 0
   #
-  def initialize()
+  def initialize
     @x = 0
     @y = 0
     @matrice = Array.new { Array.new } # On initialise le tableau des cases pour le charger
@@ -113,6 +114,7 @@ class Plateau
       end
       res = "#{res}\n"
     end
+
     return res
   end
 
@@ -153,7 +155,6 @@ class Plateau
   # * = : ponts doubles
   # * n : iles (valeur)
   def afficherJeu
-    i = 0
     print '     '
     (0..@y - 1).each { |i|
       print " #{i} "
@@ -172,8 +173,8 @@ class Plateau
       i += 1
       row.each do |column|
         elem = column.element
-        if elem.estIle?() then
-          print " #{elem.valeur.to_s()} "
+        if elem.estIle?
+          print " #{elem.valeur.to_s} "
         elsif elem.estPont?
           if elem.nb_ponts == 0
             print ' . '

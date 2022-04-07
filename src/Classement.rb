@@ -1,20 +1,12 @@
-
-#Classement
+##
+# Permet de faire le classement des utilisateurs
 #
-#permet de faire le classement des utilisateurs
-#
-#@ration 
-#@fenetre
-#@mode_comboxbox
-#@retour_button
-#@difficulte_comboxbox
-#@niveau_comboxbox
-#@chercher_button
-#@difficulte_comboxbox
-#@niveau_comboxbox
-#@chercher_button
+# ==== Variables d'instance
+# * @ratio => la taille de la fenêtre
+# * @fenetre => la fenêtre du jeu
 #
 class Classement < Gtk::Builder
+
   # Méthode d'initialisation de la classe
   #
   # ==== Attributs
@@ -34,6 +26,7 @@ class Classement < Gtk::Builder
         instance_variable_set("@#{p.builder_name}".intern, self[p.builder_name])
       end
     end
+
     #definition de la taille des elements
     @mode_comboxbox.set_size_request(-1, 50 * @ratio)
     @retour_button.set_size_request(-1, 50 * @ratio)
@@ -43,6 +36,7 @@ class Classement < Gtk::Builder
     @difficulte_comboxbox.set_sensitive(false)
     @niveau_comboxbox.set_sensitive(false)
     @chercher_button.set_sensitive(false)
+
     (0...10).each do |i|
       @niveau_comboxbox.append_text((1 + i).to_s)
     end

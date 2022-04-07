@@ -1,5 +1,6 @@
 load 'Element.rb'
 
+##
 # La classe Pont représente un pont sur le plateau, elle hérite de Element
 # Un Pont est un Element contenu dans une case, il permet de faire le lien entre 2 Ile
 #

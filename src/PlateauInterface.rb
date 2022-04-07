@@ -2,6 +2,7 @@ require 'gtk3'
 load 'Donnees.rb'
 load 'Plateau.rb'
 
+##
 # La Classe PlateauInterface permet de gérer l'affichage de la zone de jeu.
 #
 # ==== Variables d'instance
@@ -143,9 +144,7 @@ class PlateauInterface < Gtk::Fixed
 
         actualiserPontAjoutables(@map.plateau.getCase(x, y), x, y, false)
       end
-
     end
-
   end
 
   # Méthode qui met l'image au bon endroit dans l'interface GTK
@@ -459,7 +458,6 @@ class PlateauInterface < Gtk::Fixed
       set_sensitive(false)
       @fini_dialog.run
     end
-
   end
 
   # Méthode qui permet de faire un redo sur le jeu

@@ -1,5 +1,6 @@
-load "Chrono.rb"
+load 'Chrono.rb'
 
+##
 # La classe Normal est une sous-classe de la classe ContreLaMontre, elle possède les mêmes caractèristiques.
 # La seule chose qui change est le sens du chronomètre
 #
@@ -25,7 +26,7 @@ class Normal < ContreLaMontre
 
   # Méthode qui permet de lancer le chronometre dans le sens normal (part de 0 et s'incrémente jusqu'à ce que la partie soit terminée)
   def lancerChrono(unLabel)
-    if(@chrono == 0)then
+    if @chrono == 0
       @chrono = Chrono.new(unLabel)
       @chrono.lancerChrono
     else
@@ -36,7 +37,7 @@ class Normal < ContreLaMontre
   end
 
   def to_s
-    "normal"
+    'normal'
   end
 
   attr_reader :chrono

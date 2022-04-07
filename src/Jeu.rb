@@ -125,7 +125,7 @@ class Jeu < Gtk::Builder
     @map.sauvegarder(@mode)
 
     @fenetre.remove(@jeu_box)
-    @fenetre.resize(1280 * @ratio, 720 * @ratio)
+    @fenetre.set_size_request(1280 * @ratio, 720 * @ratio)
     SelectionMap.new(@fenetre, @ratio, @mode, @difficulte)
   end
 
@@ -276,7 +276,7 @@ class Jeu < Gtk::Builder
     @fini_dialog.response(1)
 
     @fenetre.remove(@jeu_box)
-    @fenetre.resize(1280 * @ratio, 720 * @ratio)
+    @fenetre.set_size_request(1280 * @ratio, 720 * @ratio)
     MenuPrincipal.new(@fenetre, @ratio)
   end
 
@@ -286,7 +286,7 @@ class Jeu < Gtk::Builder
     @fini_dialog.response(2)
 
     @fenetre.remove(@jeu_box)
-    @fenetre.resize(1280 * @ratio, 720 * @ratio)
+    @fenetre.set_size_request(1280 * @ratio, 720 * @ratio)
     SelectionMap.new(@fenetre, @ratio, @mode, @difficulte)
   end
 

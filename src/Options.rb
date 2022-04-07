@@ -106,17 +106,16 @@ class Options < Gtk::Builder
     when '720p'
       @hashOptions['resolution_ratio'] = 1
       @ratio = 1
-      @fenetre.resize(1280 * @ratio, 720 * @ratio)
+      @fenetre.set_size_request(1280 * @ratio, 720 * @ratio)
     when '900p'
       @hashOptions['resolution_ratio'] = 1.25
       @ratio = 1.25
-      @fenetre.resize(1280 * @ratio, 720 * @ratio)
+      @fenetre.set_size_request(1280 * @ratio, 720 * @ratio)
     when '1080p'
       @hashOptions['resolution_ratio'] = 1.5
       @ratio = 1.5
-      @fenetre.resize(1280 * @ratio, 720 * @ratio)
+      @fenetre.set_size_request(1280 * @ratio, 720 * @ratio)
     end
-
   end
 
   # Action qui s'exécute lorsque l'on change la langue,

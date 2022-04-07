@@ -145,6 +145,7 @@ class Genie
     else
       @score += 100
     end
+    @chronoFirst = chronoNow
   end
 
   # Méthode qui permet de lancer le chronometre dans le sens normal (part de 0 et s'incrémente jusqu'à ce que la partie soit terminé)
@@ -374,7 +375,9 @@ class Genie
         res = true
 
         if @difficulte != 'tutoriel'
-          @score -= 110
+          if(@score <= 110)then
+            @score -= 110
+          end
           @anciensCoups.clear
           sauvegarder(self.class.name.downcase)
         end
@@ -432,6 +435,9 @@ class Genie
         caseCourante.enleverPont
         unClic = 'enlever'
         res = true
+        if(@score <= 110)then
+          @score -= 110
+        end
       end
     end
 

@@ -8,7 +8,7 @@
 # * @typeCoup : le type de coup réaliser par le joueur
 # * @pont : le pont sur lequel le clic est réalisé
 # * @sens : le sens du pont
-class Coup < Element
+class Coup
 
   ###################################################################################
   #							Methodes de classe

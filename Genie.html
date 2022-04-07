@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Genie - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+<div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  <p class="link">Object
+</div>
+
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-c-creer">::creer</a>
+    <li ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-i-activerHypothese">#activerHypothese</a>
+    <li ><a href="#method-i-afficherCorrection">#afficherCorrection</a>
+    <li ><a href="#method-i-afficherPlateau">#afficherPlateau</a>
+    <li ><a href="#method-i-annuler">#annuler</a>
+    <li ><a href="#method-i-calculScore">#calculScore</a>
+    <li ><a href="#method-i-charger">#charger</a>
+    <li ><a href="#method-i-deleteCoup">#deleteCoup</a>
+    <li ><a href="#method-i-desactiverHypothese">#desactiverHypothese</a>
+    <li ><a href="#method-i-getCoup">#getCoup</a>
+    <li ><a href="#method-i-initialiserJeu">#initialiserJeu</a>
+    <li ><a href="#method-i-jouerCoup">#jouerCoup</a>
+    <li ><a href="#method-i-jouerCoupHorizontaleInterface">#jouerCoupHorizontaleInterface</a>
+    <li ><a href="#method-i-jouerCoupInterface">#jouerCoupInterface</a>
+    <li ><a href="#method-i-jouerCoupVerticaleInterface">#jouerCoupVerticaleInterface</a>
+    <li ><a href="#method-i-lancerChrono">#lancerChrono</a>
+    <li ><a href="#method-i-refaire">#refaire</a>
+    <li ><a href="#method-i-sauvegarder">#sauvegarder</a>
+    <li ><a href="#method-i-sauvegarder_score">#sauvegarder_score</a>
+    <li ><a href="#method-i-to_s">#to_s</a>
+    <li ><a href="#method-i-verifCoord">#verifCoord</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Genie">
+  <h1 id="class-Genie" class="class">
+    class Genie
+  </h1>
+
+  <section class="description">
+    
+<p>La classe <a href="Genie.html"><code>Genie</code></a> représente le mode génie, c’est le mode le plus “simple” dans le sens où aucune aide ne sera disponible. Elle est donc la classe mère des autres mode de jeu.</p>
+
+<p>Elle peut :</p>
+<ul><li>
+<p>sauvegarder la partie</p>
+</li><li>
+<p>charger une partie</p>
+</li><li>
+<p>calculer le score du joueur</p>
+</li><li>
+<p>lancer le chronometre</p>
+</li><li>
+<p>Supprimer/remettre un coup</p>
+</li><li>
+<p>jouer un coup</p>
+</li><li>
+<p>récupérer le coup jouer</p>
+</li></ul>
+
+<h4 id="class-Genie-label-Variables+d-27instance">Variables d’instance<span><a href="#class-Genie-label-Variables+d-27instance">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p>@score         =&gt; le score du joueur</p>
+</li><li>
+<p>@chrono        =&gt; le chrono qui se lance en début de partie</p>
+</li><li>
+<p>@anciensCoups  =&gt; la file des anciens coups</p>
+</li><li>
+<p>@coups         =&gt; la pile de coups</p>
+</li><li>
+<p>@pileHypothese =&gt; la pile de coups du mode hypothèse</p>
+</li><li>
+<p>@fichierJeu    =&gt; le chemin vers le fichier qui contient la grille basique</p>
+</li><li>
+<p>@fichierCorrection =&gt; le chemin vers le fichier qui contient la correction</p>
+</li><li>
+<p>@plateau       =&gt; le plateau de jeu courant</p>
+</li><li>
+<p>@save          =&gt; la sauvegarde de la partie</p>
+</li><li>
+<p>@dir           =&gt; le chemin vers le dossier qui contient les fichiers</p>
+</li><li>
+<p>@pseudo        =&gt; le pseudo du joueur</p>
+</li><li>
+<p>@correction    =&gt; le plateau de jeu avec la correction</p>
+</li><li>
+<p>@chronoFirst   =&gt; temps au début du tour de jeu</p>
+</li><li>
+<p>@hypothese     =&gt; état du mode hypothèse</p>
+</li><li>
+<p>@autoCorrecteur : boolean qui indique si le mode auto-correcteur est activé</p>
+</li></ul>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      <div id="attribute-i-autoCorrecteur" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">autoCorrecteur</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        </div>
+      </div>
+      <div id="attribute-i-chrono" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">chrono</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        </div>
+      </div>
+      <div id="attribute-i-coups" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">coups</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        <p>La méthode new est en privé</p>
+        </div>
+      </div>
+      <div id="attribute-i-fichierJeu" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">fichierJeu</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        <p>La méthode new est en privé</p>
+        </div>
+      </div>
+      <div id="attribute-i-hypothese" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">hypothese</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        </div>
+      </div>
+      <div id="attribute-i-label" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">label</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        <p>La méthode new est en privé</p>
+        </div>
+      </div>
+      <div id="attribute-i-plateau" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">plateau</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        <p>La méthode new est en privé</p>
+        </div>
+      </div>
+      <div id="attribute-i-score" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">score</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        </div>
+      </div>
+    </section>
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-creer" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">creer</span><span
+            class="method-args">(unPlateau, unNiveau, unPseudo, uneDifficulte)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode qui permet de créer un mode génie</p>
+
+<h4 id="method-c-creer-label-Attributs">Attributs<span><a href="#method-c-creer-label-Attributs">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>unPlateau</code> : une référence vers le plateau de jeu de la partie courante</p>
+</li><li>
+<p><code>unNiveau</code> : le numéro du niveau choisis</p>
+</li><li>
+<p><code>unPseudo</code> : le nom du joueur qui va jouer</p>
+</li><li>
+<p><code>uneDifficulte</code> : la difficulté choisis</p>
+</li></ul>
+
+          <div class="method-source-code" id="creer-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Genie</span>.<span class="ruby-identifier ruby-title">creer</span>(<span class="ruby-identifier">unPlateau</span>, <span class="ruby-identifier">unNiveau</span>, <span class="ruby-identifier">unPseudo</span>, <span class="ruby-identifier">uneDifficulte</span>)
+  <span class="ruby-identifier">new</span>(<span class="ruby-identifier">unPlateau</span>, <span class="ruby-identifier">unNiveau</span>, <span class="ruby-identifier">unPseudo</span>, <span class="ruby-identifier">uneDifficulte</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-new" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(unPlateau, unNiveau, unPseudo, uneDifficulte)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode qui permet d’initialiser un mode génie</p>
+
+<h4 id="method-c-new-label-Attributs">Attributs<span><a href="#method-c-new-label-Attributs">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>unPlateau</code> : une référence vers le plateau de jeu de la partie courante</p>
+</li><li>
+<p><code>unNiveau</code> : le numéro du niveau choisis</p>
+</li><li>
+<p><code>unPseudo</code> : le nom du joueur qui va jouer</p>
+</li><li>
+<p><code>uneDifficulte</code> : la difficulté choisis</p>
+</li></ul>
+
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">unPlateau</span>, <span class="ruby-identifier">unNiveau</span>, <span class="ruby-identifier">unPseudo</span>, <span class="ruby-identifier">uneDifficulte</span>)
+  <span class="ruby-ivar">@score</span> = <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@anciensCoups</span> = []
+  <span class="ruby-ivar">@coups</span> = []
+  <span class="ruby-ivar">@pileHypothese</span> = []
+  <span class="ruby-ivar">@fichierJeu</span> = <span class="ruby-node">&quot;../data/map/#{uneDifficulte}/demarrage/#{unNiveau}.txt&quot;</span>
+  <span class="ruby-ivar">@fichierCorrection</span> = <span class="ruby-node">&quot;../data/map/#{uneDifficulte}/correction/#{unNiveau}.txt&quot;</span>
+  <span class="ruby-ivar">@plateau</span> = <span class="ruby-identifier">unPlateau</span>
+  <span class="ruby-ivar">@save</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@dir</span> = <span class="ruby-string">&#39;../data/sauvegarde/&#39;</span>
+  <span class="ruby-ivar">@pseudo</span> = <span class="ruby-identifier">unPseudo</span>
+  <span class="ruby-ivar">@correction</span> = <span class="ruby-constant">PlateauCorrection</span>.<span class="ruby-identifier">creer</span>
+  <span class="ruby-ivar">@chronoFirst</span> = <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@hypothese</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@autoCorrecteur</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@difficulte</span> = <span class="ruby-identifier">uneDifficulte</span>
+  <span class="ruby-ivar">@niveau</span> = <span class="ruby-identifier">unNiveau</span>
+  <span class="ruby-ivar">@chrono</span> = <span class="ruby-value">0</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-activerHypothese" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">activerHypothese</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="activerHypothese-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 483</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">activerHypothese</span>; <span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-afficherCorrection" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">afficherCorrection</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode qui affiche le plateau de correction sur le terminal</p>
+
+          <div class="method-source-code" id="afficherCorrection-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 459</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">afficherCorrection</span>
+  <span class="ruby-ivar">@correction</span>.<span class="ruby-identifier">afficherJeu</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-afficherPlateau" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">afficherPlateau</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode qui affiche le plateau sur le terminal</p>
+
+          <div class="method-source-code" id="afficherPlateau-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 454</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">afficherPlateau</span>
+  <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">afficherJeu</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-annuler" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">annuler</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode qui permet d’enlever le dernier coup</p>
+
+          <div class="method-source-code" id="annuler-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 168</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">annuler</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@coups</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">coup</span> = <span class="ruby-ivar">@coups</span>.<span class="ruby-identifier">pop</span>
+    <span class="ruby-identifier">pontCourant</span> = <span class="ruby-identifier">coup</span>.<span class="ruby-identifier">pont</span>
+    <span class="ruby-identifier">sens</span> = <span class="ruby-identifier">coup</span>.<span class="ruby-identifier">sens</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">coup</span>.<span class="ruby-identifier">estAjout?</span>
+      <span class="ruby-identifier">pontCourant</span>.<span class="ruby-identifier">enleverPont</span>
+      <span class="ruby-ivar">@anciensCoups</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">Coup</span>.<span class="ruby-identifier">creer</span>(<span class="ruby-string">&#39;ajouter&#39;</span>, <span class="ruby-identifier">coup</span>.<span class="ruby-identifier">pont</span>, <span class="ruby-identifier">sens</span>))
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">coup</span>.<span class="ruby-identifier">estVertical?</span>
+        <span class="ruby-identifier">pontCourant</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;haut&#39;</span>, <span class="ruby-keyword">true</span>)
+        <span class="ruby-identifier">pontCourant</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;bas&#39;</span>, <span class="ruby-keyword">false</span>)
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">coup</span>.<span class="ruby-identifier">estHorizontal?</span>
+        <span class="ruby-identifier">pontCourant</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;gauche&#39;</span>, <span class="ruby-keyword">true</span>)
+        <span class="ruby-identifier">pontCourant</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;droite&#39;</span>, <span class="ruby-keyword">false</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">&#39;erreur de undo&#39;</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-ivar">@score</span> <span class="ruby-operator">-=</span> <span class="ruby-value">10</span>
+      <span class="ruby-ivar">@anciensCoups</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">Coup</span>.<span class="ruby-identifier">creer</span>(<span class="ruby-string">&#39;enlever&#39;</span>, <span class="ruby-identifier">coup</span>.<span class="ruby-identifier">pont</span>, <span class="ruby-identifier">sens</span>))
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">pontCourant</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-calculScore" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">calculScore</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode qui permet de calculer le score du joueur</p>
+
+          <div class="method-source-code" id="calculScore-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 137</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">calculScore</span>
+
+  <span class="ruby-identifier">chronoNow</span> = <span class="ruby-ivar">@chrono</span>.<span class="ruby-identifier">chrono</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@chronoFirst</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">chronoNow</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+    <span class="ruby-ivar">@score</span> <span class="ruby-operator">+=</span> <span class="ruby-value">100</span> <span class="ruby-operator">-</span> (<span class="ruby-value">5</span> <span class="ruby-operator">*</span> <span class="ruby-value">100</span> <span class="ruby-operator">/</span> (<span class="ruby-ivar">@chronoFirst</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">chronoNow</span>))
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-charger" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">charger</span><span
+            class="method-args">(mode)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode qui permet de charger une partie, elle désérialize le fichier demandé</p>
+
+          <div class="method-source-code" id="charger-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 126</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">charger</span>(<span class="ruby-identifier">mode</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Chargement de #{@dir}#{@pseudo}_#{mode}_#{@difficulte}_#{@niveau}.bn ...&quot;</span>
+
+  <span class="ruby-identifier">f</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-node">&quot;#{@dir}#{@pseudo}_#{mode}_#{@difficulte}_#{@niveau}.bn&quot;</span>), <span class="ruby-string">&#39;r&#39;</span>)
+  <span class="ruby-ivar">@save</span> = <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>
+  <span class="ruby-identifier">f</span>.<span class="ruby-identifier">close</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">Marshal</span><span class="ruby-operator">::</span><span class="ruby-identifier">load</span>(<span class="ruby-ivar">@save</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-deleteCoup" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">deleteCoup</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode qui permet de supprimer le dernier coup dans la liste des coups, le met dans à liste des anciens coups</p>
+
+          <div class="method-source-code" id="deleteCoup-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 158</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">deleteCoup</span>
+  <span class="ruby-ivar">@anciensCoups</span>.<span class="ruby-identifier">push</span>(<span class="ruby-ivar">@coup</span>.<span class="ruby-identifier">pop</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-desactiverHypothese" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">desactiverHypothese</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="desactiverHypothese-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 485</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">desactiverHypothese</span>; <span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-getCoup" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">getCoup</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode qui permet de récupérer l’ancien coup supprimer dans la liste des anciens coups</p>
+
+          <div class="method-source-code" id="getCoup-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 163</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getCoup</span>
+  <span class="ruby-ivar">@coups</span>.<span class="ruby-identifier">push</span>(<span class="ruby-ivar">@anciensCoups</span>.<span class="ruby-identifier">pop</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-initialiserJeu" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">initialiserJeu</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode qui permet d’initialiser le jeu (le plateau de jeu et sa correction)</p>
+
+          <div class="method-source-code" id="initialiserJeu-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 95</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialiserJeu</span>
+  <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">generateMatrice</span>(<span class="ruby-ivar">@fichierJeu</span>)
+  <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">generatePlateau</span>
+  <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">ajouterPont</span>
+
+  <span class="ruby-ivar">@correction</span>.<span class="ruby-identifier">generateMatrice</span>(<span class="ruby-ivar">@fichierCorrection</span>)
+  <span class="ruby-ivar">@correction</span>.<span class="ruby-identifier">generatePlateau</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-jouerCoup" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">jouerCoup</span><span
+            class="method-args">(unX, unY, unClic)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode qui permet de jouer un coup</p>
+
+<h4 id="method-i-jouerCoup-label-Attributs">Attributs<span><a href="#method-i-jouerCoup-label-Attributs">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>unX</code> - coordonnée X de la case</p>
+</li><li>
+<p><code>unY</code> - Coordonnée Y de la case</p>
+</li><li>
+<p><code>unClic</code> - type de clic fait par le joueur</p>
+</li></ul>
+
+<h4 id="method-i-jouerCoup-label-Retourne">Retourne<span><a href="#method-i-jouerCoup-label-Retourne">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p>true si la partie est finie,</p>
+</li><li>
+<p>false si la case jouée n’est pas un pont ou si la partie n’est pas finie</p>
+</li></ul>
+
+          <div class="method-source-code" id="jouerCoup-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 230</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">jouerCoup</span>(<span class="ruby-identifier">unX</span>, <span class="ruby-identifier">unY</span>, <span class="ruby-identifier">unClic</span>)
+
+  <span class="ruby-identifier">caseCourante</span> = <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">getCase</span>(<span class="ruby-identifier">unX</span>, <span class="ruby-identifier">unY</span>)
+
+  <span class="ruby-identifier">joue</span> = <span class="ruby-value">-1</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">element</span>.<span class="ruby-identifier">estPont?</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">element</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&#39;Vous voulez enlever(1) un pont ou en ajouter(2) un ?&#39;</span>
+      <span class="ruby-identifier">joue</span> = <span class="ruby-identifier">gets</span>
+      <span class="ruby-identifier">joue</span> = <span class="ruby-identifier">joue</span>.<span class="ruby-identifier">to_i</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">joue</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">joue</span> <span class="ruby-operator">==</span> <span class="ruby-value">-1</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">element</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">sens</span> = <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">creerPontDefaut</span>
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">element</span>.<span class="ruby-identifier">aDeuxSens</span>
+        <span class="ruby-comment">#caseCourante.estEntoure() ne sert probablement à rien</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">&#39;vous voulez faire un coup horizontal(1) ou vertical(2) ?&#39;</span>
+        <span class="ruby-identifier">sens</span> = <span class="ruby-identifier">gets</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">sens</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">pontAjoutable</span>(<span class="ruby-string">&#39;droite&#39;</span>, <span class="ruby-keyword">true</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">pontAjoutable</span>(<span class="ruby-string">&#39;gauche&#39;</span>, <span class="ruby-keyword">true</span>)
+            <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;droite&#39;</span>, <span class="ruby-keyword">true</span>)
+            <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;gauche&#39;</span>, <span class="ruby-keyword">false</span>)
+            <span class="ruby-identifier">sens</span> = <span class="ruby-string">&#39;horizontal&#39;</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">pontAjoutable</span>(<span class="ruby-string">&#39;haut&#39;</span>, <span class="ruby-keyword">true</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">pontAjoutable</span>(<span class="ruby-string">&#39;bas&#39;</span>, <span class="ruby-keyword">true</span>)
+            <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;haut&#39;</span>, <span class="ruby-keyword">true</span>)
+            <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;bas&#39;</span>, <span class="ruby-keyword">false</span>)
+            <span class="ruby-identifier">sens</span> = <span class="ruby-string">&#39;vertical&#39;</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">print</span> <span class="ruby-node">&quot;case courante : #{caseCourante.element}\n&quot;</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">sens</span> = <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">creerPontDefaut</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">unClic</span> = <span class="ruby-string">&#39;ajouter&#39;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">sens</span> = <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">enleverPont</span>
+      <span class="ruby-identifier">unClic</span> = <span class="ruby-string">&#39;enlever&#39;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;sens : #{sens}&quot;</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@hypothese</span>
+      <span class="ruby-ivar">@pileHypothese</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">Coup</span>.<span class="ruby-identifier">creer</span>(<span class="ruby-identifier">unClic</span>, <span class="ruby-identifier">caseCourante</span>, <span class="ruby-identifier">sens</span>))
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@coups</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">Coup</span>.<span class="ruby-identifier">creer</span>(<span class="ruby-identifier">unClic</span>, <span class="ruby-identifier">caseCourante</span>, <span class="ruby-identifier">sens</span>))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@difficulte</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;tutoreiel&#39;</span>
+      <span class="ruby-identifier">calculScore</span>
+      <span class="ruby-ivar">@chronoFirst</span> = <span class="ruby-ivar">@chrono</span>.<span class="ruby-identifier">chrono</span>
+    <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&#39;case pas un pont&#39;</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@autoCorrecteur</span>
+    <span class="ruby-identifier">corrigerErreur</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">partieFini?</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-jouerCoupHorizontaleInterface" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">jouerCoupHorizontaleInterface</span><span
+            class="method-args">(unX, unY, unClic)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode qui permet de jouer un coup horizontale sur une interface</p>
+
+<h4 id="method-i-jouerCoupHorizontaleInterface-label-Attributs">Attributs<span><a href="#method-i-jouerCoupHorizontaleInterface-label-Attributs">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>unX</code> - la coordonnée x de la case</p>
+</li><li>
+<p><code>unY</code> - La coordonnée y de la case</p>
+</li><li>
+<p><code>unClic</code> - l’action effectué par l’utilisateur</p>
+</li></ul>
+
+          <div class="method-source-code" id="jouerCoupHorizontaleInterface-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 340</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">jouerCoupHorizontaleInterface</span>(<span class="ruby-identifier">unX</span>, <span class="ruby-identifier">unY</span>, <span class="ruby-identifier">unClic</span>)
+  <span class="ruby-identifier">caseCourante</span> = <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">getCase</span>(<span class="ruby-identifier">unX</span>, <span class="ruby-identifier">unY</span>)
+  <span class="ruby-identifier">res</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-identifier">sens</span> = <span class="ruby-string">&#39;horizontal&#39;</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">unClic</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">pontAjoutable</span>(<span class="ruby-string">&#39;droite&#39;</span>, <span class="ruby-keyword">true</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">pontAjoutable</span>(<span class="ruby-string">&#39;gauche&#39;</span>, <span class="ruby-keyword">true</span>)
+      <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;droite&#39;</span>, <span class="ruby-keyword">true</span>)
+      <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;gauche&#39;</span>, <span class="ruby-keyword">false</span>)
+
+      <span class="ruby-identifier">unClic</span> = <span class="ruby-string">&#39;ajouter&#39;</span>
+
+      <span class="ruby-identifier">res</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">element</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">enleverPont</span>
+      <span class="ruby-identifier">unClic</span> = <span class="ruby-string">&#39;enlever&#39;</span>
+      <span class="ruby-identifier">res</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">res</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@hypothese</span>
+      <span class="ruby-ivar">@pileHypothese</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">Coup</span>.<span class="ruby-identifier">creer</span>(<span class="ruby-identifier">unClic</span>, <span class="ruby-identifier">caseCourante</span>, <span class="ruby-identifier">sens</span>))
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@autoCorrecteur</span>
+        <span class="ruby-identifier">erreur</span> = <span class="ruby-identifier">corrigerErreur</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">erreur</span>
+          <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;mort&#39;</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-ivar">@coups</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">Coup</span>.<span class="ruby-identifier">creer</span>(<span class="ruby-identifier">unClic</span>, <span class="ruby-identifier">caseCourante</span>, <span class="ruby-identifier">sens</span>))
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-ivar">@coups</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">Coup</span>.<span class="ruby-identifier">creer</span>(<span class="ruby-identifier">unClic</span>, <span class="ruby-identifier">caseCourante</span>, <span class="ruby-identifier">sens</span>))
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@difficulte</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;tutoreiel&#39;</span>
+    <span class="ruby-identifier">calculScore</span>
+    <span class="ruby-ivar">@chronoFirst</span> = <span class="ruby-ivar">@chrono</span>.<span class="ruby-identifier">chrono</span>
+    <span class="ruby-identifier">sauvegarder</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span>)
+    <span class="ruby-ivar">@anciensCoups</span>.<span class="ruby-identifier">clear</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">res</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-jouerCoupInterface" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">jouerCoupInterface</span><span
+            class="method-args">(unX, unY, unClic)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode qui permet de jouer un coup sur une interface</p>
+
+<h4 id="method-i-jouerCoupInterface-label-Attributs">Attributs<span><a href="#method-i-jouerCoupInterface-label-Attributs">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>unX</code> - la coordonnée x de la case</p>
+</li><li>
+<p><code>unY</code> - La coordonnée y de la case</p>
+</li><li>
+<p><code>unClic</code> - l’action effectué par l’utilisateur</p>
+</li></ul>
+
+          <div class="method-source-code" id="jouerCoupInterface-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 302</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">jouerCoupInterface</span>(<span class="ruby-identifier">unX</span>, <span class="ruby-identifier">unY</span>, <span class="ruby-identifier">unClic</span>)
+  <span class="ruby-identifier">caseCourante</span> = <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">getCase</span>(<span class="ruby-identifier">unX</span>, <span class="ruby-identifier">unY</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">element</span>.<span class="ruby-identifier">estPont?</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">element</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">element</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+      <span class="ruby-identifier">sens</span> = <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">element</span>.<span class="ruby-identifier">estVertical?</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">sens</span>
+        <span class="ruby-identifier">sens</span> = <span class="ruby-string">&#39;vertical&#39;</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">sens</span> = <span class="ruby-string">&#39;horizontal&#39;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">element</span>.<span class="ruby-identifier">aDeuxSens</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&#39;a deux sens&#39;</span>
+      <span class="ruby-ivar">@anciensCoups</span>.<span class="ruby-identifier">clear</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">element</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">sens</span> = <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">element</span>.<span class="ruby-identifier">estVertical?</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">sens</span>
+        <span class="ruby-identifier">sens</span> = <span class="ruby-string">&#39;vertical&#39;</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">sens</span> = <span class="ruby-string">&#39;horizontal&#39;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;erreur&#39;</span>
+    <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">sens</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-jouerCoupVerticaleInterface" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">jouerCoupVerticaleInterface</span><span
+            class="method-args">(unX, unY, unClic)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode qui permet de jouer un coup verticale sur une interface</p>
+
+<h4 id="method-i-jouerCoupVerticaleInterface-label-Attributs">Attributs<span><a href="#method-i-jouerCoupVerticaleInterface-label-Attributs">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>unX</code> - la coordonnée x de la case</p>
+</li><li>
+<p><code>unY</code> - La coordonnée y de la case</p>
+</li><li>
+<p><code>unClic</code> - l’action effectué par l’utilisateur</p>
+</li></ul>
+
+          <div class="method-source-code" id="jouerCoupVerticaleInterface-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 396</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">jouerCoupVerticaleInterface</span>(<span class="ruby-identifier">unX</span>, <span class="ruby-identifier">unY</span>, <span class="ruby-identifier">unClic</span>)
+  <span class="ruby-identifier">caseCourante</span> = <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">getCase</span>(<span class="ruby-identifier">unX</span>, <span class="ruby-identifier">unY</span>)
+  <span class="ruby-identifier">res</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-identifier">sens</span> = <span class="ruby-string">&#39;vertical&#39;</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">unClic</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">pontAjoutable</span>(<span class="ruby-string">&#39;haut&#39;</span>, <span class="ruby-keyword">true</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">pontAjoutable</span>(<span class="ruby-string">&#39;bas&#39;</span>, <span class="ruby-keyword">true</span>)
+      <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;haut&#39;</span>, <span class="ruby-keyword">true</span>)
+      <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;bas&#39;</span>, <span class="ruby-keyword">false</span>)
+
+      <span class="ruby-identifier">unClic</span> = <span class="ruby-string">&#39;ajouter&#39;</span>
+      <span class="ruby-identifier">res</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">element</span>.<span class="ruby-identifier">nb_ponts</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">caseCourante</span>.<span class="ruby-identifier">enleverPont</span>
+      <span class="ruby-identifier">unClic</span> = <span class="ruby-string">&#39;enlever&#39;</span>
+      <span class="ruby-identifier">res</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">res</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@hypothese</span>
+      <span class="ruby-ivar">@pileHypothese</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">Coup</span>.<span class="ruby-identifier">creer</span>(<span class="ruby-identifier">unClic</span>, <span class="ruby-identifier">caseCourante</span>, <span class="ruby-identifier">sens</span>))
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@autoCorrecteur</span>
+        <span class="ruby-identifier">erreur</span> = <span class="ruby-identifier">corrigerErreur</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">erreur</span>
+          <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;mort&#39;</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-ivar">@coups</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">Coup</span>.<span class="ruby-identifier">creer</span>(<span class="ruby-identifier">unClic</span>, <span class="ruby-identifier">caseCourante</span>, <span class="ruby-identifier">sens</span>))
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-ivar">@coups</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">Coup</span>.<span class="ruby-identifier">creer</span>(<span class="ruby-identifier">unClic</span>, <span class="ruby-identifier">caseCourante</span>, <span class="ruby-identifier">sens</span>))
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@difficulte</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;tutoreiel&#39;</span>
+    <span class="ruby-identifier">calculScore</span>
+    <span class="ruby-ivar">@chronoFirst</span> = <span class="ruby-ivar">@chrono</span>.<span class="ruby-identifier">chrono</span>
+    <span class="ruby-ivar">@anciensCoups</span>.<span class="ruby-identifier">clear</span>
+    <span class="ruby-identifier">sauvegarder</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">res</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-lancerChrono" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">lancerChrono</span><span
+            class="method-args">(unLabel)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode qui permet de lancer le chronometre dans le sens normal (part de 0 et s’incrémente jusqu’à ce que la partie soit terminé)</p>
+
+          <div class="method-source-code" id="lancerChrono-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 146</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">lancerChrono</span>(<span class="ruby-identifier">unLabel</span>)
+  <span class="ruby-keyword">if</span> (<span class="ruby-ivar">@chrono</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>) <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@chrono</span> = <span class="ruby-constant">Chrono</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">unLabel</span>)
+    <span class="ruby-ivar">@chrono</span>.<span class="ruby-identifier">lancerChrono</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">valeur</span> = <span class="ruby-ivar">@chrono</span>
+    <span class="ruby-ivar">@chrono</span> = <span class="ruby-constant">Chrono</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">unLabel</span>)
+    <span class="ruby-ivar">@chrono</span>.<span class="ruby-identifier">lancerChronoValeur</span>(<span class="ruby-identifier">valeur</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-refaire" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">refaire</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode qui permet de remettre le dernier coup supprimer</p>
+
+          <div class="method-source-code" id="refaire-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 194</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">refaire</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@anciensCoups</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">coup</span> = <span class="ruby-ivar">@anciensCoups</span>.<span class="ruby-identifier">pop</span>
+    <span class="ruby-identifier">pontCourant</span> = <span class="ruby-identifier">coup</span>.<span class="ruby-identifier">pont</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">pontCourant</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">coup</span>.<span class="ruby-identifier">estAjout?</span>
+      <span class="ruby-identifier">pontCourant</span>.<span class="ruby-identifier">enleverPont</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">coup</span>.<span class="ruby-identifier">estVertical?</span>
+        <span class="ruby-identifier">pontCourant</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;haut&#39;</span>, <span class="ruby-keyword">true</span>)
+        <span class="ruby-identifier">pontCourant</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;bas&#39;</span>, <span class="ruby-keyword">false</span>)
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">coup</span>.<span class="ruby-identifier">estHorizontal?</span>
+        <span class="ruby-identifier">pontCourant</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;gauche&#39;</span>, <span class="ruby-keyword">true</span>)
+        <span class="ruby-identifier">pontCourant</span>.<span class="ruby-identifier">creerPont</span>(<span class="ruby-string">&#39;droite&#39;</span>, <span class="ruby-keyword">false</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">&#39;erreur de redo&#39;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@score</span> <span class="ruby-operator">-=</span> <span class="ruby-value">10</span>
+    <span class="ruby-ivar">@coups</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">coup</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">pontCourant</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-sauvegarder" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">sauvegarder</span><span
+            class="method-args">(mode)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode qui permet de sauvegarder une partie, elle sérialize l’objet courant</p>
+
+          <div class="method-source-code" id="sauvegarder-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 105</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sauvegarder</span>(<span class="ruby-identifier">mode</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Sauvegarde de #{@dir}#{@pseudo}_#{mode}_#{@difficulte}_#{@niveau}.bn ...&quot;</span>
+
+  <span class="ruby-identifier">unLabel</span> = <span class="ruby-ivar">@chrono</span>.<span class="ruby-identifier">label</span>
+
+  <span class="ruby-identifier">chrono</span> = <span class="ruby-ivar">@chrono</span>
+  <span class="ruby-ivar">@chrono</span> = <span class="ruby-ivar">@chrono</span>.<span class="ruby-identifier">chrono</span>
+
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-ivar">@dir</span>) <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-ivar">@dir</span>)
+  <span class="ruby-identifier">f</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-node">&quot;#{@dir}#{@pseudo}_#{mode}_#{@difficulte}_#{@niveau}.bn&quot;</span>), <span class="ruby-string">&#39;w&#39;</span>)
+  <span class="ruby-ivar">@save</span> = <span class="ruby-constant">Marshal</span><span class="ruby-operator">::</span><span class="ruby-identifier">dump</span>(<span class="ruby-keyword">self</span>)
+  <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-ivar">@save</span>)
+  <span class="ruby-identifier">f</span>.<span class="ruby-identifier">close</span>
+
+  <span class="ruby-identifier">valeur</span> = <span class="ruby-ivar">@chrono</span>
+  <span class="ruby-ivar">@chrono</span> = <span class="ruby-identifier">chrono</span>
+  <span class="ruby-comment">#@chrono.lancerChronoValeur(valeur)</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-sauvegarder_score" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">sauvegarder_score</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="sauvegarder_score-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 474</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sauvegarder_score</span>
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-node">&quot;../data/map/#{@difficulte.to_s}/score&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-node">&quot;../data/map/#{@difficulte.to_s}/score&quot;</span>)
+  <span class="ruby-identifier">fichierScore</span> = <span class="ruby-node">&quot;../data/map/#{@difficulte.to_s}/score/#{@niveau.to_s}#{self.to_s}.txt&quot;</span>
+
+  <span class="ruby-identifier">open</span>(<span class="ruby-identifier">fichierScore</span>, <span class="ruby-string">&#39;a+&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{@pseudo}_#{@score.to_i.to_s}_#{@chrono.chrono.to_i.to_s}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-to_s" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode qui permet d’afficher le mode génie</p>
+
+<h4 id="method-i-to_s-label-Retourne">Retourne<span><a href="#method-i-to_s-label-Retourne">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>L’état de la partie en cours</p>
+
+          <div class="method-source-code" id="to_s-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 449</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_s</span>
+  <span class="ruby-string">&quot;genie&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-verifCoord" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">verifCoord</span><span
+            class="method-args">(unX, unY)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode qui permet de verifier les coordonnées d’une case</p>
+
+<h4 id="method-i-verifCoord-label-ATTRIBUTS">ATTRIBUTS<span><a href="#method-i-verifCoord-label-ATTRIBUTS">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>unX</code> - coordonnée X de la case</p>
+</li><li>
+<p><code>unY</code> - Coordonnée Y de la case</p>
+</li></ul>
+
+          <div class="method-source-code" id="verifCoord-source">
+            <pre><span class="ruby-comment"># File src/Genie.rb, line 470</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">verifCoord</span>(<span class="ruby-identifier">unX</span>, <span class="ruby-identifier">unY</span>)
+  <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">verifCoord</span>(<span class="ruby-identifier">unX</span>, <span class="ruby-identifier">unY</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.4.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

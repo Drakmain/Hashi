@@ -101,7 +101,7 @@ class Jeu < Gtk::Builder
     @fenetre.show_all
   end
 
-  # Méthode activée lorque le bouton "Retour" est cliquée
+  # Méthode activée lorsque le bouton "Retour" est cliquée
   # Sauvegarde la partie et retourne à la page de sélection de map
   def on_retour_button_clicked
     @map.desactiverHypothese

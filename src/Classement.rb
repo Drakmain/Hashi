@@ -1,3 +1,19 @@
+
+#Classement
+#
+#permet de faire le classement des utilisateurs
+#
+#@ration 
+#@fenetre
+#@mode_comboxbox
+#@retour_button
+#@difficulte_comboxbox
+#@niveau_comboxbox
+#@chercher_button
+#@difficulte_comboxbox
+#@niveau_comboxbox
+#@chercher_button
+#
 class Classement < Gtk::Builder
   # Méthode d'initialisation de la classe
   #

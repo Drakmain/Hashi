@@ -330,6 +330,8 @@ class ContreLaMontre < Genie
     end
   end
 
+  
+  #permet de retrouner le nom de la classe
   def to_s
     "contreLaMontre"
   end
